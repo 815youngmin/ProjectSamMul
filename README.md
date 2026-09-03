@@ -37,11 +37,11 @@
 
 1. Unity **2021.3.45f2** 로 프로젝트를 엽니다.
 2. Asset Store에서 **DOTween**을 임포트합니다 (`Assets/Plugins/Demigiant`). 저장소에는 포함되어 있지 않습니다.
-3. 메뉴 **Demo → Build Scenes** 로 `Loading / Lobby / Stage` 씬을 생성합니다.
-4. 메뉴 **Demo → Validate Static Data** 로 데이터 로드를 확인합니다.
-5. `Assets/Scenes/Lobby.unity` 를 열고 Play.
-
-한글 표시를 위해 실행 시 OS 폰트(맑은 고딕 등)로 TextMeshPro 폴백 폰트를 동적으로 만듭니다.
+3. 메뉴 **Demo → Build Korean Font** — `Assets/Fonts` 의 넥슨 메이플스토리 서체로 TextMeshPro 한글 폴백 폰트 에셋을 만듭니다 (서체 라이선스: `Assets/Fonts/LICENSE-Maplestory.md`).
+4. 메뉴 **Demo → Build Sound Prefabs** — 코드가 참조하는 사운드 프리팹(무음)을 생성합니다. 사운드 프리팹이 없으면 실행 중 예외로 알려줍니다.
+5. 메뉴 **Demo → Build Scenes** 로 `Loading / Lobby / Stage` 씬을 생성합니다.
+6. 메뉴 **Demo → Validate Static Data** 로 데이터 로드를 확인합니다.
+7. `Assets/Scenes/Lobby.unity` 를 열고 Play.
 
 ## 설계 메모
 

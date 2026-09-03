@@ -35,35 +35,20 @@ namespace SamMul
         }
 
         /// <summary>
-        /// 기본 TMP 폰트에는 한글 글리프가 없으므로, OS 폰트로 동적 SDF 폰트를 만들어 전역 폴백에 추가한다.
-        /// 저장소에 폰트 파일을 포함하지 않기 위한 런타임 처리다.
+        /// 기본 TMP 폰트에는 한글 글리프가 없다. Demo > Build Korean Font 로 만든 폰트 에셋(저장소 미포함)을 TMP 전역 폴백에 등록한다.
         /// </summary>
         private static void RegisterKoreanFontFallback()
         {
-            var installed = Font.GetOSInstalledFontNames();
-            var preferred = new[] { "Malgun Gothic", "맑은 고딕", "NanumGothic", "나눔고딕", "Noto Sans KR", "Gulim", "굴림", "Apple SD Gothic Neo" };
-            foreach (var candidate in preferred)
+            var fontAsset = Resources.Load<TMPro.TMP_FontAsset>("Fonts/KoreanFallback SDF");
+            if (fontAsset == null)
             {
-                if (System.Array.IndexOf(installed, candidate) < 0)
-                {
-                    continue;
-                }
-                var osFont = Font.CreateDynamicFontFromOSFont(candidate, 32);
-                if (osFont == null)
-                {
-                    continue;
-                }
-                var fontAsset = TMPro.TMP_FontAsset.CreateFontAsset(osFont, 90, 9, UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA, 1024, 1024, TMPro.AtlasPopulationMode.Dynamic);
-                if (fontAsset == null || !fontAsset.TryAddCharacters("가나다한글"))
-                {
-                    continue;
-                }
-                fontAsset.name = candidate + " (runtime)";
-                TMPro.TMP_Settings.fallbackFontAssets.Add(fontAsset);
-                Debug.Log($"한글 폴백 폰트 등록: {candidate}");
+                Debug.LogWarning("한글 폴백 폰트가 없습니다. 에디터 메뉴 Demo > Build Korean Font 를 실행하세요. (한글이 □로 표시됩니다)");
                 return;
             }
-            Debug.LogWarning("한글을 지원하는 OS 폰트를 찾지 못했습니다. 한글이 □로 표시될 수 있습니다.");
+            if (!TMPro.TMP_Settings.fallbackFontAssets.Contains(fontAsset))
+            {
+                TMPro.TMP_Settings.fallbackFontAssets.Add(fontAsset);
+            }
         }
     }
 }

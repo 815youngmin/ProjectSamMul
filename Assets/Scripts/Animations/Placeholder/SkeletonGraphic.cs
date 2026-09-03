@@ -9,6 +9,7 @@ namespace SamMul.Animations.Placeholder
     /// Being a Graphic keeps <c>color</c>, masking and tween extensions working for ported UI code.
     /// </summary>
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(CanvasRenderer))]
     public class SkeletonGraphic : MaskableGraphic
     {
         public SkeletonDataAsset? skeletonDataAsset;
