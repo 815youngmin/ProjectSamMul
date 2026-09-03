@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.UnityHelpers
+namespace SamMul.UnityHelpers
 {
     public static class Vector2Extension
     {

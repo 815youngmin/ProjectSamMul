@@ -3,10 +3,10 @@ using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public abstract class SkillBase
     {

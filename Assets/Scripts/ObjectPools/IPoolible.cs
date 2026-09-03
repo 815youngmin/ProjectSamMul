@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-namespace Z.ObjectPools
+namespace SamMul.ObjectPools
 {
     /// <summary>
     /// <see cref="ObjectPool{TPoolKey, TValue}"/>에 넣을 수 있는 오브젝트의 인터페이스입니다.

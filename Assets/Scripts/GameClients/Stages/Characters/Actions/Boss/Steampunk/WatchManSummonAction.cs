@@ -1,14 +1,14 @@
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs;
-using Z.UnityHelpers;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs;
+using SamMul.UnityHelpers;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 
-namespace Z.GameClients.Stages.Characters.Actions.Boss.Steampunk
+namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Steampunk
 {
     public class WatchManSummonAction : SmartAction<SpineMonsterAnimationController>
     {

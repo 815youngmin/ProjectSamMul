@@ -1,12 +1,12 @@
 using Shared.GameDataTypes;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
     public class DropShipSummonAction : SmartAction<SpriteMonsterAnimationController>
     {

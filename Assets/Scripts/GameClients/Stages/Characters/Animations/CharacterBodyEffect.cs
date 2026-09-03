@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Animations
+namespace SamMul.GameClients.Stages.Characters.Animations
 {
     public enum CharacterBodyEffectType : int
     {

@@ -1,13 +1,13 @@
 using System;
 using System.Threading;
 using UnityEngine;
-using Z.GameClients;
-using Z.GameClients.Cameras;
-using Z.UnityHelpers;
-using Z.UnityHelpers.SceneManagements;
+using SamMul.GameClients;
+using SamMul.GameClients.Cameras;
+using SamMul.UnityHelpers;
+using SamMul.UnityHelpers.SceneManagements;
 using Object = System.Object;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
 
     public enum SceneType

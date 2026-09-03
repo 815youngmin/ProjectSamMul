@@ -1,10 +1,10 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class ZeusLightningAreaEffectObject : SmartAreaEffectObjectBase
     {

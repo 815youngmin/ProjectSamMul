@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 
-namespace Z.Loggers
+namespace SamMul.Loggers
 {
     /// <summary>
     /// UnityEngine.Debug 를 감싼 로거. <c>Log.I.Warn(...)</c> 형태로 사용합니다.

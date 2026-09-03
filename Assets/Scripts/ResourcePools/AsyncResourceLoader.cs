@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 
-namespace Z.ResourcePools
+namespace SamMul.ResourcePools
 {
     /// <summary>
     /// 리소스를 로드하여 적용하는 도우미. 같은 주소를 다시 요청하면 무시합니다.

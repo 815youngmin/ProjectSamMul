@@ -1,7 +1,7 @@
 #nullable enable
 using Shared.GameDataTypes;
 
-namespace Z.UnityHelpers
+namespace SamMul.UnityHelpers
 {
     /// <summary>Shared 데이터 타입을 UI 리소스/표시 문자열로 바꾸는 확장 메서드.</summary>
     public static class IconPathExtensions

@@ -3,7 +3,7 @@ using Shared.StaticDatas;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Monsters
+namespace SamMul.GameClients.Stages.Characters.Monsters
 {
     public class MonsterInstanceInitialData
     {

@@ -3,7 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Z.UIs.Commons.Popups
+namespace SamMul.UIs.Commons.Popups
 {
     /// <summary>오류 안내 팝업. 문의용으로 계정/버전/요청 이름을 함께 보여준다.</summary>
     public class ErrorMessagePopup : CommonPopup

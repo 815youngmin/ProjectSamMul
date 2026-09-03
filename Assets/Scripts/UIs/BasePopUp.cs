@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Z.UIs
+namespace SamMul.UIs
 {
     /// <summary>
     /// 모든 팝업의 베이스. 닫기 요청은 팝업을 만든 UIRoot 가 넘겨준 closeRequester 로 전달합니다.

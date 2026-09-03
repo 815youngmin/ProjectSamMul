@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Actions.Boss.Alibaba;
+using SamMul.GameClients.Stages.Characters.Actions.Boss.Alibaba;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Arabian
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Arabian
 {
     public class PeribanouIdleAIStrategy : BossIdleAIStrategy
     {

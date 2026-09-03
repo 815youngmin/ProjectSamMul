@@ -5,11 +5,11 @@ using Shared.Localizers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class StageNameUI : MonoBehaviour
     {

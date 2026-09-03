@@ -1,7 +1,7 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
 {
     public class OrthogonalMoveAndStopAICombatStrategy : MonsterAIStrategyBase
     {

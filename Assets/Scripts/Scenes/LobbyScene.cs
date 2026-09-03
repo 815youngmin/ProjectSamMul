@@ -2,11 +2,11 @@ using Shared.GameLogics;
 using Shared.UserDatas;
 using System;
 using UnityEngine;
-using Z.GameClients;
-using Z.UnityHelpers;
-using Z.UnityHelpers.Sounds;
+using SamMul.GameClients;
+using SamMul.UnityHelpers;
+using SamMul.UnityHelpers.Sounds;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
     public class LobbySceneInitialData : ISceneInitialData
     {

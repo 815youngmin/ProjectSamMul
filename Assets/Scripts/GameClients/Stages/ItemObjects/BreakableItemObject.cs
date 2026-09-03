@@ -1,9 +1,9 @@
 using DG.Tweening;
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     // 플레이어의 공격에 의해 부서질 수 있는 오브젝트
     public abstract class BreakableItemObject : ItemObjectBase

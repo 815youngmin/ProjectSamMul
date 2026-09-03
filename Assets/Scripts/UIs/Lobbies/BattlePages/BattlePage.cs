@@ -3,19 +3,19 @@ using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.UIs.Commons.Rewards;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.UIs.Commons.Rewards;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies.BattlePages
+namespace SamMul.UIs.Lobbies.BattlePages
 {
     public class BattlePage : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
     /// <summary>
     /// 보스 패턴 등에 사용할 수 있는 스마트 액션 클래스입니다.

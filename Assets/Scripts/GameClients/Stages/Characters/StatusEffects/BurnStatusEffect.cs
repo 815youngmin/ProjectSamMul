@@ -1,10 +1,10 @@
 #nullable enable
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class BurnStatusEffect : StatusEffect
     {

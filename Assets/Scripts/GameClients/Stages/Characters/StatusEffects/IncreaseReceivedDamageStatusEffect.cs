@@ -1,8 +1,8 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.Particles;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Particles;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class IncreaseReceivedDamageStatusEffect : StatusEffect
     {

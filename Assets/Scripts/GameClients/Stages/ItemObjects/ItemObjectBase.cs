@@ -2,10 +2,10 @@ using Shared.GameDataTypes;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
-using Z.ResourcePools;
+using SamMul.ObjectPools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     // CoinObject, ExpObjet, ItemBoxObject, SkillBoxObject 
     //

@@ -1,7 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>
     /// List type kept under the original runtime's name so ported code compiles unchanged.

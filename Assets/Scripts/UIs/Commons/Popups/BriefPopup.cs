@@ -4,11 +4,11 @@ using Shared.Localizers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies
+namespace SamMul.UIs.Lobbies
 {
     public class BriefPopup : BasePopup
     {

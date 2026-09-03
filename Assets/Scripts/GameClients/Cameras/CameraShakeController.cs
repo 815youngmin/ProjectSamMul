@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.GameClients.Cameras
+namespace SamMul.GameClients.Cameras
 {
     /// <summary>
     /// 카메라 흔들림 프리셋 모음. 외부 카메라 셰이크 라이브러리를 대체하는 자체 구현으로,

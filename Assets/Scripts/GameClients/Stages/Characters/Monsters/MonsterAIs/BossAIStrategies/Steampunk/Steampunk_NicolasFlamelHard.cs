@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Actions.Boss.Steampunk;
+using SamMul.GameClients.Stages.Characters.Actions.Boss.Steampunk;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Steampunk
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Steampunk
 {
     public class Steampunk_NicolasFlamelHardIdleAIStrategy : BossIdleAIStrategy
     {

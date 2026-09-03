@@ -1,11 +1,11 @@
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.UnityHelpers;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.Animations
+namespace SamMul.GameClients.Stages.Characters.Animations
 {
     public class PCAnimationController : CharacterAnimationController
     {

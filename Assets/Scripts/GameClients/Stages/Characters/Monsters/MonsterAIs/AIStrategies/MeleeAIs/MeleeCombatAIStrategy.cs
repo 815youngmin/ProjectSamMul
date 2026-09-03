@@ -1,10 +1,10 @@
 using Shared.DataTables;
 using UnityEngine;
 using UnityEngine.Profiling;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
 {
     public class MeleeCombatAIStrategy : MonsterAIStrategyBase
     {

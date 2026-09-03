@@ -1,9 +1,9 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.ForwardAreaAttackAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.ForwardAreaAttackAIs
 {
     public class ForwardAreaAttackEliteCombatAIStrategy : MonsterAIStrategyBase
     {

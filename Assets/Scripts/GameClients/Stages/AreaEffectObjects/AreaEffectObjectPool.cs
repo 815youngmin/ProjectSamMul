@@ -2,9 +2,9 @@ using Shared.StaticDatas;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
+using SamMul.ObjectPools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class AreaEffectPool
     {

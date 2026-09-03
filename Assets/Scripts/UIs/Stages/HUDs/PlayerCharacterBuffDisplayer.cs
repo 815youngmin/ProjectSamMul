@@ -1,10 +1,10 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using Z.GameClients;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.ResourcePools;
-using Z.Scenes;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
 
 public class PlayerCharacterBuffDisplayer : MonoBehaviour
 {

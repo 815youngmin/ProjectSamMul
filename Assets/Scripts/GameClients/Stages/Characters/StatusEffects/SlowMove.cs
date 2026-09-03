@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class SlowMove : StatusEffect
     {

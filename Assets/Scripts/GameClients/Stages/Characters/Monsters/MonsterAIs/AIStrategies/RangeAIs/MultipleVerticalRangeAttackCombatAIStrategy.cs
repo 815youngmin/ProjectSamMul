@@ -1,8 +1,8 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
 {
     public class MultipleVerticalRangeAttackCombatAIStrategy : MonsterAIStrategyBase
     {

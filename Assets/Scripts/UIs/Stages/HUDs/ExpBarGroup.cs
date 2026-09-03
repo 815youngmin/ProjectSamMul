@@ -3,9 +3,9 @@ using Shared.StaticDatas;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class ExpBarGroup : MonoBehaviour
     {

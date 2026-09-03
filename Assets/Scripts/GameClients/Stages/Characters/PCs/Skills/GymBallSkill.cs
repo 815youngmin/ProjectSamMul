@@ -1,10 +1,10 @@
 using Shared.StaticDatas;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class GymBallSkill: SkillBase
     {

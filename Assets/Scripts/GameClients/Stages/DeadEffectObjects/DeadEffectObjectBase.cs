@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
-using Z.ResourcePools;
+using SamMul.ObjectPools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.DeadEffectObjects
+namespace SamMul.GameClients.Stages.DeadEffectObjects
 {
     public enum DeadEffectType
     {

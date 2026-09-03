@@ -1,7 +1,7 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class FreezeStatusEffect : StatusEffect
     {

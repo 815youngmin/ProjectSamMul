@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEngine;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>
     /// Replacement for the original loading helper, built on the placeholder runtime. Same call surface,

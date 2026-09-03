@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.CharacterEvents
+namespace SamMul.GameClients.Stages.Characters.CharacterEvents
 {
     /// <remarks>attacker may be null (environmental damage, self damage, ...)</remarks>
     public delegate void OnHittedHandler(Stage stage, Character owner, Character? attacker, float damage, Vector2 hitPoint);

@@ -1,10 +1,10 @@
 using Shared.GameLogics;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.ResourcePools;
-using Z.UIs.Stages.HUDs;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.ResourcePools;
+using SamMul.UIs.Stages.HUDs;
 
-namespace Z.GameClients.Stages.Characters.PCs
+namespace SamMul.GameClients.Stages.Characters.PCs
 {
     public class HPBuffer
     {

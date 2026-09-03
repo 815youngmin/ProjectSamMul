@@ -1,10 +1,10 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MoveStopAttackAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MoveStopAttackAIs
 {
     public class MoveStopAttackCombatAIStrategy : MonsterAIStrategyBase
     {

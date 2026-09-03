@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Z.UIs
+namespace SamMul.UIs
 {
     /// <summary>스테이지 상단의 골드/보석 표시.</summary>
     public class StageSceneWalletBarGroup : MonoBehaviour

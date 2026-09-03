@@ -1,10 +1,10 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Z.GameClients
+namespace SamMul.GameClients
 {
     /// <summary>
     /// 메인 스레드에서 비동기 작업을 하나씩 순서대로 실행하는 큐입니다.

@@ -3,9 +3,9 @@ using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.UnityHelpers;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonOnDieAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonOnDieAIs
 {
     public abstract class SummonOnDieMonsterAIStrategyBase : MonsterAIStrategyBase
     {

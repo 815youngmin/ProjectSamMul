@@ -1,11 +1,11 @@
 using Shared.DataTables;
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class BouncingClawSkill : SkillBase
     {

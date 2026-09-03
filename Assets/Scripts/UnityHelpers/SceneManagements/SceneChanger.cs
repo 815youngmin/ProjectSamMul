@@ -3,9 +3,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.Scenes;
+using SamMul.Scenes;
 
-namespace Z.UnityHelpers.SceneManagements
+namespace SamMul.UnityHelpers.SceneManagements
 {
     /// <summary>
     /// 씬 전환을 담당합니다. 씬은 Build Settings 에 SceneType 이름과 같은 이름으로 등록되어 있어야 합니다.

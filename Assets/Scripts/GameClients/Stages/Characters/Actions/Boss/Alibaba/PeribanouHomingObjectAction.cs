@@ -1,13 +1,13 @@
 using UnityEngine;
-using Z.GameClients.Stages;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.GameClients.Stages;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 
-namespace Z.GameClients.Stages.Characters.Actions.Boss.Alibaba
+namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Alibaba
 {
     public class PeribanouHomingObjectAction : SmartAction<SpineMonsterAnimationController>
     {

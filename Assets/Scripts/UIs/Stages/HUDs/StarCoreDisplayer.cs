@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     /// <summary>플레이어 머리 위에 획득한 스타코어 수를 보여주는 표시기.</summary>
     public class StarCoreDisplayer : MonoBehaviour

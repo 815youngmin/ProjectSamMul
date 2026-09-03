@@ -1,8 +1,8 @@
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.Characters.Actions;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
 {
     public class IncubatorIdleAIStrategy : MonsterAIStrategyBase
     {

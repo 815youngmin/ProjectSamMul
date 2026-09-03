@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Z.Scenes;
+using SamMul.Scenes;
 
 namespace Demo.Editor
 {

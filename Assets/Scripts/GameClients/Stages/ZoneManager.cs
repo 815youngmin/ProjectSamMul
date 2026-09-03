@@ -3,9 +3,9 @@ using Shared.DataTables;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters;
 
-namespace Z.GameClients.Stages
+namespace SamMul.GameClients.Stages
 {
     public readonly struct ZoneIndex : IEquatable<ZoneIndex>
     {

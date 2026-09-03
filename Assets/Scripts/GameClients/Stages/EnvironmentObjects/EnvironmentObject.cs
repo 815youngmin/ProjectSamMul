@@ -2,10 +2,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
-using Z.ResourcePools;
+using SamMul.ObjectPools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.EnvironmentObjects
+namespace SamMul.GameClients.Stages.EnvironmentObjects
 {
     public enum EnvironmentObjectType
     {

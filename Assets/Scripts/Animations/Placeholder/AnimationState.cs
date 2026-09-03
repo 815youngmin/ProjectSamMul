@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     public class AnimationStateData
     {

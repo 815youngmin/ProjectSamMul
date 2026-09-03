@@ -1,6 +1,6 @@
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.HealAIs;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.HealAIs;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
 {
     public abstract class AreaEffectOnDieBaseAIStrategy : MonsterAIStrategyBase
     {

@@ -7,13 +7,13 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     public class PauseMenuPopup : BasePopup
     {

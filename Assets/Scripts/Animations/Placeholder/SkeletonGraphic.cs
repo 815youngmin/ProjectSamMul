@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>
     /// UI counterpart of <see cref="SkeletonAnimation"/>: a tinted rectangle filling the RectTransform.

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters;
 
-namespace Z.GameClients.Stages.DamagePopups
+namespace SamMul.GameClients.Stages.DamagePopups
 {
     /// <summary>
     /// Pools and shows floating damage / heal / avoid numbers in the stage scene.

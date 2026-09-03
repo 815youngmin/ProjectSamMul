@@ -1,10 +1,10 @@
 #nullable enable
 using System;
 using UnityEngine;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.GroundEffects
+namespace SamMul.GameClients.Stages.Characters.GroundEffects
 {
     /// <summary>
     /// A sprite animation placed under a character. Whether it loops or plays once is decided by the animation

@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     //벽이나 플레이어에게 부딪히면 분열하는 투사체입니다.
     public class SplitAreaEffectObject : AreaEffectObjectBase

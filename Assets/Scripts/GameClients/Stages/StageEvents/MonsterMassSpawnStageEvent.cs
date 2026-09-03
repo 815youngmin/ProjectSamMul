@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public class MonsterMassSpawnStageEvent : MonsterSpawnStageEventBase
     {

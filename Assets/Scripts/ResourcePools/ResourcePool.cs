@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Z.ResourcePools
+namespace SamMul.ResourcePools
 {
     /// <summary>
     /// 리소스 로드/인스턴스 풀링을 담당하는 전역 객체입니다.
@@ -106,8 +106,12 @@ namespace Z.ResourcePools
             var resource = Resources.Load<TObject>(ToResourcesPath(fullPath));
             if (resource == null)
             {
-                Debug.LogError($"리소스 로드 실패. Type[{typeof(TObject).Name}] Path[{fullPath}]");
-                return null;
+                resource = CreatePlaceholderResource<TObject>(fullPath);
+                if (resource == null)
+                {
+                    Debug.LogError($"리소스 로드 실패. Type[{typeof(TObject).Name}] Path[{fullPath}]");
+                    return null;
+                }
             }
 
             _loadedResources[key] = resource;
@@ -138,17 +142,67 @@ namespace Z.ResourcePools
                 return pooled;
             }
 
-            var resource = this.LoadResource<GameObject>(fullPath);
+            var resource = Resources.Load<GameObject>(ToResourcesPath(fullPath));
             if (resource == null)
             {
-                throw new InvalidOperationException($"{fullPath} 리소스 없음.");
+                PlaceholderFactory.ReportOnce("프리팹", fullPath);
+                return PlaceholderFactory.CreateObject(fullPath, null);
             }
             return GameObject.Instantiate(resource);
         }
 
         public TRootComponent InstantiateFromResource<TRootComponent>(string fullPath) where TRootComponent : Component
         {
-            return this.InstantiateFromResource(fullPath).GetComponent<TRootComponent>();
+            var pool = this.GetInstancePool(fullPath);
+            while (pool.Count > 0)
+            {
+                var pooled = pool.Pop();
+                if (pooled == null)
+                {
+                    continue;
+                }
+                pooled.transform.SetParent(null, worldPositionStays: false);
+                pooled.SetActive(true);
+                return pooled.GetComponent<TRootComponent>();
+            }
+
+            var resource = Resources.Load<GameObject>(ToResourcesPath(fullPath));
+            if (resource == null)
+            {
+                PlaceholderFactory.ReportOnce("프리팹", fullPath);
+                return PlaceholderFactory.CreateObject(fullPath, typeof(TRootComponent)).GetComponent<TRootComponent>();
+            }
+            return GameObject.Instantiate(resource).GetComponent<TRootComponent>();
+        }
+
+        /// <summary>
+        /// Resources 에 없는 리소스를 대신할 플레이스홀더를 만든다. 스프라이트는 흰 사각형, 프리팹은 빈 오브젝트 템플릿,
+        /// 플레이스홀더 애니메이터의 스켈레톤 데이터는 기본 클립 세트다. 만들 수 없는 타입이면 null.
+        /// </summary>
+        private TObject CreatePlaceholderResource<TObject>(string fullPath) where TObject : UnityEngine.Object
+        {
+            var type = typeof(TObject);
+            if (type == typeof(Sprite))
+            {
+                PlaceholderFactory.ReportOnce("스프라이트", fullPath);
+                return PlaceholderFactory.WhiteSprite as TObject;
+            }
+            if (type == typeof(GameObject))
+            {
+                PlaceholderFactory.ReportOnce("프리팹", fullPath);
+                var template = PlaceholderFactory.CreateObject(fullPath, null);
+                template.SetActive(false);
+                UnityEngine.Object.DontDestroyOnLoad(template);
+                return template as TObject;
+            }
+            if (type == typeof(SamMul.Animations.Placeholder.SkeletonDataAsset))
+            {
+                PlaceholderFactory.ReportOnce("스켈레톤 데이터", fullPath);
+                var asset = ScriptableObject.CreateInstance<SamMul.Animations.Placeholder.SkeletonDataAsset>();
+                asset.name = fullPath;
+                return asset as TObject;
+            }
+            return null;
         }
 
         public void PutBackInstance(string fullPath, GameObject instance)

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.ConditionalEffects;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.ConditionalEffects;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Stages.Characters.Stats
+namespace SamMul.GameClients.Stages.Characters.Stats
 {
     public interface IReadOnlyCustomParameters
     {

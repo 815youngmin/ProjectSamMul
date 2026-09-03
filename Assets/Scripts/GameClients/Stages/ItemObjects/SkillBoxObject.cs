@@ -1,14 +1,14 @@
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UIs.Stages.HUDs;
-using Z.UIs.Stages.Popups;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UIs.Stages.HUDs;
+using SamMul.UIs.Stages.Popups;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class SkillBoxObject : AcquirableItemObject
     {

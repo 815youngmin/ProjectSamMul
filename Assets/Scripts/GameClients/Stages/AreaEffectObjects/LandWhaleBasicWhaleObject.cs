@@ -1,13 +1,13 @@
-﻿using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.GameClients.Stages.ProjectileObjects;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.ProjectileObjects;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class LandWhaleBasicWhaleObject : AreaEffectObjectBase
     {

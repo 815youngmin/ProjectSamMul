@@ -2,12 +2,12 @@ using DG.Tweening;
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 using Sequence = DG.Tweening.Sequence;
 
 public class UnlockContentPopup : MonoBehaviour

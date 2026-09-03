@@ -1,6 +1,6 @@
 using System;
 
-namespace Z.GameClients.Stages.AreaIndicators
+namespace SamMul.GameClients.Stages.AreaIndicators
 {
     public readonly struct AreaIndicatorInstanceID : IEquatable<AreaIndicatorInstanceID>
     {

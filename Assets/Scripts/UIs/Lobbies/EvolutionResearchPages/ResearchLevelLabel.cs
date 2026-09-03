@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Lobbies.EvolutionResearchPages
+namespace SamMul.UIs.Lobbies.EvolutionResearchPages
 {
     public class ResearchLevelLabel : MonoBehaviour
     {

@@ -1,9 +1,9 @@
-using Z.GameClients.Stages.Characters.GroundEffects;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.GroundEffects;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class IncreaseAttackDamageStatusEffect : StatusEffect
     {

@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.UnityHelpers
+namespace SamMul.UnityHelpers
 {
     /// <summary>
     /// 스프라이트 프레임 목록을 지정한 fps 로 넘겨 보여주는 플립북 애니메이션입니다.

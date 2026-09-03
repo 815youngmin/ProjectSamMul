@@ -5,10 +5,10 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     /// <summary>
     /// 부활 팝업창

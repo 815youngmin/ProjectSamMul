@@ -1,10 +1,10 @@
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
 
-namespace Z.GameClients.Stages.Characters.Actions.Boss.Western
+namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Western
 {
     public class WyattEarpHomingObjectAction : SmartAction<SpineMonsterAnimationController>
     {

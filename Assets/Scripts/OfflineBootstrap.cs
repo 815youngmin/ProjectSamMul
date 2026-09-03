@@ -1,12 +1,12 @@
 #nullable enable
 using Shared;
 using Shared.StaticDatas;
-using Z.GameClients;
-using Z.Localizations;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.Localizations;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z
+namespace SamMul
 {
     /// <summary>
     /// 서버 없이 동작하는 데모의 앱 최초 초기화.

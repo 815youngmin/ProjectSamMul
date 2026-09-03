@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     //충돌 또는 시간이 지나면 반사 투사체로 분열하는 오브젝트
     public class SplitReflectionObject : AreaEffectObjectBase

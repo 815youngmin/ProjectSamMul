@@ -1,9 +1,9 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonAIs
 {
     public class SummonMeleeIdleAIStrategy : MonsterAIStrategyBase
     {

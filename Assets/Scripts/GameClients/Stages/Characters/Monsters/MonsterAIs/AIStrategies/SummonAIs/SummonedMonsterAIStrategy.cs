@@ -1,7 +1,7 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
 {
     public class SummonedMonsterAIStrategy : MonsterAIStrategyBase, ISummonedMonsterCommandSender
     {

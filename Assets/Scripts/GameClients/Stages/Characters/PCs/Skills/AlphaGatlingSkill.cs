@@ -1,15 +1,15 @@
-﻿using Shared.GameDataTypes;
+using Shared.GameDataTypes;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class AlphaGatlingSkill : SkillBase
     {

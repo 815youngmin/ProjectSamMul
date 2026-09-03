@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.GameClients.Stages.Characters;
-using Z.ObjectPools;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.ObjectPools;
 
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.DeadEffectObjects
+namespace SamMul.GameClients.Stages.DeadEffectObjects
 {
     public class DeadEffectManager
     {

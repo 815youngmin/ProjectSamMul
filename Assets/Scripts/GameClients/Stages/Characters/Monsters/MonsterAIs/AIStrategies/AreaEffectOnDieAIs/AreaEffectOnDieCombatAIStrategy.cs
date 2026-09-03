@@ -1,8 +1,8 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
 {
     public class AreaEffectOnDieCombatAIStrategy : AreaEffectOnDieBaseAIStrategy
     {

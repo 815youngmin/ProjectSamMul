@@ -1,5 +1,5 @@
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.HealAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.HealAIs
 {
     public class HealAIBlackboard : MonsterAIBlackboardBase
     {

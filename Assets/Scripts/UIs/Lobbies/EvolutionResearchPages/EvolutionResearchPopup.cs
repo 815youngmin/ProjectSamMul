@@ -5,13 +5,13 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 using UnityEngine.Events;
 
-namespace Z.UIs.Lobbies.EvolutionResearchPages
+namespace SamMul.UIs.Lobbies.EvolutionResearchPages
 {
     public class EvolutionResearchPopup : MonoBehaviour
     {

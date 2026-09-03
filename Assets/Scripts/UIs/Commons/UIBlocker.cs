@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 using UnityEngine.UI;
-using Z.UIs;
+using SamMul.UIs;
 
 /// <summary>
 /// 팝업 뒤를 덮어 클릭을 막는 스크린. 바깥 클릭으로 닫히는 팝업이면 클릭 시 팝업을 닫습니다.

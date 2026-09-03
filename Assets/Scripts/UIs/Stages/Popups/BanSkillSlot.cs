@@ -2,7 +2,7 @@ using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
 public class BanSkillSlot : MonoBehaviour
 {

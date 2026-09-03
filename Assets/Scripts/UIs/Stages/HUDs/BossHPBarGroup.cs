@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class BossHPBarGroup : MonoBehaviour
     {

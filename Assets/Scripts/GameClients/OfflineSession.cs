@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,9 +12,9 @@ using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using Shared.UserDatas;
 using UnityEngine;
-using Z.Loggers;
+using SamMul.Loggers;
 
-namespace Z.GameClients
+namespace SamMul.GameClients
 {
     /// <summary>
     /// 서버 없이 동작하는 세션. 원래 네트워크 클라이언트가 담당하던 유저 데이터 보관과

@@ -1,9 +1,9 @@
 using DG.Tweening;
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public class IceAreaEffectSpawnStageEvent : StageEventBase
     {

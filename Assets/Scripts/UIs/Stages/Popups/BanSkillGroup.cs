@@ -2,7 +2,7 @@ using Shared.GameDataTypes;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
 public class BanSkillGroup : MonoBehaviour
 {

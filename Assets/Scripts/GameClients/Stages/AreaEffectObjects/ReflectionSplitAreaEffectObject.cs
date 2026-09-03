@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     //벽에 반사되며 이동하다 시간이 되면 갈라지는 투사체입니다.
     public class ReflectionSplitAreaEffectObject : AreaEffectObjectBase

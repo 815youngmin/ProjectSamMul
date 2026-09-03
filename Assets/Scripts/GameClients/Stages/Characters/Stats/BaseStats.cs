@@ -2,9 +2,9 @@ using Shared.GameLogics;
 using Shared.StaticDatas;
 using Shared.UserDatas;
 using UnityEngine;
-using Z.Loggers;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Stages.Characters.Stats
+namespace SamMul.GameClients.Stages.Characters.Stats
 {
     public readonly struct BaseStats
     {

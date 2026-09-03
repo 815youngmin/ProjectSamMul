@@ -2,10 +2,10 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.Loggers;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.Loggers;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
 public class AccelerationButton : MonoBehaviour
 {

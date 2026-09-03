@@ -1,4 +1,4 @@
-namespace Z.GameClients.Stages.Characters.Stats
+namespace SamMul.GameClients.Stages.Characters.Stats
 {
     public enum StatModType
     {

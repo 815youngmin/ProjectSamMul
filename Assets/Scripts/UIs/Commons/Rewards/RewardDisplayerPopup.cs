@@ -2,16 +2,16 @@
 using DG.Tweening;
 using Shared.GameDataTypes;
 using Shared.Localizers;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Commons.Rewards
+namespace SamMul.UIs.Commons.Rewards
 {
     public class RewardDisplayerPopup : BasePopup
     {

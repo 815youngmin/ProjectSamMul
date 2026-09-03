@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Profiling;
 
-namespace Z.UnityHelpers
+namespace SamMul.UnityHelpers
 {
     /// <summary>
     /// using 블록 범위를 프로파일러 샘플로 묶습니다.

@@ -1,10 +1,10 @@
 using Shared.DataTables;
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
 {
     public class PassByFastAndNormalMoveCombatAIStrategy : MonsterAIStrategyBase
     {

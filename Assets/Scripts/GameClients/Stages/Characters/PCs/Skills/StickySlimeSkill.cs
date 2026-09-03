@@ -1,14 +1,14 @@
-﻿using Shared.GameDataTypes;
+using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
-using Z.GameClients.Stages.ProjectileObjects;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.ProjectileObjects;
+using SamMul.UnityHelpers;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class StickySlimeSkill : SkillBase
     {

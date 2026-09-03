@@ -7,15 +7,15 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.GameClients.Stages;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class PlayerCharacterStatDisplayer : MonoBehaviour
     {

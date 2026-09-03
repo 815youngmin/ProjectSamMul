@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Color = UnityEngine.Color;
 
-namespace Z.GameClients.Stages.Characters.Animations
+namespace SamMul.GameClients.Stages.Characters.Animations
 {
     public class SpriteMonsterAnimationController : MonsterAnimationController
     {

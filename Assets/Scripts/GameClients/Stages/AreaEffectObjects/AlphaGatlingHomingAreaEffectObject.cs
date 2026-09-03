@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class AlphaGatlingHomingAreaEffectObject : AreaEffectObjectBase
     {

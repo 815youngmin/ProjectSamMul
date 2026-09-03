@@ -1,4 +1,4 @@
-namespace Z.GameClients.Stages.Characters.GroundEffects
+namespace SamMul.GameClients.Stages.Characters.GroundEffects
 {
     public enum CharacterGroundEffectType : int
     {

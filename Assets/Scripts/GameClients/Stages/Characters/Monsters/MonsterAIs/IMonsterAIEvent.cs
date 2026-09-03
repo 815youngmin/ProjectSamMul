@@ -1,7 +1,7 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
 {
     /// <summary>
     /// 몬스터에서 AI관련 이벤트가 발생하면, AIController에 이벤트를 전달해주기 위한 인터페이스

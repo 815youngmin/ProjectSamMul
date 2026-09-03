@@ -1,10 +1,10 @@
 using Shared.DataTables;
 using TMPro;
 using UnityEngine;
-using Z.GameClients;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies
+namespace SamMul.UIs.Lobbies
 {
     public class LobbyWalletBarGroup : MonoBehaviour
     {

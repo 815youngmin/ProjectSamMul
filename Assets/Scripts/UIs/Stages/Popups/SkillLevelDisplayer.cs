@@ -1,9 +1,9 @@
 using Shared.DataTables;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     public class SkillLevelDisplayer : MonoBehaviour, ILayoutGroup
     {

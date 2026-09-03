@@ -1,8 +1,8 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.ProjectileObjects;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.ProjectileObjects;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class EraMixGuanyuLightningCreateObject : AreaEffectObjectBase
     {

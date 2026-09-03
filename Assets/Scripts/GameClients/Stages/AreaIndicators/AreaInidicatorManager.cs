@@ -6,10 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaIndicators
+namespace SamMul.GameClients.Stages.AreaIndicators
 {
 
     public class AreaIndicatorManager

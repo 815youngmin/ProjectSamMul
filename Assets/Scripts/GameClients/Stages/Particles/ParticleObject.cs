@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Particles
+namespace SamMul.GameClients.Stages.Particles
 {
     public class ParticleObject : MonoBehaviour
     {

@@ -1,7 +1,7 @@
-using Z.GameClients.Stages.Characters.GroundEffects;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.GroundEffects;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class IncreaseAttackSpeedStatusEffect : StatusEffect
     {

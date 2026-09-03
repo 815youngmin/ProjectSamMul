@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     [Serializable]
     public class PlaceholderClip

@@ -2,7 +2,7 @@ using Shared.GameDataTypes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public static class MonsterSpawnTools
     {   

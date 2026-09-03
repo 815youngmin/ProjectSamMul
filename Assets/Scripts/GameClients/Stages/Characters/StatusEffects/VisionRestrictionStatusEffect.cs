@@ -2,9 +2,9 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     //해당 상태이상 효과는 중복해서 적용하지 않는걸 추천한다
     //혹시 중복해서 적용하고 싶으면 연출이 중복 재생되지 않도록 수정해야됨. (시야 제한 연출때문에 어색해보임)

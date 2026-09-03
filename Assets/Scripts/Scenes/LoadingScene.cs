@@ -1,8 +1,8 @@
 using UnityEngine;
-using Z.UnityHelpers;
-using Z.UnityHelpers.Sounds;
+using SamMul.UnityHelpers;
+using SamMul.UnityHelpers.Sounds;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
     public class LoadingScene : BaseScene
     {

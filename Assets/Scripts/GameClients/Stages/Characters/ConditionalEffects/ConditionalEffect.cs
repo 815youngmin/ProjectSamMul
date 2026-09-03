@@ -1,26 +1,26 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Z.GameClients.Stages.AreaEffectObjects;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.Characters.StatusEffects;
-using Z.GameClients.Stages.CombatSystems;
-using Z.Loggers;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UIs.Stages.Popups;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.AreaEffectObjects;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.StatusEffects;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.Loggers;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UIs.Stages.Popups;
+using SamMul.UnityHelpers;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.Characters.ConditionalEffects
+namespace SamMul.GameClients.Stages.Characters.ConditionalEffects
 {
 
     public enum InstantConditionType

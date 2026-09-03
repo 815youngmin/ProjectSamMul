@@ -1,10 +1,10 @@
 using DG.Tweening;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class PoisonMachineHomingProjectile : AreaEffectObjectBase
     {

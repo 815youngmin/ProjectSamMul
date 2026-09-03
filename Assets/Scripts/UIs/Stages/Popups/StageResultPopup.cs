@@ -5,20 +5,20 @@ using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
 using Shared.UserDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UIs.Commons.Rewards;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UIs.Commons.Rewards;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     public class StageResultPopup : BasePopup
     {

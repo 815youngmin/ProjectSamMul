@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     // Character GameObject의 자식으로 붙는다. UIRoot 의 자식이 아님
     public class HPBar : MonoBehaviour

@@ -3,7 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.DamagePopups
+namespace SamMul.GameClients.Stages.DamagePopups
 {
     /// <summary>
     /// A pooled floating number. Pops in, drifts along the hit direction, fades out and then returns itself to the

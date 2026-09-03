@@ -1,14 +1,14 @@
 using DG.Tweening;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Characters.Shields
+namespace SamMul.GameClients.Stages.Characters.Shields
 {
     public class BossShield : Shield
     {

@@ -8,15 +8,14 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.Loggers;
-using Z.ResourcePools;
-using Z.UIs;
-using Z.UIs.Commons.DebugInfoScreens;
-using Z.UIs.Commons.Popups;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.Loggers;
+using SamMul.ResourcePools;
+using SamMul.UIs;
+using SamMul.UIs.Commons.Popups;
+using SamMul.UnityHelpers;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
     public abstract class BaseSceneUIRoot : MonoBehaviour
     {
@@ -27,7 +26,6 @@ namespace Z.Scenes
         private static EventSystem _eventSystem = null!;
 
         private UIBlocker? _uiBlocker;
-        private DebugInfoScreen? _debugInfoScreen;
 
         private List<(BasePopup Popup, bool UseUIBlocker)> _popups = null!;
         public bool HasAnyPopup() => _popups?.Any() ?? false;
@@ -63,12 +61,6 @@ namespace Z.Scenes
 
             SetUpCanvasScaler(sceneType);
             
-#if !ENV_PRODUCTION
-            // PRODUCTION 환경이 아닌 빌드는 명확히 확인할 수 있도록, 화면에 환경 정보를 표시한다.
-            var debugInfoScreen = this.GetOrCreateDebugInfoScreen();
-            var environmentText = debugInfoScreen.AddDebugInfoTextLine();
-            environmentText.UpdateText("OFFLINE DEMO");
-#endif
         }
 
         private void CheckAndLoadEventSystem()
@@ -110,52 +102,12 @@ namespace Z.Scenes
                 _popups.Clear();
             }
 
-            _debugInfoScreen?.Clear();
-            _debugInfoScreen = null;
         }
 
         public virtual void Update()
         {
-#if DEBUG_DEVICE_RESOLUTION
-            DebugDeviceResolution();
-#endif
         }
 
-#if DEBUG_DEVICE_RESOLUTION
-        private DebugInfoText _resolutionDebugText = null!;
-        private DebugInfoText _screenSizeDebugText = null!;
-        private DebugInfoText _mainCameraDebugText = null!;
-        private DebugInfoText _mainCameraPixelDebugText = null!;
-        private DebugInfoText _displayDebugText = null!;
-        private void DebugDeviceResolution()
-        {
-            var baseSceneUIRoot = UnityGlobal.Scenes.GetCurrentSceneUI();
-
-            if (_resolutionDebugText == null)
-            {
-                var debugInfoScreen = baseSceneUIRoot.GetOrCreateDebugInfoScreen();
-                _resolutionDebugText = debugInfoScreen.AddDebugInfoTextLine();
-                _screenSizeDebugText = debugInfoScreen.AddDebugInfoTextLine();
-                _mainCameraDebugText = debugInfoScreen.AddDebugInfoTextLine();
-                _mainCameraPixelDebugText = debugInfoScreen.AddDebugInfoTextLine();
-                _displayDebugText = debugInfoScreen.AddDebugInfoTextLine();
-            }
-
-
-            var resolution = Screen.currentResolution;
-            _resolutionDebugText.UpdateText($"Resolution : [{resolution.width}] [{resolution.height}] ");
-            _screenSizeDebugText.UpdateText($"Screen[{Screen.fullScreenMode}] : [{Screen.width}, {Screen.height}] Dpi[{Screen.dpi}] [{Screen.orientation}]");
-            var mainCamera = GameClient.CameraController.MainCamera;
-            if (mainCamera != null)
-            {
-                _mainCameraDebugText.UpdateText($"MainCamera : Aspect[{mainCamera.aspect}] Rect[{mainCamera.rect}] ");
-                _mainCameraPixelDebugText.UpdateText($"MainCamera Pixel : PixelRect[{mainCamera.pixelRect}] SacledPixel[{mainCamera.scaledPixelWidth}, {mainCamera.scaledPixelHeight}]");
-            }
-
-            var mainDisplay = Display.main;
-            _displayDebugText.UpdateText($"MainDisplay : System[{mainDisplay.systemWidth}, {mainDisplay.systemHeight}] Rendering[{mainDisplay.renderingWidth}, {mainDisplay.renderingHeight}]");
-        }
-#endif
 
 
         // 카메라 화면에 맞춰 Canvas 조절할 수 있도록 설정한다.
@@ -342,19 +294,6 @@ namespace Z.Scenes
             });
         }
 
-        public DebugInfoScreen GetOrCreateDebugInfoScreen()
-        {
-            if (_debugInfoScreen != null)
-            {
-                return _debugInfoScreen;
-            }
-
-            _debugInfoScreen = ResourcePool.Instance.InstantiateFromResource<DebugInfoScreen>(DebugInfoScreen.PREFAB_PATH);
-            _debugInfoScreen.transform.SetParent(this.transform, worldPositionStays: false);
-            _debugInfoScreen.transform.localScale = Vector3.one;
-            _debugInfoScreen.Initialize();
-            return _debugInfoScreen;
-        }
 
         public void PauseResumeOnPopup()
         {

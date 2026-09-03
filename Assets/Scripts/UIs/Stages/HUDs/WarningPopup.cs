@@ -1,12 +1,12 @@
 using DG.Tweening;
 using Shared.Localizers;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
 // TODO : PopUpBase 상속받고, RootSceneUI에서 잘 초기화하도록 처리할 것 
 public class WarningPopup : MonoBehaviour

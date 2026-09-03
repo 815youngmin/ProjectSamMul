@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Particles
+namespace SamMul.GameClients.Stages.Particles
 {
     public class ParticleManager
     {

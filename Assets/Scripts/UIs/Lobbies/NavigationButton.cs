@@ -1,10 +1,10 @@
 using DG.Tweening;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Z.UIs.Lobbies
+namespace SamMul.UIs.Lobbies
 {
     //네비게이션바 버튼 연출을 위한 스크립트 코드
     //활성화 비활성화 아이콘 불러오기, 선택 연출, 취소 연출을 처리한다.

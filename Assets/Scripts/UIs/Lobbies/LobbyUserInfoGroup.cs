@@ -5,10 +5,10 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies
+namespace SamMul.UIs.Lobbies
 {
     public class LobbyUserInfoGroup : MonoBehaviour
     {

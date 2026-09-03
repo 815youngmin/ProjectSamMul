@@ -1,5 +1,5 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters;
 
 public class BloodTrail : MonoBehaviour
 {

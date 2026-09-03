@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.UIs.Commons
+namespace SamMul.UIs.Commons
 {
     /// <summary>등급/레벨을 별 아이콘 개수로 보여주는 표시기. 별 오브젝트를 차례로 켜고 마지막 별을 깜빡인다.</summary>
     public class GradeStarDisplayer : MonoBehaviour

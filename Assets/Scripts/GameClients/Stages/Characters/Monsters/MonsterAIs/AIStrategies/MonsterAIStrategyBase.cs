@@ -1,4 +1,4 @@
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies
 {
     public abstract class MonsterAIBlackboardBase
     {

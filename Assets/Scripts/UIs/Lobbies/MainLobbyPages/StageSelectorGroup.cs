@@ -5,11 +5,11 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
-using Z.UIs.Lobbies.BattlePages;
-using Z.UnityHelpers;
+using SamMul.ResourcePools;
+using SamMul.UIs.Lobbies.BattlePages;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies.MainLobbyPages
+namespace SamMul.UIs.Lobbies.MainLobbyPages
 {
     public class StageSelectorGroup : MonoBehaviour
     {

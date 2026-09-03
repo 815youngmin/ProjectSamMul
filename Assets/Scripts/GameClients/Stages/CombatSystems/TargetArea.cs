@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Z.GameClients.Stages.CombatSystems
+namespace SamMul.GameClients.Stages.CombatSystems
 {
     public readonly struct CircularTargetArea
     {

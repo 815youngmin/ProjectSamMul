@@ -1,10 +1,10 @@
 #nullable enable
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class StunStatusEffect : StatusEffect
     {

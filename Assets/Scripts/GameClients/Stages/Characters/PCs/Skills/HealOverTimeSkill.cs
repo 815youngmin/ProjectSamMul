@@ -1,6 +1,6 @@
 using Shared.StaticDatas;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     class HealOverTimeSkill : SkillBase
     {

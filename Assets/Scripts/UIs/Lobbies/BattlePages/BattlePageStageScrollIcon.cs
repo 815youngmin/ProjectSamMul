@@ -1,14 +1,14 @@
 #nullable enable
 using DG.Tweening;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Lobbies.BattlePages
+namespace SamMul.UIs.Lobbies.BattlePages
 {
     public class BattlePageStageScrollIcon : MonoBehaviour
     {

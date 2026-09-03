@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
     public class HealAction : ActionBase
     {

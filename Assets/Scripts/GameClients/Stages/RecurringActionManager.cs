@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Z.GameClients.Stages
+namespace SamMul.GameClients.Stages
 {
     public class RecurringActionManager<T> where T : struct
     {

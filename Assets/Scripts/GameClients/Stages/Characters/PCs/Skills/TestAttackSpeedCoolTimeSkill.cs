@@ -1,8 +1,8 @@
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     // 이건 쿨타임이 데이터에 설정되어있다. 쿨타임 동작 테스트용 
     public class TestAttackSpeedCooltimeSkill : SkillBase

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Z.ObjectPools
+namespace SamMul.ObjectPools
 {
     /// <summary>
     /// 풀 오브젝트 생성 시 넘겨줄 초기화 데이터의 마커 인터페이스입니다.

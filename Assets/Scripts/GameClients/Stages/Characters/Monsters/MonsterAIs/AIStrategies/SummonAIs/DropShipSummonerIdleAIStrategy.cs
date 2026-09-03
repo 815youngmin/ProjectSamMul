@@ -1,9 +1,9 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
 {
     //LifeTime 시간만큼만 생존하고 사라진다.
     public class DropShipSummonerIdleAIStrategy : MonsterAIStrategyBase

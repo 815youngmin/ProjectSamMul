@@ -4,9 +4,9 @@ using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     public class AcquiredSkillSlot : MonoBehaviour
     {

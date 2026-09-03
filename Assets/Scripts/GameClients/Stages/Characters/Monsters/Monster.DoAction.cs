@@ -1,11 +1,11 @@
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters.MonsterAIs;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters
+namespace SamMul.GameClients.Stages.Characters.Monsters
 {
     public partial class Monster : Character
     {

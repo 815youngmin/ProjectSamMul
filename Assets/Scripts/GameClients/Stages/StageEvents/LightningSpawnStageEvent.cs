@@ -2,7 +2,7 @@ using DG.Tweening;
 using Shared.StaticDatas;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public class LightningSpawnStageEvent : StageEventBase
     {

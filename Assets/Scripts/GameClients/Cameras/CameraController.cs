@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.UnityHelpers;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Cameras
+namespace SamMul.GameClients.Cameras
 {
     public readonly struct CameraMovableWindow
     {

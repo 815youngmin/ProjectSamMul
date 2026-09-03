@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
+using SamMul.ObjectPools;
 
-namespace Z.UnityHelpers.Sounds
+namespace SamMul.UnityHelpers.Sounds
 {
     /// <summary>
     /// AudioSource 하나와 후보 클립 목록을 가진 사운드 오브젝트. <see cref="SoundManager"/>가 풀링합니다.

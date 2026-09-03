@@ -1,8 +1,8 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class DiesWithOwnerAreaEffectObject : SmartAreaEffectObjectBase
     {

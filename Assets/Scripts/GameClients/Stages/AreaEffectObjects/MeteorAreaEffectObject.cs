@@ -1,14 +1,14 @@
-﻿using DG.Tweening;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using DG.Tweening;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 using Sequence = DG.Tweening.Sequence;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class MeteorAreaEffectObject : AreaEffectObjectBase
     {

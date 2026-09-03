@@ -2,7 +2,7 @@ using DG.Tweening;
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
 public class LostSkillObject : MonoBehaviour
 {

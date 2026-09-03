@@ -1,11 +1,11 @@
 #nullable enable
 using System.Collections.Generic;
 using UnityEngine;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
-using Event = Z.Animations.Placeholder.Event;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
+using Event = SamMul.Animations.Placeholder.Event;
 
-namespace Z.GameClients.Stages.Characters.Animations
+namespace SamMul.GameClients.Stages.Characters.Animations
 {
     public enum BodyAnimationTrack : int
     {

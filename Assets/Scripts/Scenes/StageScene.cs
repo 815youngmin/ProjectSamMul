@@ -3,7 +3,7 @@ using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using Shared.UserDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +11,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Z.GameClients;
-using Z.GameClients.Stages;
-using Z.ResourcePools;
-using Z.UnityHelpers;
-using Z.UnityHelpers.Sounds;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
+using SamMul.UnityHelpers.Sounds;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
     public class StageSceneInitialData : ISceneInitialData
     {

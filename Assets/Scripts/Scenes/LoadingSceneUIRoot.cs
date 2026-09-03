@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
 
     public class LoadingSceneUIRoot : BaseSceneUIRoot

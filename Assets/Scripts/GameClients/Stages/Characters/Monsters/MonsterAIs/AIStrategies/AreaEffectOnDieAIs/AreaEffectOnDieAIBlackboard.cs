@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.AreaEffectOnDieAIs
 {
     public class AreaEffectOnDieAIBlackboard : MonsterAIBlackboardBase
     {

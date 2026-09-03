@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ObjectPools;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ObjectPools;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public enum AreaEffectType
     {

@@ -3,10 +3,10 @@ using DG.Tweening;
 using Shared.GameDataTypes;
 using System;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.PCs;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public abstract class AcquirableItemObject : ItemObjectBase
     {

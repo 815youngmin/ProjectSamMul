@@ -1,6 +1,6 @@
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.CombatSystems
+namespace SamMul.GameClients.Stages.CombatSystems
 {
     public static partial class CombatSystem
     {

@@ -1,5 +1,5 @@
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
 
     public enum ActionType

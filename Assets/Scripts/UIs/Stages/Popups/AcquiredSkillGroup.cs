@@ -4,10 +4,10 @@ using Shared.StaticDatas;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.Characters.PCs.Skills;
-using Z.UIs.Stages.Popups;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.PCs.Skills;
+using SamMul.UIs.Stages.Popups;
 
 public class AcquiredSkillGroup : MonoBehaviour
 {

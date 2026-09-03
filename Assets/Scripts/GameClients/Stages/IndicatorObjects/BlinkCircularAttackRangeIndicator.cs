@@ -1,9 +1,9 @@
 using DG.Tweening;
 using System.Linq;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.IndicatorObjects
+namespace SamMul.GameClients.Stages.IndicatorObjects
 {
     public class BlinkCircularAttackRangeIndicator : IndicatorObjectBase
     {

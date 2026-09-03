@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Z.GameClients.Stages.Characters.Stats
+namespace SamMul.GameClients.Stages.Characters.Stats
 {
 
     /// <summary>

@@ -2,13 +2,13 @@
 using Shared.StaticDatas;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.AreaEffectObjects;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
-using Z.UnityHelpers.Sounds;
+using SamMul.GameClients.Stages.AreaEffectObjects;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
+using SamMul.UnityHelpers.Sounds;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class SpinBladeSkill : SkillBase
     {

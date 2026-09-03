@@ -3,9 +3,9 @@ using Shared.StaticDatas;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.PCs;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public interface IStageTimerControllable
     {

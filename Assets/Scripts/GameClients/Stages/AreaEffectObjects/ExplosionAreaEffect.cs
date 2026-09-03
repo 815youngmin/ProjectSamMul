@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class ExplosionAreaEffect : AreaEffectObjectBase
     {

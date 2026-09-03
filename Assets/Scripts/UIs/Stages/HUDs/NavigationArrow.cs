@@ -2,11 +2,11 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.GameClients.Stages;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     /// <summary>
     /// 목표 위치가 카메라를 벗어나면 화면 가장자리에 방향을 알려주는 내비게이션 화살표입니다.

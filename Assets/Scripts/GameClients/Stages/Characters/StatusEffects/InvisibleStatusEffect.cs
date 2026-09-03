@@ -1,9 +1,9 @@
 using DG.Tweening;
 using Shared.GameDataTypes;
 using System.Linq;
-using Z.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.Monsters;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class InvisibleStatusEffect : StatusEffect
     {

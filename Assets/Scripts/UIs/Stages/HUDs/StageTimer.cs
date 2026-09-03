@@ -3,7 +3,7 @@ using Shared.StaticDatas;
 using TMPro;
 using UnityEngine;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class StageTimer : MonoBehaviour
     {

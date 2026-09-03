@@ -1,8 +1,8 @@
 using Shared.StaticDatas;
 using System.Diagnostics;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class RangeUpSkill : SkillBase
     {

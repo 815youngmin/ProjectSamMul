@@ -1,10 +1,10 @@
 using Shared.StaticDatas;
 using System.Collections;
 using UnityEngine;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     public class BossWarningStageEvent : StageEventBase
     {

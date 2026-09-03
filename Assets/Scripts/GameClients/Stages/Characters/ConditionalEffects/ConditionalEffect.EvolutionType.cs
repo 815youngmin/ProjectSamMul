@@ -5,11 +5,11 @@ using Shared.StaticDatas;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.ConditionalEffects
+namespace SamMul.GameClients.Stages.Characters.ConditionalEffects
 {
     //일반 진화 공격력 증가 +%N
     public class EvolutionStrength : ConditionalEffectBase

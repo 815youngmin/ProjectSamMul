@@ -1,7 +1,7 @@
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Characters
+namespace SamMul.GameClients.Stages.Characters
 {
     //캐릭터 아래 이동 방향성을 표기해주는 스크립트
     //할당 단계에서 오브젝트를 생성 해주고 

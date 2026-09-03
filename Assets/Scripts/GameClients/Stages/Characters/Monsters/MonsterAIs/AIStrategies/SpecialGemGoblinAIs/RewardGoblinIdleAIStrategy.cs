@@ -1,11 +1,11 @@
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.CombatSystems;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
 {
     public class RewardGoblinIdleAIStrategy : MonsterAIStrategyBase
     {

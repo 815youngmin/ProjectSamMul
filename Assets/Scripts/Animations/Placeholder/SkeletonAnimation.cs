@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>
     /// Placeholder stand-in for the skeleton renderer component. Draws a flat, tinted body quad through the

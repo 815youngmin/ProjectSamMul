@@ -2,10 +2,10 @@ using Shared.StaticDatas;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.ConditionalEffects;
-using Z.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.Characters.ConditionalEffects;
+using SamMul.GameClients.Stages.Characters.Stats;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class MaxHPUp : SkillBase
     {

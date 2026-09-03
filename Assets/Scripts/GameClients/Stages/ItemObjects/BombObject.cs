@@ -2,12 +2,12 @@ using DG.Tweening;
 using Shared.GameDataTypes;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.CombatSystems;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class BombObject : AcquirableItemObject
     {

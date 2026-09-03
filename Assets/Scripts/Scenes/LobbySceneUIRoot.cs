@@ -3,13 +3,13 @@ using Shared.GameLogics;
 using Shared.Localizers;
 using Shared.UserDatas;
 using UnityEngine;
-using Z.GameClients;
-using Z.UIs.Lobbies;
-using Z.UIs.Lobbies.BattlePages;
-using Z.UIs.Lobbies.EvolutionResearchPages;
-using Z.UIs.Lobbies.MainLobbyPages;
+using SamMul.GameClients;
+using SamMul.UIs.Lobbies;
+using SamMul.UIs.Lobbies.BattlePages;
+using SamMul.UIs.Lobbies.EvolutionResearchPages;
+using SamMul.UIs.Lobbies.MainLobbyPages;
 
-namespace Z.Scenes
+namespace SamMul.Scenes
 {
     public class LobbySceneUIRoot : BaseSceneUIRoot
     {

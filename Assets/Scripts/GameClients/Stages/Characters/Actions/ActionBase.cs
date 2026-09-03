@@ -1,6 +1,6 @@
-using Z.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Animations;
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
 
     public abstract class ActionBase

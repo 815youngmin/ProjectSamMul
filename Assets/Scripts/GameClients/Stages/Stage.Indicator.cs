@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.IndicatorObjects;
-using Z.Animations.Placeholder;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.IndicatorObjects;
+using SamMul.Animations.Placeholder;
 
-namespace Z.GameClients.Stages
+namespace SamMul.GameClients.Stages
 {
     public partial class Stage
     {

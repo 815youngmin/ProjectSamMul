@@ -1,8 +1,8 @@
-﻿using Shared.StaticDatas;
+using Shared.StaticDatas;
 using System.Diagnostics;
 using Unity.Mathematics;
 
-namespace Z.GameClients.Stages.Characters.PCs
+namespace SamMul.GameClients.Stages.Characters.PCs
 {
     public class LevelCalculator
     {

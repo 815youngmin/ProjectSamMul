@@ -1,9 +1,9 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.ProjectileObjects;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.ProjectileObjects;
 
-namespace Z.GameClients.Stages.Characters.Actions
+namespace SamMul.GameClients.Stages.Characters.Actions
 {
     // 몬스터 전용 액션. 원거리 공격.
     public sealed class MonsterPoisonousRangeAttackAction : ActionBase

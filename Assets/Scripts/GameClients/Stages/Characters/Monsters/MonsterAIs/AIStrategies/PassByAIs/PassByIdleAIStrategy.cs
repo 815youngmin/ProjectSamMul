@@ -1,9 +1,9 @@
 
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
 {
     // 일반적인 대기 AI
     // 주변에 적을 탐색하고

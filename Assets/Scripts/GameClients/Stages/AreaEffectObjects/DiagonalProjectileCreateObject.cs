@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class DiagonalProjectileCreateObject : AreaEffectObjectBase
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Shields
+namespace SamMul.GameClients.Stages.Characters.Shields
 {
     public abstract class Shield
     {

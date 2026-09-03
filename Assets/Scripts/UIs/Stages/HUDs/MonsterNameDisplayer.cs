@@ -2,9 +2,9 @@
 using System;
 using TMPro;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.Monsters;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     /// <summary>
     /// 몬스터 아래에 이름을 표시하는 HUD 입니다.

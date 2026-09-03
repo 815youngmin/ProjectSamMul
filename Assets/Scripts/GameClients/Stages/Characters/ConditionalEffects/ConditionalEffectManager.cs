@@ -1,12 +1,12 @@
-﻿using Shared.GameDataTypes;
+using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System;
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Stages.Characters.ConditionalEffects
+namespace SamMul.GameClients.Stages.Characters.ConditionalEffects
 {
     public class ConditionalEffectManager
     {

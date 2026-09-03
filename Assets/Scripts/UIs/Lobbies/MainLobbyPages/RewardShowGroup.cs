@@ -1,9 +1,9 @@
 using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using UnityEngine;
-using Z.UIs.Commons.Rewards;
+using SamMul.UIs.Commons.Rewards;
 
 public class RewardShowGroup : MonoBehaviour
 {

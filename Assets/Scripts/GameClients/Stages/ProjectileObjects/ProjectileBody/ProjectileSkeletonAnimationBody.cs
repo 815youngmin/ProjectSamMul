@@ -1,9 +1,9 @@
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.ProjectileObjects.ProjectileBody
+namespace SamMul.GameClients.Stages.ProjectileObjects.ProjectileBody
 {
     public class ProjectileSkeletonAnimationBody : ProjectileBodyBase
     {

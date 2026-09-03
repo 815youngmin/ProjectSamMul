@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     public class Skin
     {

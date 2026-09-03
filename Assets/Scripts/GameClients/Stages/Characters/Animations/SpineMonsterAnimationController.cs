@@ -1,10 +1,10 @@
 using Shared.GameDataTypes;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Animations
+namespace SamMul.GameClients.Stages.Characters.Animations
 {
     public class SpineMonsterAnimationController : MonsterAnimationController
     {

@@ -3,12 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.ResourcePools;
 using Random = UnityEngine.Random;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class ItemBoxObject : BreakableItemObject
     {

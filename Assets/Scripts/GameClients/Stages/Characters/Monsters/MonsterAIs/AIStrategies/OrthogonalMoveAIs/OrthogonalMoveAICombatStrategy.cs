@@ -1,8 +1,8 @@
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.MeleeAIs
 {
     public class OrthogonalMoveAICombatStrategy : MonsterAIStrategyBase
     {

@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     /// <summary>
     /// One scheduled call (Begin / Update tick / End) of a stage event. Sorted by execution time, then by the

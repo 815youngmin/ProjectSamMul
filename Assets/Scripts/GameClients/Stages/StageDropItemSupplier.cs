@@ -4,7 +4,7 @@ using Shared.StaticDatas;
 using System.Collections.Generic;
 using Unity.Mathematics;
 
-namespace Z.GameClients.Stages
+namespace SamMul.GameClients.Stages
 {
     /// <summary>
     /// 스테이지에서 드롭할 아이템을 관리합니다.

@@ -6,11 +6,11 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Z.GameClients;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies.BattlePages
+namespace SamMul.UIs.Lobbies.BattlePages
 {
     public class MainChapterStartButton : MonoBehaviour
     {

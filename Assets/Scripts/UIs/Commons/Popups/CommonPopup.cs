@@ -3,7 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace Z.UIs.Commons.Popups
+namespace SamMul.UIs.Commons.Popups
 {
     /// <summary>제목/메시지와 버튼 1~2개로 이루어진 범용 확인 팝업.</summary>
     public class CommonPopup : BasePopup

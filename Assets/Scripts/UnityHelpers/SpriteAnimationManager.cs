@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.UnityHelpers
+namespace SamMul.UnityHelpers
 {
     /// <summary>
     /// 일회성 스프라이트 애니메이션을 생성/재생하고, 끝나면 리소스 풀로 돌려보냅니다.

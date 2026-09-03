@@ -2,11 +2,11 @@
 using Shared.GameDataTypes;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class SpreadBurnStatusEffect : StatusEffect
     {

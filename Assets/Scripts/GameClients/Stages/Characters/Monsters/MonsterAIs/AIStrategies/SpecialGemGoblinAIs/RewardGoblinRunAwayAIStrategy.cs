@@ -1,11 +1,11 @@
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Actions;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.Actions;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.Loggers;
 using Debug = System.Diagnostics.Debug;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
 {
     public class RewardGoblinRunAwayAIStrategy : MonsterAIStrategyBase
     {

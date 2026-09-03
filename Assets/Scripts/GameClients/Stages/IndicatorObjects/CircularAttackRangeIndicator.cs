@@ -1,8 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.IndicatorObjects
+namespace SamMul.GameClients.Stages.IndicatorObjects
 {
     public class CircularAttackRangeIndicator : IndicatorObjectBase
     {

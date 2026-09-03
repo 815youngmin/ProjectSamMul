@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
+using SamMul.ObjectPools;
 
-namespace Z.GameClients.Stages.IndicatorObjects
+namespace SamMul.GameClients.Stages.IndicatorObjects
 {
     public class IndicatorPool
     {

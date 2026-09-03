@@ -1,9 +1,9 @@
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class GemObject : AcquirableItemObject
     {

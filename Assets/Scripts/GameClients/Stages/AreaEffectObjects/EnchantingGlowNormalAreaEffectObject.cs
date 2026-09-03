@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.Characters.StatusEffects;
-using Z.GameClients.Stages.CombatSystems;
-using Z.GameClients.Stages.ItemObjects;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.Characters.StatusEffects;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.ItemObjects;
 
-namespace Z.GameClients.Stages.AreaEffectObjects
+namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
     public class EnchantingGlowNormalAreaEffectObject : AreaEffectObjectBase
     {

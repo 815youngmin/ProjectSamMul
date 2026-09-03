@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Animations;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.Animations.Placeholder;
-using Animation = Z.Animations.Placeholder.Animation;
+using SamMul.GameClients.Stages.Characters.Animations;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.Animations.Placeholder;
+using Animation = SamMul.Animations.Placeholder.Animation;
 
-namespace Z.GameClients.Stages.Characters.Actions.Boss.Steampunk
+namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Steampunk
 {
     public class AbandoneSpecimenThrowPoisonAction : SmartAction<SpineMonsterAnimationController>
     {

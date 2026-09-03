@@ -1,8 +1,8 @@
 using Shared.DataTables;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.RangeAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.RangeAIs
 {
     // 주변에 적을 탐색하고
     // 사정거리 내로 적이 들어오면 타겟으로 삼고

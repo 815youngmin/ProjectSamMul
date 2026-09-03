@@ -1,13 +1,13 @@
-﻿using Shared.DataTables;
+using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs.Skills;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.PCs.Skills;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Heroes
+namespace SamMul.GameClients.Heroes
 {
     // 인 게임에서만 사용중...
     // 인게임에서 PlayerCharcater가 가지고 있다.

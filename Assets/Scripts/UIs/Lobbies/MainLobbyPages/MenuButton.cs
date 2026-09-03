@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-namespace Z.UIs.Lobbies.MainLobbyPages
+namespace SamMul.UIs.Lobbies.MainLobbyPages
 {
     public class MenuButton : MonoBehaviour
     {

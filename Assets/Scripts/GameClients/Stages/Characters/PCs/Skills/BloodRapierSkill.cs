@@ -1,10 +1,10 @@
 using Shared.StaticDatas;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
-using Z.GameClients.Stages.ItemObjects;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.ItemObjects;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class BloodRapierSkill : SkillBase
     {

@@ -1,7 +1,7 @@
 using Shared.StaticDatas;
 using UnityEngine;
 
-namespace Z.GameClients
+namespace SamMul.GameClients
 {
     public static class StageStaticDataExtension
     {

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.RangeAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.RangeAIs
 {
     public class EliteReflectionRangeAttackAIBlackboard : MonsterAIBlackboardBase
     {

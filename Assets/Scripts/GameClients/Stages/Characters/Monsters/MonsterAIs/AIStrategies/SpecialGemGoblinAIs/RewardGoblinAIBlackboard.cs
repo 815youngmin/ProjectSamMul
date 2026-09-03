@@ -2,11 +2,11 @@ using DG.Tweening;
 using Shared.GameDataTypes;
 using System;
 using UnityEngine;
-using Z.Scenes;
-using Z.UIs.Stages.HUDs;
-using Z.UnityHelpers;
+using SamMul.Scenes;
+using SamMul.UIs.Stages.HUDs;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs
 {
     public class RewardGoblinAIBlackboard : MonsterAIBlackboardBase
     {

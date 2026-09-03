@@ -4,7 +4,7 @@ using Shared.Localizers;
 using TMPro;
 using UnityEngine;
 
-namespace Z.Localizations
+namespace SamMul.Localizations
 {
     /// <summary>
     /// 텍스트 키를 현재 언어의 문자열로 바꿔 TextMeshProUGUI 에 넣어주는 컴포넌트입니다.

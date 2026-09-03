@@ -3,7 +3,7 @@ using Shared.StaticDatas;
 using System;
 using UnityEngine;
 
-namespace Z.GameClients.Stages.StageEvents
+namespace SamMul.GameClients.Stages.StageEvents
 {
     //플레이어 기준 위쪽에 몬스터를 한번에 소환해주는 이벤트
     public class MonsterSpawnToTopStageEvent : MonsterSpawnStageEventBase

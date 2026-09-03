@@ -1,10 +1,10 @@
 #nullable enable
 using System;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Monsters;
-using Z.ResourcePools;
+using SamMul.GameClients.Stages.Characters.Monsters;
+using SamMul.ResourcePools;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     /// <summary>
     /// 특별한 몬스터의 발밑에 표시하는 강조 원입니다.

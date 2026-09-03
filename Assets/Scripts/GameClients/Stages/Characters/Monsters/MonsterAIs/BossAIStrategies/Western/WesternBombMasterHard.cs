@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Z.GameClients.Stages.Characters.Actions.Boss.Western;
+using SamMul.GameClients.Stages.Characters.Actions.Boss.Western;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Western
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Western
 {
     public class WesternBombMasterHardIdleAIStrategy : BossIdleAIStrategy
     {

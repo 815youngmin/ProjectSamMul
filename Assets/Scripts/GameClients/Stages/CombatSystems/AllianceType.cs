@@ -1,6 +1,6 @@
 using System;
 
-namespace Z.GameClients.Stages.CombatSystems
+namespace SamMul.GameClients.Stages.CombatSystems
 {
     public enum AllianceType
     {

@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>
     /// Placeholder bone. Every bone hangs directly off the root; its world position is the local

@@ -7,11 +7,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies.BattlePages
+namespace SamMul.UIs.Lobbies.BattlePages
 {
     public class BattlePageStageScroll : MonoBehaviour, IEndDragHandler, IDragHandler, IBeginDragHandler, IPointerUpHandler, IPointerDownHandler
     {

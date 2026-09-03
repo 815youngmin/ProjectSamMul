@@ -6,12 +6,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.Scenes;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.Scenes;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Lobbies.EvolutionResearchPages
+namespace SamMul.UIs.Lobbies.EvolutionResearchPages
 {
     /// <summary>
     /// 기본 기능만 제작되어 있는 진화 연구 페이지

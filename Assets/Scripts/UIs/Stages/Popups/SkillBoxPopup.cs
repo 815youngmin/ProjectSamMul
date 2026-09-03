@@ -6,9 +6,9 @@ using Shared.Localizers;
 using Shared.StaticDatas;
 using TMPro;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.PCs;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     /// <summary>
     /// 스킬 상자를 열었을 때 습득한 스킬 목록을 보여주는 팝업 (최소 구현).

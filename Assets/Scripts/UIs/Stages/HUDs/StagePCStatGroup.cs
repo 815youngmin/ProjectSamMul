@@ -3,11 +3,11 @@ using Shared.Localizers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Stages.HUDs
+namespace SamMul.UIs.Stages.HUDs
 {
     public class StagePCStatGroup : MonoBehaviour
     {

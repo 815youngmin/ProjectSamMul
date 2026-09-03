@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.AreaEffectObjects;
-using Z.GameClients.Stages.Characters;
-using Z.GameClients.Stages.ItemObjects;
+using SamMul.GameClients.Stages.AreaEffectObjects;
+using SamMul.GameClients.Stages.Characters;
+using SamMul.GameClients.Stages.ItemObjects;
 
-namespace Z.GameClients.Stages.CombatSystems
+namespace SamMul.GameClients.Stages.CombatSystems
 {
     public static partial class CombatSystem
     {

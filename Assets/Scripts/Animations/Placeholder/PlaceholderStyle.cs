@@ -1,7 +1,7 @@
 #nullable enable
 using UnityEngine;
 
-namespace Z.Animations.Placeholder
+namespace SamMul.Animations.Placeholder
 {
     /// <summary>Visual cue a placeholder body shows for a clip. Ordered by display priority.</summary>
     public enum AnimationCue

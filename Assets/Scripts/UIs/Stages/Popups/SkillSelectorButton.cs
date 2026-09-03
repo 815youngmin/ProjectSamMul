@@ -7,15 +7,15 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Z.UIs.Commons;
+using SamMul.UIs.Commons;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.GameClients.Stages;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.ResourcePools;
-using static Z.UIs.Stages.Popups.SkillSelectorPopup;
+using SamMul.GameClients;
+using SamMul.GameClients.Stages;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.ResourcePools;
+using static SamMul.UIs.Stages.Popups.SkillSelectorPopup;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     //스킬 선택창 에서만 사용되지 않고 
     //스킬 박스 획득시에도 사용됩니다.

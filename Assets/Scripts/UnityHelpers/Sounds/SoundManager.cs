@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Z.ObjectPools;
-using Z.ResourcePools;
+using SamMul.ObjectPools;
+using SamMul.ResourcePools;
 
-namespace Z.UnityHelpers.Sounds
+namespace SamMul.UnityHelpers.Sounds
 {
     public enum BGMPlayRule
     {

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Z.UnityHelpers;
+using SamMul.UnityHelpers;
 using static UnityEngine.UI.Button;
 
 /// <summary>

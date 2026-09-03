@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Z.GameClients.Stages.Characters.StatusEffects
+namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class PushedBackStatusEffect : StunStatusEffect
     {

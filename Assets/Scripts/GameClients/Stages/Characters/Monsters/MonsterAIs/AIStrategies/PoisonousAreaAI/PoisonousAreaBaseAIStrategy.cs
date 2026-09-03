@@ -1,4 +1,4 @@
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PoisonousAreaAI
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PoisonousAreaAI
 {
     public abstract class PoisonousAreaBaseAIStrategy : MonsterAIStrategyBase
     {

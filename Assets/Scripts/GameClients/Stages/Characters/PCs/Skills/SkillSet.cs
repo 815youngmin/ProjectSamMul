@@ -1,14 +1,14 @@
-﻿using Shared.DataTables;
+using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.Loggers;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.Loggers;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public sealed class SkillSet
     {

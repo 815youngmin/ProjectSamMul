@@ -1,9 +1,9 @@
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using Z.ResourcePools;
+using SamMul.ResourcePools;
 
-namespace Z.GameClients.Stages.Characters.Shields
+namespace SamMul.GameClients.Stages.Characters.Shields
 {
     public class PlayerShield : Shield
     {

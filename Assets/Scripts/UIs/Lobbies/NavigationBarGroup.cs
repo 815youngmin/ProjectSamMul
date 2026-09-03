@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Z.UIs.Lobbies
+namespace SamMul.UIs.Lobbies
 {
     //네비게이션바의 버튼 연출은 NavigationButton에서 처리한다.(사이즈 조절, 이미지 교채 등)
     //네비게이션바 버튼들의 위치는 UI의 NavigationBarGroup/Buttons의 HorizontalLayoutGroup으로 관리한다.

@@ -3,10 +3,10 @@ using Shared.DataTables;
 using Shared.GameDataTypes;
 using System;
 using UnityEngine;
-using Z.GameClients.Stages.CombatSystems;
-using Z.GameClients.Stages.StageEvents;
+using SamMul.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.StageEvents;
 
-namespace Z.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
+namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PassByAIs
 {
     public class PassByMultipleRangeAttackOnDieCombatAIStrategy : MonsterAIStrategyBase
     {

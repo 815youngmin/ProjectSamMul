@@ -2,11 +2,11 @@
 using Shared.StaticDatas;
 using System.Collections.Generic;
 using UnityEngine;
-using Z.GameClients.Stages.AreaEffectObjects;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.GameClients.Stages.CombatSystems;
+using SamMul.GameClients.Stages.AreaEffectObjects;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.GameClients.Stages.CombatSystems;
 
-namespace Z.GameClients.Stages.Characters.PCs.Skills
+namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     // 텐티의 기본 스킬. 텐티를 성장시키고, 촉수를 사용한 기본공격에 배리에이션을 준다.
     public class TentiSweepSkill : SkillBase

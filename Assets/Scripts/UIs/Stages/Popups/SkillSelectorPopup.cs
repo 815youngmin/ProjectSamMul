@@ -8,13 +8,13 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients.Stages;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 using Random = UnityEngine.Random;
 
-namespace Z.UIs.Stages.Popups
+namespace SamMul.UIs.Stages.Popups
 {
     public class SkillSelectorPopup : BasePopup
     {

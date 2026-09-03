@@ -1,11 +1,11 @@
 using Shared.GameDataTypes;
 using UnityEngine;
-using Z.GameClients.Stages.Characters.PCs;
-using Z.GameClients.Stages.Characters.Stats;
-using Z.ResourcePools;
-using Z.UnityHelpers;
+using SamMul.GameClients.Stages.Characters.PCs;
+using SamMul.GameClients.Stages.Characters.Stats;
+using SamMul.ResourcePools;
+using SamMul.UnityHelpers;
 
-namespace Z.GameClients.Stages.ItemObjects
+namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class StarCoreObject : AcquirableItemObject
     {

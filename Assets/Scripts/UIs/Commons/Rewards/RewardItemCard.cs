@@ -3,16 +3,16 @@ using Shared.DataTables;
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
-using Z.Animations.Placeholder;
+using SamMul.Animations.Placeholder;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Z.GameClients;
-using Z.ResourcePools;
-using Z.UIs.Lobbies;
-using Z.UnityHelpers;
+using SamMul.GameClients;
+using SamMul.ResourcePools;
+using SamMul.UIs.Lobbies;
+using SamMul.UnityHelpers;
 
-namespace Z.UIs.Commons.Rewards
+namespace SamMul.UIs.Commons.Rewards
 {
     public class RewardItemCard : MonoBehaviour
     {

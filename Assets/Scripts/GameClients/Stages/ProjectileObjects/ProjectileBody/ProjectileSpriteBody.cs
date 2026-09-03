@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Z.GameClients.Stages.ProjectileObjects.ProjectileBody
+namespace SamMul.GameClients.Stages.ProjectileObjects.ProjectileBody
 {
     public class ProjectileSpriteBody : ProjectileBodyBase
     {

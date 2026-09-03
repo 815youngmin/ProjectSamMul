@@ -1,6 +1,6 @@
 using System;
 
-namespace Z
+namespace SamMul
 {
 
     public class LogicErrorException : Exception
