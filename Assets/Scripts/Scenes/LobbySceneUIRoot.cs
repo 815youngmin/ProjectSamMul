@@ -1,5 +1,4 @@
 #nullable enable
-using Shared.GameLogics;
 using Shared.Localizers;
 using UnityEngine;
 using SamMul.GameClients;
@@ -14,8 +13,6 @@ namespace SamMul.Scenes
         public enum Page { Invalid, MainLobbyPage, BattlePage }
 
         [SerializeField] private NavigationBarGroup _navigationBarGroup = null!;
-        [SerializeField] private LobbyWalletBarGroup _walletBarGroup = null!;
-        [SerializeField] private LobbyUserInfoGroup _userInfoGroup = null!;
 
         [SerializeField] private MainLobbyPage _mainLobbyPage = null!;
         [SerializeField] private BattlePage _battlePage = null!;
@@ -24,8 +21,6 @@ namespace SamMul.Scenes
         public MainLobbyPage MainLobbyPage => _mainLobbyPage;
         public BattlePage BattlePage => _battlePage;
 
-        public LobbyWalletBarGroup WalletBarGroup => _walletBarGroup;
-        public LobbyUserInfoGroup UserInfoGroup => _userInfoGroup;
 
         private int _seletedChapterNumber;
         public int SeletedChapterNumber => _seletedChapterNumber;
@@ -39,17 +34,12 @@ namespace SamMul.Scenes
 
         public void Initialize(
             SceneType sceneType,
-            int clearedHighestChapter, long highestStageTimeInSeconds,
-            long goldAmount,
-            int accountLevel, long accountExp,
-            IHeroInventory heroInventory)
+            int clearedHighestChapter, long highestStageTimeInSeconds)
         {
             this.InitializeBase(sceneType);
 
             Debug.Assert(_navigationBarGroup);
-            Debug.Assert(_walletBarGroup);
             Debug.Assert(_mainLobbyPage);
-            Debug.Assert(_userInfoGroup);
             Debug.Assert(_battlePage);
 
             _briefPopup = null;
@@ -61,8 +51,6 @@ namespace SamMul.Scenes
                 _seletedChapterNumber = GameClient.CS.ServiceFinalChapterNumber;
             }
 
-            _walletBarGroup.Initialize();
-            _userInfoGroup.Initialize(heroInventory.MainHero.HeroType, accountLevel, accountExp);
             _battlePage.Initialize(clearedHighestChapter, highestStageTimeInSeconds, CloseBattlePage, SetSelectedChapterNumer);
 
             _navigationBarGroup.Initialize(ChangeToMainLobbyPage);
@@ -84,10 +72,6 @@ namespace SamMul.Scenes
                 _briefPopup.UpdateLogic();
             }
 
-            if (_walletBarGroup != null)
-            {
-                _walletBarGroup.UpdateLogic();
-            }
 
 #if UNITY_ANDROID
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -126,16 +110,12 @@ namespace SamMul.Scenes
 
             var gameData = GameClient.CS.UserGameData;
             _mainLobbyPage.Initialize(SeletedChapterNumber, gameData.ClearedHighestChapter, gameData.HighestStageTimeInSeconds, ChangeToBattlePage, ChangeToBattlePageWithSelectedChapterTransition);
-            _userInfoGroup.UpdateProfileImage(gameData.GetSelectedHeroData().HeroType);
 
             _mainLobbyPage.gameObject.SetActive(true);
             _battlePage.gameObject.SetActive(false);
 
-            this.ShowUserInfoGroup(true);
-            this.ShowWalletBarGroup(true);
             this.ShowNavigationBar(true);
 
-            _walletBarGroup.SetDefaultMode();
         }
 
         private void ChangeToBattlePage()
@@ -147,8 +127,6 @@ namespace SamMul.Scenes
 
             CurrentPage = Page.BattlePage;
 
-            this.ShowUserInfoGroup(false);
-            this.ShowWalletBarGroup(false);
             this.ShowNavigationBar(false);
 
             _battlePage.gameObject.SetActive(true);
@@ -159,8 +137,6 @@ namespace SamMul.Scenes
         {
             CurrentPage = Page.BattlePage;
 
-            this.ShowUserInfoGroup(false);
-            this.ShowWalletBarGroup(false);
             this.ShowNavigationBar(false);
 
             _battlePage.gameObject.SetActive(true);
@@ -173,15 +149,7 @@ namespace SamMul.Scenes
             _navigationBarGroup.gameObject.SetActive(show);
         }
 
-        public void ShowUserInfoGroup(bool show)
-        {
-            _userInfoGroup.gameObject.SetActive(show);
-        }
 
-        public void ShowWalletBarGroup(bool show)
-        {
-            _walletBarGroup.gameObject.SetActive(show);
-        }
 
         private void SetSelectedChapterNumer(int chapterNumber)
         {

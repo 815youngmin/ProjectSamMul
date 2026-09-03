@@ -1,4 +1,3 @@
-using Shared.GameLogics;
 using Shared.UserDatas;
 using System;
 using UnityEngine;
@@ -14,21 +13,12 @@ namespace SamMul.Scenes
 
         public readonly int ClearedHighestChapter;
         public readonly long HighestStageTimeInSeconds;
-        public readonly long GoldAmount;
-        public readonly int AccountLevel;
-        public readonly long AccountExp;
 
-        public readonly IHeroInventory HeroInventory;
 
         public LobbySceneInitialData(UserGameData userGameData)
         {
             this.ClearedHighestChapter = userGameData.ClearedHighestChapter;
             this.HighestStageTimeInSeconds = userGameData.HighestStageTimeInSeconds;
-            this.GoldAmount = userGameData.Gold;
-            this.AccountLevel = userGameData.AccountLevel;
-            this.AccountExp = userGameData.AccountExp;
-
-            (this.HeroInventory, _) = userGameData.CreateUserInventory();
         }
     }
 
@@ -61,11 +51,7 @@ namespace SamMul.Scenes
 
             this.UI.Initialize(this.SceneType,
                 lobbySceneInitialData.ClearedHighestChapter,
-                lobbySceneInitialData.HighestStageTimeInSeconds,
-                lobbySceneInitialData.GoldAmount,
-                lobbySceneInitialData.AccountLevel,
-                lobbySceneInitialData.AccountExp,
-                lobbySceneInitialData.HeroInventory);
+                lobbySceneInitialData.HighestStageTimeInSeconds);
         }
 
         public override void OnLoadingSceneRemoved()

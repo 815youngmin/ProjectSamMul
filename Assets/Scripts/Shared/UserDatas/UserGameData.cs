@@ -1,7 +1,6 @@
 #nullable enable
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Shared.GameDataTypes;
 using Shared.GameLogics;
 
@@ -42,25 +41,5 @@ namespace Shared.UserDatas
 
         public GameLogics.EquipmentInventory EquipmentInventory() => new GameLogics.EquipmentInventory(Equipments, EquipmentSlots);
 
-        public (IHeroInventory, IEquipmentInventory) CreateUserInventory()
-            => (new HeroInventoryView(this), new EquipmentInventoryView(this));
-
-        private sealed class HeroInventoryView : IHeroInventory
-        {
-            private readonly UserGameData _data;
-            public HeroInventoryView(UserGameData data) => _data = data;
-            public HeroData MainHero => _data.GetSelectedHeroData();
-            public IEnumerable<HeroData> SubHeroes => _data.Heroes.Values.Where(hero => hero.InstanceId != _data.SelectedHero);
-            public IEnumerator<HeroData> GetEnumerator() => _data.Heroes.Values.GetEnumerator();
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        }
-
-        private sealed class EquipmentInventoryView : IEquipmentInventory
-        {
-            private readonly UserGameData _data;
-            public EquipmentInventoryView(UserGameData data) => _data = data;
-            public IEnumerator<EquipmentData> GetEnumerator() => _data.Equipments.Values.GetEnumerator();
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        }
     }
 }
