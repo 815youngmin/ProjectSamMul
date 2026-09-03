@@ -1,3 +1,4 @@
+using System;
 #nullable enable
 using System.Collections;
 using System.Collections.Generic;
@@ -210,12 +211,17 @@ namespace SamMul.UnityHelpers.Sounds
 
         private SoundObject AllocateFromPrefab(string soundObjectPrefabPath)
         {
-            // 프리팹이 없으면 리소스풀이 SoundObject 가 붙은 플레이스홀더를 만들어 준다.
-            var soundObject = ResourcePool.Instance.InstantiateFromResource<SoundObject>(soundObjectPrefabPath);
+            // 사운드 프리팹은 플레이스홀더로 대체하지 않는다. 누락은 즉시 예외로 드러낸다.
+            var prefab = Resources.Load<GameObject>(ResourcePool.ToResourcesPath(soundObjectPrefabPath));
+            if (prefab == null)
+            {
+                throw new InvalidOperationException($"사운드 프리팹이 없습니다. Path[{soundObjectPrefabPath}] (Demo > Build Sound Prefabs 로 생성)");
+            }
+
+            var soundObject = GameObject.Instantiate(prefab).GetComponent<SoundObject>();
             if (soundObject == null)
             {
-                Debug.LogWarning($"{soundObjectPrefabPath} 프리팹에 SoundObject 컴포넌트가 없습니다.");
-                return null!;
+                throw new InvalidOperationException($"사운드 프리팹에 SoundObject 컴포넌트가 없습니다. Path[{soundObjectPrefabPath}]");
             }
             soundObject.Allocated(key: soundObjectPrefabPath);
             return soundObject;

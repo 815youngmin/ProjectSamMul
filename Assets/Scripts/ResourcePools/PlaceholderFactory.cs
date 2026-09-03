@@ -59,6 +59,10 @@ namespace SamMul.ResourcePools
 
             if (rootComponentType != null && !rootComponentType.IsAbstract)
             {
+                if (typeof(Graphic).IsAssignableFrom(rootComponentType))
+                {
+                    go.AddComponent<CanvasRenderer>();
+                }
                 var root = go.AddComponent(rootComponentType);
                 if (root != null)
                 {
@@ -265,6 +269,10 @@ namespace SamMul.ResourcePools
             }
             else
             {
+                if (typeof(Graphic).IsAssignableFrom(fieldType))
+                {
+                    child.gameObject.AddComponent<CanvasRenderer>();
+                }
                 component = child.gameObject.AddComponent(fieldType);
             }
 

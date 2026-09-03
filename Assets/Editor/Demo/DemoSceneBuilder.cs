@@ -233,6 +233,10 @@ namespace Demo.Editor
             }
             else
             {
+                if (typeof(Graphic).IsAssignableFrom(fieldType))
+                {
+                    child.gameObject.AddComponent<CanvasRenderer>();
+                }
                 component = child.gameObject.AddComponent(fieldType);
             }
 

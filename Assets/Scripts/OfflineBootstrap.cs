@@ -40,20 +40,27 @@ namespace SamMul
         /// </summary>
         private static void RegisterKoreanFontFallback()
         {
-            foreach (var candidate in new[] { "Malgun Gothic", "NanumGothic", "Noto Sans KR", "Apple SD Gothic Neo" })
+            var installed = Font.GetOSInstalledFontNames();
+            var preferred = new[] { "Malgun Gothic", "맑은 고딕", "NanumGothic", "나눔고딕", "Noto Sans KR", "Gulim", "굴림", "Apple SD Gothic Neo" };
+            foreach (var candidate in preferred)
             {
+                if (System.Array.IndexOf(installed, candidate) < 0)
+                {
+                    continue;
+                }
                 var osFont = Font.CreateDynamicFontFromOSFont(candidate, 32);
                 if (osFont == null)
                 {
                     continue;
                 }
                 var fontAsset = TMPro.TMP_FontAsset.CreateFontAsset(osFont, 90, 9, UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA, 1024, 1024, TMPro.AtlasPopulationMode.Dynamic);
-                if (fontAsset == null)
+                if (fontAsset == null || !fontAsset.TryAddCharacters("가나다한글"))
                 {
                     continue;
                 }
                 fontAsset.name = candidate + " (runtime)";
                 TMPro.TMP_Settings.fallbackFontAssets.Add(fontAsset);
+                Debug.Log($"한글 폴백 폰트 등록: {candidate}");
                 return;
             }
             Debug.LogWarning("한글을 지원하는 OS 폰트를 찾지 못했습니다. 한글이 □로 표시될 수 있습니다.");
