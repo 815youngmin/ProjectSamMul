@@ -8,7 +8,7 @@ namespace Shared.GameLogics
 {
     /// <summary>
     /// Out-of-stage stat calculation: hero base stat (HeroStats table by rarity and grade, growing per level)
-    /// + worn equipment (EquipmentStats table) + researched evolutions (Strength = attack power, Stamina = max HP).
+    /// + worn equipment (EquipmentStats table).
     /// </summary>
     public static class AvatarLogic
     {
@@ -23,21 +23,19 @@ namespace Shared.GameLogics
             _ => EQUAL_BONUS_RATE,
         };
 
-        public static float CalculateAttackPower(HeroData selectedHero, IEnumerable<EquipmentData> equippedEquipments, EvolutionData evolutionData)
-            => CalculateAttackPower(selectedHero.HeroType, selectedHero.Grade, selectedHero.Level, equippedEquipments, evolutionData);
+        public static float CalculateAttackPower(HeroData selectedHero, IEnumerable<EquipmentData> equippedEquipments)
+            => CalculateAttackPower(selectedHero.HeroType, selectedHero.Grade, selectedHero.Level, equippedEquipments);
 
-        public static float CalculateAttackPower(HeroType heroType, Grade grade, int level, IEnumerable<EquipmentData> equippedEquipments, EvolutionData evolutionData)
+        public static float CalculateAttackPower(HeroType heroType, Grade grade, int level, IEnumerable<EquipmentData> equippedEquipments)
             => CalculateHeroBasicAttackPower(heroType, grade, level)
-               + SumEquipmentStats(equippedEquipments, StatType.AttackPower)
-               + CalculateEvolutionAttackPowerIncrements(evolutionData);
+               + SumEquipmentStats(equippedEquipments, StatType.AttackPower);
 
-        public static float CalculateMaxHp(HeroData selectedHero, IEnumerable<EquipmentData> equippedEquipments, EvolutionData evolutionData)
-            => CalculateMaxHp(selectedHero.HeroType, selectedHero.Grade, selectedHero.Level, equippedEquipments, evolutionData);
+        public static float CalculateMaxHp(HeroData selectedHero, IEnumerable<EquipmentData> equippedEquipments)
+            => CalculateMaxHp(selectedHero.HeroType, selectedHero.Grade, selectedHero.Level, equippedEquipments);
 
-        public static float CalculateMaxHp(HeroType heroType, Grade grade, int level, IEnumerable<EquipmentData> equippedEquipments, EvolutionData evolutionData)
+        public static float CalculateMaxHp(HeroType heroType, Grade grade, int level, IEnumerable<EquipmentData> equippedEquipments)
             => CalculateHeroBasicMaxHp(heroType, grade, level)
-               + SumEquipmentStats(equippedEquipments, StatType.MaxHP)
-               + CalculateEvolutionMaxHpIncrements(evolutionData);
+               + SumEquipmentStats(equippedEquipments, StatType.MaxHP);
 
         public static float CalculateHeroBasicAttackPower(HeroData heroData)
             => CalculateHeroBasicAttackPower(heroData.HeroType, heroData.Grade, heroData.Level);
@@ -75,12 +73,6 @@ namespace Shared.GameLogics
             return (stat.StatType, stat.DefaultValue + stat.IncrementalValue * (level - 1));
         }
 
-        public static float CalculateEvolutionAttackPowerIncrements(EvolutionData evolutionData)
-            => SumEvolutionParameters(evolutionData, EvolutionType.Strength);
-
-        public static float CalculateEvolutionMaxHpIncrements(EvolutionData evolutionData)
-            => SumEvolutionParameters(evolutionData, EvolutionType.Stamina);
-
         private static float SumEquipmentStats(IEnumerable<EquipmentData> equippedEquipments, StatType statType)
         {
             float sum = 0f;
@@ -90,27 +82,6 @@ namespace Shared.GameLogics
                 if (type == statType)
                 {
                     sum += value;
-                }
-            }
-            return sum;
-        }
-
-        private static float SumEvolutionParameters(EvolutionData evolutionData, EvolutionType evolutionType)
-        {
-            float sum = 0f;
-            var repository = StaticDataRepository.Instance;
-            foreach (var evolution in repository.BasicEvolutions.BasicEvolutionStaticDatas.Values)
-            {
-                if (evolution.basicEvolutionID <= evolutionData.HighestBasicEvolutionID && evolution.basicEvolutionType == evolutionType)
-                {
-                    sum += evolution.param1;
-                }
-            }
-            foreach (var evolution in repository.SpecialEvolutions.SpecialEvolutionStaticDatas.Values)
-            {
-                if (evolution.specialEvolutionID <= evolutionData.HighestSpecialEvolutionID && evolution.specialEvolutionType == evolutionType)
-                {
-                    sum += evolution.param1;
                 }
             }
             return sum;

@@ -39,11 +39,6 @@ namespace SamMul.UIs.Stages.HUDs
         [SerializeField] private TextMeshProUGUI _equipmentAttackPowerText;
         [SerializeField] private TextMeshProUGUI _equipmentMaxHpText;
 
-        [Header("Evolution Stat")]
-        [SerializeField] private RectTransform _evolutionStat;
-        [SerializeField] private TextMeshProUGUI _evolutionAttackPowerText;
-        [SerializeField] private TextMeshProUGUI _evolutionMaxHpText;
-
         [Header("Grade Effect Stat")]
         [SerializeField] private RectTransform _gradeEffectStat;
         [SerializeField] private TextMeshProUGUI _gradeEffectAttackPowerText;
@@ -80,16 +75,14 @@ namespace SamMul.UIs.Stages.HUDs
             // 초기화
             _playerCharacterStat.gameObject.SetActive(false);
             _equipmentStat.gameObject.SetActive(false);
-            _evolutionStat.gameObject.SetActive(false);
             _gradeEffectStat.gameObject.SetActive(false);
             _elementBonusStat.gameObject.SetActive(false);
-            _attackPowers = new float[5];
-            _maxHps = new float[5];
+            _attackPowers = new float[4];
+            _maxHps = new float[4];
 
             // 변수 캐싱
             var heroData = pc.HeroData;
             var equipmentDatas = pc.EquippedEquipments;
-            var evolutionData = pc.EvolutionData;
 
             float elementBonusMultiplier = pc.CustomParameters.GetParameterValue(pc.StaticData.ElementType switch
             {
@@ -132,27 +125,21 @@ namespace SamMul.UIs.Stages.HUDs
             _attackPowers[1] = _attackPowers[0] + attackPowerIncreasedByEquipments;
             _maxHps[1] = _maxHps[0] + maxHpIncreasedByEquipments;
 
-            // 진화 스탯 계산
-            float attackPowerIncreasedByEvolutions = AvatarLogic.CalculateEvolutionAttackPowerIncrements(evolutionData);
-            float maxHpIncreasedByEvolutions = AvatarLogic.CalculateEvolutionMaxHpIncrements(evolutionData);
-            _attackPowers[2] = _attackPowers[1] + attackPowerIncreasedByEvolutions;
-            _maxHps[2] = _maxHps[1] + maxHpIncreasedByEvolutions;
-
             // 등급 효과 스탯 계산
-            float attackPowerIncreasedByGradeEffects = pc.Stats.AttackPower.Value - resultElementBonusRate * pc.Stats.AttackPower.ValueAfterSum - _attackPowers[2];
-            float maxHpIncreasedByGradeEffects = pc.Stats.MaxHP.Value - _maxHps[2];
-            _attackPowers[3] = _attackPowers[2] + attackPowerIncreasedByGradeEffects;
-            _maxHps[3] = _maxHps[2] + maxHpIncreasedByGradeEffects;
+            float attackPowerIncreasedByGradeEffects = pc.Stats.AttackPower.Value - resultElementBonusRate * pc.Stats.AttackPower.ValueAfterSum - _attackPowers[1];
+            float maxHpIncreasedByGradeEffects = pc.Stats.MaxHP.Value - _maxHps[1];
+            _attackPowers[2] = _attackPowers[1] + attackPowerIncreasedByGradeEffects;
+            _maxHps[2] = _maxHps[1] + maxHpIncreasedByGradeEffects;
 
             // 속성 보너스 스탯 계산
             float attackPowerIncreasedByElementBonus = resultElementBonusRate * pc.Stats.AttackPower.ValueAfterSum;
             float maxHpIncreasedByElementBonus = 0.0f;      // 속성 보너스는 공격력만 올려준다.
-            _attackPowers[4] = _attackPowers[3] + attackPowerIncreasedByElementBonus;
-            _maxHps[4] = _maxHps[3] + maxHpIncreasedByElementBonus;
+            _attackPowers[3] = _attackPowers[2] + attackPowerIncreasedByElementBonus;
+            _maxHps[3] = _maxHps[2] + maxHpIncreasedByElementBonus;
 
 
-            UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>()?.UpdatePCAttackPower((int)_attackPowers[4]);
-            UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>()?.UpdatePCHP((int)pc.CurrentHP, (int)_maxHps[4]);
+            UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>()?.UpdatePCAttackPower((int)_attackPowers[3]);
+            UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>()?.UpdatePCHP((int)pc.CurrentHP, (int)_maxHps[3]);
 
             // 디스플레이 시퀀스 생성
             var displaySequence = DOTween.Sequence();
@@ -229,48 +216,6 @@ namespace SamMul.UIs.Stages.HUDs
                 displaySequence.Append(equipmentStatSequence);
             }
 
-            // 진화 스탯 시퀀스 추가
-            if (attackPowerIncreasedByEvolutions > 0.0f || maxHpIncreasedByEvolutions > 0.0f)
-            {
-                var evolutionStatGraphics = _evolutionStat.GetComponentsInChildren<Graphic>();
-                var evolutionStatSequence = DOTween.Sequence()
-                    .OnStart(() =>
-                    {
-                        _evolutionStat.gameObject.SetActive(true);
-                        _evolutionStat.localPosition = FAID_IN_POSITION;
-                        _evolutionAttackPowerText.text = attackPowerIncreasedByEvolutions.ToString("0");
-                        _evolutionMaxHpText.text = maxHpIncreasedByEvolutions.ToString("0");
-
-                        foreach (var graphic in evolutionStatGraphics)
-                        {
-                            graphic.DOFade(MAX_OPACITY, FAID_IN_TIME).From(0.0f).SetEase(Ease.Linear);
-                        }
-                    })
-                    .AppendInterval(FAID_IN_TIME)
-                    .AppendInterval(WAITING_TIME)
-                    .AppendCallback(() =>
-                    {
-                        _evolutionStat.DOLocalMove(FAID_OUT_POSITION, FAID_OUT_TIME).SetEase(Ease.Linear);
-                        foreach (var graphic in evolutionStatGraphics)
-                        {
-                            graphic.DOFade(0.0f, FAID_OUT_TIME).From(MAX_OPACITY).SetEase(Ease.Linear);
-                        }
-                    })
-                    .AppendInterval(FAID_OUT_TIME)
-                    .Join(DOTween.To(() => attackPower, value =>
-                    {
-                        attackPower = value;
-                        _playerCharacterAttackPowerText.text = attackPower.ToString("0");
-                    }, _attackPowers[2], FAID_OUT_TIME).SetEase(Ease.Linear))
-                    .Join(DOTween.To(() => maxHp, value =>
-                    {
-                        maxHp = value;
-                        _playerCharacterMaxHpText.text = maxHp.ToString("0");
-                    }, _maxHps[2], FAID_OUT_TIME).SetEase(Ease.Linear))
-                    .OnComplete(() => _evolutionStat.gameObject.SetActive(false));
-                displaySequence.Append(evolutionStatSequence);
-            }
-
             // 등급 효과 스탯 시퀀스 추가
             if (attackPowerIncreasedByGradeEffects > 0.0f || maxHpIncreasedByGradeEffects > 0.0f)
             {
@@ -303,12 +248,12 @@ namespace SamMul.UIs.Stages.HUDs
                     {
                         attackPower = value;
                         _playerCharacterAttackPowerText.text = attackPower.ToString("0");
-                    }, _attackPowers[3], FAID_OUT_TIME).SetEase(Ease.Linear))
+                    }, _attackPowers[2], FAID_OUT_TIME).SetEase(Ease.Linear))
                     .Join(DOTween.To(() => maxHp, value =>
                     {
                         maxHp = value;
                         _playerCharacterMaxHpText.text = maxHp.ToString("0");
-                    }, _maxHps[3], FAID_OUT_TIME).SetEase(Ease.Linear))
+                    }, _maxHps[2], FAID_OUT_TIME).SetEase(Ease.Linear))
                     .OnComplete(() => _gradeEffectStat.gameObject.SetActive(false));
                 displaySequence.Append(gradeEffectStatSequence);
             }
@@ -343,12 +288,12 @@ namespace SamMul.UIs.Stages.HUDs
                 {
                     attackPower = value;
                     _playerCharacterAttackPowerText.text = attackPower.ToString("0");
-                }, _attackPowers[4], FAID_OUT_TIME).SetEase(Ease.Linear))
+                }, _attackPowers[3], FAID_OUT_TIME).SetEase(Ease.Linear))
                 .Join(DOTween.To(() => maxHp, value =>
                 {
                     maxHp = value;
                     _playerCharacterMaxHpText.text = maxHp.ToString("0");
-                }, _maxHps[4], FAID_OUT_TIME).SetEase(Ease.Linear))
+                }, _maxHps[3], FAID_OUT_TIME).SetEase(Ease.Linear))
                 .OnComplete(() => _elementBonusStat.gameObject.SetActive(false));
             displaySequence.Append(elementBonusStatSequence);
 

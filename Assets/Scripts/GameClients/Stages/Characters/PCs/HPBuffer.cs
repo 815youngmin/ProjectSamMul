@@ -35,7 +35,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             _hpBar.Initialize(_owner.transform, new Vector2(0.0f, -0.18f), Vector3.one, HPBar.HP_BUFFER_COLOR);
 
             // 기본 최대 체력은 아바타 페이지에서 보여지는 체력으로 설정.
-            float basicMaxHP = AvatarLogic.CalculateMaxHp(_owner.HeroData, _owner.EquippedEquipments, _owner.EvolutionData);
+            float basicMaxHP = AvatarLogic.CalculateMaxHp(_owner.HeroData, _owner.EquippedEquipments);
             MaxHP = new StatCalculator(basicMaxHP);
             MaxHP.AddModifier(new StatModifier(maxHpPercentage - 1.0f, StatModType.PercentAdd));
             _currentHP = MaxHP.Value;

@@ -258,8 +258,7 @@ namespace SamMul.GameClients.Stages
         public void Initialize(
             IReadOnlyList<SkillId> userSkillDeck,
             HeroData userHeroData,
-            IEnumerable<EquipmentData> userHeroEquippedEquipments,
-            EvolutionData evolutionData)
+            IEnumerable<EquipmentData> userHeroEquippedEquipments)
         {
             _stagePlayResult = null;
             _expObjectsRoot = new GameObject("@ExpObjectsRoot");
@@ -268,7 +267,7 @@ namespace SamMul.GameClients.Stages
             _deadEffects.InitializeForStageScene();
 
             var heroStaticData = _staticDatas.Heroes.Get(userHeroData.HeroType);
-            this.CreatePlayerCharacter(userSkillDeck, heroStaticData, userHeroData, userHeroEquippedEquipments, evolutionData);
+            this.CreatePlayerCharacter(userSkillDeck, heroStaticData, userHeroData, userHeroEquippedEquipments);
 
             bool isInitEventSkipped = _stageEventController.StartStageTimer(0f);
             if (!isInitEventSkipped)

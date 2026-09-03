@@ -1,0 +1,5 @@
+[
+  { "CharacterType": "Western_Boss_WyattEarp", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_wyattearp.png" },
+  { "CharacterType": "Steampunk_EliteClockworkGolem", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_battlegolem.png" },
+  { "CharacterType": "Arabian_EliteVeteranWarrior", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_alibaba.png" }
+]

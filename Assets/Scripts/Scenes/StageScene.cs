@@ -37,15 +37,12 @@ namespace SamMul.Scenes
         public readonly HeroData UserHeroData;
         public readonly IEnumerable<EquipmentData> UserHeroEquippedEquipments;
 
-        public readonly EvolutionData EvolutionData;
-
         private StageSceneInitialData(
             StageType stageType,
             ChapterStaticData? chapter,
             IReadOnlyList<SkillId> userSkillDeck,
             HeroData userHeroData,
-            IEnumerable<EquipmentData> userHeroEquippedEquipments,
-            EvolutionData evolutionData)
+            IEnumerable<EquipmentData> userHeroEquippedEquipments)
         {
             StageType = stageType;
             Chapter = chapter;
@@ -55,24 +52,20 @@ namespace SamMul.Scenes
 
             UserHeroData = userHeroData;
             UserHeroEquippedEquipments = userHeroEquippedEquipments;
-
-            EvolutionData = evolutionData;
         }
 
         public static StageSceneInitialData CreateForMainChapter(
             ChapterStaticData chapter,
             IReadOnlyList<SkillId> userSkillDeck,
             HeroData heroData,
-            IEnumerable<EquipmentData> equippedEquipments,
-            EvolutionData evolutionData)
+            IEnumerable<EquipmentData> equippedEquipments)
         {
             return new StageSceneInitialData(
                 StageType.Chapter,
                 chapter,
                 userSkillDeck,
                 heroData,
-                equippedEquipments,
-                evolutionData);
+                equippedEquipments);
         }
     }
 
@@ -140,15 +133,13 @@ namespace SamMul.Scenes
                 var chapter = StaticDataRepository.Instance.Chapters.FindChapter(testChapterNumber) ?? throw new LogicErrorException($"{testChapterNumber} 챕터 정보가 없음");
                 var tempHero = new HeroData(HeroInstanceId.CreateNew(), HeroType.Ignatia, Grade.SS, promotionPoint: 0, level: 1, DateTime.UtcNow);
                 var equippedEquipments = Enumerable.Empty<EquipmentData>();
-                var evolutionData = new EvolutionData(0, 0);
 
 
                 stageSceneInitialData = StageSceneInitialData.CreateForMainChapter(
                     chapter,
                     StaticDataRepository.Instance.Skills.GetUserSkillDeck(GameConstants.SKILLDECK_DEFAULT_SEASON_SKILLDECK, testChapterNumber),
                     tempHero,
-                    equippedEquipments,
-                    evolutionData);
+                    equippedEquipments);
             }
 
             int? chapterNumber = stageSceneInitialData.StageType switch
@@ -166,8 +157,7 @@ namespace SamMul.Scenes
                     stageSceneInitialData.Chapter!,
                     stageSceneInitialData.UserSkillDeck,
                     stageSceneInitialData.UserHeroData,
-                    stageSceneInitialData.UserHeroEquippedEquipments,
-                    stageSceneInitialData.EvolutionData);
+                    stageSceneInitialData.UserHeroEquippedEquipments);
             }
             else
             {

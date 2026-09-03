@@ -31,9 +31,7 @@ namespace SamMul.GameClients.Stages.Characters.Stats
         Dice777_AddChipAmount,
         UpgradeAlphaGattling_CorrectionAngle,
 
-        LetsBringThisToo,   //게임 시작시 스킬을 하나 습득하고 시작하는지에 대한 파라미터
         AdditionalSkillRefreshCount,    // 추가로 스킬을 재선택할 수 있는 횟수. 기본 1회.
-        LotsOfChancesLotsOfMeat, //레벨업시 새로고침 횟수 추가로  관련된 파라미터
 
         CleavageGum,        //껌 전용스킬 미니 풍선 생성 개수 파라미터
         WindFieldsRemovePoisonousAreaEffects,   // 라이카가 생성하는 바람장이 독장판을 제거할지 여부. (0.0.f: false, 그 외: true)
@@ -132,9 +130,7 @@ namespace SamMul.GameClients.Stages.Characters.Stats
 
             _customParameters.Add(CustomParameterType.UpgradeAlphaGattling_CorrectionAngle, 0f);
 
-            _customParameters.Add(CustomParameterType.LetsBringThisToo, 0f);
             _customParameters.Add(CustomParameterType.AdditionalSkillRefreshCount, 1.0f);
-            _customParameters.Add(CustomParameterType.LotsOfChancesLotsOfMeat, 0f);
             _customParameters.Add(CustomParameterType.CleavageGum, 0f);
             _customParameters.Add(CustomParameterType.WindFieldsRemovePoisonousAreaEffects, 0.0f);
             _customParameters.Add(CustomParameterType.IronFistsCreateWindFields, 0.0f);

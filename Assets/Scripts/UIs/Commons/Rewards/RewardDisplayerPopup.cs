@@ -84,9 +84,7 @@ namespace SamMul.UIs.Commons.Rewards
                     case RewardItemType.Gem:
                     case RewardItemType.Exp:
                     case RewardItemType.AttendancePoint:
-                    case RewardItemType.SpecialDNA:
                     case RewardItemType.BattlePassExp:
-                    case RewardItemType.StarCandy:
                     case RewardItemType.ResurrectionCoin:
                     case RewardItemType.RocketFuel:
                     case RewardItemType.TemporarySpaceCoin:

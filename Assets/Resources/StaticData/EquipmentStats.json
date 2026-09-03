@@ -1,0 +1,1122 @@
+[
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 100.0,
+    "IncrementalValue": 10.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 120.0,
+    "IncrementalValue": 12.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 145.0,
+    "IncrementalValue": 14.5
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 175.0,
+    "IncrementalValue": 17.5
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 190.0,
+    "IncrementalValue": 19.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 205.0,
+    "IncrementalValue": 20.5
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 240.0,
+    "IncrementalValue": 24.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 260.0,
+    "IncrementalValue": 26.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 280.0,
+    "IncrementalValue": 28.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 300.0,
+    "IncrementalValue": 30.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 350.0,
+    "IncrementalValue": 35.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 370.0,
+    "IncrementalValue": 37.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 390.0,
+    "IncrementalValue": 39.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Common",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 410.0,
+    "IncrementalValue": 41.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 120.0,
+    "IncrementalValue": 12.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 144.0,
+    "IncrementalValue": 14.4
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 174.0,
+    "IncrementalValue": 17.4
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 210.0,
+    "IncrementalValue": 21.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 228.0,
+    "IncrementalValue": 22.8
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 246.0,
+    "IncrementalValue": 24.6
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 288.0,
+    "IncrementalValue": 28.8
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 312.0,
+    "IncrementalValue": 31.2
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 336.0,
+    "IncrementalValue": 33.6
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 360.0,
+    "IncrementalValue": 36.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 420.0,
+    "IncrementalValue": 42.0
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 444.0,
+    "IncrementalValue": 44.4
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 468.0,
+    "IncrementalValue": 46.8
+  },
+  {
+    "EquipmentSlot": "Armor",
+    "Rarity": "Special",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 492.0,
+    "IncrementalValue": 49.2
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "D",
+    "StatType": "AttackPower",
+    "DefaultValue": 5.0,
+    "IncrementalValue": 0.5
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "C",
+    "StatType": "AttackPower",
+    "DefaultValue": 6.0,
+    "IncrementalValue": 0.6
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "B",
+    "StatType": "AttackPower",
+    "DefaultValue": 7.25,
+    "IncrementalValue": 0.72
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "A",
+    "StatType": "AttackPower",
+    "DefaultValue": 8.75,
+    "IncrementalValue": 0.88
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "A1",
+    "StatType": "AttackPower",
+    "DefaultValue": 9.5,
+    "IncrementalValue": 0.95
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "A2",
+    "StatType": "AttackPower",
+    "DefaultValue": 10.25,
+    "IncrementalValue": 1.02
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "S",
+    "StatType": "AttackPower",
+    "DefaultValue": 12.0,
+    "IncrementalValue": 1.2
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "S1",
+    "StatType": "AttackPower",
+    "DefaultValue": 13.0,
+    "IncrementalValue": 1.3
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "S2",
+    "StatType": "AttackPower",
+    "DefaultValue": 14.0,
+    "IncrementalValue": 1.4
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "S3",
+    "StatType": "AttackPower",
+    "DefaultValue": 15.0,
+    "IncrementalValue": 1.5
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "SS",
+    "StatType": "AttackPower",
+    "DefaultValue": 17.5,
+    "IncrementalValue": 1.75
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "SS1",
+    "StatType": "AttackPower",
+    "DefaultValue": 18.5,
+    "IncrementalValue": 1.85
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "SS2",
+    "StatType": "AttackPower",
+    "DefaultValue": 19.5,
+    "IncrementalValue": 1.95
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "SS3",
+    "StatType": "AttackPower",
+    "DefaultValue": 20.5,
+    "IncrementalValue": 2.05
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "D",
+    "StatType": "AttackPower",
+    "DefaultValue": 6.0,
+    "IncrementalValue": 0.6
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "C",
+    "StatType": "AttackPower",
+    "DefaultValue": 7.2,
+    "IncrementalValue": 0.72
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "B",
+    "StatType": "AttackPower",
+    "DefaultValue": 8.7,
+    "IncrementalValue": 0.87
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "A",
+    "StatType": "AttackPower",
+    "DefaultValue": 10.5,
+    "IncrementalValue": 1.05
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "A1",
+    "StatType": "AttackPower",
+    "DefaultValue": 11.4,
+    "IncrementalValue": 1.14
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "A2",
+    "StatType": "AttackPower",
+    "DefaultValue": 12.3,
+    "IncrementalValue": 1.23
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "S",
+    "StatType": "AttackPower",
+    "DefaultValue": 14.4,
+    "IncrementalValue": 1.44
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "S1",
+    "StatType": "AttackPower",
+    "DefaultValue": 15.6,
+    "IncrementalValue": 1.56
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "S2",
+    "StatType": "AttackPower",
+    "DefaultValue": 16.8,
+    "IncrementalValue": 1.68
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "S3",
+    "StatType": "AttackPower",
+    "DefaultValue": 18.0,
+    "IncrementalValue": 1.8
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "SS",
+    "StatType": "AttackPower",
+    "DefaultValue": 21.0,
+    "IncrementalValue": 2.1
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "SS1",
+    "StatType": "AttackPower",
+    "DefaultValue": 22.2,
+    "IncrementalValue": 2.22
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "SS2",
+    "StatType": "AttackPower",
+    "DefaultValue": 23.4,
+    "IncrementalValue": 2.34
+  },
+  {
+    "EquipmentSlot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "SS3",
+    "StatType": "AttackPower",
+    "DefaultValue": 24.6,
+    "IncrementalValue": 2.46
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 60.0,
+    "IncrementalValue": 6.0
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 72.0,
+    "IncrementalValue": 7.2
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 87.0,
+    "IncrementalValue": 8.7
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 105.0,
+    "IncrementalValue": 10.5
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 114.0,
+    "IncrementalValue": 11.4
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 123.0,
+    "IncrementalValue": 12.3
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 144.0,
+    "IncrementalValue": 14.4
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 156.0,
+    "IncrementalValue": 15.6
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 168.0,
+    "IncrementalValue": 16.8
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 180.0,
+    "IncrementalValue": 18.0
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 210.0,
+    "IncrementalValue": 21.0
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 222.0,
+    "IncrementalValue": 22.2
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 234.0,
+    "IncrementalValue": 23.4
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Common",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 246.0,
+    "IncrementalValue": 24.6
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 72.0,
+    "IncrementalValue": 7.2
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 86.4,
+    "IncrementalValue": 8.64
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 104.4,
+    "IncrementalValue": 10.44
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 126.0,
+    "IncrementalValue": 12.6
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 136.8,
+    "IncrementalValue": 13.68
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 147.6,
+    "IncrementalValue": 14.76
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 172.8,
+    "IncrementalValue": 17.28
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 187.2,
+    "IncrementalValue": 18.72
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 201.6,
+    "IncrementalValue": 20.16
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 216.0,
+    "IncrementalValue": 21.6
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 252.0,
+    "IncrementalValue": 25.2
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 266.4,
+    "IncrementalValue": 26.64
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 280.8,
+    "IncrementalValue": 28.08
+  },
+  {
+    "EquipmentSlot": "Shoes",
+    "Rarity": "Special",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 295.2,
+    "IncrementalValue": 29.52
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 80.0,
+    "IncrementalValue": 8.0
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 96.0,
+    "IncrementalValue": 9.6
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 116.0,
+    "IncrementalValue": 11.6
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 140.0,
+    "IncrementalValue": 14.0
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 152.0,
+    "IncrementalValue": 15.2
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 164.0,
+    "IncrementalValue": 16.4
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 192.0,
+    "IncrementalValue": 19.2
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 208.0,
+    "IncrementalValue": 20.8
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 224.0,
+    "IncrementalValue": 22.4
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 240.0,
+    "IncrementalValue": 24.0
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 280.0,
+    "IncrementalValue": 28.0
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 296.0,
+    "IncrementalValue": 29.6
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 312.0,
+    "IncrementalValue": 31.2
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Common",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 328.0,
+    "IncrementalValue": 32.8
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "D",
+    "StatType": "MaxHP",
+    "DefaultValue": 96.0,
+    "IncrementalValue": 9.6
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "C",
+    "StatType": "MaxHP",
+    "DefaultValue": 115.2,
+    "IncrementalValue": 11.52
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "B",
+    "StatType": "MaxHP",
+    "DefaultValue": 139.2,
+    "IncrementalValue": 13.92
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "A",
+    "StatType": "MaxHP",
+    "DefaultValue": 168.0,
+    "IncrementalValue": 16.8
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "A1",
+    "StatType": "MaxHP",
+    "DefaultValue": 182.4,
+    "IncrementalValue": 18.24
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "A2",
+    "StatType": "MaxHP",
+    "DefaultValue": 196.8,
+    "IncrementalValue": 19.68
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "S",
+    "StatType": "MaxHP",
+    "DefaultValue": 230.4,
+    "IncrementalValue": 23.04
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "S1",
+    "StatType": "MaxHP",
+    "DefaultValue": 249.6,
+    "IncrementalValue": 24.96
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "S2",
+    "StatType": "MaxHP",
+    "DefaultValue": 268.8,
+    "IncrementalValue": 26.88
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "S3",
+    "StatType": "MaxHP",
+    "DefaultValue": 288.0,
+    "IncrementalValue": 28.8
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "SS",
+    "StatType": "MaxHP",
+    "DefaultValue": 336.0,
+    "IncrementalValue": 33.6
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "SS1",
+    "StatType": "MaxHP",
+    "DefaultValue": 355.2,
+    "IncrementalValue": 35.52
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "SS2",
+    "StatType": "MaxHP",
+    "DefaultValue": 374.4,
+    "IncrementalValue": 37.44
+  },
+  {
+    "EquipmentSlot": "Necklace",
+    "Rarity": "Special",
+    "Grade": "SS3",
+    "StatType": "MaxHP",
+    "DefaultValue": 393.6,
+    "IncrementalValue": 39.36
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "D",
+    "StatType": "AttackPower",
+    "DefaultValue": 4.0,
+    "IncrementalValue": 0.4
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "C",
+    "StatType": "AttackPower",
+    "DefaultValue": 4.8,
+    "IncrementalValue": 0.48
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "B",
+    "StatType": "AttackPower",
+    "DefaultValue": 5.8,
+    "IncrementalValue": 0.58
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "A",
+    "StatType": "AttackPower",
+    "DefaultValue": 7.0,
+    "IncrementalValue": 0.7
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "A1",
+    "StatType": "AttackPower",
+    "DefaultValue": 7.6,
+    "IncrementalValue": 0.76
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "A2",
+    "StatType": "AttackPower",
+    "DefaultValue": 8.2,
+    "IncrementalValue": 0.82
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "S",
+    "StatType": "AttackPower",
+    "DefaultValue": 9.6,
+    "IncrementalValue": 0.96
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "S1",
+    "StatType": "AttackPower",
+    "DefaultValue": 10.4,
+    "IncrementalValue": 1.04
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "S2",
+    "StatType": "AttackPower",
+    "DefaultValue": 11.2,
+    "IncrementalValue": 1.12
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "S3",
+    "StatType": "AttackPower",
+    "DefaultValue": 12.0,
+    "IncrementalValue": 1.2
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "SS",
+    "StatType": "AttackPower",
+    "DefaultValue": 14.0,
+    "IncrementalValue": 1.4
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "SS1",
+    "StatType": "AttackPower",
+    "DefaultValue": 14.8,
+    "IncrementalValue": 1.48
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "SS2",
+    "StatType": "AttackPower",
+    "DefaultValue": 15.6,
+    "IncrementalValue": 1.56
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Common",
+    "Grade": "SS3",
+    "StatType": "AttackPower",
+    "DefaultValue": 16.4,
+    "IncrementalValue": 1.64
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "D",
+    "StatType": "AttackPower",
+    "DefaultValue": 4.8,
+    "IncrementalValue": 0.48
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "C",
+    "StatType": "AttackPower",
+    "DefaultValue": 5.76,
+    "IncrementalValue": 0.58
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "B",
+    "StatType": "AttackPower",
+    "DefaultValue": 6.96,
+    "IncrementalValue": 0.7
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "A",
+    "StatType": "AttackPower",
+    "DefaultValue": 8.4,
+    "IncrementalValue": 0.84
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "A1",
+    "StatType": "AttackPower",
+    "DefaultValue": 9.12,
+    "IncrementalValue": 0.91
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "A2",
+    "StatType": "AttackPower",
+    "DefaultValue": 9.84,
+    "IncrementalValue": 0.98
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "S",
+    "StatType": "AttackPower",
+    "DefaultValue": 11.52,
+    "IncrementalValue": 1.15
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "S1",
+    "StatType": "AttackPower",
+    "DefaultValue": 12.48,
+    "IncrementalValue": 1.25
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "S2",
+    "StatType": "AttackPower",
+    "DefaultValue": 13.44,
+    "IncrementalValue": 1.34
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "S3",
+    "StatType": "AttackPower",
+    "DefaultValue": 14.4,
+    "IncrementalValue": 1.44
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "SS",
+    "StatType": "AttackPower",
+    "DefaultValue": 16.8,
+    "IncrementalValue": 1.68
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "SS1",
+    "StatType": "AttackPower",
+    "DefaultValue": 17.76,
+    "IncrementalValue": 1.78
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "SS2",
+    "StatType": "AttackPower",
+    "DefaultValue": 18.72,
+    "IncrementalValue": 1.87
+  },
+  {
+    "EquipmentSlot": "Ring",
+    "Rarity": "Special",
+    "Grade": "SS3",
+    "StatType": "AttackPower",
+    "DefaultValue": 19.68,
+    "IncrementalValue": 1.97
+  }
+]

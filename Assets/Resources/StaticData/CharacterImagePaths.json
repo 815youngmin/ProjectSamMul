@@ -1,0 +1,32 @@
+[
+  {
+    "HeroType": "Tenti",
+    "DatachipIconPath": "Commons/Icons/Heroes/icon_hero_tenti.png",
+    "SkillSelectorTitleStickerGroupPath": "Stages/UIs/SkillSelector/TitleStickers/Tenti_TitleStickerGroup.prefab",
+    "stageExpHudPath": "Stages/UIs/HUDs/ExpBars/Tenti_ExpBar.prefab",
+    "SkillSelectorBackParticleImagePaths": [
+      "Stages/UIs/SkillSelector/Stickers/Tenti_sticker_01.png",
+      "Stages/UIs/SkillSelector/Stickers/Tenti_sticker_02.png"
+    ]
+  },
+  {
+    "HeroType": "Gum",
+    "DatachipIconPath": "Commons/Icons/Heroes/icon_hero_gum.png",
+    "SkillSelectorTitleStickerGroupPath": "Stages/UIs/SkillSelector/TitleStickers/Gum_TitleStickerGroup.prefab",
+    "stageExpHudPath": "Stages/UIs/HUDs/ExpBars/Gum_ExpBar.prefab",
+    "SkillSelectorBackParticleImagePaths": [
+      "Stages/UIs/SkillSelector/Stickers/Gum_sticker_01.png",
+      "Stages/UIs/SkillSelector/Stickers/Gum_sticker_02.png"
+    ]
+  },
+  {
+    "HeroType": "Ignatia",
+    "DatachipIconPath": "Commons/Icons/Heroes/icon_hero_ignatia.png",
+    "SkillSelectorTitleStickerGroupPath": "Stages/UIs/SkillSelector/TitleStickers/Ignatia_TitleStickerGroup.prefab",
+    "stageExpHudPath": "Stages/UIs/HUDs/ExpBars/Ignatia_ExpBar.prefab",
+    "SkillSelectorBackParticleImagePaths": [
+      "Stages/UIs/SkillSelector/Stickers/Ignatia_sticker_01.png",
+      "Stages/UIs/SkillSelector/Stickers/Ignatia_sticker_02.png"
+    ]
+  }
+]

@@ -82,8 +82,7 @@ namespace SamMul.GameClients.Stages
             IReadOnlyList<SkillId> userSkillDeck,
             HeroStaticData heroStaticData,
             HeroData heroData,
-            IEnumerable<EquipmentData> equippedEquipments,
-            EvolutionData evolutionData)
+            IEnumerable<EquipmentData> equippedEquipments)
         {
             var userPC = _characterPool.TakeOnePlayerCharacterFromPool(heroData.HeroType);
 
@@ -93,7 +92,7 @@ namespace SamMul.GameClients.Stages
 
             float elementBonusRate = AvatarLogic.CalculateElementBonusRate(heroStaticData.ElementType, this.StageElementType);
 
-            userPC.InitializePlayerCharacter(userSkillDeck, heroStaticData, heroData, equippedEquipments, evolutionData, elementBonusRate, this);
+            userPC.InitializePlayerCharacter(userSkillDeck, heroStaticData, heroData, equippedEquipments, elementBonusRate, this);
             userPC.gameObject.SetActive(false);
         }
 

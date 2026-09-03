@@ -96,7 +96,6 @@ namespace SamMul.GameClients
             var user = new UserGameData
             {
                 Id = LOCAL_ACCOUNT_ID,
-                Nickname = "Player",
                 AccountLevel = 1,
                 Gold = 0,
                 ResurrectionCoin = 3,

@@ -110,9 +110,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         public IEnumerable<EquipmentData> EquippedEquipments => _equippedEquipments;
         private IEnumerable<EquipmentData> _equippedEquipments;
 
-        public EvolutionData EvolutionData => _evolutionData;
-        private EvolutionData _evolutionData;
-
         public CustomParameterManager CustomParameters => _customParameters;
         private CustomParameterManager _customParameters;
 
@@ -124,15 +121,13 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         private Character _aimTarget;
 
         //아직 스킬 선택창 새로고침 가능한지
-        public bool IsCanSelectSkillRefesh => _isCanUseLevelupSkillRefresh ? true : _leftSkillRefreshCount > 0;
+        public bool IsCanSelectSkillRefesh => _leftSkillRefreshCount > 0;
 
         // 스킬 새로고침 개수 (남은갯수)
         private int _leftSkillRefreshCount;
 
         // 스킬 후보지 갱신 찬스 갯수 (이번 챕터의 최대 횟수)
-        public int LeftSkillRefreshCount => _isCanUseLevelupSkillRefresh ? _leftSkillRefreshCount + 2 : _leftSkillRefreshCount + 1;
-
-        private bool _isCanUseLevelupSkillRefresh;
+        public int LeftSkillRefreshCount => _leftSkillRefreshCount + 1;
 
         // NOTE: 룬폭탄(함정폭탄 궁극진화) 전용 변수 입니다!!!! 해당 변수 값은 RuneTrapAreaEffectObject에서 변경하고 있습니다. 사용 주의!
         public bool IsRuneTrapBombLayOnSide = false;
@@ -248,7 +243,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             HeroStaticData heroStaticData,
             HeroData heroData,
             IEnumerable<EquipmentData> equippedEquipments,
-            EvolutionData evolutionData,
             float elementBonusRate,
             Stage stage)
         {
@@ -258,7 +252,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
 
             this.InitializeHeroGradeEffects(heroData);
             this.InitializeEquipmentEffects(equippedEquipments);
-            this.InitializeEvolutionEffects(evolutionData);
 
             this.ApplyElementBonusToStats(elementBonusRate);
         }
@@ -352,34 +345,10 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             if (isTutorial)
             {
                 _leftSkillRefreshCount = 0;
-                _isCanUseLevelupSkillRefresh = false;
             }
             else
             {
                 _leftSkillRefreshCount = (int)_customParameters.GetParameterValue(CustomParameterType.AdditionalSkillRefreshCount);
-
-                //레벨업시 스킬 새로고침 활성화 특성이 찍혀있으면 활성화
-                _isCanUseLevelupSkillRefresh = _customParameters.GetParameterValue(CustomParameterType.LotsOfChancesLotsOfMeat) > 0;
-            }
-
-            //특수진화로 시작시 공용 스킬을 하나 획득해야 되는 경우 0이 아니면 스킬을 하나 획득한다.
-            bool isGetSkillForSpecialEvolution = _customParameters.GetParameterValue(CustomParameterType.LetsBringThisToo) > 0;
-            if (isGetSkillForSpecialEvolution)
-            {
-                DOTween.Sequence(this)
-                    .AppendInterval(0.69f)
-                    .AppendCallback(() =>
-                    {
-                        var skills = new List<SkillKey[]>();
-                        for (int i = 0; i < LeftSkillRefreshCount; i++)
-                        {
-                            skills.Add(_skillDeck.Select3SkillsToLearn(_skillSet, 3, 0));
-                        }
-
-                        var acquiredSkills = _skillSet.GetAcquiredSkillKeys();
-                        var stageSceneUI = UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>();
-                        stageSceneUI.AddSkillSelectorPopup(stage, this, skills, acquiredSkills, this.GetBanSkillArray());
-                    });
             }
         }
 
@@ -787,9 +756,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             {
                 _conditionalEffects.OnLevelUp(stage, this);
 
-                //레벨업시 스킬 새로고침 활성화 특성이 찍혀있으면 활성화
-                _isCanUseLevelupSkillRefresh = _customParameters.GetParameterValue(CustomParameterType.LotsOfChancesLotsOfMeat) > 0;
-
                 // 튜토리얼에서는 획득가능한 스킬을 상황에 따라 동적으로 결정한다.
                 if (stage.StageType == StageType.Chapter &&
                     stage.ChapterStaticData.ChapterNumber == 0)
@@ -942,13 +908,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
 
         public void SetUsedSelectSkillRefesh()
         {
-            //레벨업 새로고침이 있는경우 무조건 레벨업 새로고침 먼저 사용한다.
-            if (_isCanUseLevelupSkillRefresh)
-            {
-                _isCanUseLevelupSkillRefresh = false;
-                return;
-            }
-
             if (_leftSkillRefreshCount > 0)
             {
                 _leftSkillRefreshCount--;
@@ -1051,31 +1010,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             }
 
             return target;
-        }
-
-        private void InitializeEvolutionEffects(EvolutionData evolutionData)
-        {
-            _evolutionData = evolutionData;
-            var basicEvolutionDatas = StaticDataRepository.Instance.BasicEvolutions;
-
-            foreach (var kvp in basicEvolutionDatas.BasicEvolutionStaticDatas)
-            {
-                if (kvp.Key <= evolutionData.HighestBasicEvolutionID)
-                {
-                    var evolutionEffect = kvp.Value;
-                    _conditionalEffects.AddConditionalEffectByEvolutionEffect(evolutionEffect.basicEvolutionType, evolutionEffect.param1, 0f);
-                }
-            }
-
-            var specialEvolutionDatas = StaticDataRepository.Instance.SpecialEvolutions;
-            foreach (var kvp in specialEvolutionDatas.SpecialEvolutionStaticDatas)
-            {
-                if (kvp.Key <= evolutionData.HighestSpecialEvolutionID)
-                {
-                    var evolutionEffect = kvp.Value;
-                    _conditionalEffects.AddConditionalEffectByEvolutionEffect(evolutionEffect.specialEvolutionType, evolutionEffect.param1, evolutionEffect.param2);
-                }
-            }
         }
 
         private void InitializeHeroGradeEffects(HeroData heroData)

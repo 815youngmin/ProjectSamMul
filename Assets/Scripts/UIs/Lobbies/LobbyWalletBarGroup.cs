@@ -16,10 +16,6 @@ namespace SamMul.UIs.Lobbies
         [SerializeField] private GameObject _temporarySpaceCoinsGameObject;
         [SerializeField] private GameObject _permanentSpaceCoinsGameObject;
 
-        [Header("Special DNA")]
-        [SerializeField] private GameObject _specialDNAGroupGameObject;
-        [SerializeField] private TextMeshProUGUI _specialDNAAmountText;
-
         [Header("Gems")]
         [SerializeField] private GameObject _gemGroupGameObject;
         [SerializeField] private TextMeshProUGUI _gemAmountText;
@@ -32,7 +28,6 @@ namespace SamMul.UIs.Lobbies
         {
             Debug.Assert(_goldAmountText);
             Debug.Assert(_gemAmountText);
-            Debug.Assert(_specialDNAAmountText);
 
             _ticketGroupGameObject.SetActive(false);
             _staminaGroupGameObject.SetActive(false);
@@ -50,7 +45,6 @@ namespace SamMul.UIs.Lobbies
 
             this.UpdateGold(userGameData.Gold);
             this.UpdateGem(userGameData.GetTotalGemAmount());
-            this.UpdateSpecialDNA(userGameData.SpecialDNA);
         }
 
         private void UpdateGold(long goldAmount)
@@ -63,11 +57,6 @@ namespace SamMul.UIs.Lobbies
             _gemAmountText.text = gemAmount.ToShortNumericText(GameConstants.GEM_THRESHOLD_TO_SHORTEN);
         }
 
-        private void UpdateSpecialDNA(long amount)
-        {
-            _specialDNAAmountText.text = amount.ToShortNumericText();
-        }
-
         public void SetDefaultMode()
         {
             var rectTransform = (RectTransform)this.transform;
@@ -77,19 +66,6 @@ namespace SamMul.UIs.Lobbies
 
             _gemGroupGameObject.SetActive(true);
             _goldGroupGameObject.SetActive(true);
-            _specialDNAGroupGameObject.SetActive(false);
-        }
-
-        public void SetEvolutionPageMode()
-        {
-            var rectTransform = (RectTransform)this.transform;
-            var walletAnchorPosition = rectTransform.anchoredPosition;
-            walletAnchorPosition.y = -80.0f;
-            rectTransform.anchoredPosition = walletAnchorPosition;
-
-            _gemGroupGameObject.SetActive(true);
-            _goldGroupGameObject.SetActive(true);
-            _specialDNAGroupGameObject.SetActive(true);
         }
     }
 }

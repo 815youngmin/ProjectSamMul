@@ -22,8 +22,6 @@ namespace Shared.StaticDatas
         public CharacterImagePathStaticDataRepository CharacterImagePaths { get; }
         public SkillStaticDataRepository Skills { get; }
         public EquipmentStaticDataRepository Equipments { get; }
-        public BasicEvolutionStaticDataRepository BasicEvolutions { get; }
-        public SpecialEvolutionStaticDataRepository SpecialEvolutions { get; }
         public ExpTable ExpTable { get; }
         public AccountLevelStaticDataRepository AccountLevels { get; }
 
@@ -63,8 +61,6 @@ namespace Shared.StaticDatas
                 StaticDataTable.Load<EquipmentStaticData>(reader, "Equipments"),
                 StaticDataTable.Load<EquipmentStatStaticData>(reader, "EquipmentStats"),
                 StaticDataTable.Load<EquipmentGradeEffectStaticData>(reader, "EquipmentGradeEffects"));
-            BasicEvolutions = new BasicEvolutionStaticDataRepository(StaticDataTable.Load<BasicEvolutionStaticData>(reader, "BasicEvolutions"));
-            SpecialEvolutions = new SpecialEvolutionStaticDataRepository(StaticDataTable.Load<SpecialEvolutionStaticData>(reader, "SpecialEvolutions"));
             ExpTable = new ExpTable(StaticDataTable.Load<ExpTableRow>(reader, "Exps"));
             AccountLevels = new AccountLevelStaticDataRepository(StaticDataTable.Load<AccountLevelStaticData>(reader, "AccountLevels"));
         }

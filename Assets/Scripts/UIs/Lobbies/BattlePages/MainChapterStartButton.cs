@@ -68,14 +68,12 @@ namespace SamMul.UIs.Lobbies.BattlePages
                                 var userGameData = GameClient.CS.UserGameData;
                                 var heroData = userGameData.GetSelectedHeroData();
                                 var equipmentInventory = userGameData.EquipmentInventory();
-                                var evolutionData = userGameData.EvolutionData();
 
                                 var stageInitialData = StageSceneInitialData.CreateForMainChapter(
                                     selectedChapter,
                                     userSkillDeck,
                                     heroData,
-                                    equipmentInventory.GetEquippedEquipments().Values,
-                                    evolutionData);
+                                    equipmentInventory.GetEquippedEquipments().Values);
 
                                 UnityGlobal.Scenes.ChangeTo(SceneType.Stage, stageInitialData, "메인 챕터 시작");
                                 break;

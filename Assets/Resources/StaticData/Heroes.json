@@ -1,0 +1,44 @@
+[
+  {
+    "HeroType": "Tenti",
+    "HeroNameKey": "HERO_TENTI_NAME",
+    "Rarity": "Common",
+    "ElementType": "Water",
+    "BasicSkill": "TentiSweep",
+    "SkeletonDataPath": "Stages/Characters/PCs/Tenti/Tenti.asset",
+    "ColliderRadius": 0.5,
+    "HitBoxSize": [1.0, 1.4],
+    "HitBoxOffset": [0.0, 0.7],
+    "MaxHP": 1000,
+    "AttackPower": 50,
+    "MoveSpeed": 4.0
+  },
+  {
+    "HeroType": "Gum",
+    "HeroNameKey": "HERO_GUM_NAME",
+    "Rarity": "Common",
+    "ElementType": "Earth",
+    "BasicSkill": "BubbleGum",
+    "SkeletonDataPath": "Stages/Characters/PCs/Gum/Gum.asset",
+    "ColliderRadius": 0.5,
+    "HitBoxSize": [1.0, 1.4],
+    "HitBoxOffset": [0.0, 0.7],
+    "MaxHP": 1000,
+    "AttackPower": 50,
+    "MoveSpeed": 4.0
+  },
+  {
+    "HeroType": "Ignatia",
+    "HeroNameKey": "HERO_IGNATIA_NAME",
+    "Rarity": "Special",
+    "ElementType": "Fire",
+    "BasicSkill": "IgnitionWave",
+    "SkeletonDataPath": "Stages/Characters/PCs/Ignatia/Ignatia.asset",
+    "ColliderRadius": 0.5,
+    "HitBoxSize": [1.0, 1.4],
+    "HitBoxOffset": [0.0, 0.7],
+    "MaxHP": 1000,
+    "AttackPower": 50,
+    "MoveSpeed": 4.0
+  }
+]

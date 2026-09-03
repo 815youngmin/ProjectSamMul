@@ -54,7 +54,7 @@ namespace SamMul.ResourcePools
         public static GameObject CreateObject(string path, Type? rootComponentType)
         {
             string name = "[Placeholder] " + path;
-            bool isUI = rootComponentType != null && IsUIType(rootComponentType);
+            bool isUI = (rootComponentType != null && IsUIType(rootComponentType)) || IsUIPath(path);
             var go = isUI ? new GameObject(name, typeof(RectTransform)) : new GameObject(name);
 
             if (rootComponentType != null && !rootComponentType.IsAbstract)
@@ -82,10 +82,24 @@ namespace SamMul.ResourcePools
             }
             else if (rootComponentType == null)
             {
-                var renderer = go.AddComponent<SpriteRenderer>();
-                renderer.sprite = WhiteSprite;
+                if (isUI)
+                {
+                    var image = go.AddComponent<Image>();
+                    image.color = new Color(1f, 1f, 1f, 0.15f);
+                    ((RectTransform)go.transform).sizeDelta = new Vector2(200f, 60f);
+                }
+                else
+                {
+                    var renderer = go.AddComponent<SpriteRenderer>();
+                    renderer.sprite = WhiteSprite;
+                }
             }
             return go;
+        }
+
+        private static bool IsUIPath(string path)
+        {
+            return path.Contains("/UIs/") || path.StartsWith("Commons/") || path.StartsWith("Lobbys/") || path.StartsWith("Loadings/");
         }
 
         private static bool IsUIType(Type type)

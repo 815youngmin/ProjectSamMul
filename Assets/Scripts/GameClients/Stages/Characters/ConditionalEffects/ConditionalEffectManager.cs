@@ -227,46 +227,6 @@ namespace SamMul.GameClients.Stages.Characters.ConditionalEffects
             this.AddConditionalEffect(conditionalEffect);
         }
 
-        public void AddConditionalEffectByEvolutionEffect(EvolutionType evolutionType, float parameter1, float parameter2)
-        {
-            ConditionalEffectBase conditionalEffect = evolutionType switch
-            {
-                EvolutionType.Strength => new EvolutionStrength(attackPowerIncrement: parameter1),
-                EvolutionType.Stamina => new EvolutionStamina(maxHpIncrement: parameter1),
-                EvolutionType.Tenacity => new EvolutionTenacity(addDamageRedction: parameter1),
-                EvolutionType.Restoration => new EvolutionRestoration(eatingHPRecoveryRateIncreaser: parameter1),
-                EvolutionType.LetsBringThisToo => new LetsBringThisToo(),
-                EvolutionType.OneMoreTime => new OneMoreTime(additionalSkillRefreshCount: (int)parameter1),
-                EvolutionType.BurningMeat => new BurningMeat(hpRecoveryIncrementPercentage: parameter1),
-                EvolutionType.HAHAHTormentYou => new HAHAHTormentYou(criticalIncrementPercentage: parameter1),
-                EvolutionType.GivingGirlAChance => new GivingGirlAChance(additionalSkillRefreshCount: (int)parameter1),
-                EvolutionType.SwooshAway => new SwooshAway(projectileSpeedIncrementPercentage: parameter1),
-                EvolutionType.ComeHereFood => new ComeHereFood(moveSpeedIncrementPercentage: parameter1),
-                EvolutionType.TodayFateGoddess => throw new NotImplementedException($"{evolutionType} 구현 안 됨."),
-                EvolutionType.TodayExperimentFun => new TodayExperimentFun(criticalIncrementPercentage: parameter1),
-                EvolutionType.PreferFoodOverClothes => throw new NotImplementedException($"{evolutionType} 구현 안 됨."),
-                EvolutionType.SweetFragranceLovely => new SweetFragranceLovely(hpRecoveryIncrementPercentage: parameter1),
-                EvolutionType.GirlWillTryHarder => throw new NotImplementedException($"{evolutionType} 구현 안 됨."),
-                EvolutionType.WeaknessIsHere => new WeaknessIsHere(criticalIncrementPercentage: parameter1),
-                EvolutionType.BeautifulOutfit => throw new NotImplementedException($"{evolutionType} 구현 안 됨."),
-                EvolutionType.HoldOnRedo => new HoldOnRedo(additionalSkillRefreshCount: (int)parameter1),
-                EvolutionType.ComeHereFight => new ComeHereFight(attackRangeIncrementPercentage: parameter1),
-                EvolutionType.SeasoningIsDelicious => new SeasoningIsDelicious(hpRecoveryIncrementPercentage: parameter1),
-                EvolutionType.GirlWillFinishFaster => new GirlWillFinishFaster(attackSpeedIncrementPercentage: parameter1),
-                EvolutionType.YoungLadyOutfitBest => new YoungLadyOutfitBest(equipmentStatIncrementPercentage: parameter1),
-                EvolutionType.ThisMeatIsFierce => new ThisMeatIsFierce(increaseResurrectionCount: (int)parameter1),
-                EvolutionType.KetchapiDressesWell => new KetchapiDressesWell(addDamageRedctionPerPiece: parameter1, maxAddDamageRedction: parameter2),
-                EvolutionType.JACKPOT => new JACKPOT(dropSkillBoxPercentage: parameter1),
-                EvolutionType.LotsOfChancesLotsOfMeat => new LotsOfChancesLotsOfMeat(),
-                EvolutionType.IncreaseCriticalCoefficient => new IncreaseCriticalCoefficient(criticalCoefficientIncreaseAmount: parameter1),
-                EvolutionType.AcquisitionDistance => new AcquisitionDistance(increasePercent: parameter1),
-                EvolutionType.GoldIncreaseRate => new GoldIncreaseRate(increasePercent: parameter1),
-                _ => throw new NotImplementedException($"{evolutionType} 구현 안 됨."),
-            };
-
-            this.AddConditionalEffect(conditionalEffect);
-        }
-
         private void AddConditionalEffect(ConditionalEffectBase conditionalEffect)
         {
             _conditionalEffects.Add(conditionalEffect);

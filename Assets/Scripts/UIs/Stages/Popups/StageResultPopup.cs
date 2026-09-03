@@ -366,14 +366,12 @@ namespace SamMul.UIs.Stages.Popups
                                 var heroData = userGameData.GetSelectedHeroData()!;
 
                                 var equipmentInventory = userGameData.EquipmentInventory();
-                                var evolutionData = userGameData.EvolutionData();
 
                                 var stageInitialData = StageSceneInitialData.CreateForMainChapter(
                                     chapter,
                                     userSkillDeck,
                                     heroData,
-                                    equipmentInventory.GetEquippedEquipments().Values,
-                                    evolutionData);
+                                    equipmentInventory.GetEquippedEquipments().Values);
 
                                 UnityGlobal.Scenes.ChangeTo(SceneType.Stage, stageInitialData, "챕터 재도전");
                             }

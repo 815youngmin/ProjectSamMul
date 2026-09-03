@@ -1,19 +1,17 @@
 #nullable enable
 using Shared.GameLogics;
 using Shared.Localizers;
-using Shared.UserDatas;
 using UnityEngine;
 using SamMul.GameClients;
 using SamMul.UIs.Lobbies;
 using SamMul.UIs.Lobbies.BattlePages;
-using SamMul.UIs.Lobbies.EvolutionResearchPages;
 using SamMul.UIs.Lobbies.MainLobbyPages;
 
 namespace SamMul.Scenes
 {
     public class LobbySceneUIRoot : BaseSceneUIRoot
     {
-        public enum Page { Invalid, MainLobbyPage, EvolutionPage, BattlePage }
+        public enum Page { Invalid, MainLobbyPage, BattlePage }
 
         [SerializeField] private NavigationBarGroup _navigationBarGroup = null!;
         [SerializeField] private LobbyWalletBarGroup _walletBarGroup = null!;
@@ -21,12 +19,10 @@ namespace SamMul.Scenes
 
         [SerializeField] private MainLobbyPage _mainLobbyPage = null!;
         [SerializeField] private BattlePage _battlePage = null!;
-        [SerializeField] private EvolutionResearchPage _evolutionResearchPage = null!;
 
         public NavigationBarGroup NavigationBarGroup => _navigationBarGroup;
         public MainLobbyPage MainLobbyPage => _mainLobbyPage;
         public BattlePage BattlePage => _battlePage;
-        public EvolutionResearchPage EvolutionResearchPage => _evolutionResearchPage;
 
         public LobbyWalletBarGroup WalletBarGroup => _walletBarGroup;
         public LobbyUserInfoGroup UserInfoGroup => _userInfoGroup;
@@ -44,10 +40,9 @@ namespace SamMul.Scenes
         public void Initialize(
             SceneType sceneType,
             int clearedHighestChapter, long highestStageTimeInSeconds,
-            long goldAmount, long specialDNAAmount,
-            string nickName, int accountLevel, long accountExp,
-            IHeroInventory heroInventory,
-            EvolutionData evolutionData)
+            long goldAmount,
+            int accountLevel, long accountExp,
+            IHeroInventory heroInventory)
         {
             this.InitializeBase(sceneType);
 
@@ -56,7 +51,6 @@ namespace SamMul.Scenes
             Debug.Assert(_mainLobbyPage);
             Debug.Assert(_userInfoGroup);
             Debug.Assert(_battlePage);
-            Debug.Assert(_evolutionResearchPage);
 
             _briefPopup = null;
 
@@ -68,13 +62,10 @@ namespace SamMul.Scenes
             }
 
             _walletBarGroup.Initialize();
-            _userInfoGroup.Initialize(heroInventory.MainHero.HeroType, nickName, accountLevel, accountExp);
+            _userInfoGroup.Initialize(heroInventory.MainHero.HeroType, accountLevel, accountExp);
             _battlePage.Initialize(clearedHighestChapter, highestStageTimeInSeconds, CloseBattlePage, SetSelectedChapterNumer);
-            _evolutionResearchPage.Initialize(evolutionData, accountLevel, goldAmount, specialDNAAmount);
 
-            _navigationBarGroup.Initialize(
-                ChangeToMainLobbyPage,
-                ChangeEvolutionPage);
+            _navigationBarGroup.Initialize(ChangeToMainLobbyPage);
 
             this.ChangeToMainLobbyPage();
             this.ShowNavigationBar(true);
@@ -91,11 +82,6 @@ namespace SamMul.Scenes
             if (_briefPopup != null)
             {
                 _briefPopup.UpdateLogic();
-            }
-
-            if (_evolutionResearchPage != null)
-            {
-                _evolutionResearchPage.UpdateLogic();
             }
 
             if (_walletBarGroup != null)
@@ -143,7 +129,6 @@ namespace SamMul.Scenes
             _userInfoGroup.UpdateProfileImage(gameData.GetSelectedHeroData().HeroType);
 
             _mainLobbyPage.gameObject.SetActive(true);
-            _evolutionResearchPage.gameObject.SetActive(false);
             _battlePage.gameObject.SetActive(false);
 
             this.ShowUserInfoGroup(true);
@@ -151,36 +136,6 @@ namespace SamMul.Scenes
             this.ShowNavigationBar(true);
 
             _walletBarGroup.SetDefaultMode();
-        }
-
-        private bool ChangeEvolutionPage()
-        {
-            if (CurrentPage == Page.EvolutionPage)
-            {
-                return false;
-            }
-
-            CurrentPage = Page.EvolutionPage;
-
-            var evolutionData = GameClient.CS.UserGameData.EvolutionData();
-            var goldAmount = GameClient.CS.UserGameData.Gold;
-            var accountLevel = GameClient.CS.UserGameData.AccountLevel;
-
-            _mainLobbyPage.gameObject.SetActive(false);
-            _battlePage.gameObject.SetActive(false);
-
-            //골드 구매, 그 외 특수한 이벤트로 해당 정보가 로비에서 변경될 가능성이 있다.
-            //활성화 전 새로고침 진행.
-            _evolutionResearchPage.RefreshEvolutionResearchPage(evolutionData, accountLevel, goldAmount);
-            _evolutionResearchPage.gameObject.SetActive(true);
-
-            this.ShowUserInfoGroup(true);
-            this.ShowWalletBarGroup(true);
-            this.ShowNavigationBar(true);
-
-            _walletBarGroup.SetEvolutionPageMode();
-
-            return true;
         }
 
         private void ChangeToBattlePage()

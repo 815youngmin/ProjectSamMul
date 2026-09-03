@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +14,10 @@ namespace Shared.UserDatas
     public class UserGameData
     {
         public long Id { get; set; }
-        public string Nickname { get; set; } = "";
         public int AccountLevel { get; set; } = 1;
         public long AccountExp { get; set; }
         public long Gold { get; set; }
         public long Gem { get; set; }
-        public long SpecialDNA { get; set; }
-        public long StarCandy { get; set; }
         public long ResurrectionCoin { get; set; }
 
         public int ClearedHighestChapter { get; set; }
@@ -33,9 +30,6 @@ namespace Shared.UserDatas
         public Dictionary<EquipmentSlot, EquipmentInstanceId> EquipmentSlots { get; set; } = new Dictionary<EquipmentSlot, EquipmentInstanceId>();
         public Dictionary<EquipmentInstanceId, EquipmentData> Equipments { get; set; } = new Dictionary<EquipmentInstanceId, EquipmentData>();
 
-        public int HighestBasicEvolutionID { get; set; }
-        public int HighestSpecialEvolutionID { get; set; }
-
         public UserGameData()
         {
         }
@@ -47,8 +41,6 @@ namespace Shared.UserDatas
         public ReadOnlyHeroInventory HeroInventory() => new ReadOnlyHeroInventory(Heroes, SelectedHero);
 
         public GameLogics.EquipmentInventory EquipmentInventory() => new GameLogics.EquipmentInventory(Equipments, EquipmentSlots);
-
-        public UserDatas.EvolutionData EvolutionData() => new UserDatas.EvolutionData(HighestBasicEvolutionID, HighestSpecialEvolutionID);
 
         public (IHeroInventory, IEquipmentInventory) CreateUserInventory()
             => (new HeroInventoryView(this), new EquipmentInventoryView(this));

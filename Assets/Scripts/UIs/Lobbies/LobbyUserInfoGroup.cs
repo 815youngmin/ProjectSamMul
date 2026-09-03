@@ -1,7 +1,6 @@
 #nullable enable
 using Shared.GameDataTypes;
 using Shared.StaticDatas;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +12,6 @@ namespace SamMul.UIs.Lobbies
     public class LobbyUserInfoGroup : MonoBehaviour
     {
         [SerializeField] private Image _profileImage;
-        [SerializeField] private TextMeshProUGUI _nickname;
         [SerializeField] private Image _expInImage;
         [SerializeField] private TextMeshProUGUI _level;
         [SerializeField] private RectTransform _statUpStartTransform;
@@ -21,14 +19,12 @@ namespace SamMul.UIs.Lobbies
 
         public RectTransform statUpStartRectTransform { get { return _statUpStartTransform; } }
 
-        public void Initialize(HeroType selectedHero, string nickname, int accountLevel, long accountExp)
+        public void Initialize(HeroType selectedHero, int accountLevel, long accountExp)
         {
             Debug.Assert(_profileImage);
-            Debug.Assert(_nickname);
             Debug.Assert(_level);
 
             this.UpdateProfileImage(selectedHero);
-            this.UpdateNickname(nickname);
             this.UpdateAccountLevel(accountLevel, accountExp);
         }
 
@@ -41,18 +37,6 @@ namespace SamMul.UIs.Lobbies
             _elementIcon.sprite = ResourcePool.Instance.LoadResource<Sprite>(heroData.ElementType.IconPath());
         }
 
-        public void UpdateNickname(string userName)
-        {
-            var tokens = userName.Split('#');
-            if (tokens.Length <= 0)
-            {
-                _nickname.text = userName;
-            }
-
-            // #4124 형식의 숫자 자릿수 # 문자를 포함해서
-            int numberPartLength = tokens.Last().Length + 1;
-            _nickname.text = userName.Substring(0, userName.Length - numberPartLength);
-        }
 
         public void UpdateAccountLevel(int accountLevel, long currentExp)
         {

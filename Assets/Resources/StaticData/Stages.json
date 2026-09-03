@@ -1,0 +1,41 @@
+[
+  {
+    "StageNumber": 1,
+    "StageFormType": "Rectangle",
+    "SpawnLogicType": "FromEveryBoundary",
+    "Width": 40,
+    "Height": 40,
+    "TotalStageTimeSec": 180,
+    "ItemBoxSpawnPeriodSec": 30,
+    "IsResurrectable": true,
+    "FloorTileResourcePath": "Stages/Floors/Western/floor_western.png",
+    "FenceResourcePath": "Stages/Fences/fence_western.png",
+    "BGMPath": "Sounds/BGM/BGM_Stage_Western.prefab"
+  },
+  {
+    "StageNumber": 2,
+    "StageFormType": "Rectangle",
+    "SpawnLogicType": "FromEveryBoundary",
+    "Width": 40,
+    "Height": 40,
+    "TotalStageTimeSec": 180,
+    "ItemBoxSpawnPeriodSec": 30,
+    "IsResurrectable": true,
+    "FloorTileResourcePath": "Stages/Floors/Steampunk/floor_steampunk.png",
+    "FenceResourcePath": "Stages/Fences/fence_steampunk.png",
+    "BGMPath": "Sounds/BGM/BGM_Stage_Steampunk.prefab"
+  },
+  {
+    "StageNumber": 3,
+    "StageFormType": "Rectangle",
+    "SpawnLogicType": "FromEveryBoundary",
+    "Width": 40,
+    "Height": 40,
+    "TotalStageTimeSec": 180,
+    "ItemBoxSpawnPeriodSec": 30,
+    "IsResurrectable": true,
+    "FloorTileResourcePath": "Stages/Floors/Arabian/floor_arabian.png",
+    "FenceResourcePath": "Stages/Fences/fence_arabian.png",
+    "BGMPath": "Sounds/BGM/BGM_Stage_Arabian.prefab"
+  }
+]

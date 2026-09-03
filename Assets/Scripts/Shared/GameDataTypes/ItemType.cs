@@ -46,8 +46,6 @@ namespace Shared.GameDataTypes
         RandomEquipmentReinforceTicket = 57,
         Gold = 66,
         Gem = 67,
-        StarCandy = 68,
-        SpecialDNA = 69,
         AccountExp = 70,
         Stamina = 71,
         ResurrectionCoin = 74,

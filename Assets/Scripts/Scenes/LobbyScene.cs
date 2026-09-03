@@ -15,26 +15,20 @@ namespace SamMul.Scenes
         public readonly int ClearedHighestChapter;
         public readonly long HighestStageTimeInSeconds;
         public readonly long GoldAmount;
-        public readonly long SpecialDNAAmount;
-        public readonly string UserNickname;
         public readonly int AccountLevel;
         public readonly long AccountExp;
 
         public readonly IHeroInventory HeroInventory;
-        public readonly EvolutionData EvolutionData;
 
         public LobbySceneInitialData(UserGameData userGameData)
         {
             this.ClearedHighestChapter = userGameData.ClearedHighestChapter;
             this.HighestStageTimeInSeconds = userGameData.HighestStageTimeInSeconds;
             this.GoldAmount = userGameData.Gold;
-            this.SpecialDNAAmount = userGameData.SpecialDNA;
-            this.UserNickname = userGameData.Nickname;
             this.AccountLevel = userGameData.AccountLevel;
             this.AccountExp = userGameData.AccountExp;
 
             (this.HeroInventory, _) = userGameData.CreateUserInventory();
-            this.EvolutionData = userGameData.EvolutionData();
         }
     }
 
@@ -69,12 +63,9 @@ namespace SamMul.Scenes
                 lobbySceneInitialData.ClearedHighestChapter,
                 lobbySceneInitialData.HighestStageTimeInSeconds,
                 lobbySceneInitialData.GoldAmount,
-                lobbySceneInitialData.SpecialDNAAmount,
-                lobbySceneInitialData.UserNickname,
                 lobbySceneInitialData.AccountLevel,
                 lobbySceneInitialData.AccountExp,
-                lobbySceneInitialData.HeroInventory,
-                lobbySceneInitialData.EvolutionData);
+                lobbySceneInitialData.HeroInventory);
         }
 
         public override void OnLoadingSceneRemoved()

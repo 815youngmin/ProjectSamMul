@@ -28,7 +28,6 @@ namespace SamMul.UIs.Commons.Rewards
         private static readonly string GEM_BACKGROUND_SPRITE = "Commons/CardIcons/Gem_Back.png";
         private static readonly string GOLD_BACKGROUND_SPRITE = "Commons/CardIcons/Gold_Back.png";
         private static readonly string BATTLE_PASS_EXP_BACKGROUND_SPRITE = "Commons/CardIcons/BattlePassExp_Back.png";
-        private static readonly string STAR_CANDY_BACKGROUND_SPRITE = "Commons/CardIcons/StarCandyBackground.png";
         private static readonly string RESURRECTION_COIN_BACKGROUND_SPRITE = "Commons/CardIcons/ResurrectionCoinBackground.png";
         private static readonly string ROCKET_FUEL_BACKGROUND_SPRITE = "Commons/CardIcons/Stamina_Back.png";
         private static readonly string TEMPORARY_SPACE_COIN_BACKGROUND_SPRITE = "Commons/CardIcons/Gold_Back.png";
@@ -39,12 +38,10 @@ namespace SamMul.UIs.Commons.Rewards
         private static readonly string GEM_ICON_SPRITE = "Commons/Icon/Gem_Icon.png";
         private static readonly string EXP_ICON_SPRITE = "Commons/Reward/Reward_ExpIcon.png";
         private static readonly string ATTENDANCE_POINT_ICON_SPRITE = "Commons/ProductIcons/AttendancePointIcon.png";
-        private static readonly string SPECIAL_DNA_ICON_SPRITE = "Commons/Icon/SpecialDNAIcon.png";
         private static readonly string EQUIPMENT_TICKETICON_SPRITE = "Commons/Icon/Equipment_TicketIcon_Random.png";
         private static readonly string MAIN_CHARACTER_TICKET_ICON_SPRITE = "Commons/Icon/CharacterTicketIcon.png";
         private static readonly string SUB_CHARACTER_TICKET_ICON_SPRITE = "Commons/Icon/SubCharacterTicketIcon.png";
         private static readonly string BATTLE_PASS_EXP_ICON_SPRITE = "Commons/Icon/BattlePassExpIcon.png";
-        private static readonly string STAR_CANDY_ICON_SPRITE = "Commons/Icon/StarCandyIcon.png";
         private static readonly string RESURRECTION_COIN_ICON_SPRITE = "Commons/Icon/ResurrectionCoin_Icon.png";
         private static readonly string ROCKET_FUEL_ICON_SPRITE = "Commons/Icon/RocketFuelIcon.png";
         private static readonly string TEMPORARY_SPACE_COIN_ICON_SPRITE = "Commons/Icon/TemporarySpaceCoinIcon.png";
@@ -206,9 +203,7 @@ namespace SamMul.UIs.Commons.Rewards
                 RewardItemType.Gold => ResourcePool.Instance.LoadResource<Sprite>(GOLD_BACKGROUND_SPRITE),
                 RewardItemType.Gem => ResourcePool.Instance.LoadResource<Sprite>(GEM_BACKGROUND_SPRITE),
                 RewardItemType.AttendancePoint => null,
-                RewardItemType.SpecialDNA => ResourcePool.Instance.LoadResource<Sprite>(UNIQUE_BACKGROUND_SPRITE),
                 RewardItemType.BattlePassExp => ResourcePool.Instance.LoadResource<Sprite>(BATTLE_PASS_EXP_BACKGROUND_SPRITE),
-                RewardItemType.StarCandy => ResourcePool.Instance.LoadResource<Sprite>(STAR_CANDY_BACKGROUND_SPRITE),
                 RewardItemType.ResurrectionCoin => ResourcePool.Instance.LoadResource<Sprite>(RESURRECTION_COIN_BACKGROUND_SPRITE),
                 RewardItemType.RocketFuel => ResourcePool.Instance.LoadResource<Sprite>(ROCKET_FUEL_BACKGROUND_SPRITE),
                 RewardItemType.TemporarySpaceCoin => ResourcePool.Instance.LoadResource<Sprite>(TEMPORARY_SPACE_COIN_BACKGROUND_SPRITE),
@@ -239,12 +234,10 @@ namespace SamMul.UIs.Commons.Rewards
                 RewardItemType.Exp => ResourcePool.Instance.LoadResource<Sprite>(EXP_ICON_SPRITE),
                 RewardItemType.Gem => ResourcePool.Instance.LoadResource<Sprite>(GEM_ICON_SPRITE),
                 RewardItemType.AttendancePoint => ResourcePool.Instance.LoadResource<Sprite>(ATTENDANCE_POINT_ICON_SPRITE),
-                RewardItemType.SpecialDNA => ResourcePool.Instance.LoadResource<Sprite>(SPECIAL_DNA_ICON_SPRITE),
                 RewardItemType.MainCharacterTicket => ResourcePool.Instance.LoadResource<Sprite>(MAIN_CHARACTER_TICKET_ICON_SPRITE),
                 RewardItemType.SubCharacterTicket => ResourcePool.Instance.LoadResource<Sprite>(SUB_CHARACTER_TICKET_ICON_SPRITE),
                 RewardItemType.EquipmentTicket => ResourcePool.Instance.LoadResource<Sprite>(EQUIPMENT_TICKETICON_SPRITE),
                 RewardItemType.BattlePassExp => ResourcePool.Instance.LoadResource<Sprite>(BATTLE_PASS_EXP_ICON_SPRITE),
-                RewardItemType.StarCandy => ResourcePool.Instance.LoadResource<Sprite>(STAR_CANDY_ICON_SPRITE),
                 RewardItemType.ResurrectionCoin => ResourcePool.Instance.LoadResource<Sprite>(RESURRECTION_COIN_ICON_SPRITE),
                 RewardItemType.RocketFuel => ResourcePool.Instance.LoadResource<Sprite>(ROCKET_FUEL_ICON_SPRITE),
                 RewardItemType.TemporarySpaceCoin => ResourcePool.Instance.LoadResource<Sprite>(TEMPORARY_SPACE_COIN_ICON_SPRITE),

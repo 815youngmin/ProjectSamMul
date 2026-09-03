@@ -13,8 +13,7 @@ namespace SamMul.UIs.Lobbies
     {
         private enum NavigationType
         {
-            Lobby,
-            Evolution
+            Lobby
         }
 
         [SerializeField] private HorizontalLayoutGroup _layoutGroup;
@@ -23,22 +22,16 @@ namespace SamMul.UIs.Lobbies
         [SerializeField] private NavigationButton _goToShopButton;
         [SerializeField] private NavigationButton _goToAvataButton;
         [SerializeField] private NavigationButton _goToChallengeButton;
-        [SerializeField] private NavigationButton _goToEvolution;
 
         [SerializeField] private TextMeshProUGUI _goToMainLobbyButtonText;
-        [SerializeField] private TextMeshProUGUI _goToEvolutionText;
 
         public NavigationButton MainLobbyButton => _goToMainLobbyButton;
-        public NavigationButton EvolutionButton => _goToEvolution;
 
         private NavigationType _currentNavigation;
 
-        public void Initialize(
-            Action changeToMainLobbyPage,
-            Func<bool> changeToEvolutionPage)
+        public void Initialize(Action changeToMainLobbyPage)
         {
             Debug.Assert(_goToMainLobbyButton != null);
-            Debug.Assert(_goToEvolution != null);
 
             // 데모에서는 상점/도전 페이지가 없고, 아바타 페이지는 추후 다시 만든다. 해당 버튼들은 숨겨둔다.
             _goToShopButton.gameObject.SetActive(false);
@@ -49,22 +42,8 @@ namespace SamMul.UIs.Lobbies
             {
                 changeToMainLobbyPage();
                 _goToMainLobbyButton.DisableButton();
-                _goToEvolution.EnableButton();
                 this.UnSelectButton(_currentNavigation);
                 _currentNavigation = NavigationType.Lobby;
-                this.SelectButton(_currentNavigation);
-            });
-
-            _goToEvolution.Initialize(() =>
-            {
-                if (!changeToEvolutionPage())
-                {
-                    return;
-                }
-                _goToMainLobbyButton.EnableButton();
-                _goToEvolution.DisableButton();
-                this.UnSelectButton(_currentNavigation);
-                _currentNavigation = NavigationType.Evolution;
                 this.SelectButton(_currentNavigation);
             });
 
@@ -72,10 +51,8 @@ namespace SamMul.UIs.Lobbies
             _goToMainLobbyButton.SelectButton();
             // 초기상태는 메인로비 페이지를 띄운 상태로 만들어둔다.
             _goToMainLobbyButton.DisableButton();
-            _goToEvolution.EnableButton();
 
             _goToMainLobbyButtonText.text = Localizer.Instance.GetText("UI_CONTENT_CONQUEST");
-            _goToEvolutionText.text = Localizer.Instance.GetText("UI_CONTENT_EVOLUTION");
         }
 
         private void SelectButton(NavigationType navigationType)
@@ -84,9 +61,6 @@ namespace SamMul.UIs.Lobbies
             {
                 case NavigationType.Lobby:
                     _goToMainLobbyButton.SelectButton();
-                    break;
-                case NavigationType.Evolution:
-                    _goToEvolution.SelectButton();
                     break;
                 default:
                     break;
@@ -99,9 +73,6 @@ namespace SamMul.UIs.Lobbies
             {
                 case NavigationType.Lobby:
                     _goToMainLobbyButton.UnSelectButton();
-                    break;
-                case NavigationType.Evolution:
-                    _goToEvolution.UnSelectButton();
                     break;
                 default:
                     break;

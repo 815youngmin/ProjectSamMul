@@ -83,11 +83,10 @@ namespace SamMul.GameClients
             ChapterStaticData chapterStaticData,
             IReadOnlyList<SkillId> userSkillDeck,
             HeroData userHeroData,
-            IEnumerable<EquipmentData> userHeroEquippedEquipments,
-            EvolutionData evolutionData)
+            IEnumerable<EquipmentData> userHeroEquippedEquipments)
         {
             _stage = Stage.CreateForMainChapter(chapterStaticData, _staticDataRepository);
-            _stage.Initialize(userSkillDeck, userHeroData, userHeroEquippedEquipments, evolutionData);
+            _stage.Initialize(userSkillDeck, userHeroData, userHeroEquippedEquipments);
         }
 
         public void CreatePlayerController(VariableJoystick joystick, bool activateAutoPlay)
