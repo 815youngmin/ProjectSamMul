@@ -290,9 +290,22 @@ namespace SamMul.ResourcePools
             go.transform.SetParent(parent, false);
             if (isUI)
             {
-                ((RectTransform)go.transform).sizeDelta = new Vector2(300f, 80f);
+                var rect = (RectTransform)go.transform;
+                rect.sizeDelta = new Vector2(300f, 80f);
+                PlaceInColumn(rect);
             }
             return go.transform;
         }
+
+        /// <summary>자동 생성된 UI 형제 요소가 겹치지 않도록 위에서 아래로 나열한다.</summary>
+        private static void PlaceInColumn(RectTransform rect)
+        {
+            int index = rect.GetSiblingIndex();
+            rect.anchorMin = new Vector2(0.5f, 1f);
+            rect.anchorMax = new Vector2(0.5f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, -20f - index * 90f);
+        }
+
     }
 }

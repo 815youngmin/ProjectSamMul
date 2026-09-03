@@ -39,7 +39,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
         [SerializeField] private Image _stageElementImage;
         [SerializeField] private TextMeshProUGUI _stageRecordText;
         [SerializeField] private TextMeshProUGUI _chapterNumberText;
-        [SerializeField] private TextMeshProUGUI _specialRewardText;
 
         private ChapterStaticData _selectedChapter;
         private ChapterStaticData _nearestSpecialRewardChapter;
@@ -129,8 +128,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
             Assert.IsNotNull(_selectedChapter);
 
             this.UpdateBattlePageInfo();
-            Assert.IsNotNull(_specialRewardText);
-            _specialRewardText.text = Localizer.Instance.GetText("UI_SPECIAL_REWARD");
 
 
             _airshipUpLocalPosition = _airshipUp.rectTransform.anchoredPosition;

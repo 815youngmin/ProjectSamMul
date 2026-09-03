@@ -24,8 +24,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
         [SerializeField] private Image _backgroundImage = null!;
         [SerializeField] private RewardShowGroup _rewardShowButton = null!;
 
-        [SerializeField] private TextMeshProUGUI _chapterRewardText = null!;
-        [SerializeField] private TextMeshProUGUI _specialRewardText = null!;
 
         // 데모에서 제거된 콘텐트(습격, 미션, 랭킹 등)의 버튼들이 들어 있던 그룹. 자식 버튼들은 전부 숨긴다.
         [SerializeField] private RectTransform _leftSideButtonGroup = null!;
@@ -74,8 +72,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
 
             _backgroundImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(selectedChapter!.ChapterBackgroundPath);
 
-            _chapterRewardText.text = Localizer.Instance.GetText("UI_CHAPTER_REWARD");
-            _specialRewardText.text = Localizer.Instance.GetText("UI_SPECIAL_REWARD");
 
             HideChildren(_leftSideButtonGroup);
             HideChildren(_rightSideButtonGroup);

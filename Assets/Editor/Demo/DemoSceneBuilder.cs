@@ -27,8 +27,21 @@ namespace Demo.Editor
         private const string RESOURCES_DIR = "Assets/Resources";
         private const int MAX_DEPTH = 6;
 
+        /// <summary>없는 씬만 만든다. 손으로 다듬은 씬은 건드리지 않는다.</summary>
         [MenuItem("Demo/Build Scenes")]
-        public static void BuildAll()
+        public static void BuildAll() => Build(overwrite: false);
+
+        /// <summary>모든 씬을 새로 만든다. 손으로 다듬은 내용이 사라지므로 확인 후 실행한다.</summary>
+        [MenuItem("Demo/Rebuild Scenes (overwrite)")]
+        public static void RebuildAll()
+        {
+            if (EditorUtility.DisplayDialog("씬 재생성", "Loading / Lobby / Stage 씬을 새로 만듭니다. 손으로 수정한 내용은 사라집니다.", "재생성", "취소"))
+            {
+                Build(overwrite: true);
+            }
+        }
+
+        private static void Build(bool overwrite)
         {
             Directory.CreateDirectory(SCENES_DIR);
             Directory.CreateDirectory(RESOURCES_DIR + "/Commons");
@@ -39,9 +52,9 @@ namespace Demo.Editor
 
             var scenePaths = new List<string>
             {
-                BuildScene(SceneType.Lobby, typeof(LobbyScene), typeof(LobbySceneUIRoot)),
-                BuildScene(SceneType.Stage, typeof(StageScene), typeof(StageSceneUIRoot)),
-                BuildScene(SceneType.Loading, typeof(LoadingScene), typeof(LoadingSceneUIRoot)),
+                BuildScene(SceneType.Lobby, typeof(LobbyScene), typeof(LobbySceneUIRoot), overwrite),
+                BuildScene(SceneType.Stage, typeof(StageScene), typeof(StageSceneUIRoot), overwrite),
+                BuildScene(SceneType.Loading, typeof(LoadingScene), typeof(LoadingSceneUIRoot), overwrite),
             };
 
             var buildScenes = new List<EditorBuildSettingsScene>();
@@ -69,9 +82,14 @@ namespace Demo.Editor
             UnityEngine.Object.DestroyImmediate(go);
         }
 
-        private static string BuildScene(SceneType sceneType, Type sceneComponentType, Type uiRootType)
+        private static string BuildScene(SceneType sceneType, Type sceneComponentType, Type uiRootType, bool overwrite)
         {
             string path = $"{SCENES_DIR}/{sceneType}.unity";
+            if (!overwrite && File.Exists(path))
+            {
+                Debug.Log($"[DemoSceneBuilder] 이미 있어 건너뜀: {path}");
+                return path;
+            }
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
             // 카메라
@@ -256,9 +274,21 @@ namespace Demo.Editor
             {
                 var rect = (RectTransform)go.transform;
                 rect.sizeDelta = new Vector2(300f, 80f);
+                PlaceInColumn(rect);
             }
             return go.transform;
         }
+
+        /// <summary>자동 생성된 UI 형제 요소가 겹치지 않도록 위에서 아래로 나열한다.</summary>
+        private static void PlaceInColumn(RectTransform rect)
+        {
+            int index = rect.GetSiblingIndex();
+            rect.anchorMin = new Vector2(0.5f, 1f);
+            rect.anchorMax = new Vector2(0.5f, 1f);
+            rect.pivot = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = new Vector2(0f, -20f - index * 90f);
+        }
+
 
         private static void Stretch(RectTransform rect)
         {
