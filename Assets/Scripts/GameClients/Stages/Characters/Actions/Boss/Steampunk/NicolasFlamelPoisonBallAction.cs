@@ -1,0 +1,119 @@
+using Z.Animations.Placeholder;
+using Animation = Z.Animations.Placeholder.Animation;
+using System.Collections.Generic;
+using UnityEngine;
+using Z.GameClients.Stages.Characters.Animations;
+using Z.GameClients.Stages.Characters.Monsters;
+
+namespace Z.GameClients.Stages.Characters.Actions.Boss.Steampunk
+{
+    public class NicolasFlamelPoisonBallAction : SmartAction<SpineMonsterAnimationController>
+    {
+        private static readonly string ReadyAnimationName = "PeriodicExecutionBegin";
+        private static readonly string AttackAnimationName = "PeriodicExecutionRepeat";
+        private static readonly string EndAnimationName = "PeriodicExecutionEnd";
+
+        private static readonly float DAMAGE_COEFFICIENT = 1.0f;
+
+        private Monster _owner;
+        private Character _target;
+
+        private Animation _readyAnimation;
+        private Animation _attackAnimation;
+        private Animation _endAnimation;
+
+        private static readonly float WaitingTime = 0.5f;
+        private static readonly float AreaEffectDuration = 5f;
+        private static readonly float AreaEffectRadius = 2.5f;
+        private static readonly int AreaEffectAmount = 8;
+        private static readonly float ThrowDistance = 10f;
+        private static readonly float ThrowDelay = 0.1f;
+
+        private List<Vector2> _poisonThrowPositions;
+
+        private Bone _fireBone;
+
+        public override void Initialize(Monster owner, Character target, SpineMonsterAnimationController animationController)
+        {
+            base.InitializeBase(ActionType.Skill,
+                animationController.FindAnimation(ReadyAnimationName).Duration +
+                WaitingTime + 
+                AreaEffectAmount * ThrowDelay +
+                animationController.FindAnimation(EndAnimationName).Duration,
+                animationController);
+
+            _owner = owner;
+            _target = target;
+
+            _readyAnimation = AnimationController.FindAnimation(ReadyAnimationName);
+            _attackAnimation = AnimationController.FindAnimation(AttackAnimationName);
+            _endAnimation = AnimationController.FindAnimation(EndAnimationName);
+
+            _poisonThrowPositions = new List<Vector2>();
+            _fireBone = AnimationController.Body.skeleton.FindBone("fire");
+
+        }
+
+        public override void Begin(Stage stage, float now)
+        {
+            base.Begin(stage, now);
+            AnimationController.SetAnimation(BodyAnimationTrack.WholeBody, _readyAnimation, false);
+            AnimationController.ContinueAnimation(BodyAnimationTrack.WholeBody, _attackAnimation, true, 0f);
+            AnimationController.ContinueAnimation(BodyAnimationTrack.WholeBody, _endAnimation, false, ThrowDelay * AreaEffectAmount + WaitingTime);
+
+            this.GetNonOverlappingPositions();
+
+            float time = now + _readyAnimation.Duration;
+            base.AddOneOffSubAction(time, (Stage stage, float deltaTime, float now) =>
+            {
+                for (int i = 0; i < _poisonThrowPositions.Count; i++)
+                {
+                    stage.CreatePoisonBall(_owner, _fireBone.GetWorldPosition(_owner.Body.transform), _poisonThrowPositions[i], WaitingTime + ThrowDelay * i, AreaEffectRadius, _owner.SpecialAttackPower * DAMAGE_COEFFICIENT, AreaEffectDuration);
+                }
+            });
+        }
+
+        public override ActionBase End(Stage stage)
+        {
+            return null;
+        }
+
+        bool IsOverlapping(Vector2 newPos)
+        {
+            foreach (Vector2 pos in _poisonThrowPositions)
+            {
+                float distance = Vector2.Distance(newPos, pos);
+                if (distance < 1.5f * AreaEffectRadius)    //약간의 겹침은 허용한다.
+                {
+                    return true; // 겹침
+                }
+            }
+            return false; // 겹치지 않음
+        }
+        void GetNonOverlappingPositions()
+        {
+            for (int i = 0; i < AreaEffectAmount; i++)
+            {
+                Vector2 newPos;
+                int attempt = 0;
+                do
+                {
+                    newPos = _target.CenterPos + Random.insideUnitCircle * ThrowDistance;
+                    attempt++;
+
+                    // 무한 루프 방지 (50회 시도 후 강제 중단)
+                    if (attempt > 50)
+                    {
+                        break;
+                    }
+
+                } while (IsOverlapping(newPos)); // 겹치면 다시 위치 생성
+
+                // 겹치지 않는 위치가 확인되면 장판 위치 지정
+                _poisonThrowPositions.Add(newPos);
+            }
+        }
+
+    }
+}
+
