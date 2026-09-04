@@ -1,4 +1,3 @@
-using Shared.UserDatas;
 using System;
 using UnityEngine;
 using SamMul.GameClients;
@@ -7,16 +6,10 @@ using SamMul.UnityHelpers.Sounds;
 
 namespace SamMul.Scenes
 {
+    /// <summary>로비는 유저 데이터를 세션에서 직접 읽으므로 전달할 값이 없다.</summary>
     public class LobbySceneInitialData : ISceneInitialData
     {
         public SceneType SceneType => SceneType.Lobby;
-
-        public readonly int ClearedHighestChapter;
-
-        public LobbySceneInitialData(UserGameData userGameData)
-        {
-            this.ClearedHighestChapter = userGameData.ClearedHighestChapter;
-        }
     }
 
     public class LobbyScene : BaseScene
@@ -34,19 +27,10 @@ namespace SamMul.Scenes
         {
             base.Initialize(initialData);
 
-            LobbySceneInitialData lobbySceneInitialData = null;
-            if (initialData != null)
-            {
-                Debug.Assert(initialData.SceneType == this.SceneType);
-                lobbySceneInitialData = (LobbySceneInitialData)initialData;
-            }
-            else
-            {
-                // 앱의 첫 씬으로 바로 시작한 경우: 로컬 세션의 유저 데이터로 초기화한다.
-                lobbySceneInitialData = new LobbySceneInitialData(GameClient.CS.UserGameData);
-            }
+            // 앱의 첫 씬으로 바로 시작한 경우 initialData 는 null 이다.
+            Debug.Assert(initialData == null || initialData.SceneType == this.SceneType);
 
-            this.UI.Initialize(this.SceneType, lobbySceneInitialData.ClearedHighestChapter);
+            this.UI.Initialize(this.SceneType);
         }
 
         public override void OnLoadingSceneRemoved()

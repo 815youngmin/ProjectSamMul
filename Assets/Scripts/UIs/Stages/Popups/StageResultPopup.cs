@@ -178,7 +178,7 @@ namespace SamMul.UIs.Stages.Popups
                     }
 
                     this.Close(skipAnimation: false);
-                    UnityGlobal.Scenes.ChangeTo(SceneType.Lobby, new LobbySceneInitialData(GameClient.CS.UserGameData), "스테이지 종료");
+                    UnityGlobal.Scenes.ChangeTo(SceneType.Lobby, new LobbySceneInitialData(), "스테이지 종료");
                 });
                 _confirmButton.ButtonText.text = Localizer.Instance.GetText("UI_OK");
             }
@@ -244,10 +244,9 @@ namespace SamMul.UIs.Stages.Popups
                                 UnityGlobal.Scenes.ChangeTo(SceneType.Stage, stageInitialData, "챕터 재도전");
                             }
                             break;
-                        case EnterChapterResultCode.NotClearedPreviousChapter:
                         case EnterChapterResultCode.InvalidChapter:
                             {
-                                UnityGlobal.Scenes.ChangeTo(SceneType.Lobby, new LobbySceneInitialData(GameClient.CS.UserGameData), $"resultCode[{response.ResultCode}] 챕터 재도전 실패");
+                                UnityGlobal.Scenes.ChangeTo(SceneType.Lobby, new LobbySceneInitialData(), $"resultCode[{response.ResultCode}] 챕터 재도전 실패");
                             }
                             break;
                         case EnterChapterResultCode.AlreadyChapterPlaying:
@@ -514,7 +513,6 @@ namespace SamMul.UIs.Stages.Popups
                             UnityGlobal.HandleInvalidSessionInfo(nameof(FinishChapterRequest), GameClient.CS.ApplicationVersion, GameClient.CS.CachedAccountId);
                             break;
                         case FinishChapterResultCode.NotInStage:
-                        case FinishChapterResultCode.NotClearedPreviousChapter:
                         default:
                             // 어뷰징 유저
                             UnityGlobal.HandleAbusingUser(nameof(FinishChapterRequest), GameClient.CS.ApplicationVersion, GameClient.CS.CachedAccountId);

@@ -76,15 +76,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
                                 UnityGlobal.Scenes.ChangeTo(SceneType.Stage, stageInitialData, "메인 챕터 시작");
                                 break;
                             }
-                        case EnterChapterResultCode.NotClearedPreviousChapter:
-                            {
-                                // TODO 아무튼 안내메시지 팝업 만들어서 보여주기
-                                UnityGlobal.Scenes.GetCurrentSceneUI().AddCommonMessagePopup(
-                                  Localizer.Instance.GetText("UI_POPUP_NEED_CLEAR_PREVIOUS_CHAPTER_TITLE"),
-                                  Localizer.Instance.GetText("UI_POPUP_NEED_CLEAR_PREVIOUS_CHAPTER_MESSAGE"),
-                                  Localizer.Instance.GetText("UI_OK"), () => { });
-                                break;
-                            }
                         case EnterChapterResultCode.InvalidChapter:
                             {
                                 UnityGlobal.Scenes.GetCurrentSceneUI().AddCommonMessagePopup(

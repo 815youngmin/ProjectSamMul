@@ -12,7 +12,6 @@ namespace Shared.CSProtocols.ReqResData.Chapters
     {
         Success = 0,
         InvalidSession = 1,
-        NotClearedPreviousChapter = 3,
         InvalidChapter = 4,
         AlreadyChapterPlaying = 5,
     }
@@ -22,7 +21,6 @@ namespace Shared.CSProtocols.ReqResData.Chapters
         Success = 0,
         InvalidSession = 1,
         NotInStage = 3,
-        NotClearedPreviousChapter = 4,
         InvalidChapter = 5,
     }
 

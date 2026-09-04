@@ -57,11 +57,5 @@ namespace SamMul.UIs.Lobbies
             }
             _onSelected?.Invoke(index);
         }
-
-        /// <summary>잠긴 항목은 회색으로 표시되고 눌리지 않는다.</summary>
-        public void SetLocked(int index, bool locked)
-        {
-            _buttons[index].SetInteractable(!locked);
-        }
     }
 }

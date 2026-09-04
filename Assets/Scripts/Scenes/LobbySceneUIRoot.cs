@@ -11,13 +11,13 @@ namespace SamMul.Scenes
 
         public MainLobbyPage MainLobbyPage => _mainLobbyPage;
 
-        public void Initialize(SceneType sceneType, int clearedHighestChapter)
+        public void Initialize(SceneType sceneType)
         {
             this.InitializeBase(sceneType);
 
             Debug.Assert(_mainLobbyPage);
 
-            _mainLobbyPage.Initialize(clearedHighestChapter);
+            _mainLobbyPage.Initialize();
             _mainLobbyPage.gameObject.SetActive(true);
         }
 

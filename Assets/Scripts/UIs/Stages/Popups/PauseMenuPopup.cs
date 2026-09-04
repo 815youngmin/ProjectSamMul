@@ -175,7 +175,7 @@ namespace SamMul.UIs.Stages.Popups
                     {
                         if (response.ResultCode == GiveUpChapterResultCode.Success)
                         {
-                            var lobbySceneInitialData = new LobbySceneInitialData(GameClient.CS.UserGameData);
+                            var lobbySceneInitialData = new LobbySceneInitialData();
                             UnityGlobal.Scenes.ChangeTo(SceneType.Lobby, lobbySceneInitialData, "챕터 포기");
                         }
                         else

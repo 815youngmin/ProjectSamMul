@@ -19,7 +19,7 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
 
         private ChapterStaticData _selectedChapter = null!;
 
-        public void Initialize(int clearedHighestChapter)
+        public void Initialize()
         {
             Debug.Assert(_chapterGroup);
             Debug.Assert(_heroGroup);
@@ -32,11 +32,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
             var userGameData = GameClient.CS.UserGameData;
 
             _chapterGroup.Initialize(chapters.Count, index => _selectedChapter = chapters[index]);
-            for (int i = 0; i < chapters.Count; ++i)
-            {
-                // 이전 챕터를 클리어해야 다음 챕터가 열린다.
-                _chapterGroup.SetLocked(i, chapters[i].ChapterNumber > clearedHighestChapter + 1);
-            }
             _chapterGroup.Select(0);
 
             _heroGroup.Initialize(heroes.Count, index =>
