@@ -12,7 +12,6 @@ using SamMul.GameClients;
 using SamMul.GameClients.Stages;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.Characters.Monsters;
-using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs;
 using SamMul.GameClients.Stages.Characters.PCs;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.ResourcePools;
@@ -301,38 +300,6 @@ namespace SamMul.Scenes
             if (stage != null)
             {
                 _autoPlayHUDGroup.UpdateAcquiredSkillGroup(stage.PC.GetAcquiredSkillKeys());
-            }
-
-            // 0챕터 한정으로, 플레이어 레벨 2가 되면 보석고블린을 스폰해준다.
-            if ((stage != null) &&
-                (stage.StageType == StageType.Chapter) &&
-                (stage.ChapterStaticData!.ChapterNumber == 0) &&
-                (stage.PC.Level == 2))
-            {
-                GameClient.AsyncDispatcher.RunOrReserveAsyncJob(async () =>
-                {
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-
-                    var currentStage = GameClient.Stage;
-                    if (currentStage != null && currentStage == stage)
-                    {
-                        var gemGoblinInitialData = MonsterInstanceInitialData.CreateForStageMonster(
-                            stage.PC.Pos + new Vector2(0f, 8f),
-                            hpWeight: 1f, attackPowerWeight: 1f,
-                            dropExp: 1505, dropGolds: 0,
-                            new List<DropItemType>());
-
-                        var aiBlackboard = new RewardGoblinAIBlackboard(
-                            goblinType: RewardGoblinType.Gem,
-                            maxHpCount: 3,
-                            hitRewardMin: 1,
-                            hitRewardMax: 3,
-                            deadRewardMin: 4,
-                            deadRewardMax: 6);
-
-                        stage.CreateMonster(AllianceType.Monsters, CharacterType.Special_Gem_Goblin, gemGoblinInitialData, isBoss: false, isElite: false, aiBlackboard);
-                    }
-                });
             }
 
             this.CloseAndDestroyPopup(_skillSelectorPopup, () =>

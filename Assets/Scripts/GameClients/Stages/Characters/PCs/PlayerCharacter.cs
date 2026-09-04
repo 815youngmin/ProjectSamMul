@@ -79,16 +79,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         public long Gold => _gold;
         private long _gold;
 
-        public long Gem => _gem;
-        private long _gem;
-
-        public int AcquiredRandomEquipmentElement { get; private set; }
-        public int AcquiredMainHeroElement { get; private set; }
-        public int AcquiredSubHeroElement { get; private set; }
-        public int AcquiredTemporarySpaceCoin { get; private set; }
-
-        public int AcquiredStarCores { get; private set; }
-
         public override float RangeAttackPower => Stats.AttackPower.Value;
 
         public new PCAnimationController AnimationController => _animationController;
@@ -210,7 +200,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             _equipmentStatModifiers = null;
 
             _gold = 0;
-            _gem = 0;
 
             _isInvincible = false;
             _isFakeDead = false;
@@ -220,12 +209,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             _aimTarget = null;
             _animationController.EndAiming();
 
-            AcquiredRandomEquipmentElement = 0;
-            AcquiredMainHeroElement = 0;
-            AcquiredSubHeroElement = 0;
-            AcquiredTemporarySpaceCoin = 0;
-
-            AcquiredStarCores = 0;
 
             _isResurrecting = false;
             _leftResurrectCount = 0;
@@ -882,20 +865,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             stageSceneUI.UpdateGold(_gold);
         }
 
-        public void GainGem(long incrementGem)
-        {
-            if (incrementGem <= 0)
-            {
-                Debug.LogError($"보석 증가량({incrementGem})이 비정상입니다. 무시합니다. 확인해주세요.");
-                return;
-            }
-
-            _gem += incrementGem;
-
-            var stageSceneUI = UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>();
-            stageSceneUI.UpdateGem(_gem);
-        }
-
         public int GetSkillLevel(SkillId skillId)
         {
             return _skillSet.GetSkillLevel(skillId);
@@ -1105,32 +1074,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
                 var stageUIRoot = UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>();
                 stageUIRoot.UpdatePCHP((int)this.CurrentHP, (int)this.MaxHP);
             }
-        }
-
-        /// <summary>
-        /// 랜덤 장비 강화석을 획득합니다.
-        /// </summary>
-        public void AcquireRandomEquipmentElement()
-        {
-            ++AcquiredRandomEquipmentElement;
-        }
-
-        /// <summary>
-        /// 임시 우주 코인을 획득합니다.
-        /// </summary>
-        public void AcquireTemporarySpaceCoin()
-        {
-            ++AcquiredTemporarySpaceCoin;
-        }
-
-        /// <summary>
-        /// 스타 코어를 획득합니다.
-        /// </summary>
-        public void AcquireStarCore()
-        {
-            ++AcquiredStarCores;
-            _starCoreDisplayer.UpdateStarCoreAmountText(AcquiredStarCores);
-            _starCoreDisplayer.gameObject.SetActive(true);
         }
 
         /// <summary>

@@ -546,12 +546,6 @@ namespace SamMul.GameClients.Stages.Characters.Monsters
                         //랜덤으로 하나
                         dropAmount = Random.Range(0, 2);
                     }
-                    long elementToDrop = stage.TakeMonsterDropRandomEquipmentElement(dropAmount);
-                    for (int i = 0; i < elementToDrop; i++)
-                    {
-                        Vector2 randomOffset = 2.0f * Random.insideUnitCircle;
-                        stage.CreateRandomEquipmentElementObject(Pos + randomOffset);
-                    }
                 }
                 else
                 {
@@ -561,14 +555,6 @@ namespace SamMul.GameClients.Stages.Characters.Monsters
 
                     //남아있는 아이탬 개수값에서 최소 확보해야될 개수만큼 빼준다.
                     long randomAmount = (long)Random.Range(1, stage.RemainingEquipmentElement - remainingBossAmount + 1);
-
-                    //랜덤 개수만큼 아이템 생성
-                    long elementToDrop = stage.TakeMonsterDropRandomEquipmentElement(randomAmount);
-                    for (int i = 0; i < elementToDrop; i++)
-                    {
-                        Vector2 randomOffset = 2.0f * Random.insideUnitCircle;
-                        stage.CreateRandomEquipmentElementObject(Pos + randomOffset);
-                    }
                 }
 
             }
@@ -671,7 +657,7 @@ namespace SamMul.GameClients.Stages.Characters.Monsters
                     }
                 case DropItemType.StarCore:
                     {
-                        stage.CreateStarCoreObject(resultSpawnPosition);
+                        //stage.CreateStarCoreObject(resultSpawnPosition);
                         return;
                     }
                 default:

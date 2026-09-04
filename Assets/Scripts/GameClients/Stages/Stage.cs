@@ -380,7 +380,7 @@ namespace SamMul.GameClients.Stages
         private void ShowStageResultPopup(StagePlayResult stagePlayResult)
         {
             var stageUI = UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>();
-            stageUI.AddMainChapterResultPopup(this.ChapterStaticData!, PC.Gold, PC.Gem, PC.AcquiredRandomEquipmentElement, StageRunningTime, stagePlayResult, EliminatedBosses, EliminatedElites, EliminatedMonsters);
+            stageUI.AddMainChapterResultPopup(this.ChapterStaticData!, PC.Gold, 0, 0, StageRunningTime, stagePlayResult, EliminatedBosses, EliminatedElites, EliminatedMonsters);
         }
 
         // 부활팝업창에서 부활성공했다. 게임플레이 재개할 수 있게 상태를 변경한다.
@@ -565,10 +565,6 @@ namespace SamMul.GameClients.Stages
         public bool HasItemBoxDropGolds() => _dropGoldSupplier.HasItemsToDrop;
 
         public long TakeItemBoxDropGolds(long requestedAmount) => _dropGoldSupplier.TakeItemsToDrop(requestedAmount);
-
-        public long TakeMonsterDropGems(long requestedAmount) => _dropGemSupplier.TakeItemsToDrop(requestedAmount);
-
-        public long TakeMonsterDropRandomEquipmentElement(long requestdAmount) => _dropRandomEquipmentElementSupplier.TakeItemsToDrop(requestdAmount);
 
     }
 }

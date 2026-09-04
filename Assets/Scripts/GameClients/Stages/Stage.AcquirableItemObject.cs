@@ -85,20 +85,6 @@ namespace SamMul.GameClients.Stages
             return goldObject;
         }
 
-        public GemObject CreateGemObject(long amount, Vector2 spawnPosition)
-        {
-            spawnPosition = ConfineToWalkableArea(spawnPosition);
-
-            Debug.Assert(amount > 0, "드롭할 보석의 양은 0보다 커야 한다.");
-            var gemObject = _itemObjectPool.TakeOneFromPool<GemObject>(DropItemType.Gem);
-            gemObject.InitializeGemObject(amount, spawnPosition);
-
-            _acquirableItemObjects.Add(gemObject);
-
-            gemObject.gameObject.SetActive(true);
-            return gemObject;
-        }
-
         public ExpMagnetObject CreateExpMagnetObject(Vector2 spawnPosition)
         {
             spawnPosition = ConfineToWalkableArea(spawnPosition);
@@ -110,19 +96,6 @@ namespace SamMul.GameClients.Stages
 
             expMagnetObject.gameObject.SetActive(true);
             return expMagnetObject;
-        }
-
-        public RandomEquipmentElementObject CreateRandomEquipmentElementObject(Vector2 spawnPosition)
-        {
-            spawnPosition = ConfineToWalkableArea(spawnPosition);
-
-            var randomEquipmentElementObject = _itemObjectPool.TakeOneFromPool<RandomEquipmentElementObject>(DropItemType.RandomEquipmentElement);
-            randomEquipmentElementObject.InitializeRandomEquipmentElementObject(spawnPosition);
-
-            _acquirableItemObjects.Add(randomEquipmentElementObject);
-
-            randomEquipmentElementObject.gameObject.SetActive(true);
-            return randomEquipmentElementObject;
         }
 
         public BombObject CreateBombObject(Vector2 spawnPosition)
@@ -149,17 +122,6 @@ namespace SamMul.GameClients.Stages
 
             skillBox.gameObject.SetActive(true);
             return skillBox;
-        }
-
-        public void CreateStarCoreObject(Vector2 spawnPosition)
-        {
-            spawnPosition = ConfineToWalkableArea(spawnPosition);
-
-            var starCore = _itemObjectPool.TakeOneFromPool<StarCoreObject>(DropItemType.StarCore);
-            starCore.InitializeStarCoreObject(spawnPosition);
-            starCore.gameObject.SetActive(true);
-
-            _acquirableItemObjects.Add(starCore);
         }
 
         public void RemoveAcquirableItemObject(AcquirableItemObject itemObject)

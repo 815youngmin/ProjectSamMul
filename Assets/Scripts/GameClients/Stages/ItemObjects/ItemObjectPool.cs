@@ -31,6 +31,7 @@ namespace SamMul.GameClients.Stages.ItemObjects
             return newItem;
         }
 
+        // 데모에서 사용되지 않는 아이템들은 DropItemType.ExpS으로 대체한다.
         private ItemObjectBase AllocateItemObject(DropItemType itemType)
         {
             switch(itemType)
@@ -59,11 +60,11 @@ namespace SamMul.GameClients.Stages.ItemObjects
                 case DropItemType.Tutorial5SkillBox:
                     return SkillBoxObject.Create();
                 case DropItemType.Gem:
-                    return GemObject.Create();
+                    return ExpObject.Create(DropItemType.ExpS); // 임시로 ExpS로 대체
                 case DropItemType.RandomEquipmentElement:
-                    return RandomEquipmentElementObject.Create();
+                    return ExpObject.Create(DropItemType.ExpS);
                 case DropItemType.StarCore:
-                    return StarCoreObject.Create();
+                    return ExpObject.Create(DropItemType.ExpS);
                 default:
                     throw new NotImplementedException($"{itemType} 구현 안 됨.");
             }

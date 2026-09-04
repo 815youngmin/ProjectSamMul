@@ -371,15 +371,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             }
 
             float goldRandom = Random.Range(minInclusive: 0f, maxInclusive: 0.9999999f);
-            if(goldChance < goldRandom)
-            {
-                long actualGemAmount = stage.TakeMonsterDropGems(1);
-                if (actualGemAmount > 0)
-                {
-                    stage.CreateGemObject(actualGemAmount, createPos);
-                }
-            }
-            else
+            if(goldChance >= goldRandom)
             {
                 long actualGoldAmount = stage.TakeItemBoxDropGolds(dropGoldAmount);
                 if (actualGoldAmount > 0)

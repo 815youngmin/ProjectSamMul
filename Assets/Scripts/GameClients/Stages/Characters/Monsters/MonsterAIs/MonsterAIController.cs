@@ -13,7 +13,6 @@ using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.Pass
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.PoisonousAreaAI;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.RangeAIs;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.ShieldAIs;
-using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SpecialGemGoblinAIs;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonAIs;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.SummonOnDieAIs;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies;
@@ -94,15 +93,6 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
                     }
                 case MonsterAIType.RewardGoblinAI:
                     {
-                        var blackboard = baseBlackboard as RewardGoblinAIBlackboard;
-                        if (blackboard == null)
-                        {
-                            Log.I.Error($"Failed To CreateMonsterAIController. AIType[{aiType}] requires Blackboard type of [{nameof(RewardGoblinIdleAIStrategy)}].");
-                            blackboard = new RewardGoblinAIBlackboard(RewardGoblinType.Gold, maxHpCount: 5, hitRewardMin: 1, hitRewardMax: 10, deadRewardMin: 1, deadRewardMax
-                                : 10);
-                        }
-
-                        this.aiStrategy = new RewardGoblinIdleAIStrategy(blackboard);
                         break;
                     }
                 case MonsterAIType.DashAttackAI:
