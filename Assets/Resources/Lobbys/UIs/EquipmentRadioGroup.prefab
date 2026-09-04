@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 1403179529561005392}
   - component: {fileID: 8034011760068053645}
   m_Layer: 0
-  m_Name: ItemRadioGroup
+  m_Name: EquipmentRadioGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 1797317895068808753}
   - component: {fileID: 7275222572969026028}
   m_Layer: 0
-  m_Name: StageRadioGroup
+  m_Name: HeroRadioGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
