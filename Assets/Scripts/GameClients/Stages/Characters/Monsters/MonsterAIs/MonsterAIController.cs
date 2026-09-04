@@ -91,10 +91,6 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
                         this.aiStrategy = new PoisonousAreaIdleAIStrategy();
                         break;
                     }
-                case MonsterAIType.RewardGoblinAI:
-                    {
-                        break;
-                    }
                 case MonsterAIType.DashAttackAI:
                     {
                         this.aiStrategy = new DashIdleAIStrategy();

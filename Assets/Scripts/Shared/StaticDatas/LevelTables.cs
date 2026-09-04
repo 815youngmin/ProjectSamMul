@@ -36,40 +36,4 @@ namespace Shared.StaticDatas
         public long GetExpForLevelUp(int currentLevel)
             => currentLevel >= MaxLevel ? long.MaxValue : _expForLevelUp[currentLevel];
     }
-
-    /// <summary>Row of table "AccountLevels": experience needed to go from Level to Level + 1.</summary>
-    public class AccountLevelStaticData
-    {
-        public int Level { get; set; }
-        public long ExpForLevelUp { get; set; }
-    }
-
-    public class AccountLevelStaticDataRepository
-    {
-        private readonly Dictionary<int, AccountLevelStaticData> _levels = new Dictionary<int, AccountLevelStaticData>();
-
-        public int MaxLevel { get; }
-
-        public AccountLevelStaticDataRepository(IReadOnlyList<AccountLevelStaticData> rows)
-        {
-            int lastLevel = 0;
-            foreach (var row in rows)
-            {
-                if (row.Level != lastLevel + 1)
-                {
-                    throw new StaticDataValidationError($"Account level {lastLevel + 1} is missing (found {row.Level}).");
-                }
-                _levels.Add(row.Level, row);
-                lastLevel = row.Level;
-            }
-            MaxLevel = lastLevel;
-        }
-
-        public AccountLevelStaticData Get(int level)
-            => _levels.TryGetValue(level, out var data) ? data : throw new StaticDataValidationError($"Account level {level} is not defined.");
-
-        /// <summary>Experience needed to leave the given level; long.MaxValue at or above MaxLevel.</summary>
-        public long GetExpForLevelUp(int currentLevel)
-            => currentLevel >= MaxLevel ? long.MaxValue : _levels[currentLevel].ExpForLevelUp;
-    }
 }

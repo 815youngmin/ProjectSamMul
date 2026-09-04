@@ -21,12 +21,6 @@ namespace Shared.GameDataTypes
         FromVerticalBoundary = 2,
     }
 
-    public enum RewardGoblinType
-    {
-        Gold = 0,
-        Gem = 1,
-    }
-
     public enum StatType
     {
         MaxHP = 0,

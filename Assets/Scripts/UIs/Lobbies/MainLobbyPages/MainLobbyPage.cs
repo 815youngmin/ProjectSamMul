@@ -22,7 +22,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
         [SerializeField] private MenuButton _menuButton = null!;
         [SerializeField] private MainChapterStartButton _mainChapterStartButton = null!;
         [SerializeField] private Image _backgroundImage = null!;
-        [SerializeField] private RewardShowGroup _rewardShowButton = null!;
 
 
         // 데모에서 제거된 콘텐트(습격, 미션, 랭킹 등)의 버튼들이 들어 있던 그룹. 자식 버튼들은 전부 숨긴다.
@@ -58,17 +57,6 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
             });
 
             _menuButton.Initialize();
-
-            _rewardShowButton.Initialize();
-            ChapterStaticData? nearestSpecialRewardChapter = BattlePage.FindNearestSpecialRewardChapter(selectedChapterNumber, clearedHighestChapter);
-            if (null != nearestSpecialRewardChapter && nearestSpecialRewardChapter.ChapterNumber == selectedChapterNumber)
-            {
-                _rewardShowButton.ShowSpecialReward(nearestSpecialRewardChapter);
-            }
-            else
-            {
-                _rewardShowButton.HideSpecialReward();
-            }
 
             _backgroundImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(selectedChapter!.ChapterBackgroundPath);
 

@@ -10,7 +10,6 @@ namespace Shared.GameDataTypes
         SummonMeleeAttackAI = 3,
         PassByAI = 5,
         PoisonousAreaAI = 15,
-        RewardGoblinAI = 53,
         DashAttackAI = 54,
         MoveAndStopAI = 55,
         MoveStopAttackAI = 56,

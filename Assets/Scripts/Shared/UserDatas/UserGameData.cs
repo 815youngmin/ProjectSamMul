@@ -13,8 +13,6 @@ namespace Shared.UserDatas
     public class UserGameData
     {
         public long Id { get; set; }
-        public int AccountLevel { get; set; } = 1;
-        public long AccountExp { get; set; }
         public long Gold { get; set; }
         public long Gem { get; set; }
         public long ResurrectionCoin { get; set; }

@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Shared.DataTables;
-using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
 using SamMul.Animations.Placeholder;
@@ -12,7 +11,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using SamMul.GameClients;
 using SamMul.ResourcePools;
-using SamMul.UIs.Commons.Rewards;
 using SamMul.UnityHelpers;
 
 namespace SamMul.UIs.Lobbies.BattlePages
@@ -28,8 +26,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
         [SerializeField] private ZButton _backButton;
         [SerializeField] private TextMeshProUGUI _selectButtonText;
         [SerializeField] private TextMeshProUGUI _backButtonText;
-        [SerializeField] private RewardItemCard _firstClearSpecialRewardItem;
-        [SerializeField] private RectTransform _firstClearSpecialRewardRectTransform;
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private SkeletonGraphic _airshipUp;
         [SerializeField] private SkeletonGraphic _airshipBottom;
@@ -41,14 +37,10 @@ namespace SamMul.UIs.Lobbies.BattlePages
         [SerializeField] private TextMeshProUGUI _chapterNumberText;
 
         private ChapterStaticData _selectedChapter;
-        private ChapterStaticData _nearestSpecialRewardChapter;
         private int _clearedHighestChapterNumber;
 
         private Sequence _battlePageOpenSequence;
         private Sequence _battlePageCloseSequence;
-
-        private Sequence _specialRewardMainUIShowSequence;
-        private Sequence _specialRewardMainUIHideSequence;
 
         private Sequence _uiHideSequence;
         private Sequence _uiShowSequence;
@@ -59,32 +51,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
         private Vector3 _airshipBottomLocalPosition;
         private Vector3 _airshipBottomScale;
         private Vector3 _battlePageStageScrollScale;
-
-        /// <summary>
-        /// 아직 클리어하지 않은 챕터 중, 선택한 챕터부터 앞으로 가장 가까운 최초 클리어 스페셜 보상이 있는 챕터를 찾는다.
-        /// </summary>
-        public static ChapterStaticData FindNearestSpecialRewardChapter(int selectedChapterNumber, int clearedHighestChapterNumber)
-        {
-            int startChapterNumber = Math.Max(selectedChapterNumber, clearedHighestChapterNumber + 1);
-            for (int chapterNumber = startChapterNumber; chapterNumber <= GameClient.CS.ServiceFinalChapterNumber; ++chapterNumber)
-            {
-                var chapter = StaticDataRepository.Instance.Chapters.FindChapter(chapterNumber);
-                if (chapter == null)
-                {
-                    continue;
-                }
-
-                if (chapter.FirstClearRewardEquipmentId != EquipmentId.Invalid ||
-                    chapter.FirstClearRewardHeroType != HeroType.Invalid ||
-                    chapter.FirstClearRewardNormalSupplyBoxAmount > 0 ||
-                    chapter.FirstClearRewardRareSupplyBoxAmount > 0)
-                {
-                    return chapter;
-                }
-            }
-
-            return null;
-        }
 
         public void Initialize(int clearedHighestChapterNumber, long highestStageTimeInSeconds, Action closeBattlePage, Action<int> setSelectedChapter)
         {
@@ -141,7 +107,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
             _stageRecordText.transform.localScale = Vector3.zero;
             _selectButton.transform.localScale = Vector3.zero;
             _backButton.transform.localScale = Vector3.zero;
-            _firstClearSpecialRewardRectTransform.transform.localScale = Vector3.zero;
 
             {
                 _uiShowSequence = DOTween.Sequence();
@@ -168,26 +133,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
             }
 
             {
-                _specialRewardMainUIShowSequence = DOTween.Sequence();
-                _specialRewardMainUIShowSequence.Append(_firstClearSpecialRewardRectTransform.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutQuad));
-                _specialRewardMainUIShowSequence.SetAutoKill(false);
-                _specialRewardMainUIShowSequence.SetRecyclable(true);
-                _specialRewardMainUIShowSequence.Pause();
-            }
-
-            {
-                _specialRewardMainUIHideSequence = DOTween.Sequence();
-                _specialRewardMainUIHideSequence.Append(_firstClearSpecialRewardRectTransform.transform.DOScale(Vector3.zero, 0.2f).SetEase(Ease.InQuad));
-                _specialRewardMainUIHideSequence.OnComplete(() =>
-                {
-                    _firstClearSpecialRewardRectTransform.gameObject.SetActive(false);
-                });
-                _specialRewardMainUIHideSequence.SetAutoKill(false);
-                _specialRewardMainUIHideSequence.SetRecyclable(true);
-                _specialRewardMainUIHideSequence.Pause();
-            }
-
-            {
                 _battlePageOpenSequence = DOTween.Sequence();
                 _battlePageOpenSequence.Append(_airshipUp.rectTransform.DOAnchorPos(_airshipUpLocalPosition, 0.5f).SetEase(Ease.OutQuad));
                 _battlePageOpenSequence.Join(_airshipBottom.rectTransform.DOAnchorPos(_airshipBottomLocalPosition, 0.5f).SetEase(Ease.OutQuad));
@@ -197,10 +142,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
                 _battlePageOpenSequence.AppendCallback(() =>
                 {
                     this.PlayShowUISequence();
-                });
-                _battlePageOpenSequence.AppendCallback(() =>
-                {
-                    this.OnPageOpendRewardSetting();
                 });
                 _battlePageOpenSequence.SetAutoKill(false);
                 _battlePageOpenSequence.SetRecyclable(true);
@@ -212,10 +153,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
                 _battlePageCloseSequence.AppendCallback(() =>
                 {
                     this.PlayHideUISequence();
-                });
-                _battlePageCloseSequence.AppendCallback(() =>
-                {
-                    this.PlaySpecialRewardMainUIHideSequence();
                 });
                 _battlePageCloseSequence.Append(_airshipUp.rectTransform.DOAnchorPos(_airshipUpLocalPosition + new Vector3(0, 400f, 0), 0.5f).SetEase(Ease.InQuad));
                 _battlePageCloseSequence.Join(_airshipBottom.rectTransform.DOAnchorPos(_airshipBottomLocalPosition - new Vector3(0, 400f, 0), 0.5f).SetEase(Ease.InQuad));
@@ -240,15 +177,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
 
             this.PlayOpenSequence();
         }
-
-        private void OnPageOpendRewardSetting()
-        {
-            _nearestSpecialRewardChapter = FindNearestSpecialRewardChapter(_selectedChapter.ChapterNumber, _clearedHighestChapterNumber);
-            _firstClearSpecialRewardRectTransform.gameObject.SetActive(false);
-
-            this.PlaySpecialRewardUISequence();
-        }
-
 
         public void SetSelectedChapterAndTransition(int selectedChapter)
         {
@@ -275,10 +203,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
 
             _selectedChapter =  StaticDataRepository.Instance.Chapters.FindChapter(selectedChapterNumber);
             Assert.IsNotNull(_selectedChapter);
-
-            _nearestSpecialRewardChapter = FindNearestSpecialRewardChapter(_selectedChapter.ChapterNumber, _clearedHighestChapterNumber);
-
-            this.PlaySpecialRewardUISequence();
 
             {
                 _backgroundImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(_selectedChapter.ChapterBackgroundPath);
@@ -369,38 +293,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
             _stageElementImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(_battlePageStageScroll.StageElementPath);
         }
 
-        private void PlaySpecialRewardUISequence()
-        {
-            if (null != _nearestSpecialRewardChapter && _nearestSpecialRewardChapter.ChapterNumber == _selectedChapter.ChapterNumber)
-            {
-                if (_nearestSpecialRewardChapter.FirstClearRewardEquipmentId != Shared.GameDataTypes.EquipmentId.Invalid)
-                {
-                    this.PlaySpecialRewardMainUIShowSequence();
-
-                    var equipment = StaticDataRepository.Instance.Equipments.Get(_nearestSpecialRewardChapter.FirstClearRewardEquipmentId);
-                    _firstClearSpecialRewardItem.InitializeForEquipment(equipment.Id, equipment.Rarity.InitialGrade(), amount: 1);
-                    _firstClearSpecialRewardItem.gameObject.SetActive(true);
-                }
-                else if (_nearestSpecialRewardChapter.FirstClearRewardHeroType != Shared.GameDataTypes.HeroType.Invalid)
-                {
-                    this.PlaySpecialRewardMainUIShowSequence();
-
-                    var character = StaticDataRepository.Instance.Heroes.Get(_nearestSpecialRewardChapter.FirstClearRewardHeroType);
-                    _firstClearSpecialRewardItem.InitializeForCharacter(character.HeroType, character.Rarity.InitialGrade(), amount: 1);
-                    _firstClearSpecialRewardItem.gameObject.SetActive(true);
-                }
-                else
-                {
-                    Debug.LogError("_nearestChapterData 데이터가 Null이 아닌데 스페셜 보상 데이터가 비어있습니다. 코드 확인이 필요합니다.");
-                }
-            }
-            else
-            {
-                this.PlaySpecialRewardMainUIHideSequence();
-            }
-        }
-
-
         private void PlayOpenSequence()
         {
             _airshipUp.rectTransform.anchoredPosition = _airshipUpLocalPosition + new Vector3(0, 400f, 0);
@@ -448,36 +340,6 @@ namespace SamMul.UIs.Lobbies.BattlePages
             _backButton.transform.localScale = Vector3.one;
 
             _uiHideSequence.Restart();
-        }
-
-        private void PlaySpecialRewardMainUIShowSequence()
-        {
-            if(_firstClearSpecialRewardRectTransform.gameObject.activeSelf)
-            {
-                return;
-            }
-
-            _firstClearSpecialRewardRectTransform.gameObject.SetActive(true);
-            if (_specialRewardMainUIHideSequence.IsPlaying())
-            {
-                _specialRewardMainUIHideSequence.Pause();
-            }
-            _specialRewardMainUIShowSequence.Restart();
-        }
-
-        private void PlaySpecialRewardMainUIHideSequence()
-        {
-            //비활성화 되어있는 객체를 활성화 할 필요 없음
-            if(!_firstClearSpecialRewardRectTransform.gameObject.activeSelf)
-            {
-                return;
-            }
-
-            if (_specialRewardMainUIShowSequence.IsPlaying())
-            {
-                _specialRewardMainUIShowSequence.Pause();
-            }
-            _specialRewardMainUIHideSequence.Restart();
         }
     }
 }

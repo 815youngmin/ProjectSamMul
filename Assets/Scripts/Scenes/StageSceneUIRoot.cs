@@ -16,7 +16,6 @@ using SamMul.GameClients.Stages.Characters.PCs;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.ResourcePools;
 using SamMul.UIs;
-using SamMul.UIs.Commons.Rewards;
 using SamMul.UIs.Lobbies;
 using SamMul.UIs.Stages.HUDs;
 using SamMul.UIs.Stages.Popups;
@@ -77,11 +76,7 @@ namespace SamMul.Scenes
 
         private BossVSSequencePopup? _bossVSSequencePopup;
 
-        private BriefPopup? _briefPopup;
-
         private List<NavigationArrow> _navigationArrows = null!;
-
-        private RewardDisplayerPopup? _rewardDisplayerPopup;
 
         public void Initialize(SceneType sceneType, HeroType heroType, int? chapterNumber)
         {
@@ -144,11 +139,6 @@ namespace SamMul.Scenes
 
         public void UpdateLogic()
         {
-            if (_briefPopup != null)
-            {
-                _briefPopup.UpdateLogic();
-            }
-
 #if UNITY_ANDROID
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -544,41 +534,6 @@ namespace SamMul.Scenes
             displayer.DisplayPlayerCharacterBuff(pc, this, buffInfoText);
         }
 
-        /// <summary>
-        /// 아이템의 간단할 정보를 표기하는 팝업 생성 함수
-        /// 해당 함수는 기존 Popup과 달리 UIBlocker를 사용하지 않고 팝업 정렬에 포함되지 않는다.
-        /// 내부 함수를 통해 target transform 하위로 들어가 위치를 계산한다.
-        /// </summary>
-        /// <param name="targetRect"></param>
-        /// <param name="itemName"></param>
-        /// <param name="itemDescription"></param>
-        public void AddBriefPopup(RectTransform targetRect, string itemName, string itemDescription)
-        {
-            if (_briefPopup != null)
-            {
-                return;
-            }
-            _briefPopup = this.CreateAndAddPopup<BriefPopup>(BriefPopup.PREFAB_PATH, false, false, false);
-            _briefPopup.Initialize(targetRect, itemName, itemDescription, CloseBriefPopup, isCloseOnOutsideClick: true);
-        }
-
-        /// <summary>
-        /// 기존 팝업 코드와 달리 내부에서 직접 제거 작업을 진행한다.
-        /// </summary>
-        /// <param name="skipAnimation"></param>
-        public void CloseBriefPopup(bool skipAnimation)
-        {
-            if (_briefPopup == null)
-            {
-                return;
-            }
-
-            this.CloseAndDestroyPopup(_briefPopup, () =>
-            {
-                _briefPopup = null;
-            }, skipAnimation);
-        }
-
         public NavigationArrow AddNavigationArrow(Stage stage, Transform targetTransform, bool showAlways, string prefabPath, string iconText)
         {
             var navigationArrow = ResourcePool.Instance.InstantiateFromResource<NavigationArrow>(prefabPath);
@@ -591,52 +546,6 @@ namespace SamMul.Scenes
             _navigationArrows.Add(navigationArrow);
 
             return navigationArrow;
-        }
-        /// <summary>
-        /// 보상 디스플레이어 팝업을 추가합니다.
-        /// </summary>
-        /// <param name="rewards">
-        /// 보여줄 보상 목록입니다.
-        /// </param>
-        public void AddRewardDisplayerPopup(IReadOnlyList<RewardItemData> rewards) => this.AddRewardDisplayerPopup(rewards, null);
-
-        /// <summary>
-        /// 보상 디스플레이어 팝업을 추가합니다.
-        /// </summary>
-        /// <param name="rewards">
-        /// 보여줄 보상 목록입니다.
-        /// </param>
-        /// <param name="onCloseRewardDisplayerPopup">
-        /// 보상 디스플레이어 팝업을 닫을 때 호출할 콜백입니다.
-        /// </param>
-        public void AddRewardDisplayerPopup(IReadOnlyList<RewardItemData> rewards, Action? onCloseRewardDisplayerPopup)
-        {
-            if (_rewardDisplayerPopup != null)
-            {
-                return;
-            }
-
-            _rewardDisplayerPopup = this.CreateAndAddPopup<RewardDisplayerPopup>(
-                RewardDisplayerPopup.PREFAB_PATH,
-                skipPopUpAnimation: true,
-                playSound: false);
-            _rewardDisplayerPopup.Initialize(rewards, (bool skipAnimation) =>
-            {
-                onCloseRewardDisplayerPopup?.Invoke();
-                this.CloseRewardDisplayerPopup(skipAnimation);
-            });
-        }
-        public void CloseRewardDisplayerPopup(bool skipAnimation)
-        {
-            if (_rewardDisplayerPopup == null)
-            {
-                return;
-            }
-
-            this.CloseAndDestroyPopup(_rewardDisplayerPopup, () =>
-            {
-                _rewardDisplayerPopup = null;
-            }, skipAnimation);
         }
     }
 }

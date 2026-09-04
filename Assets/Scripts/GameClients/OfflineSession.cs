@@ -96,7 +96,6 @@ namespace SamMul.GameClients
             var user = new UserGameData
             {
                 Id = LOCAL_ACCOUNT_ID,
-                AccountLevel = 1,
                 Gold = 0,
                 ResurrectionCoin = 3,
                 ClearedHighestChapter = 0,
@@ -142,15 +141,12 @@ namespace SamMul.GameClients
                 return;
             }
 
-            long rewardGold = 0;
             if (request.PlayResult == StagePlayResult.Cleared)
             {
-                rewardGold = chapter.RewardGold;
                 UserGameData.ClearedHighestChapter = Math.Max(UserGameData.ClearedHighestChapter, request.ChapterNumber);
-                UserGameData.AccountExp += chapter.RewardAccountExp;
             }
 
-            long incrementGold = request.GainedGolds + rewardGold;
+            long incrementGold = request.GainedGolds;
             UserGameData.Gold += incrementGold;
             UserGameData.Gem += request.GainedGems;
             UserGameData.HighestStageTimeInSeconds = Math.Max(UserGameData.HighestStageTimeInSeconds, (long)request.PlayedStageTime);
@@ -160,9 +156,7 @@ namespace SamMul.GameClients
             onCompleted(new FinishChapterResponse(FinishChapterResultCode.Success)
             {
                 ClearedHighestChapter = UserGameData.ClearedHighestChapter,
-                IncrementAccountExp = request.PlayResult == StagePlayResult.Cleared ? chapter.RewardAccountExp : 0,
                 ResultGold = UserGameData.Gold,
-                RewardGold = rewardGold,
                 IncrementGold = incrementGold,
                 GainedGem = request.GainedGems,
                 HighestStageTimeInSeconds = UserGameData.HighestStageTimeInSeconds,

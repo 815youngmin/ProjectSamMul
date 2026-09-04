@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Collections.Generic;
 
@@ -47,23 +47,5 @@ namespace Shared.GameDataTypes
             DropItemType.ExpS or DropItemType.ExpM or DropItemType.ExpL or DropItemType.ExpXL => true,
             _ => false,
         };
-    }
-
-    /// <summary>Maps reward identities onto <see cref="ItemType"/> (the icon/description identity of an item).</summary>
-    public static class ItemTypeExtension
-    {
-        public static ItemType ToItemType(this RewardItemType type) => type switch
-        {
-            RewardItemType.Exp => ItemType.AccountExp,
-            RewardItemType.EquipmentTicket => ItemType.RandomEquipmentReinforceTicket,
-            _ => ParseByName(type.ToString()),
-        };
-
-        public static ItemType ToItemType(this HeroType type) => ParseByName(type.ToString());
-
-        public static ItemType ToItemType(this EquipmentId type) => ParseByName(type.ToString());
-
-        private static ItemType ParseByName(string name)
-            => Enum.TryParse<ItemType>(name, out var item) ? item : throw new NotImplementedException($"{name} has no item type.");
     }
 }

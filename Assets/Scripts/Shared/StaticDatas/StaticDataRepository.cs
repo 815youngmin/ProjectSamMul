@@ -23,7 +23,6 @@ namespace Shared.StaticDatas
         public SkillStaticDataRepository Skills { get; }
         public EquipmentStaticDataRepository Equipments { get; }
         public ExpTable ExpTable { get; }
-        public AccountLevelStaticDataRepository AccountLevels { get; }
 
         public static void Initialize(StaticDataTableReader reader)
         {
@@ -62,7 +61,6 @@ namespace Shared.StaticDatas
                 StaticDataTable.Load<EquipmentStatStaticData>(reader, "EquipmentStats"),
                 StaticDataTable.Load<EquipmentGradeEffectStaticData>(reader, "EquipmentGradeEffects"));
             ExpTable = new ExpTable(StaticDataTable.Load<ExpTableRow>(reader, "Exps"));
-            AccountLevels = new AccountLevelStaticDataRepository(StaticDataTable.Load<AccountLevelStaticData>(reader, "AccountLevels"));
         }
     }
 }

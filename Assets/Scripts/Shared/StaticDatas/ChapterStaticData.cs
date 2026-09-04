@@ -25,15 +25,8 @@ namespace Shared.StaticDatas
         public long TotalDropGem { get; set; }
         public long TotalRandomEquipmentTicket { get; set; }
         public long TotalRandomCharacterTicket { get; set; }
-        public long RewardAccountExp { get; set; }
-        public long RewardGold { get; set; }
         public float RecommendedHP { get; set; }
         public float RecommendedAttackPower { get; set; }
-
-        public HeroType FirstClearRewardHeroType { get; set; } = HeroType.Invalid;
-        public EquipmentId FirstClearRewardEquipmentId { get; set; } = EquipmentId.Invalid;
-        public int FirstClearRewardNormalSupplyBoxAmount { get; set; }
-        public int FirstClearRewardRareSupplyBoxAmount { get; set; }
 
         public string ChapterIconSpinePath { get; set; } = "";
         public string ChapterBackgroundPath { get; set; } = "";

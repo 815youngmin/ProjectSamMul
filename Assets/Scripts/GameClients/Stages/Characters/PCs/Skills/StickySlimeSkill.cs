@@ -48,6 +48,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
         private string _slimeBoomAnimationPath;
 
         private float _dropChance; //재화 드랍 확률
+        private const long DROP_GOLD_AMOUNT = 10; //골드 드랍량. 원래는 챕터 보상 골드에 비례했으나 데모에는 챕터 보상이 없어 고정값을 쓴다.
         private long _dropGoldAmount; //골드 드랍량
         private float _dropTranscendentAdditionalChance; //초월 재화 드랍 확률
         private float _totalDropChance; //최종 재화 드랍 확률
@@ -95,17 +96,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             _owner = owner;
             _throwAt = now;
 
-            long chapterRewardGold = 0;
-            switch (stage.StageType)
-            {
-                case StageType.Chapter: 
-                    {
-                        chapterRewardGold = stage.ChapterStaticData.RewardGold;
-                    }
-                    break;
-            }
-            // 골드 드랍량은 최소 10부터 시작한다.
-            _dropGoldAmount = Math.Max((long)(chapterRewardGold * 0.0001f), 10);
+            _dropGoldAmount = DROP_GOLD_AMOUNT;
 
             if (IsTranscendent)
             {
