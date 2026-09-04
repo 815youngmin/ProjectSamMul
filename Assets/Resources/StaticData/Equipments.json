@@ -1,7 +1,29 @@
 [
-  { "Id": "PredatorArmor", "SetType": "Predator", "Slot": "Armor", "Rarity": "Common", "NameKey": "EQUIP_PREDATOR_ARMOR_NAME", "DescriptionKey": "EQUIP_PREDATOR_ARMOR_DESC", "IconPath": "Commons/Icons/Equipments/icon_equip_predator_armor.png" },
-  { "Id": "PredatorGloves", "SetType": "Predator", "Slot": "Gloves", "Rarity": "Common", "NameKey": "EQUIP_PREDATOR_GLOVES_NAME", "DescriptionKey": "EQUIP_PREDATOR_GLOVES_DESC", "IconPath": "Commons/Icons/Equipments/icon_equip_predator_gloves.png" },
-  { "Id": "PredatorShoes", "SetType": "Predator", "Slot": "Shoes", "Rarity": "Common", "NameKey": "EQUIP_PREDATOR_SHOES_NAME", "DescriptionKey": "EQUIP_PREDATOR_SHOES_DESC", "IconPath": "Commons/Icons/Equipments/icon_equip_predator_shoes.png" },
-  { "Id": "PredatorNecklace", "SetType": "Predator", "Slot": "Necklace", "Rarity": "Common", "NameKey": "EQUIP_PREDATOR_NECKLACE_NAME", "DescriptionKey": "EQUIP_PREDATOR_NECKLACE_DESC", "IconPath": "Commons/Icons/Equipments/icon_equip_predator_necklace.png" },
-  { "Id": "PredatorRing", "SetType": "Predator", "Slot": "Ring", "Rarity": "Common", "NameKey": "EQUIP_PREDATOR_RING_NAME", "DescriptionKey": "EQUIP_PREDATOR_RING_DESC", "IconPath": "Commons/Icons/Equipments/icon_equip_predator_ring.png" }
+  {
+    "Id": "PredatorArmor",
+    "SetType": "Predator",
+    "Slot": "Armor",
+    "Rarity": "Common",
+    "NameKey": "EQUIP_PREDATOR_ARMOR_NAME",
+    "DescriptionKey": "EQUIP_PREDATOR_ARMOR_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item01.png"
+  },
+  {
+    "Id": "InvaderArmor",
+    "SetType": "Invader",
+    "Slot": "Armor",
+    "Rarity": "Common",
+    "NameKey": "EQUIP_INVADER_ARMOR_NAME",
+    "DescriptionKey": "EQUIP_INVADER_ARMOR_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item02.png"
+  },
+  {
+    "Id": "GuardianArmor",
+    "SetType": "Guardian",
+    "Slot": "Armor",
+    "Rarity": "Special",
+    "NameKey": "EQUIP_GUARDIAN_ARMOR_NAME",
+    "DescriptionKey": "EQUIP_GUARDIAN_ARMOR_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item03.png"
+  }
 ]

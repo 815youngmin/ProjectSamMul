@@ -12,9 +12,7 @@
     "TotalRandomEquipmentTicket": 2,
     "TotalRandomCharacterTicket": 0,
     "RecommendedHP": 1000,
-    "RecommendedAttackPower": 50,
-    "ChapterIconSpinePath": "Lobbys/Chapters/Chapter1/ChapterIcon_Western.asset",
-    "ChapterBackgroundPath": "Lobbys/Chapters/Chapter1/bg_chapter_western.png"
+    "RecommendedAttackPower": 50
   },
   {
     "ChapterNumber": 2,
@@ -29,9 +27,7 @@
     "TotalRandomEquipmentTicket": 3,
     "TotalRandomCharacterTicket": 0,
     "RecommendedHP": 1500,
-    "RecommendedAttackPower": 80,
-    "ChapterIconSpinePath": "Lobbys/Chapters/Chapter2/ChapterIcon_Steampunk.asset",
-    "ChapterBackgroundPath": "Lobbys/Chapters/Chapter2/bg_chapter_steampunk.png"
+    "RecommendedAttackPower": 80
   },
   {
     "ChapterNumber": 3,
@@ -46,8 +42,6 @@
     "TotalRandomEquipmentTicket": 4,
     "TotalRandomCharacterTicket": 0,
     "RecommendedHP": 2200,
-    "RecommendedAttackPower": 120,
-    "ChapterIconSpinePath": "Lobbys/Chapters/Chapter3/ChapterIcon_Arabian.asset",
-    "ChapterBackgroundPath": "Lobbys/Chapters/Chapter3/bg_chapter_arabian.png"
+    "RecommendedAttackPower": 120
   }
 ]

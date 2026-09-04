@@ -1,8 +1,7 @@
 #nullable enable
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Shared.GameDataTypes;
-using Shared.GameLogics;
 
 namespace Shared.UserDatas
 {
@@ -21,11 +20,9 @@ namespace Shared.UserDatas
         public long HighestStageTimeInSeconds { get; set; }
         public int StageResurrectCount { get; set; }
 
-        public HeroInstanceId SelectedHero { get; set; } = HeroInstanceId.Invalid;
-        public Dictionary<HeroInstanceId, HeroData> Heroes { get; set; } = new Dictionary<HeroInstanceId, HeroData>();
-        /// <summary>Equipment worn by the selected hero, by slot.</summary>
-        public Dictionary<EquipmentSlot, EquipmentInstanceId> EquipmentSlots { get; set; } = new Dictionary<EquipmentSlot, EquipmentInstanceId>();
-        public Dictionary<EquipmentInstanceId, EquipmentData> Equipments { get; set; } = new Dictionary<EquipmentInstanceId, EquipmentData>();
+        /// <summary>로비에서 고른 캐릭터와 장비. 데모에는 보유/성장 개념이 없어 종류만 저장한다.</summary>
+        public HeroType SelectedHeroType { get; set; } = HeroType.Invalid;
+        public EquipmentId SelectedEquipmentId { get; set; } = EquipmentId.Invalid;
 
         public UserGameData()
         {
@@ -33,11 +30,17 @@ namespace Shared.UserDatas
 
         public long GetTotalGemAmount() => Gem;
 
-        public HeroData GetSelectedHeroData() => Heroes[SelectedHero];
+        /// <summary>스테이지에 들고 갈 캐릭터. 항상 기본 등급 1레벨로 만든다.</summary>
+        public HeroData CreateSelectedHeroData()
+            => new HeroData(HeroInstanceId.CreateNew(), SelectedHeroType, Grade.D, promotionPoint: 0, level: 1, DateTime.UtcNow);
 
-        public ReadOnlyHeroInventory HeroInventory() => new ReadOnlyHeroInventory(Heroes, SelectedHero);
-
-        public GameLogics.EquipmentInventory EquipmentInventory() => new GameLogics.EquipmentInventory(Equipments, EquipmentSlots);
-
+        /// <summary>스테이지에 들고 갈 장비. 고른 장비 하나를 기본 등급 1레벨로 만든다.</summary>
+        public IEnumerable<EquipmentData> CreateSelectedEquipments()
+        {
+            if (SelectedEquipmentId != EquipmentId.Invalid)
+            {
+                yield return new EquipmentData(EquipmentInstanceId.CreateNew(), SelectedEquipmentId, Grade.D, level: 1, DateTime.UtcNow);
+            }
+        }
     }
 }

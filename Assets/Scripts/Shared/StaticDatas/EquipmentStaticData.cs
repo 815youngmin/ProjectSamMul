@@ -49,11 +49,15 @@ namespace Shared.StaticDatas
         private readonly Dictionary<(EquipmentSlot, Rarity, Grade), EquipmentStatStaticData> _stats = new Dictionary<(EquipmentSlot, Rarity, Grade), EquipmentStatStaticData>();
         private readonly Dictionary<EquipmentId, Dictionary<Grade, EquipmentGradeEffectStaticData>> _gradeEffects = new Dictionary<EquipmentId, Dictionary<Grade, EquipmentGradeEffectStaticData>>();
 
+        /// <summary>테이블 순서.</summary>
+        public IReadOnlyList<EquipmentStaticData> All { get; }
+
         public EquipmentStaticDataRepository(
             IReadOnlyList<EquipmentStaticData> equipments,
             IReadOnlyList<EquipmentStatStaticData> stats,
             IReadOnlyList<EquipmentGradeEffectStaticData> gradeEffects)
         {
+            All = equipments;
             foreach (var equipment in equipments)
             {
                 if (_equipments.ContainsKey(equipment.Id))

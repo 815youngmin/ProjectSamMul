@@ -12,13 +12,10 @@ namespace SamMul.Scenes
         public SceneType SceneType => SceneType.Lobby;
 
         public readonly int ClearedHighestChapter;
-        public readonly long HighestStageTimeInSeconds;
-
 
         public LobbySceneInitialData(UserGameData userGameData)
         {
             this.ClearedHighestChapter = userGameData.ClearedHighestChapter;
-            this.HighestStageTimeInSeconds = userGameData.HighestStageTimeInSeconds;
         }
     }
 
@@ -49,9 +46,7 @@ namespace SamMul.Scenes
                 lobbySceneInitialData = new LobbySceneInitialData(GameClient.CS.UserGameData);
             }
 
-            this.UI.Initialize(this.SceneType,
-                lobbySceneInitialData.ClearedHighestChapter,
-                lobbySceneInitialData.HighestStageTimeInSeconds);
+            this.UI.Initialize(this.SceneType, lobbySceneInitialData.ClearedHighestChapter);
         }
 
         public override void OnLoadingSceneRemoved()

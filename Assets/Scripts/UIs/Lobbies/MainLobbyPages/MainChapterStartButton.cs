@@ -10,21 +10,21 @@ using SamMul.GameClients;
 using SamMul.Scenes;
 using SamMul.UnityHelpers;
 
-namespace SamMul.UIs.Lobbies.BattlePages
+namespace SamMul.UIs.Lobbies.MainLobbyPages
 {
     public class MainChapterStartButton : MonoBehaviour
     {
         [SerializeField] private ZButton _button;
         [SerializeField] private TextMeshProUGUI _startButtonText;
 
-        private ChapterStaticData? _selectedChapter;
+        private Func<ChapterStaticData> _getSelectedChapter = null!;
 
-        public void Initialize(ChapterStaticData selectedChapter)
+        public void Initialize(Func<ChapterStaticData> getSelectedChapter)
         {
             Assert.IsNotNull(_button);
             Assert.IsNotNull(_startButtonText);
 
-            _selectedChapter = selectedChapter;
+            _getSelectedChapter = getSelectedChapter;
 
             _startButtonText.text = Localizer.Instance.GetText("UI_MAINLOBBY_BATTLE_START_BUTTON");
 
@@ -44,7 +44,7 @@ namespace SamMul.UIs.Lobbies.BattlePages
 
             UnityGlobal.Sounds.PlayBySoundPrefab("Sounds/SoundEffects/UIs/GameStart_SFX.prefab", Vector3.zero);
 
-            this.EnterChapter(_selectedChapter!);
+            this.EnterChapter(_getSelectedChapter());
         }
 
         private void EnterChapter(ChapterStaticData selectedChapter)
@@ -66,14 +66,12 @@ namespace SamMul.UIs.Lobbies.BattlePages
 
                                 var userSkillDeck = GameClient.CS.UserSkillDeck;
                                 var userGameData = GameClient.CS.UserGameData;
-                                var heroData = userGameData.GetSelectedHeroData();
-                                var equipmentInventory = userGameData.EquipmentInventory();
 
                                 var stageInitialData = StageSceneInitialData.CreateForMainChapter(
                                     selectedChapter,
                                     userSkillDeck,
-                                    heroData,
-                                    equipmentInventory.GetEquippedEquipments().Values);
+                                    userGameData.CreateSelectedHeroData(),
+                                    userGameData.CreateSelectedEquipments());
 
                                 UnityGlobal.Scenes.ChangeTo(SceneType.Stage, stageInitialData, "메인 챕터 시작");
                                 break;

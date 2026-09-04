@@ -28,15 +28,15 @@ namespace Shared.StaticDatas
         public float RecommendedHP { get; set; }
         public float RecommendedAttackPower { get; set; }
 
-        public string ChapterIconSpinePath { get; set; } = "";
-        public string ChapterBackgroundPath { get; set; } = "";
-
         internal void Link(StageStaticDataRepository stages) => StageStaticData = stages.Get(StageNumber);
     }
 
     public class ChapterStaticDataRepository
     {
         private readonly Dictionary<int, ChapterStaticData> _chapters = new Dictionary<int, ChapterStaticData>();
+
+        /// <summary>챕터 번호 순서.</summary>
+        public IReadOnlyList<ChapterStaticData> All { get; }
 
         public ChapterStaticDataRepository(IReadOnlyList<ChapterStaticData> rows, StageStaticDataRepository stages)
         {
@@ -51,6 +51,7 @@ namespace Shared.StaticDatas
                 _chapters.Add(row.ChapterNumber, row);
                 ++expected;
             }
+            All = rows;
         }
 
         public ChapterStaticData? FindChapter(int chapterNumber)

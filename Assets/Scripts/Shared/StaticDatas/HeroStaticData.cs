@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Shared.GameDataTypes;
@@ -55,12 +55,15 @@ namespace Shared.StaticDatas
         private readonly Dictionary<HeroType, Dictionary<Grade, HeroGradeEffectStaticData>> _gradeEffects = new Dictionary<HeroType, Dictionary<Grade, HeroGradeEffectStaticData>>();
 
         public IReadOnlyDictionary<HeroType, HeroStaticData> HeroStaticDatas => _heroes;
+        /// <summary>테이블 순서.</summary>
+        public IReadOnlyList<HeroStaticData> All { get; }
 
         public HeroStaticDataRepository(
             IReadOnlyList<HeroStaticData> heroes,
             IReadOnlyList<HeroStatStaticData> stats,
             IReadOnlyList<HeroGradeEffectStaticData> gradeEffects)
         {
+            All = heroes;
             foreach (var hero in heroes)
             {
                 if (_heroes.ContainsKey(hero.HeroType))

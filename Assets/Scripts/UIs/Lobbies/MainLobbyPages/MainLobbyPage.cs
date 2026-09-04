@@ -1,110 +1,59 @@
 #nullable enable
-using Shared.Localizers;
+using Shared.DataTables;
 using Shared.StaticDatas;
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using SamMul.ResourcePools;
-using SamMul.UIs.Lobbies.BattlePages;
+using SamMul.GameClients;
 
 namespace SamMul.UIs.Lobbies.MainLobbyPages
 {
+    /// <summary>
+    /// 로비 화면. 첫 줄 챕터, 둘째 줄 캐릭터, 셋째 줄 아이템을 각각 하나씩 고르고 시작 버튼으로 스테이지에 들어간다.
+    /// 각 줄의 기본 선택은 첫 항목이다.
+    /// </summary>
     public class MainLobbyPage : MonoBehaviour
     {
-        public MainChapterStartButton MainChapterStartButton => _mainChapterStartButton;
-        public StageSelectorGroup StageSelectorGroup => _stageSelectorGroup;
-        public MenuButton MenuButton => _menuButton;
-
-        [SerializeField] private StageSelectorGroup _stageSelectorGroup = null!;
-        [SerializeField] private ZButton _nextStageSelectedButton = null!;
-        [SerializeField] private ZButton _previousStageSelectedButton = null!;
-        [SerializeField] private MenuButton _menuButton = null!;
+        [SerializeField] private LobbyRadioGroup _chapterGroup = null!;
+        [SerializeField] private LobbyRadioGroup _heroGroup = null!;
+        [SerializeField] private LobbyRadioGroup _equipmentGroup = null!;
         [SerializeField] private MainChapterStartButton _mainChapterStartButton = null!;
-        [SerializeField] private Image _backgroundImage = null!;
 
+        private ChapterStaticData _selectedChapter = null!;
 
-        // 데모에서 제거된 콘텐트(습격, 미션, 랭킹 등)의 버튼들이 들어 있던 그룹. 자식 버튼들은 전부 숨긴다.
-        [SerializeField] private RectTransform _leftSideButtonGroup = null!;
-        [SerializeField] private RectTransform _rightSideButtonGroup = null!;
-
-        public void Initialize(
-            int selectedChapterNumber,
-            int clearedHighestChapter,
-            float highestStageTimeInSeconds,
-            Action changeToBattlePage,
-            Action<int> changeToBattlePageWithChapterTransition)
+        public void Initialize(int clearedHighestChapter)
         {
-            Debug.Assert(_stageSelectorGroup);
-            Debug.Assert(_nextStageSelectedButton);
-            Debug.Assert(_previousStageSelectedButton);
-            Debug.Assert(_menuButton);
+            Debug.Assert(_chapterGroup);
+            Debug.Assert(_heroGroup);
+            Debug.Assert(_equipmentGroup);
+            Debug.Assert(_mainChapterStartButton);
 
-            ChapterStaticData selectedChapter = StaticDataRepository.Instance.Chapters.FindChapter(selectedChapterNumber)!;
-            _stageSelectorGroup.Initialize(selectedChapter, clearedHighestChapter, highestStageTimeInSeconds, changeToBattlePage);
-            _mainChapterStartButton.Initialize(selectedChapter);
+            var chapters = StaticDataRepository.Instance.Chapters.All;
+            var heroes = StaticDataRepository.Instance.Heroes.All;
+            var equipments = StaticDataRepository.Instance.Equipments.All;
+            var userGameData = GameClient.CS.UserGameData;
 
-            _nextStageSelectedButton.onClick.RemoveAllListeners();
-            _nextStageSelectedButton.onClick.AddListener(() =>
+            _chapterGroup.Initialize(chapters.Count, index => _selectedChapter = chapters[index]);
+            for (int i = 0; i < chapters.Count; ++i)
             {
-                changeToBattlePageWithChapterTransition.Invoke(selectedChapterNumber + 1);
+                // 이전 챕터를 클리어해야 다음 챕터가 열린다.
+                _chapterGroup.SetLocked(i, chapters[i].ChapterNumber > clearedHighestChapter + 1);
+            }
+            _chapterGroup.Select(0);
+
+            _heroGroup.Initialize(heroes.Count, index =>
+            {
+                userGameData.SelectedHeroType = heroes[index].HeroType;
+                GameClient.CS.Save();
             });
+            _heroGroup.Select(0);
 
-            _previousStageSelectedButton.onClick.RemoveAllListeners();
-            _previousStageSelectedButton.onClick.AddListener(() =>
+            _equipmentGroup.Initialize(equipments.Count, index =>
             {
-                changeToBattlePageWithChapterTransition.Invoke(selectedChapterNumber - 1);
+                userGameData.SelectedEquipmentId = equipments[index].Id;
+                GameClient.CS.Save();
             });
+            _equipmentGroup.Select(0);
 
-            _menuButton.Initialize();
-
-            _backgroundImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(selectedChapter!.ChapterBackgroundPath);
-
-
-            HideChildren(_leftSideButtonGroup);
-            HideChildren(_rightSideButtonGroup);
-            this.UpdateSideButtonGroups();
-
-            static void HideChildren(Transform parent)
-            {
-                foreach (Transform child in parent)
-                {
-                    child.gameObject.SetActive(false);
-                }
-            }
-        }
-
-        public void UpdateSideButtonGroups()
-        {
-            bool isAnyChildActiveInLeftSideButtonGroup = IsAnyChildActiveIn(_leftSideButtonGroup);
-            bool isAnyChildActiveInRightSideButtonGroup = IsAnyChildActiveIn(_rightSideButtonGroup);
-
-            if (isAnyChildActiveInLeftSideButtonGroup || isAnyChildActiveInRightSideButtonGroup)
-            {
-                _leftSideButtonGroup.gameObject.SetActive(isAnyChildActiveInLeftSideButtonGroup);
-                _rightSideButtonGroup.gameObject.SetActive(isAnyChildActiveInRightSideButtonGroup);
-                _nextStageSelectedButton.gameObject.SetActive(false);
-                _previousStageSelectedButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                _leftSideButtonGroup.gameObject.SetActive(false);
-                _rightSideButtonGroup.gameObject.SetActive(false);
-                _nextStageSelectedButton.gameObject.SetActive(true);
-                _previousStageSelectedButton.gameObject.SetActive(true);
-            }
-
-            static bool IsAnyChildActiveIn(Transform parent)
-            {
-                foreach (Transform child in parent)
-                {
-                    if (child.gameObject.activeSelf)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
+            _mainChapterStartButton.Initialize(() => _selectedChapter);
         }
     }
 }

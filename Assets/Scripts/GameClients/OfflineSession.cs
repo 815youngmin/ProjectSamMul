@@ -73,7 +73,7 @@ namespace SamMul.GameClients
                 if (File.Exists(SavePath))
                 {
                     var loaded = JsonConvert.DeserializeObject<UserGameData>(File.ReadAllText(SavePath));
-                    if (loaded != null && loaded.Heroes.Count > 0)
+                    if (loaded != null)
                     {
                         return loaded;
                     }
@@ -92,17 +92,13 @@ namespace SamMul.GameClients
 
         private static UserGameData CreateNewUser()
         {
-            var hero = new HeroData(HeroInstanceId.CreateNew(), HeroType.Tenti, Grade.D, 0, 1, DateTime.UtcNow);
-            var user = new UserGameData
+            return new UserGameData
             {
                 Id = LOCAL_ACCOUNT_ID,
                 Gold = 0,
                 ResurrectionCoin = 3,
                 ClearedHighestChapter = 0,
-                SelectedHero = hero.InstanceId,
             };
-            user.Heroes.Add(hero.InstanceId, hero);
-            return user;
         }
 
         private static int CountChapters(StaticDataRepository staticData)
