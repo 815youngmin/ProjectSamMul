@@ -43,3 +43,15 @@ crashlytics-build.properties
 # Editor
 /.vscode/
 
+# Asset Store packages (Standard Unity Asset Store EULA: redistribution of source assets is not permitted)
+/Assets/2D Casual UI/
+/Assets/2D Casual UI.meta
+/Assets/8Bit Music*/
+/Assets/8Bit Music*.meta
+# Sprites copied from those packages for the lobby prefabs
+/Assets/Resources/Lobbys/UIs/Character/
+/Assets/Resources/Lobbys/UIs/Character.meta
+/Assets/Resources/Lobbys/UIs/Item/
+/Assets/Resources/Lobbys/UIs/Item.meta
+/Assets/Resources/Lobbys/UIs/StageIcon/
+/Assets/Resources/Lobbys/UIs/StageIcon.meta
