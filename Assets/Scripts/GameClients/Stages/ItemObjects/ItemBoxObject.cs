@@ -35,8 +35,12 @@ namespace SamMul.GameClients.Stages.ItemObjects
             base.AllocateSharedResources(dropItemType);
             Body.sortingLayerID = SortingLayer.NameToID("Object");
 
+            // 본체 프리팹이 없어 플레이스홀더로 대체되면 애니메이터가 없다. 그 경우 열림 연출 없이 바로 제거한다.
             _animator = Body.GetComponent<Animator>();
-            _animator.Play("Idle");
+            if (_animator != null)
+            {
+                _animator.Play("Idle");
+            }
 
             this.AllocateShadowComponent();
         }
@@ -91,7 +95,10 @@ namespace SamMul.GameClients.Stages.ItemObjects
 
             _itemCollider.enabled = false;
             _currentStage = stage;
-            _animator.Play("Broken");
+            if (_animator != null)
+            {
+                _animator.Play("Broken");
+            }
 
             var itemToDrop = this.SelectItemToDrop(stage);
             Debug.Log(itemToDrop.ToString());
@@ -106,6 +113,13 @@ namespace SamMul.GameClients.Stages.ItemObjects
             while (true)
             {
                 yield return null;
+
+                if (_animator == null)
+                {
+                    _currentStage.RemoveBreakableItemObject(this);
+                    _currentStage = null;
+                    break;
+                }
 
                 AnimatorStateInfo aniamtionInfo = _animator.GetCurrentAnimatorStateInfo(0);
                 if (aniamtionInfo.IsName("Broken") && aniamtionInfo.normalizedTime >= 1.0f)
