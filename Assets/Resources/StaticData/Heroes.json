@@ -20,26 +20,6 @@
     "MoveSpeed": 6.5
   },
   {
-    "HeroType": "Dice",
-    "HeroNameKey": "HERO_DICE_NAME",
-    "Rarity": "Common",
-    "ElementType": "Earth",
-    "BasicSkill": "SpaceCoin",
-    "SkeletonDataPath": "PlaerCharacter/Dice/Dice.controller",
-    "ColliderRadius": 0.5,
-    "HitBoxSize": [
-      1.0,
-      1.4
-    ],
-    "HitBoxOffset": [
-      0.0,
-      0.7
-    ],
-    "MaxHP": 80,
-    "AttackPower": 15,
-    "MoveSpeed": 5.75
-  },
-  {
     "HeroType": "Ignatia",
     "HeroNameKey": "HERO_IGNATIA_NAME",
     "Rarity": "Common",
@@ -58,5 +38,25 @@
     "MaxHP": 80,
     "AttackPower": 15,
     "MoveSpeed": 6.5
+  },
+  {
+    "HeroType": "Dice",
+    "HeroNameKey": "HERO_DICE_NAME",
+    "Rarity": "Common",
+    "ElementType": "Earth",
+    "BasicSkill": "SpaceCoin",
+    "SkeletonDataPath": "PlaerCharacter/Dice/Dice.controller",
+    "ColliderRadius": 0.5,
+    "HitBoxSize": [
+      1.0,
+      1.4
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.7
+    ],
+    "MaxHP": 80,
+    "AttackPower": 15,
+    "MoveSpeed": 5.75
   }
 ]
