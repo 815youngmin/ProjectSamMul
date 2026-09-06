@@ -283,10 +283,9 @@ namespace SamMul.Scenes
             }
 
             var learnedSkills = owner.SelectSkillsToLearnBySkillBox(learnSkillCount);
-            var candidateSkills = owner.GetCandidateSkillsToLearnBySkillBox();
 
             _skillBoxPopup = this.CreateAndAddPopup<SkillBoxPopup>(SkillBoxPopup.PREFAB_PATH, playSound: true);
-            _skillBoxPopup.Initialize(owner, learnedSkills, candidateSkills, closeRequester: CloseSkillBoxPopup);
+            _skillBoxPopup.Initialize(learnedSkills, closeRequester: CloseSkillBoxPopup);
             this.PauseResumeOnPopup();
         }
 

@@ -772,11 +772,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             return _skillDeck.SelectSkillsToLearnByTutorialSkillBox(_skillSet, selectSkillCount, StaticData.BasicSkill);
         }
 
-        public SkillKey[] GetCandidateSkillsToLearnBySkillBox()
-        {
-            return _skillDeck.GetCandidateSkillsToLearnBySkillBox(_skillSet);
-        }
-
         public List<SkillKey[]> GetSkillCandidates()
         {
             int activeCount;

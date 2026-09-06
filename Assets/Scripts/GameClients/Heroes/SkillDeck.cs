@@ -521,38 +521,6 @@ namespace SamMul.GameClients.Heroes
         }
 
         /// <summary>
-        /// 스킬상자에서 얻을 수 있는 스킬 목록을 계산해준다.
-        /// </summary>
-        public SkillKey[] GetCandidateSkillsToLearnBySkillBox(SkillSet skillSet)
-        {
-            List<SkillKey> acquirableSkills = new List<SkillKey>();
-
-            var acquiredSkills = skillSet.GetAcquiredSkillIds();
-            for (int i = 0; i < acquiredSkills.Length; i++)
-            {
-                var acquiredSkillId = acquiredSkills[i];
-                int skillLevel = skillSet.GetSkillLevel(acquiredSkills[i]);
-
-                if (skillLevel >= GameConstants.SKILL_TRANSCENDENT_LEVEL)
-                {
-                    continue;
-                }
-
-                if (skillLevel == GameConstants.SKILL_MAX_LEVEL)
-                {
-                    if (skillSet.IsAbleToTranscend(acquiredSkills[i]))
-                    {
-                        acquirableSkills.Add(new SkillKey(acquiredSkillId, skillLevel + 1));
-                    }
-                    continue;
-                }
-
-                acquirableSkills.Add(new SkillKey(acquiredSkillId, skillLevel + 1));
-            }
-            return acquirableSkills.ToArray();
-        }
-
-        /// <summary>
         /// 스킬박스 획득시 습득할 스킬들을 선택해서 전달해주는 함수
         /// selectSkillCount보다 현재 배울수 있는 스킬의 개수가 더 작으면 배울 수 있는 스킬만큼만 전달해준다
         /// </summary>
