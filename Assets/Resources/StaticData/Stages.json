@@ -3,26 +3,26 @@
     "StageNumber": 1,
     "StageFormType": "Infinite",
     "SpawnLogicType": "FromEveryBoundary",
-    "Width": 2000.0,
-    "Height": 2000.0,
+    "Width": 1000.0,
+    "Height": 1000.0,
     "TotalStageTimeSec": 480.0,
     "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
     "FloorTileResourcePath": "Stage/Floor/Floor_01.png",
-    "FenceResourcePath": "Stages/Fences/Chapter1Fence.png",
+    "FenceResourcePath": "Stage/Common/fence.png",
     "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   },
   {
     "StageNumber": 2,
     "StageFormType": "Infinite",
     "SpawnLogicType": "FromEveryBoundary",
-    "Width": 2000.0,
-    "Height": 2000.0,
+    "Width": 1000.0,
+    "Height": 1000.0,
     "TotalStageTimeSec": 480.0,
     "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
     "FloorTileResourcePath": "Stage/Floor/Floor_02.png",
-    "FenceResourcePath": "Stages/Fences/Chapter2Fence.png",
+    "FenceResourcePath": "Stage/Common/fence.png",
     "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   },
   {
@@ -35,7 +35,7 @@
     "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
     "FloorTileResourcePath": "Stage/Floor/Floor_03.png",
-    "FenceResourcePath": "Stages/Fences/Chapter4Fence.png",
+    "FenceResourcePath": "Stage/Common/fence.png",
     "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   }
 ]
