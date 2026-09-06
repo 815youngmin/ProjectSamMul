@@ -84,6 +84,12 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters">공격처 하면 안되는 리스트</param>
         public static void HitOnTargetArea(Stage stage, CircularTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
+            if (attacker.Alliance == AllianceType.Players)
+            {
+                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
+                stage.AttackAreaFlashes.Show(targetArea);
+            }
+
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);
             TryHitCharacter(stage, attacker, findedCharacters, damage, knockBackType, knockBackPivot, knockBackPower, hittedCharacterCollector, exceptedCharacters, hitSoundPrefabPath);
@@ -115,6 +121,12 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters"></param>
         public static void HitOnTargetArea(Stage stage, SquareTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
+            if (attacker.Alliance == AllianceType.Players)
+            {
+                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
+                stage.AttackAreaFlashes.Show(targetArea);
+            }
+
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);
             TryHitCharacter(stage, attacker, findedCharacters, damage, knockBackType, knockBackPivot, knockBackPower, hittedCharacterCollector, exceptedCharacters, hitSoundPrefabPath);
@@ -146,6 +158,12 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters"></param>
         public static void HitOnTargetArea(Stage stage, CircularSectorTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
+            if (attacker.Alliance == AllianceType.Players)
+            {
+                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
+                stage.AttackAreaFlashes.Show(targetArea);
+            }
+
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);
             TryHitCharacter(stage, attacker, findedCharacters, damage, knockBackType, knockBackPivot, knockBackPower, hittedCharacterCollector, exceptedCharacters, hitSoundPrefabPath);

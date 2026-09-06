@@ -79,6 +79,9 @@ namespace SamMul.GameClients.Stages
 
         public AreaIndicatorManager AreaIndicators => _areaIndicators;
         private readonly AreaIndicatorManager _areaIndicators;
+        /// <summary>플레이어 공격 판정 범위를 잠깐 보여 주는 공용 이펙트.</summary>
+        public AttackAreaFlashManager AttackAreaFlashes => _attackAreaFlashes;
+        private readonly AttackAreaFlashManager _attackAreaFlashes;
 
         public ParticleManager Particles => _particles;
         private readonly ParticleManager _particles;
@@ -182,6 +185,7 @@ namespace SamMul.GameClients.Stages
 
             _staticDatas = staticDatas;
             _areaIndicators = new AreaIndicatorManager();
+            _attackAreaFlashes = new AttackAreaFlashManager();
             _particles = new ParticleManager();
             _damagePopups = new DamagePopupManager();
             _deadEffects = new DeadEffectManager();
@@ -313,6 +317,7 @@ namespace SamMul.GameClients.Stages
                 this.UpdateProjectiles(now, deltaTime);
                 this.UpdateAreaEffects(now, deltaTime);
                 this.UpdateIndicator(now, deltaTime);
+                _attackAreaFlashes.Update(deltaTime);
                 this.UpdateAcquirableItemObjects(now, deltaTime);
                 this.UpdateBreakableItemObjects(now, deltaTime);
                 this.CheckAndSpawnItemBoxObject(now, deltaTime);
@@ -496,6 +501,7 @@ namespace SamMul.GameClients.Stages
             removedMonsters.Clear();
 
             _zoneManager.ClearBeforeChangingScene();
+            _attackAreaFlashes.Clear();
 
             _characterPool.ClearBeforeChangingScene(clearingScene);
             _projectilePool.ClearBeforeChangingScene(clearingScene);
