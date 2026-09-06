@@ -1,15 +1,15 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.Characters.StatusEffects;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.GameClients.Stages.ItemObjects;
-using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 이그니션 웨이브 초월 공격. 전용 이펙트 리소스 없이, 진행 방향으로 이동하는 사각 판정 범위를 AttackAreaFlashManager 로 표시한다.
+    /// </summary>
     public class IgnitionWaveTranscendAreaEffectObject : AreaEffectObjectBase
     {
         public override bool IsAlive => _isAlive;
@@ -30,10 +30,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private float _burnDuration;
         private int _burnSpreadAmount;
         private float _stunDuration;
-
-        private SpriteAnimationHandler _repeatAnimation;
-        private SpriteAnimationHandler _endAnimation;
-        private bool _isDisappearing;
 
         private HashSet<Character> _hittedCharacters;
         // hittedCharacter 마다 피격되었던 시각을 기록
@@ -56,33 +52,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 areaEffectType == AreaEffectType.IgnitionWaveTranscend_Siyeon ||
                 areaEffectType == AreaEffectType.IgnitionWaveTranscend_Bongjun);
             base.AllocateSharedResourcesForBase(areaEffectType);
-
-            var repeatAnimationPath = areaEffectType switch
-            {
-                AreaEffectType.IgnitionWaveTranscend_Default => "Stages/AreaEffects/IgnitionWaves/IgnitionWaveS_Repeat.prefab",
-                AreaEffectType.IgnitionWaveTranscend_Siyeon => "Stages/AreaEffects/IgnitionWaves/SiyeonTranscendentAttackRepeat.prefab",
-                AreaEffectType.IgnitionWaveTranscend_Bongjun => "Stages/AreaEffects/IgnitionWaves/GentleBongjunSS_Repeat.prefab",
-                _ => throw new NotSupportedException($"AreaEffectType {areaEffectType}이 이그니션 웨이브가 아닙니다."),
-            };
-            _repeatAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(repeatAnimationPath);
-
-            var endAnimationPath = areaEffectType switch
-            {
-                AreaEffectType.IgnitionWaveTranscend_Default => "Stages/AreaEffects/IgnitionWaves/IgnitionWaveS_End.prefab",
-                AreaEffectType.IgnitionWaveTranscend_Siyeon => "Stages/AreaEffects/IgnitionWaves/SiyeonTranscendentAttackEnd.prefab",
-                AreaEffectType.IgnitionWaveTranscend_Bongjun => "Stages/AreaEffects/IgnitionWaves/GentleBongjunSS_End.prefab",
-                _ => throw new NotSupportedException($"AreaEffectType {areaEffectType}이 이그니션 웨이브가 아닙니다."),
-            };
-            _endAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(endAnimationPath);
-
-            _repeatAnimation.InitializeOnly();
-            _endAnimation.InitializeOnly();
-
-            _repeatAnimation.transform.SetParent(this.transform);
-            _endAnimation.transform.SetParent(this.transform);
-
-            _repeatAnimation.transform.localPosition = Vector2.zero;
-            _endAnimation.transform.localPosition = Vector2.zero;
 
             _hittedCharacters = new HashSet<Character>();
             _hittedAtByCharacter = new Dictionary<Character, float>();
@@ -118,14 +87,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
             // 진행방향으로 10 unit per seconds;
             _moveVector = _firingDirection * moveSpeed;
-            _repeatAnimation.transform.right = _endAnimation.transform.right = _firingDirection;
-            float bodyScale = attackWidth * (1 / 2.8f);
-            _repeatAnimation.transform.localScale = _endAnimation.transform.localScale = new Vector2(bodyScale, bodyScale);
-
-            _repeatAnimation.gameObject.SetActive(true);
-            _endAnimation.gameObject.SetActive(false);
-            _repeatAnimation.InitializeAndPlay();
-            _isDisappearing = false;
 
             _burnDamage = burnDamage;
             _burnDuration = burnDuration;
@@ -159,9 +120,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             base.PuttingBackToPool();
             _owner = null;
 
-            _repeatAnimation.gameObject.SetActive(false);
-            _endAnimation.gameObject.SetActive(false);
-
             this.gameObject.SetActive(false);
         }
 
@@ -190,16 +148,9 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             }
             else
             {
-                if (!_isDisappearing)
-                {
-                    _isDisappearing = true;
-                    _repeatAnimation.gameObject.SetActive(false);
-                    _endAnimation.gameObject.SetActive(true);
-                    _endAnimation.InitializeAndPlay(null, endEventHandler: () =>
-                    {
-                        _isAlive = false;
-                    });
-                }
+                // 사거리를 다 나아가면 바로 사라진다.
+                _isAlive = false;
+                return;
             }
 
             float now = Time.time;
@@ -227,6 +178,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 _removeCandidates.Clear();
             }
             var areaRect = CurrentTargetArea();
+            stage.AttackAreaFlashes.Show(areaRect);
             _hitTargetsOnThisFrame.Clear();
 
             stage.FindCharactersInArea(
