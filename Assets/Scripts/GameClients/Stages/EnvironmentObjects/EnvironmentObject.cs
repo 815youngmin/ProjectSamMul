@@ -17,7 +17,7 @@ namespace SamMul.GameClients.Stages.EnvironmentObjects
     /// </summary>
     public class EnvironmentObject : MonoBehaviour, IPoolible<EnvironmentObjectType>
     {
-        private const string SHADOW_SPRITE_PATH = "Stages/Items/ItemShadow.png";
+        private const string SHADOW_SPRITE_PATH = "Stage/Common/ItemShadow.png";
 
         public EnvironmentObjectType EnvironmentObjectType { get; private set; }
         public SpriteRenderer Body { get; private set; } = null!;

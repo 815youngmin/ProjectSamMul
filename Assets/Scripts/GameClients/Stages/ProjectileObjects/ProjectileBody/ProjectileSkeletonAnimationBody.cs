@@ -31,7 +31,7 @@ namespace SamMul.GameClients.Stages.ProjectileObjects.ProjectileBody
 
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
 
-            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stages/Items/ItemShadow.png");
+            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/ItemShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 0.50f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
             shadow.drawMode = SpriteDrawMode.Simple;

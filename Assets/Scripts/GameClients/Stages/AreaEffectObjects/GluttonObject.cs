@@ -88,7 +88,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             shadowObject.transform.SetParent(this.gameObject.transform, worldPositionStays: false);
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
             // TODO 플레이어용 그림자 쓸 것
-            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stages/Items/ItemShadow.png");
+            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/ItemShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 0.50f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
             shadow.drawMode = SpriteDrawMode.Simple;

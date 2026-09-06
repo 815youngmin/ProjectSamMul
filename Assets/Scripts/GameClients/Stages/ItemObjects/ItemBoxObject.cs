@@ -52,7 +52,7 @@ namespace SamMul.GameClients.Stages.ItemObjects
 
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
 
-            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stages/Items/ItemShadow.png");
+            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/ItemShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 0.46f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
             shadow.drawMode = SpriteDrawMode.Simple;
