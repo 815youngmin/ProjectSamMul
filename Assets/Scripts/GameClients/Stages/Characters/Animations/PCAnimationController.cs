@@ -862,5 +862,29 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             _body.skeleton.A = alpha;
             _spriteBody?.SetAlpha(alpha);
         }
+
+        // 스프라이트 몸체에 MaterialPropertyBlock 을 쓰면 SpriteRenderer 가 넘기는 텍스처 정보가 사라져 하얗게 남는다.
+        // 그래서 스프라이트 몸체는 SpriteRenderer.color 로만 어둡게 표현한다(흰색 채움은 원래 색으로 보인다).
+        public override void FillBody(float fillingRate, Color color)
+        {
+            if (_spriteBody == null)
+            {
+                base.FillBody(fillingRate, color);
+                return;
+            }
+
+            _spriteBody.SetTint(fillingRate <= 0f ? Color.white : Color.Lerp(Color.white, color, fillingRate));
+        }
+
+        public override void ClearBodyEffectShader()
+        {
+            if (_spriteBody == null)
+            {
+                base.ClearBodyEffectShader();
+                return;
+            }
+
+            _spriteBody.SetTint(Color.white);
+        }
     }
 }

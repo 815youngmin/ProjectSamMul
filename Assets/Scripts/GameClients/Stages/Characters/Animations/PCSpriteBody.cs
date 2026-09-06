@@ -61,6 +61,13 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
         public void SetFlipped(bool flipped) => _renderer.flipX = flipped;
 
+        /// <summary>몸체 색을 곱한다(알파 유지). 흰색이 원래 색이다.</summary>
+        public void SetTint(Color tint)
+        {
+            var color = _renderer.color;
+            _renderer.color = new Color(tint.r, tint.g, tint.b, color.a);
+        }
+
         public void SetAlpha(float alpha)
         {
             var color = _renderer.color;
