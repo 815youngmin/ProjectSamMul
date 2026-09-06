@@ -5,10 +5,16 @@
     "Rarity": "Common",
     "ElementType": "Water",
     "BasicSkill": "TentiSweep",
-    "SkeletonDataPath": "Stages/Characters/PCs/Tenti/Tenti.asset",
+    "SkeletonDataPath": "PlaerCharacter/Tenti/Tenti.controller",
     "ColliderRadius": 0.5,
-    "HitBoxSize": [1.0, 1.4],
-    "HitBoxOffset": [0.0, 0.7],
+    "HitBoxSize": [
+      1.0,
+      1.4
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.7
+    ],
     "MaxHP": 1000,
     "AttackPower": 50,
     "MoveSpeed": 4.0
@@ -21,8 +27,14 @@
     "BasicSkill": "BubbleGum",
     "SkeletonDataPath": "Stages/Characters/PCs/Gum/Gum.asset",
     "ColliderRadius": 0.5,
-    "HitBoxSize": [1.0, 1.4],
-    "HitBoxOffset": [0.0, 0.7],
+    "HitBoxSize": [
+      1.0,
+      1.4
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.7
+    ],
     "MaxHP": 1000,
     "AttackPower": 50,
     "MoveSpeed": 4.0
@@ -33,10 +45,16 @@
     "Rarity": "Special",
     "ElementType": "Fire",
     "BasicSkill": "IgnitionWave",
-    "SkeletonDataPath": "Stages/Characters/PCs/Ignatia/Ignatia.asset",
+    "SkeletonDataPath": "PlaerCharacter/Ignatia/Ignatia.controller",
     "ColliderRadius": 0.5,
-    "HitBoxSize": [1.0, 1.4],
-    "HitBoxOffset": [0.0, 0.7],
+    "HitBoxSize": [
+      1.0,
+      1.4
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.7
+    ],
     "MaxHP": 1000,
     "AttackPower": 50,
     "MoveSpeed": 4.0

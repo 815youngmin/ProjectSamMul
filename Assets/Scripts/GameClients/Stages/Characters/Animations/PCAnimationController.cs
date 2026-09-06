@@ -11,6 +11,9 @@ namespace SamMul.GameClients.Stages.Characters.Animations
     {
         protected readonly SkeletonAnimation _body;
         public SkeletonAnimation Body => _body;
+
+        // 스프라이트 한 장으로 그리는 몸체. 스켈레톤 트랙의 애니메이션 이름을 따라 애니메이터 상태를 재생한다. 없으면 플레이스홀더 스켈레톤만 그린다.
+        private PCSpriteBody? _spriteBody;
         public override float BodyLocalScale => 0.3333f;
         
         public override bool IsFlippedX => _body.skeleton.ScaleX < 0f; 
@@ -218,11 +221,20 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             }
         }
 
+        /// <summary>스프라이트 몸체를 붙인다. 이후 트랙에서 재생되는 애니메이션이 스프라이트 애니메이터에도 반영된다.</summary>
+        public void AttachSpriteBody(PCSpriteBody spriteBody)
+        {
+            _spriteBody = spriteBody;
+            _spriteBody.Bind(_body);
+            _spriteBody.ResetState();
+        }
+
         public override void SetToInitialState()
         {
             _body.transform.rotation = Quaternion.identity;
             _body.AnimationState.ClearTracks();
             _body.skeleton.SetToSetupPose();
+            _spriteBody?.ResetState();
 
             _activeBodyEffects.Clear();
             this.ClearBodyEffectShader();
@@ -243,6 +255,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             float now = Time.time;
 
             base.Update();
+            _spriteBody?.SetFlipped(_body.skeleton.ScaleX < 0f);
             if (_isAiming)
             {
                 var currentAnimation = this.GetCurrentAnimation(BodyAnimationTrack.AttackAction);
@@ -847,6 +860,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
                 return;
             }
             _body.skeleton.A = alpha;
+            _spriteBody?.SetAlpha(alpha);
         }
     }
 }

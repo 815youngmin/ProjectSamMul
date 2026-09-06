@@ -6,6 +6,7 @@ using Shared.StaticDatas;
 using Shared.UserDatas;
 using SamMul.Animations.Placeholder;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Heroes;
@@ -437,13 +438,44 @@ namespace SamMul.GameClients.Stages.Characters.PCs
 
         protected override CharacterAnimationController CreateCharacterAnimationController(GameObject bodyObject, string bodyDataPath)
         {
+            // 몬스터와 같은 규칙: .asset 은 스켈레톤(스파인), 그 외(.controller)는 스프라이트 + 애니메이터.
+            bool isSpriteBody = Path.GetExtension(bodyDataPath) != ".asset";
+
             var body = bodyObject.AddComponent<SkeletonAnimation>();
-            body.skeletonDataAsset = ResourcePool.Instance.LoadResource<SkeletonDataAsset>(bodyDataPath);
+            if (!isSpriteBody)
+            {
+                body.skeletonDataAsset = ResourcePool.Instance.LoadResource<SkeletonDataAsset>(bodyDataPath);
+            }
             body.Initialize(true);
 
-            var renderer = bodyObject.GetComponent<Renderer>();
-            _bodyRenderer = renderer;
+            PCSpriteBody? spriteBody = null;
+            if (isSpriteBody)
+            {
+                var animatorController = ResourcePool.Instance.LoadResource<RuntimeAnimatorController>(bodyDataPath);
+                if (animatorController == null)
+                {
+                    throw new InvalidOperationException($"플레이어 애니메이션 컨트롤러가 없습니다. Path[{bodyDataPath}]");
+                }
+                spriteBody = PCSpriteBody.Create(bodyObject, animatorController);
+                // 스켈레톤 트랙은 계속 돌리되 플레이스홀더 몸통은 그리지 않는다.
+                bodyObject.GetComponent<MeshRenderer>().enabled = false;
+                _bodyRenderer = spriteBody.Renderer;
+            }
+            else
+            {
+                _bodyRenderer = bodyObject.GetComponent<Renderer>();
+            }
 
+            var controller = this.CreatePCAnimationController(body);
+            if (spriteBody != null)
+            {
+                controller.AttachSpriteBody(spriteBody);
+            }
+            return controller;
+        }
+
+        private PCAnimationController CreatePCAnimationController(SkeletonAnimation body)
+        {
             switch (CharacterType)
             {
                 default:
