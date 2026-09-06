@@ -14,10 +14,10 @@ namespace SamMul.GameClients.Stages.AreaIndicators
     public class AttackAreaFlashManager
     {
         private const float DURATION = 0.15f;
-        private const float START_ALPHA = 0.35f;
+        private const float START_ALPHA = 0.6f;
         private const int FULL_CIRCLE_SEGMENTS = 40;
         private const string SORTING_LAYER_NAME = "LowParticle";
-        private static readonly Color FLASH_COLOR = new Color(1f, 0.95f, 0.6f);
+        private static readonly Color FLASH_COLOR = new Color(0.15f, 0.4f, 1f);
         private static readonly int ColorId = Shader.PropertyToID("_Color");
 
         private class Flash
