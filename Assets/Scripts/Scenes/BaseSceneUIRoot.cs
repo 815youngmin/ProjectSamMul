@@ -30,7 +30,7 @@ namespace SamMul.Scenes
         private List<(BasePopup Popup, bool UseUIBlocker)> _popups = null!;
         public bool HasAnyPopup() => _popups?.Any() ?? false;
 
-        public static readonly string UI_BLOCKER_RESOURCE_PATH = "Commons/Popups/UIBlocker.prefab";
+        public static readonly string UI_BLOCKER_RESOURCE_PATH = "Stage/Common/UIBlocker.prefab";
 
 
         /// <remarks>UIRoot의 Awake에는 시스템 코드만 넣어주세요. 일반 MonoBehaviour와 달리 초기화 순서가 꼬이기 때문</remarks>

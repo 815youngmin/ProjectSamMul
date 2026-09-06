@@ -35,11 +35,11 @@ namespace SamMul.UIs.Stages.HUDs
         private readonly float _duration = 2.5f;
 
         private Color _transparentWhiteColor;
-        private Color _transparentBlackColor;
+        private Color _transparentHalfAlphaBlackColor;
         public void Initialize()
         {
             _transparentWhiteColor = new Color(1f, 1f, 1f, 0f);
-            _transparentBlackColor = new Color(0f, 0f, 0f, 0f);
+            _transparentHalfAlphaBlackColor = new Color(0f, 0f, 0f, 0.5f);
             var challengeTypeLabelColor = _challengeTypeLabel.color;
             challengeTypeLabelColor.a = 0f;
             _challengeTypeLabel.color = challengeTypeLabelColor;
@@ -54,9 +54,10 @@ namespace SamMul.UIs.Stages.HUDs
             _elementIcon.color = _transparentWhiteColor;
 
             _stageNumberAndNameText.color = _transparentWhiteColor;
-            _stageNameBackground.color = _transparentWhiteColor;
+            _stageNameBackground.color = _transparentHalfAlphaBlackColor;
 
-            _playerStatDescriptionLabel.color = _transparentBlackColor;
+
+            _playerStatDescriptionLabel.color = _transparentHalfAlphaBlackColor;
             _playerStatDescriptionText.color = _transparentWhiteColor;
 
             _bossNameText.gameObject.SetActive(false);

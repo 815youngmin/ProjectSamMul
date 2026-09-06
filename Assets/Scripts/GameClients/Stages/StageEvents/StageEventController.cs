@@ -73,7 +73,7 @@ namespace SamMul.GameClients.Stages.StageEvents
                         stageEventData = new BossWarningStageEvent(stageEventStaticData);
                         break;
                     case StageEventType.StageEnterInit:
-                        stageEventData = new StageEnterInitEvent(stageTimerController: this, stageEventStaticData);
+                        stageEventData = new StageEnterInitEvent(stageEventStaticData);
                         break;
                     case StageEventType.MonsterSpawnToTop:
                         stageEventData = new MonsterSpawnToTopStageEvent(stageEventStaticData);

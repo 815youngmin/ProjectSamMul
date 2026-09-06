@@ -8,18 +8,15 @@ namespace SamMul.UnityHelpers
     {
         public static string IconPath(this ElementType element) => element switch
         {
-            ElementType.Water => "Commons/Icons/Elements/icon_element_water.png",
-            ElementType.Wind => "Commons/Icons/Elements/icon_element_wind.png",
-            ElementType.Earth => "Commons/Icons/Elements/icon_element_earth.png",
-            ElementType.Fire => "Commons/Icons/Elements/icon_element_fire.png",
+            ElementType.Water => "Stage/Common/Water.png",
+            ElementType.Wind => "Stage/Common/Wind.png",
+            ElementType.Earth => "Stage/Common/Earth.png",
+            ElementType.Fire => "Stage/Common/Fire.png",
             _ => "Commons/Icons/Elements/icon_element_none.png",
         };
 
         public static string ToDisplayText(this ElementType element) => element.ToString();
 
-        public static string IconPath(this EquipmentSlot slot) => $"Commons/Icons/EquipmentSlots/icon_slot_{slot.ToString().ToLowerInvariant()}.png";
-
-        public static string IconPath(this StatType statType) => $"Commons/Icons/Stats/icon_stat_{statType.ToString().ToLowerInvariant()}.png";
     }
 
     public static class GradeExtension

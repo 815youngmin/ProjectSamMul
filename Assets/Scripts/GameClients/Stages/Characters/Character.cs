@@ -264,7 +264,7 @@ namespace SamMul.GameClients.Stages.Characters
 
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
             // TODO 플레이어용 그림자 쓸 것
-            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stages/Characters/characterShadow.png");
+            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/CharacterShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 1.00f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
             shadow.drawMode = SpriteDrawMode.Simple;

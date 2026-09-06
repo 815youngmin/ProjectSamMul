@@ -43,13 +43,13 @@ namespace SamMul.GameClients.Stages.DeadEffectObjects
                 case DeadEffectType.Bone:
                     {
                         var deadEffectObjectBase = deadEffectObject.AddComponent<DeadEffectObjectBase>();
-                        deadEffectObjectBase.AllocateSharedResources(deadEffectType, "Stages/DeadEffects/bone.png");
+                        deadEffectObjectBase.AllocateSharedResources(deadEffectType, "Stage/Common/Bone.png");
                         return deadEffectObjectBase;
                     }
                 case DeadEffectType.Skull:
                     {
                         var deadEffectObjectBase = deadEffectObject.AddComponent<DeadEffectObjectBase>();
-                        deadEffectObjectBase.AllocateSharedResources(deadEffectType, "Stages/DeadEffects/skull.png");
+                        deadEffectObjectBase.AllocateSharedResources(deadEffectType, "Stage/Common/Skull.png");
                         return deadEffectObjectBase;
                     }
                 default:
