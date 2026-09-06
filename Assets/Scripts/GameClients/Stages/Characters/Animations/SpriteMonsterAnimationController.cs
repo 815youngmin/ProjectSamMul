@@ -54,7 +54,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             string appearAnimationName,
             string disappearAnimationName,
             string healAnimationName
-            ) : base(isPlayerOrBoss, renderer, "SamMul/SpriteFillEffect")
+            ) : base(isPlayerOrBoss, renderer, "ZProject/SpriteFillEffectShader")
         {
             _animator = animator;
             _animator.transform.localScale = new Vector3(BodyLocalScale, BodyLocalScale, 1.0f);

@@ -18,8 +18,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
     /// <summary>
     /// Base of the per-character animation drivers. Body effects (hit flash, burn, death fade) are written
-    /// as _FillPhase/_FillColor into the renderer's property block; the placeholder body blends them in and
-    /// sprite bodies draw with the SamMul/SpriteFillEffect material.
+    /// as _FillPhase/_FillColor into the renderer's property block; the placeholder body blends them in.
     /// </summary>
     public abstract class CharacterAnimationController
     {
@@ -32,7 +31,6 @@ namespace SamMul.GameClients.Stages.Characters.Animations
         protected readonly int _fillPhaseId;
         protected readonly int _fillColorId;
         protected readonly MaterialPropertyBlock _materialProperty;
-        private static Material? s_spriteFillMaterial;
         #endregion
 
         /// <summary>When set, PlayHitted requests are ignored so the current clip keeps playing.</summary>
@@ -59,16 +57,12 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
             _fillPhaseId = Shader.PropertyToID("_FillPhase");
             _fillColorId = Shader.PropertyToID("_FillColor");
-            _fillShader = Shader.Find(shaderPath); // null for the Spine placeholder; that body reads the property block instead
-
-            // 스프라이트 몸체는 채움 셰이더 머티리얼로 그려야 _FillPhase/_FillColor 가 보인다.
-            if (_fillShader != null && renderer is SpriteRenderer spriteRenderer)
-            {
-                s_spriteFillMaterial ??= new Material(_fillShader) { name = "SpriteFillEffect", hideFlags = HideFlags.HideAndDontSave };
-                spriteRenderer.sharedMaterial = s_spriteFillMaterial;
-            }
+            _fillShader = Shader.Find(shaderPath); // null in the placeholder build; the body reads the property block instead
 
             _materialProperty = new MaterialPropertyBlock();
+            _materialProperty.SetFloat(_fillPhaseId, 0f);
+            _materialProperty.SetColor(_fillColorId, Color.white);
+            _renderer.SetPropertyBlock(_materialProperty);
         }
 
         public abstract void SetToInitialState();
@@ -99,9 +93,10 @@ namespace SamMul.GameClients.Stages.Characters.Animations
         #region Shader-Based Body Effect
         public virtual void ClearBodyEffectShader()
         {
-            // 블록을 통째로 지워 렌더러 기본값(스프라이트 텍스처 포함)으로 되돌린다.
             _materialProperty.Clear();
-            _renderer.SetPropertyBlock(null);
+            _materialProperty.SetFloat(_fillPhaseId, 0f);
+            _materialProperty.SetColor(_fillColorId, Color.white);
+            _renderer.SetPropertyBlock(_materialProperty);
         }
 
         /// <param name="fillingRate">0.0 ~ 1.0</param>
@@ -113,8 +108,6 @@ namespace SamMul.GameClients.Stages.Characters.Animations
                 return;
             }
 
-            // SpriteRenderer 는 _MainTex 등을 자체 블록으로 넘기므로 기존 값을 읽어 온 뒤에 덧써야 한다.
-            _renderer.GetPropertyBlock(_materialProperty);
             _materialProperty.SetFloat(_fillPhaseId, fillingRate);
             _materialProperty.SetColor(_fillColorId, color);
             _renderer.SetPropertyBlock(_materialProperty);

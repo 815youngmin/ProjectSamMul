@@ -117,7 +117,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             string disappearAnimationName,
             string pointAnimationName,
             string healAnimationName
-            ) : base(isPlayerOrBoss, renderer, "SamMul/SpriteFillEffect")
+            ) : base(isPlayerOrBoss, renderer, "Spine/Skeleton Fill")
         {
             _body = body;
             _body.transform.localScale = new Vector3(BodyLocalScale, BodyLocalScale, 1.0f);
