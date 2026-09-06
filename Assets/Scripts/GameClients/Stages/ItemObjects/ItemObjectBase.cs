@@ -62,18 +62,18 @@ namespace SamMul.GameClients.Stages.ItemObjects
         {
             switch (dropItemType)
             {
-                case DropItemType.ExpS: return "Stages/Items/ExpSBody.prefab";
-                case DropItemType.ExpM: return "Stages/Items/ExpMBody.prefab";
-                case DropItemType.ExpL: return "Stages/Items/ExpLBody.prefab";
-                case DropItemType.ExpXL: return "Stages/Items/ExpXLBody.prefab";
-                case DropItemType.ExpMagnet: return "Stages/Items/ExpMagnetBody.prefab";
+                case DropItemType.ExpS: return "Stage/Exp/ExpSBody.prefab";
+                case DropItemType.ExpM: return "Stage/Exp/ExpMBody.prefab";
+                case DropItemType.ExpL: return "Stage/Exp/ExpLBody.prefab";
+                case DropItemType.ExpXL: return "Stage/Exp/ExpXLBody.prefab";
+                case DropItemType.ExpMagnet: return "Stage/Item/Item_Magnet.prefab";
                 case DropItemType.Tutorial3SkillBox:
                 case DropItemType.Tutorial5SkillBox:
-                case DropItemType.SkillBox: return "Stages/Items/SkillBoxBody.prefab";
-                case DropItemType.ItemBox: return "Stages/Items/ItemBoxBody.prefab";
-                case DropItemType.HpResorative: return "Stages/Items/HpResorativeBody.prefab"; // HP회복제 (고기)
-                case DropItemType.Bomb: return "Stages/Items/BombBody.prefab";
-                case DropItemType.Gold: return "Stages/Items/Coin/CoinBody.prefab";
+                case DropItemType.SkillBox: return "Stage/Item/Item_Potion.prefab";
+                case DropItemType.ItemBox: return "Stage/Item/Item_Box.prefab";
+                case DropItemType.HpResorative: return "Stage/Item/Item_HP.prefab"; // HP회복제 (고기)
+                case DropItemType.Bomb: return "Stage/Item/Item_Bomb.prefab";
+                case DropItemType.Gold: return "Stage/Item/Item_Gold.prefab";
                 case DropItemType.Fence: return "Stages/Items/FenceBody.prefab";
                 case DropItemType.Gem: return "Stages/Items/Gems/GemBody.prefab";
                 case DropItemType.RandomEquipmentElement: return "Stages/Items/EquipmentTicketRandomBody.prefab";

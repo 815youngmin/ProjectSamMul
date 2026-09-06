@@ -40,7 +40,11 @@ namespace SamMul.GameClients.Stages.ItemObjects
             base.InitializeAcquirableItemObject(spawnPosition);
             _spawnPos = spawnPosition;
             _amount = amount;
-            _animator.Play(GetGoldAnimationStateName());
+            // 본체가 단일 스프라이트 프리팹이면 애니메이터가 없다.
+            if (_animator != null)
+            {
+                _animator.Play(GetGoldAnimationStateName());
+            }
         }
 
         public override void PuttingBackToPool()
