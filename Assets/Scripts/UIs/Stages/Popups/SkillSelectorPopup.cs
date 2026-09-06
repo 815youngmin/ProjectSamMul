@@ -27,7 +27,6 @@ namespace SamMul.UIs.Stages.Popups
 
         [SerializeField] private AcquiredSkillGroup _acquiredSkillGroup;
         [SerializeField] private ZButton _skillRefreshButton;
-        [SerializeField] private RectTransform _titleStickerTransform;
         //스티커 이미지 생성위치
         [SerializeField] private RectTransform _backgroundStickerTransform;
 
@@ -39,17 +38,6 @@ namespace SamMul.UIs.Stages.Popups
 
         [SerializeField] private BanSkillGroup _banSkillGroup;
 
-        private GameObject _backgroundStickerPrefab;
-
-        private List<Sprite> _stickerSprites;
-        private List<Image> _dropStickerObjects;
-        private List<Image> _pool;
-        private bool _isInitialize;
-
-        private float _stickerDownSpeed = 15;
-        private float _stickerScaleZeroPositionY;
-        private float _stickerCreatedAt;
-
         private List<SkillKey[]> _skillCandidates;
         private int _currentRefreshCount;
 
@@ -57,33 +45,6 @@ namespace SamMul.UIs.Stages.Popups
         {
             Debug.Assert(_skillButtons.Count == 3);
             base.InitializeBase(closeRequester);
-
-            _stickerSprites = new List<Sprite>();
-            var characterImageStaticData = StaticDataRepository.Instance.CharacterImagePaths.CharacterImagePathStaticDatas[heroType];
-            foreach (var path in characterImageStaticData.SkillSelectorBackParticleImagePaths)
-            {
-                var sprite = ResourcePool.Instance.LoadResource<Sprite>(path);
-                _stickerSprites.Add(sprite);
-            }
-
-            var stickerPrefab = new GameObject("sticker");
-            stickerPrefab.transform.SetParent(_backgroundStickerTransform);
-            stickerPrefab.transform.localScale = Vector3.one;
-            stickerPrefab.transform.localPosition = Vector3.zero;
-            stickerPrefab.AddComponent<Image>();
-            stickerPrefab.SetActive(false);
-            _backgroundStickerPrefab = stickerPrefab;
-
-            //스티커 사라질 위치
-            _stickerScaleZeroPositionY = this.GetComponent<RectTransform>().rect.height * -0.65f;
-            _stickerDownSpeed = 15;
-
-            GameObject stickerGroup = ResourcePool.Instance.LoadResource<GameObject>(characterImageStaticData.SkillSelectorTitleStickerGroupPath);
-            Instantiate(stickerGroup, _titleStickerTransform);
-
-            _dropStickerObjects = new List<Image>();
-            _pool = new List<Image>();
-            _isInitialize = true;
 
             _levelText.gameObject.SetActive(true);
             _levelText.text = level.ToString();
@@ -144,84 +105,6 @@ namespace SamMul.UIs.Stages.Popups
             _refeshButtonText.text = Localizer.Instance.GetText("UI_REFRESH_BUTTON");
         }
 
-        //스티커 생성
-        private void CreateDropSticker()
-        {
-            if (_stickerSprites.Count <= 0)
-            {
-                Debug.LogWarning("스킬 선택창에 준비된 스티커가 없습니다. 확인이 필요합니다.");
-                return;
-            }
-
-            GameObject stickerObject;
-            if (_pool.Count <= 0)
-            {
-                stickerObject = Instantiate(_backgroundStickerPrefab, _backgroundStickerTransform);
-            }
-            else
-            {
-                stickerObject = _pool[_pool.Count - 1].gameObject;
-                _pool.RemoveAt(_pool.Count - 1);
-            }
-            int randomSpriteIndex = Random.Range(0, _stickerSprites.Count);
-            Image image = stickerObject.GetComponent<Image>();
-            image.sprite = _stickerSprites[randomSpriteIndex];
-            image.rectTransform.sizeDelta = image.sprite.rect.size * Random.Range(0.7f, 1f);
-            image.rectTransform.localPosition = _backgroundStickerTransform.rect.position + new Vector2(Random.Range(0, _backgroundStickerTransform.rect.width), Random.Range(0, _backgroundStickerTransform.rect.height));
-            image.transform.rotation = Quaternion.Euler(0, 0, Random.Range(-90, 90));
-            stickerObject.SetActive(true);
-
-            _dropStickerObjects.Add(image);
-        }
-
-        //스티커들 이동, 스케일 처리
-        private void MoveDownAndScaleChangeStickers()
-        {
-            for (int i = 0; i < _dropStickerObjects.Count; i++)
-            {
-                float stickerY = _dropStickerObjects[i].rectTransform.anchoredPosition.y > 0 ? 0 : _dropStickerObjects[i].rectTransform.anchoredPosition.y;
-                float scale = Mathf.Lerp(0f, 1f, 1 - stickerY / _stickerScaleZeroPositionY);
-
-                _dropStickerObjects[i].rectTransform.position -= new Vector3(0, _stickerDownSpeed * Time.unscaledDeltaTime, 0);
-                _dropStickerObjects[i].rectTransform.localScale = Vector3.one * scale;
-            }
-        }
-
-        //제거해야되는 스티커 pool에 넣는작업
-        private void RemoveDropStickerPushPool()
-        {
-            for (int i = 0; i < _dropStickerObjects.Count; i++)
-            {
-                if (_dropStickerObjects[i].rectTransform.anchoredPosition.y < _stickerScaleZeroPositionY)
-                {
-                    _dropStickerObjects[i].gameObject.SetActive(false);
-                    _pool.Add(_dropStickerObjects[i]);
-                    _dropStickerObjects.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-
-        private void Update()
-        {
-            float now = Time.unscaledTime;
-            if (!_isInitialize)
-            {
-                return;
-            }
-
-            if (now > _stickerCreatedAt + 0.1f)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    this.CreateDropSticker();
-                }
-                _stickerCreatedAt = now;
-            }
-
-            this.MoveDownAndScaleChangeStickers();
-            this.RemoveDropStickerPushPool();
-        }
 
         public override void Close(bool skipAnimation)
         {

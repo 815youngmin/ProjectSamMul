@@ -26,8 +26,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private TextMeshProUGUI _skillDescriptionText;
         [SerializeField] private TextMeshProUGUI _newText;
 
-        [SerializeField] private GradeStarDisplayer _gradeStarDisplayer;
-        [SerializeField] private GradeStarDisplayer _transcendStarDisplayer;
 
         [SerializeField] private Image _skillIcon;
         [SerializeField] private GameObject[] _transcendSkillBackgrounds;
@@ -38,7 +36,10 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private Image _descriptionBox;
         [SerializeField] private Image _backgroundImage;
         public Image BackgroundImage => _backgroundImage;
-        [SerializeField] private Image _symbolImage;
+    
+        [SerializeField] private GameObject _gradeGroup;
+        [SerializeField] private TextMeshProUGUI _gradeText;
+
         [SerializeField] private Image _transcendConditionGroupBackground;
 
         [SerializeField] private TextMeshProUGUI _transcendConditionLabelText;
@@ -46,10 +47,9 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private ZButton _button; // button itself
 
         private SkillStaticData _skillStaticData;
-
-        private static readonly string _activeBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/ActiveButton.png";
-        private static readonly string _passiveBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/PassiveButton.png";
-        private static readonly string _transcendBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/TranscendButton.png";
+        private static readonly string _activeBackgroundPath = "Stage/UIs/SkillSelectorPopup/ActiveButton.png";
+        private static readonly string _passiveBackgroundPath = "Stage/UIs/SkillSelectorPopup/PassiveButton.png";
+        private static readonly string _transcendBackgroundPath = "Stage/UIs/SkillSelectorPopup/TranscendButton.png";
 
         private static readonly string _goldBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/GoldButton.png";
         private static readonly string _recoveryBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/RecoveryButton.png";
@@ -102,11 +102,6 @@ namespace SamMul.UIs.Stages.Popups
             {
                 _transcendSkillIconsSequences[i].Kill();
             }
-
-            if (_gradeStarDisplayer != null)
-            {
-                _gradeStarDisplayer.StopAnimation();
-            }
         }
 
         public void Initialize(PlayerCharacter owner, SkillStaticData skillStaticData, Action<bool> parentCloser)
@@ -147,8 +142,7 @@ namespace SamMul.UIs.Stages.Popups
                         }
                 }
                 _backgroundImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(backgroundPath);
-                _symbolImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(symbolPath);
-                _symbolImage.gameObject.SetActive(true);
+
 
                 _transcendConditionGroupBackground.sprite = ResourcePool.Instance.LoadResource<Sprite>(transcendConditionGroupBackgroundPath);
                 _skillNameText.color = skillNameTextColor;
@@ -232,23 +226,10 @@ namespace SamMul.UIs.Stages.Popups
                 }
             }
 
-            // Level Icon
-            {
-                if (isTranscendentLevel)
-                {
-                    _gradeStarDisplayer.gameObject.SetActive(false);
-                    _transcendStarDisplayer.gameObject.SetActive(true);
-                    _transcendStarDisplayer.InitializeForSkillSelector(_skillStaticData.Level);
-                    _transcendStarDisplayer.PlayLastStarBlinkAnimation();
-                }
-                else
-                {
-                    _transcendStarDisplayer.gameObject.SetActive(false);
-                    _gradeStarDisplayer.gameObject.SetActive(true);
-                    _gradeStarDisplayer.InitializeForSkillSelector(_skillStaticData.Level);
-                    _gradeStarDisplayer.PlayLastStarBlinkAnimation();
-                }
-            }
+            _gradeGroup.gameObject.SetActive(true);
+            _gradeText.text = _skillStaticData.Level.ToString();
+
+
 
             _button.SetInteractable(true);
             _button.onClick.RemoveAllListeners();
@@ -325,10 +306,9 @@ namespace SamMul.UIs.Stages.Popups
             }
 
             _newText.gameObject.SetActive(false);
-            _gradeStarDisplayer.gameObject.SetActive(false);
-            _transcendStarDisplayer.gameObject.SetActive(false);
+            _gradeGroup.gameObject.SetActive(false);
             _transcendConditionGroup.SetActive(false);
-            _symbolImage.gameObject.SetActive(false);
+
         }
 
         public void InvokeSelectEvent()

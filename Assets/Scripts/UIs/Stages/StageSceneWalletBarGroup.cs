@@ -8,16 +8,10 @@ namespace SamMul.UIs
     public class StageSceneWalletBarGroup : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _goldText = null!;
-        [SerializeField] private TextMeshProUGUI _gemText = null!;
 
         public void UpdateGoldAmount(long totalGoldAmount)
         {
             _goldText.text = totalGoldAmount.ToString("N0");
-        }
-
-        public void UpdateGemAmount(long totalGemAmount)
-        {
-            _gemText.text = totalGemAmount.ToString("N0");
         }
     }
 }

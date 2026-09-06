@@ -19,14 +19,10 @@ public class AccelerationButton : MonoBehaviour
     [SerializeField] private ZButton _button;
     [SerializeField] TextMeshProUGUI _iconText;
 
-    [SerializeField] private Image _rotateCircle;
-    [SerializeField] private Image _backgroundCircle;
-
     private bool _isButtonEnable;
     private readonly Color _accelerationColor = new Color(0.992156f, 0.768627f, 0.062745f);
     private AccelerationType _currentAccelerationType;
 
-    private Sequence _rotateCircleSequence;
 
     public void Initialize(int? chapterNumber)
     {
@@ -67,10 +63,7 @@ public class AccelerationButton : MonoBehaviour
                     _iconText.text = "x1.5";
                     _iconText.color = _accelerationColor;
                     UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>().StageTimer.EnableAccelerationText("x1.5");
-                    _rotateCircle.gameObject.SetActive(true);
-                    _backgroundCircle.gameObject.SetActive(true);
-                    _rotateCircleSequence.Restart();
-                    _rotateCircleSequence.timeScale = 1.0f;
+
                 }
                 break;
             case AccelerationType.x1_5:
@@ -81,10 +74,6 @@ public class AccelerationButton : MonoBehaviour
                     _iconText.color = _accelerationColor;
                     UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>().StageTimer.EnableAccelerationText("x2.0");
 
-                    _rotateCircle.gameObject.SetActive(true);
-                    _backgroundCircle.gameObject.SetActive(true);
-                    _rotateCircleSequence.Restart();
-                    _rotateCircleSequence.timeScale = 1.5f;
                 }
                 break;
             case AccelerationType.x2_0:
@@ -95,9 +84,6 @@ public class AccelerationButton : MonoBehaviour
                     _iconText.color = Color.white;
                     UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>().StageTimer.DisableAccelerationText();
 
-                    _rotateCircle.gameObject.SetActive(false);
-                    _backgroundCircle.gameObject.SetActive(false);
-                    _rotateCircleSequence.Pause();
                 }
                 break;
         }
@@ -105,20 +91,6 @@ public class AccelerationButton : MonoBehaviour
 
     private void EnableButton()
     {
-
-        _rotateCircleSequence = DOTween.Sequence();
-        _rotateCircleSequence.Append(_rotateCircle.transform.DOLocalRotate(new Vector3(0, 0, -360f), 1f, RotateMode.FastBeyond360).SetEase(Ease.Linear));
-        _rotateCircleSequence.OnComplete(() =>
-        {
-            _rotateCircle.transform.transform.localRotation = Quaternion.identity;
-        });
-        _rotateCircleSequence.SetRecyclable(true);
-        _rotateCircleSequence.SetAutoKill(false);
-        _rotateCircleSequence.SetLoops(-1);
-        _rotateCircleSequence.Pause();
-
-        _rotateCircle.gameObject.SetActive(false);
-        _backgroundCircle.gameObject.SetActive(false);
 
         //가속 버튼 활성화
         _button.onClick.RemoveAllListeners();
@@ -138,9 +110,7 @@ public class AccelerationButton : MonoBehaviour
         //가속 버튼 비활성화
         _isButtonEnable = false;
         this.gameObject.SetActive(false);
-        _rotateCircle.gameObject.SetActive(false);
-        _backgroundCircle.gameObject.SetActive(false);
-        _rotateCircleSequence.Pause();
+
     }
 
 

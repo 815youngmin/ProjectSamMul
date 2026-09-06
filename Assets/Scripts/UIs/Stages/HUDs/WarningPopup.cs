@@ -27,7 +27,7 @@ public class WarningPopup : MonoBehaviour
     [SerializeField] private Image _leftBackground;
     [SerializeField] private Image _rightBackground;
 
-    [SerializeField] private SkeletonGraphic _warningBoss;
+    [SerializeField] private Image _warningBoss;
     [SerializeField] private TextMeshProUGUI _warningBossText;
     [SerializeField] private TextMeshProUGUI _warningRushText;
     [SerializeField] private TextMeshProUGUI _warningStageEffectText;
@@ -143,9 +143,6 @@ public class WarningPopup : MonoBehaviour
                     _warningLineUpImage.gameObject.SetActive(false);
                     _warningLineDownImage.gameObject.SetActive(true);
                     _warningBoss.gameObject.SetActive(true);
-                    _warningBoss.AnimationState.ClearTracks();
-                    _warningBoss.AnimationState.SetAnimation(0, "boss", true);
-
                     _warningBossText.gameObject.SetActive(true);
                     _warningRushText.gameObject.SetActive(false);
                     _warningStageEffectText.gameObject.SetActive(false);
