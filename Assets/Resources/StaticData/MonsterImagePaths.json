@@ -1,42 +1,42 @@
 [
   {
     "CharacterType": "Egypt_BossAnubisMask",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter03/Boss_06.png"
   },
   {
     "CharacterType": "Egypt_BossPharaoh",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter03/Boss_05.png"
   },
   {
     "CharacterType": "Egypt_BossRa",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter03/Boss_06.png"
   },
   {
     "CharacterType": "Egypt_BossSnakeDruidProjectileType",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter03/Boss_05.png"
   },
   {
     "CharacterType": "IceAge_BossDireWolfChief",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter02/Boss_04.png"
   },
   {
     "CharacterType": "IceAge_BossIceGolem",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter02/Boss_03.png"
   },
   {
     "CharacterType": "IceAge_BossThreeLeapsBug",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter02/Boss_04.png"
   },
   {
     "CharacterType": "Primitive_BossLava",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter01/Boss_02.png"
   },
   {
     "CharacterType": "Primitive_BossMammothChief",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter01/Boss_01.png"
   },
   {
     "CharacterType": "Primitive_BossTriceratops",
-    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+    "IllustImagePath": "Stage/Chapter01/Boss_02.png"
   }
 ]

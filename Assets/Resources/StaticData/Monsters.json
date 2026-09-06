@@ -99,7 +99,7 @@
     "MonsterType": "Egypt_BossAnubisMask",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSANUBISMASK_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Egypt/Egypt_BossAnubisMask_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_06/Boss_06.controller",
     "ColliderRadius": 2.2,
     "HitBoxSize": [
       2.2,
@@ -131,7 +131,7 @@
     "MonsterType": "Egypt_BossPharaoh",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSPHARAOH_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Egypt/Egypt_BossPharaoh_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_05/Boss_05.controller",
     "ColliderRadius": 1.8,
     "HitBoxSize": [
       2.5,
@@ -163,7 +163,7 @@
     "MonsterType": "Egypt_BossRa",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSRA_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Egypt/Egypt_BossRa_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_06/Boss_06.controller",
     "ColliderRadius": 1.5,
     "HitBoxSize": [
       2.8,
@@ -195,7 +195,7 @@
     "MonsterType": "Egypt_BossSnakeDruidProjectileType",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSSNAKEDRUIDPROJECTILETYPE_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Egypt/Egypt_SnakeDruid_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_05/Boss_05.controller",
     "ColliderRadius": 1.2,
     "HitBoxSize": [
       1.2,
@@ -483,7 +483,7 @@
     "MonsterType": "IceAge_BossDireWolfChief",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSDIREWOLFCHIEF_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Iceage/iceage_BossDireWolfChief_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_04/Boss_04.controller",
     "ColliderRadius": 2.0,
     "HitBoxSize": [
       4.2,
@@ -515,7 +515,7 @@
     "MonsterType": "IceAge_BossIceGolem",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSICEGOLEM_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Iceage/IceAge_BossGiantIceGolem_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_03/Boss_03.controller",
     "ColliderRadius": 2.0,
     "HitBoxSize": [
       14.0,
@@ -547,7 +547,7 @@
     "MonsterType": "IceAge_BossThreeLeapsBug",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSTHREELEAPSBUG_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Iceage/IceAge_BossThreeLeapsBug_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_04/Boss_04.controller",
     "ColliderRadius": 2.0,
     "HitBoxSize": [
       6.0,
@@ -931,7 +931,7 @@
     "MonsterType": "Primitive_BossLava",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSLAVA_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Primitive/boss_magma_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_02/Boss_02.controller",
     "ColliderRadius": 1.1,
     "HitBoxSize": [
       4.0,
@@ -963,7 +963,7 @@
     "MonsterType": "Primitive_BossMammothChief",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSMAMMOTHCHIEF_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Primitive/Primitve_BossMammothChief_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_01/Boss_01.controller",
     "ColliderRadius": 1.2,
     "HitBoxSize": [
       4.0,
@@ -995,7 +995,7 @@
     "MonsterType": "Primitive_BossTriceratops",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSTRICERATOPS_NAME",
-    "SkeletonDataPath": "Stages/Characters/SpineSkeletons/Primitive/boss_kingtriceratops_SkeletonData.asset",
+    "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_02/Boss_02.controller",
     "ColliderRadius": 1.1,
     "HitBoxSize": [
       5.2,
