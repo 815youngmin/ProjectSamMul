@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3d0f5ee8bde582d408c786bb2898174d
+guid: ce455ce8c9bc98048b782ade3875906d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,106 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: SkillIcon_04_0
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 540
-        width: 400
-        height: 392
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9b81149b9a9089f4696ef4ae77e28ab3
-      internalID: -6756683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkillIcon_04_1
-      rect:
-        serializedVersion: 2
-        x: 527
-        y: 515
-        width: 438
-        height: 423
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2be59f2de9ac9e449935693467dfdead
-      internalID: -1636554865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkillIcon_04_2
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 51
-        width: 426
-        height: 420
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 55dbe4890d7901f409d91bd94492e2be
-      internalID: -2019951427
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkillIcon_04_3
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 51
-        width: 414
-        height: 411
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a752694dc1de38144812b740e250bc77
-      internalID: -1599931004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 29c6156969037054fa1a612fdab1ba9e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      SkillIcon_04_0: -6756683
-      SkillIcon_04_1: -1636554865
-      SkillIcon_04_2: -2019951427
-      SkillIcon_04_3: -1599931004
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

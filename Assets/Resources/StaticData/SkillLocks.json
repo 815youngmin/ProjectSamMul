@@ -1,31 +1,54 @@
 [
-  { "SkillId": "SpinBlade", "RequiredChapter": 0 },
-  { "SkillId": "Glutton", "RequiredChapter": 0 },
-  { "SkillId": "PlasmaDrill", "RequiredChapter": 0 },
-  { "SkillId": "AmbushMonster", "RequiredChapter": 0 },
-  { "SkillId": "DeathTouch", "RequiredChapter": 0 },
-  { "SkillId": "RuneTrap", "RequiredChapter": 0 },
-  { "SkillId": "DefensiveField", "RequiredChapter": 0 },
-  { "SkillId": "RangeUp", "RequiredChapter": 0 },
-  { "SkillId": "DurationUp", "RequiredChapter": 0 },
-  { "SkillId": "AcquisitionDistanceUp", "RequiredChapter": 0 },
-  { "SkillId": "ProjectileSpeedUp", "RequiredChapter": 0 },
-  { "SkillId": "AttackSpeedUp", "RequiredChapter": 0 },
-  { "SkillId": "GoldAmountUp", "RequiredChapter": 0 },
-  { "SkillId": "HealOverTime", "RequiredChapter": 0 },
-  { "SkillId": "ExpUp", "RequiredChapter": 0 },
-  { "SkillId": "IncommingDamageDown", "RequiredChapter": 0 },
-  { "SkillId": "ShockBomb", "RequiredChapter": 0 },
-  { "SkillId": "BouncingClaw", "RequiredChapter": 0 },
-  { "SkillId": "ShootingStar", "RequiredChapter": 0 },
-  { "SkillId": "MoveSpeedUp", "RequiredChapter": 0 },
-  { "SkillId": "MaxHPUp", "RequiredChapter": 0 },
-  { "SkillId": "DamageUp", "RequiredChapter": 0 },
-  { "SkillId": "Tornado", "RequiredChapter": 0 },
-  { "SkillId": "DodgeRateUp", "RequiredChapter": 0 },
-  { "SkillId": "ChargeHPBufferOverTime", "RequiredChapter": 0 },
-  { "SkillId": "Meteor", "RequiredChapter": 0 },
-  { "SkillId": "SpaceShip", "RequiredChapter": 0 },
-  { "SkillId": "LandWhale", "RequiredChapter": 0 },
-  { "SkillId": "BossDamageUp", "RequiredChapter": 0 }
+  {
+    "SkillId": "SpinBlade",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "Glutton",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "PlasmaDrill",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "DeathTouch",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "RangeUp",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "AttackSpeedUp",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "ShockBomb",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "BouncingClaw",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "ShootingStar",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "MoveSpeedUp",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "MaxHPUp",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "DamageUp",
+    "RequiredChapter": 0
+  },
+  {
+    "SkillId": "Meteor",
+    "RequiredChapter": 0
+  }
 ]

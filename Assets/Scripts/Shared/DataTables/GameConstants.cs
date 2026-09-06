@@ -21,12 +21,9 @@ namespace Shared.DataTables
         /// <summary>Every skill a hero can draw from in a stage, before chapter locks are applied.</summary>
         public static readonly IReadOnlyList<SkillId> SKILLDECK_DEFAULT_SEASON_SKILLDECK = new List<SkillId>
         {
-            SkillId.SpinBlade, SkillId.Glutton, SkillId.PlasmaDrill, SkillId.AmbushMonster, SkillId.DeathTouch,
-            SkillId.RuneTrap, SkillId.DefensiveField, SkillId.RangeUp, SkillId.DurationUp, SkillId.AcquisitionDistanceUp,
-            SkillId.ProjectileSpeedUp, SkillId.AttackSpeedUp, SkillId.GoldAmountUp, SkillId.HealOverTime, SkillId.ExpUp,
-            SkillId.IncommingDamageDown, SkillId.ShockBomb, SkillId.BouncingClaw, SkillId.ShootingStar, SkillId.MoveSpeedUp,
-            SkillId.MaxHPUp, SkillId.DamageUp, SkillId.Tornado, SkillId.DodgeRateUp, SkillId.ChargeHPBufferOverTime,
-            SkillId.Meteor, SkillId.SpaceShip, SkillId.LandWhale, SkillId.BossDamageUp,
+            SkillId.SpinBlade, SkillId.Glutton, SkillId.PlasmaDrill, SkillId.DeathTouch, SkillId.RangeUp,
+            SkillId.AttackSpeedUp, SkillId.ShockBomb, SkillId.BouncingClaw, SkillId.ShootingStar, SkillId.MoveSpeedUp,
+            SkillId.MaxHPUp, SkillId.DamageUp, SkillId.Meteor,
         };
 
         public static readonly IReadOnlyList<EquipmentSlot> VALID_EQUIPMENT_SLOTS = new List<EquipmentSlot>
