@@ -2,225 +2,177 @@
   {
     "Rarity": "Common",
     "Grade": "D",
-    "AttackPowerDefaultValue": 50.0,
-    "AttackPowerIncrementalValue": 2.0,
-    "MaxHpDefaultValue": 1000.0,
-    "MaxHpIncrementalValue": 40.0
+    "AttackPowerDefaultValue": 18,
+    "AttackPowerIncrementalValue": 2,
+    "MaxHpDefaultValue": 90,
+    "MaxHpIncrementalValue": 10
   },
   {
     "Rarity": "Common",
     "Grade": "C",
-    "AttackPowerDefaultValue": 60.0,
-    "AttackPowerIncrementalValue": 2.4,
-    "MaxHpDefaultValue": 1200.0,
-    "MaxHpIncrementalValue": 48.0
+    "AttackPowerDefaultValue": 36,
+    "AttackPowerIncrementalValue": 4,
+    "MaxHpDefaultValue": 135,
+    "MaxHpIncrementalValue": 15
   },
   {
     "Rarity": "Common",
     "Grade": "B",
-    "AttackPowerDefaultValue": 72.5,
-    "AttackPowerIncrementalValue": 2.9,
-    "MaxHpDefaultValue": 1450.0,
-    "MaxHpIncrementalValue": 58.0
+    "AttackPowerDefaultValue": 54,
+    "AttackPowerIncrementalValue": 6,
+    "MaxHpDefaultValue": 180,
+    "MaxHpIncrementalValue": 20
   },
   {
     "Rarity": "Common",
     "Grade": "A",
-    "AttackPowerDefaultValue": 87.5,
-    "AttackPowerIncrementalValue": 3.5,
-    "MaxHpDefaultValue": 1750.0,
-    "MaxHpIncrementalValue": 70.0
+    "AttackPowerDefaultValue": 72,
+    "AttackPowerIncrementalValue": 8,
+    "MaxHpDefaultValue": 225,
+    "MaxHpIncrementalValue": 25
   },
   {
     "Rarity": "Common",
     "Grade": "A1",
-    "AttackPowerDefaultValue": 95.0,
-    "AttackPowerIncrementalValue": 3.8,
-    "MaxHpDefaultValue": 1900.0,
-    "MaxHpIncrementalValue": 76.0
+    "AttackPowerDefaultValue": 90,
+    "AttackPowerIncrementalValue": 10,
+    "MaxHpDefaultValue": 270,
+    "MaxHpIncrementalValue": 30
   },
   {
     "Rarity": "Common",
     "Grade": "A2",
-    "AttackPowerDefaultValue": 102.5,
-    "AttackPowerIncrementalValue": 4.1,
-    "MaxHpDefaultValue": 2050.0,
-    "MaxHpIncrementalValue": 82.0
+    "AttackPowerDefaultValue": 108,
+    "AttackPowerIncrementalValue": 12,
+    "MaxHpDefaultValue": 315,
+    "MaxHpIncrementalValue": 35
   },
   {
     "Rarity": "Common",
     "Grade": "S",
-    "AttackPowerDefaultValue": 120.0,
-    "AttackPowerIncrementalValue": 4.8,
-    "MaxHpDefaultValue": 2400.0,
-    "MaxHpIncrementalValue": 96.0
+    "AttackPowerDefaultValue": 126,
+    "AttackPowerIncrementalValue": 14,
+    "MaxHpDefaultValue": 360,
+    "MaxHpIncrementalValue": 40
   },
   {
     "Rarity": "Common",
     "Grade": "S1",
-    "AttackPowerDefaultValue": 130.0,
-    "AttackPowerIncrementalValue": 5.2,
-    "MaxHpDefaultValue": 2600.0,
-    "MaxHpIncrementalValue": 104.0
+    "AttackPowerDefaultValue": 144,
+    "AttackPowerIncrementalValue": 16,
+    "MaxHpDefaultValue": 405,
+    "MaxHpIncrementalValue": 45
   },
   {
     "Rarity": "Common",
     "Grade": "S2",
-    "AttackPowerDefaultValue": 140.0,
-    "AttackPowerIncrementalValue": 5.6,
-    "MaxHpDefaultValue": 2800.0,
-    "MaxHpIncrementalValue": 112.0
+    "AttackPowerDefaultValue": 162,
+    "AttackPowerIncrementalValue": 18,
+    "MaxHpDefaultValue": 450,
+    "MaxHpIncrementalValue": 50
   },
   {
     "Rarity": "Common",
     "Grade": "S3",
-    "AttackPowerDefaultValue": 150.0,
-    "AttackPowerIncrementalValue": 6.0,
-    "MaxHpDefaultValue": 3000.0,
-    "MaxHpIncrementalValue": 120.0
+    "AttackPowerDefaultValue": 180,
+    "AttackPowerIncrementalValue": 20,
+    "MaxHpDefaultValue": 495,
+    "MaxHpIncrementalValue": 55
   },
   {
     "Rarity": "Common",
     "Grade": "SS",
-    "AttackPowerDefaultValue": 175.0,
-    "AttackPowerIncrementalValue": 7.0,
-    "MaxHpDefaultValue": 3500.0,
-    "MaxHpIncrementalValue": 140.0
-  },
-  {
-    "Rarity": "Common",
-    "Grade": "SS1",
-    "AttackPowerDefaultValue": 185.0,
-    "AttackPowerIncrementalValue": 7.4,
-    "MaxHpDefaultValue": 3700.0,
-    "MaxHpIncrementalValue": 148.0
-  },
-  {
-    "Rarity": "Common",
-    "Grade": "SS2",
-    "AttackPowerDefaultValue": 195.0,
-    "AttackPowerIncrementalValue": 7.8,
-    "MaxHpDefaultValue": 3900.0,
-    "MaxHpIncrementalValue": 156.0
-  },
-  {
-    "Rarity": "Common",
-    "Grade": "SS3",
-    "AttackPowerDefaultValue": 205.0,
-    "AttackPowerIncrementalValue": 8.2,
-    "MaxHpDefaultValue": 4100.0,
-    "MaxHpIncrementalValue": 164.0
+    "AttackPowerDefaultValue": 198,
+    "AttackPowerIncrementalValue": 22,
+    "MaxHpDefaultValue": 540,
+    "MaxHpIncrementalValue": 60
   },
   {
     "Rarity": "Special",
     "Grade": "D",
-    "AttackPowerDefaultValue": 60.0,
-    "AttackPowerIncrementalValue": 2.4,
-    "MaxHpDefaultValue": 1200.0,
-    "MaxHpIncrementalValue": 48.0
+    "AttackPowerDefaultValue": 28,
+    "AttackPowerIncrementalValue": 2,
+    "MaxHpDefaultValue": 140,
+    "MaxHpIncrementalValue": 10
   },
   {
     "Rarity": "Special",
     "Grade": "C",
-    "AttackPowerDefaultValue": 72.0,
-    "AttackPowerIncrementalValue": 2.88,
-    "MaxHpDefaultValue": 1440.0,
-    "MaxHpIncrementalValue": 57.6
+    "AttackPowerDefaultValue": 56,
+    "AttackPowerIncrementalValue": 4,
+    "MaxHpDefaultValue": 210,
+    "MaxHpIncrementalValue": 15
   },
   {
     "Rarity": "Special",
     "Grade": "B",
-    "AttackPowerDefaultValue": 87.0,
-    "AttackPowerIncrementalValue": 3.48,
-    "MaxHpDefaultValue": 1740.0,
-    "MaxHpIncrementalValue": 69.6
+    "AttackPowerDefaultValue": 84,
+    "AttackPowerIncrementalValue": 6,
+    "MaxHpDefaultValue": 280,
+    "MaxHpIncrementalValue": 20
   },
   {
     "Rarity": "Special",
     "Grade": "A",
-    "AttackPowerDefaultValue": 105.0,
-    "AttackPowerIncrementalValue": 4.2,
-    "MaxHpDefaultValue": 2100.0,
-    "MaxHpIncrementalValue": 84.0
+    "AttackPowerDefaultValue": 112,
+    "AttackPowerIncrementalValue": 8,
+    "MaxHpDefaultValue": 350,
+    "MaxHpIncrementalValue": 25
   },
   {
     "Rarity": "Special",
     "Grade": "A1",
-    "AttackPowerDefaultValue": 114.0,
-    "AttackPowerIncrementalValue": 4.56,
-    "MaxHpDefaultValue": 2280.0,
-    "MaxHpIncrementalValue": 91.2
+    "AttackPowerDefaultValue": 140,
+    "AttackPowerIncrementalValue": 10,
+    "MaxHpDefaultValue": 420,
+    "MaxHpIncrementalValue": 30
   },
   {
     "Rarity": "Special",
     "Grade": "A2",
-    "AttackPowerDefaultValue": 123.0,
-    "AttackPowerIncrementalValue": 4.92,
-    "MaxHpDefaultValue": 2460.0,
-    "MaxHpIncrementalValue": 98.4
+    "AttackPowerDefaultValue": 168,
+    "AttackPowerIncrementalValue": 12,
+    "MaxHpDefaultValue": 490,
+    "MaxHpIncrementalValue": 35
   },
   {
     "Rarity": "Special",
     "Grade": "S",
-    "AttackPowerDefaultValue": 144.0,
-    "AttackPowerIncrementalValue": 5.76,
-    "MaxHpDefaultValue": 2880.0,
-    "MaxHpIncrementalValue": 115.2
+    "AttackPowerDefaultValue": 196,
+    "AttackPowerIncrementalValue": 14,
+    "MaxHpDefaultValue": 560,
+    "MaxHpIncrementalValue": 40
   },
   {
     "Rarity": "Special",
     "Grade": "S1",
-    "AttackPowerDefaultValue": 156.0,
-    "AttackPowerIncrementalValue": 6.24,
-    "MaxHpDefaultValue": 3120.0,
-    "MaxHpIncrementalValue": 124.8
+    "AttackPowerDefaultValue": 224,
+    "AttackPowerIncrementalValue": 16,
+    "MaxHpDefaultValue": 630,
+    "MaxHpIncrementalValue": 45
   },
   {
     "Rarity": "Special",
     "Grade": "S2",
-    "AttackPowerDefaultValue": 168.0,
-    "AttackPowerIncrementalValue": 6.72,
-    "MaxHpDefaultValue": 3360.0,
-    "MaxHpIncrementalValue": 134.4
+    "AttackPowerDefaultValue": 252,
+    "AttackPowerIncrementalValue": 18,
+    "MaxHpDefaultValue": 700,
+    "MaxHpIncrementalValue": 50
   },
   {
     "Rarity": "Special",
     "Grade": "S3",
-    "AttackPowerDefaultValue": 180.0,
-    "AttackPowerIncrementalValue": 7.2,
-    "MaxHpDefaultValue": 3600.0,
-    "MaxHpIncrementalValue": 144.0
+    "AttackPowerDefaultValue": 280,
+    "AttackPowerIncrementalValue": 20,
+    "MaxHpDefaultValue": 770,
+    "MaxHpIncrementalValue": 55
   },
   {
     "Rarity": "Special",
     "Grade": "SS",
-    "AttackPowerDefaultValue": 210.0,
-    "AttackPowerIncrementalValue": 8.4,
-    "MaxHpDefaultValue": 4200.0,
-    "MaxHpIncrementalValue": 168.0
-  },
-  {
-    "Rarity": "Special",
-    "Grade": "SS1",
-    "AttackPowerDefaultValue": 222.0,
-    "AttackPowerIncrementalValue": 8.88,
-    "MaxHpDefaultValue": 4440.0,
-    "MaxHpIncrementalValue": 177.6
-  },
-  {
-    "Rarity": "Special",
-    "Grade": "SS2",
-    "AttackPowerDefaultValue": 234.0,
-    "AttackPowerIncrementalValue": 9.36,
-    "MaxHpDefaultValue": 4680.0,
-    "MaxHpIncrementalValue": 187.2
-  },
-  {
-    "Rarity": "Special",
-    "Grade": "SS3",
-    "AttackPowerDefaultValue": 246.0,
-    "AttackPowerIncrementalValue": 9.84,
-    "MaxHpDefaultValue": 4920.0,
-    "MaxHpIncrementalValue": 196.8
+    "AttackPowerDefaultValue": 308,
+    "AttackPowerIncrementalValue": 22,
+    "MaxHpDefaultValue": 840,
+    "MaxHpIncrementalValue": 60
   }
 ]
