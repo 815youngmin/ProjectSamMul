@@ -20,12 +20,12 @@
     "MoveSpeed": 4.0
   },
   {
-    "HeroType": "Gum",
-    "HeroNameKey": "HERO_GUM_NAME",
+    "HeroType": "Dice",
+    "HeroNameKey": "HERO_DICE_NAME",
     "Rarity": "Common",
     "ElementType": "Earth",
-    "BasicSkill": "BubbleGum",
-    "SkeletonDataPath": "Stages/Characters/PCs/Gum/Gum.asset",
+    "BasicSkill": "SpaceCoin",
+    "SkeletonDataPath": "PlaerCharacter/Dice/Dice.controller",
     "ColliderRadius": 0.5,
     "HitBoxSize": [
       1.0,

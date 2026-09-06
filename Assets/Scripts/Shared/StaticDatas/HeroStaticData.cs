@@ -102,9 +102,6 @@ namespace Shared.StaticDatas
     {
         public HeroType HeroType { get; set; }
         public string DatachipIconPath { get; set; } = "";
-        public string SkillSelectorTitleStickerGroupPath { get; set; } = "";
-        public string stageExpHudPath { get; set; } = "";
-        public List<string> SkillSelectorBackParticleImagePaths { get; set; } = new List<string>();
     }
 
     public class CharacterImagePathStaticDataRepository

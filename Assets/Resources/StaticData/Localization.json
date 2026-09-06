@@ -51,7 +51,6 @@
     "CHAPTER_2_NAME": "빙하기",
     "CHAPTER_3_NAME": "미라의 무덤",
     "HERO_TENTI_NAME": "텐티",
-    "HERO_GUM_NAME": "껌",
     "HERO_IGNATIA_NAME": "이그나티아",
     "SKILL_GLUTTON_NAME": "먹보",
     "SKILL_GLUTTON_DESC": "적을 삼키는 입을 소환합니다.",
@@ -183,7 +182,8 @@
     "MONSTER_EGYPT_BOSSSNAKEDRUIDPROJECTILETYPE_NAME": "뱀 주술사",
     "MONSTER_EGYPT_BOSSPHARAOH_NAME": "파라오",
     "MONSTER_EGYPT_BOSSANUBISMASK_NAME": "아누비스",
-    "MONSTER_EGYPT_BOSSRA_NAME": "라"
+    "MONSTER_EGYPT_BOSSRA_NAME": "라",
+    "HERO_DICE_NAME": "다이스"
   },
   "English": {
     "UI_CANCEL": "Cancel",
@@ -237,7 +237,6 @@
     "CHAPTER_2_NAME": "Ice Age",
     "CHAPTER_3_NAME": "Mummy's Lair",
     "HERO_TENTI_NAME": "Tenti",
-    "HERO_GUM_NAME": "Gum",
     "HERO_IGNATIA_NAME": "Ignatia",
     "SKILL_GLUTTON_NAME": "Glutton",
     "SKILL_GLUTTON_DESC": "Summons hungry mouths that bite enemies.",
@@ -369,6 +368,7 @@
     "MONSTER_EGYPT_BOSSSNAKEDRUIDPROJECTILETYPE_NAME": "Snake Druid",
     "MONSTER_EGYPT_BOSSPHARAOH_NAME": "Pharaoh",
     "MONSTER_EGYPT_BOSSANUBISMASK_NAME": "Anubis",
-    "MONSTER_EGYPT_BOSSRA_NAME": "Ra"
+    "MONSTER_EGYPT_BOSSRA_NAME": "Ra",
+    "HERO_DICE_NAME": "Dice"
   }
 }
