@@ -3,10 +3,16 @@
     "MonsterType": "Western_ShovelMiner",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_WESTERN_SHOVELMINER_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Western/Western_ShovelMiner.asset",
+    "SkeletonDataPath": "Stage/Chapter01/MonsterAnimation/Monster01/Chapter01_Monster_01_0.controller",
     "ColliderRadius": 0.45,
-    "HitBoxSize": [0.9, 1.2],
-    "HitBoxOffset": [0.0, 0.6],
+    "HitBoxSize": [
+      0.9,
+      1.2
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.6
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.0,
     "MaxHP": 60,
@@ -29,10 +35,16 @@
     "MonsterType": "Western_EliteGunslingerRider",
     "AIType": "EliteRangeAttackAI",
     "MonsterNameKey": "MONSTER_WESTERN_ELITEGUNSLINGERRIDER_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Western/Western_EliteGunslingerRider.asset",
+    "SkeletonDataPath": "Stage/Chapter01/MonsterAnimation/Monster02/Chapter01_Monster_01_1.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.5],
-    "HitBoxOffset": [0.0, 0.75],
+    "HitBoxSize": [
+      1.2,
+      1.5
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.75
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 800,
@@ -45,7 +57,7 @@
     "SpecialAttack1DamageRate": 1.0,
     "SpecialAttack1AttackSpeed": 0.8,
     "SpecialAttack1EffectiveRange": 8.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Western/GunslingerBullet.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Rock.prefab",
     "SpawnMonsterType": "None",
     "Param1": 5,
     "Param2": 15,
@@ -55,10 +67,16 @@
     "MonsterType": "Western_EliteGunslingerRider_B",
     "AIType": "DashAttackAI",
     "MonsterNameKey": "MONSTER_WESTERN_ELITEGUNSLINGERRIDER_B_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Western/Western_EliteGunslingerRider_B.asset",
+    "SkeletonDataPath": "Stage/Chapter01/MonsterAnimation/Monster03/Chapter01_Monster_01_2.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.5],
-    "HitBoxOffset": [0.0, 0.75],
+    "HitBoxSize": [
+      1.2,
+      1.5
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.75
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 700,
@@ -83,8 +101,14 @@
     "MonsterNameKey": "MONSTER_WESTERN_BOSS_WYATTEARP_NAME",
     "SkeletonDataPath": "Stages/Characters/Monsters/Western/Western_Boss_WyattEarp.asset",
     "ColliderRadius": 1.2,
-    "HitBoxSize": [2.4, 3.0],
-    "HitBoxOffset": [0.0, 1.5],
+    "HitBoxSize": [
+      2.4,
+      3.0
+    ],
+    "HitBoxOffset": [
+      0.0,
+      1.5
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 2.5,
     "MaxHP": 20000,
@@ -97,7 +121,7 @@
     "SpecialAttack1DamageRate": 1.2,
     "SpecialAttack1AttackSpeed": 1.0,
     "SpecialAttack1EffectiveRange": 10.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Western/WyattEarpBullet.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Rock.prefab",
     "SpawnMonsterType": "None",
     "Param1": 0,
     "Param2": 0,
@@ -107,10 +131,16 @@
     "MonsterType": "Steampunk_Engineer",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_STEAMPUNK_ENGINEER_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Steampunk/Steampunk_Engineer.asset",
+    "SkeletonDataPath": "Stage/Chapter02/MonsterAnimation/Monster01/Chapter02_Monster_01_0.controller",
     "ColliderRadius": 0.45,
-    "HitBoxSize": [0.9, 1.2],
-    "HitBoxOffset": [0.0, 0.6],
+    "HitBoxSize": [
+      0.9,
+      1.2
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.6
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.0,
     "MaxHP": 90,
@@ -133,10 +163,16 @@
     "MonsterType": "Steampunk_Alchemist",
     "AIType": "RangeAttackAI",
     "MonsterNameKey": "MONSTER_STEAMPUNK_ALCHEMIST_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Steampunk/Steampunk_Alchemist.asset",
+    "SkeletonDataPath": "Stage/Chapter02/MonsterAnimation/Monster02/Chapter02_Monster_01_1.controller",
     "ColliderRadius": 0.45,
-    "HitBoxSize": [0.9, 1.2],
-    "HitBoxOffset": [0.0, 0.6],
+    "HitBoxSize": [
+      0.9,
+      1.2
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.6
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.0,
     "MaxHP": 70,
@@ -149,7 +185,7 @@
     "SpecialAttack1DamageRate": 1.0,
     "SpecialAttack1AttackSpeed": 0.7,
     "SpecialAttack1EffectiveRange": 7.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Steampunk/AlchemistFlask.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Slime.prefab",
     "SpawnMonsterType": "None",
     "Param1": 0,
     "Param2": 0,
@@ -159,10 +195,16 @@
     "MonsterType": "Steampunk_EliteSaintGermain",
     "AIType": "EliteRangeAttackAI",
     "MonsterNameKey": "MONSTER_STEAMPUNK_ELITESAINTGERMAIN_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Steampunk/Steampunk_EliteSaintGermain.asset",
+    "SkeletonDataPath": "Stage/Chapter02/MonsterAnimation/Monster03/Chapter02_Monster_01_2.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.5],
-    "HitBoxOffset": [0.0, 0.75],
+    "HitBoxSize": [
+      1.2,
+      1.5
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.75
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 1200,
@@ -175,7 +217,7 @@
     "SpecialAttack1DamageRate": 1.0,
     "SpecialAttack1AttackSpeed": 0.8,
     "SpecialAttack1EffectiveRange": 8.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Steampunk/SaintGermainOrb.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Orb.prefab",
     "SpawnMonsterType": "None",
     "Param1": 6,
     "Param2": 12,
@@ -185,10 +227,16 @@
     "MonsterType": "Steampunk_EliteTeslaCoil",
     "AIType": "MultipleVerticalRangeAttackAI",
     "MonsterNameKey": "MONSTER_STEAMPUNK_ELITETESLACOIL_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Steampunk/Steampunk_EliteTeslaCoil.asset",
+    "SkeletonDataPath": "Stage/Chapter02/MonsterAnimation/Monster04/Chapter02_Monster_01_3.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.6],
-    "HitBoxOffset": [0.0, 0.8],
+    "HitBoxSize": [
+      1.2,
+      1.6
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.8
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 1100,
@@ -201,7 +249,7 @@
     "SpecialAttack1DamageRate": 1.0,
     "SpecialAttack1AttackSpeed": 0.7,
     "SpecialAttack1EffectiveRange": 8.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Steampunk/TeslaBolt.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Fireball.prefab",
     "SpawnMonsterType": "None",
     "Param1": 4,
     "Param2": 0.15,
@@ -213,8 +261,14 @@
     "MonsterNameKey": "MONSTER_STEAMPUNK_BOSS_BATTLEGOLEM_NAME",
     "SkeletonDataPath": "Stages/Characters/Monsters/Steampunk/Steampunk_EliteClockworkGolem.asset",
     "ColliderRadius": 1.3,
-    "HitBoxSize": [2.6, 3.2],
-    "HitBoxOffset": [0.0, 1.6],
+    "HitBoxSize": [
+      2.6,
+      3.2
+    ],
+    "HitBoxOffset": [
+      0.0,
+      1.6
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 2.6,
     "MaxHP": 22000,
@@ -227,7 +281,7 @@
     "SpecialAttack1DamageRate": 1.3,
     "SpecialAttack1AttackSpeed": 1.0,
     "SpecialAttack1EffectiveRange": 10.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Steampunk/GolemBoomerang.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Rock.prefab",
     "SpawnMonsterType": "None",
     "Param1": 0,
     "Param2": 0,
@@ -237,10 +291,16 @@
     "MonsterType": "Arabian_Warrior",
     "AIType": "MeleeAttackAI",
     "MonsterNameKey": "MONSTER_ARABIAN_WARRIOR_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Arabian/Arabian_Warrior.asset",
+    "SkeletonDataPath": "Stage/Chapter03/MonsterAnimation/Monster01/Chapter03_Monster_01_0.controller",
     "ColliderRadius": 0.45,
-    "HitBoxSize": [0.9, 1.2],
-    "HitBoxOffset": [0.0, 0.6],
+    "HitBoxSize": [
+      0.9,
+      1.2
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.6
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.0,
     "MaxHP": 120,
@@ -263,10 +323,16 @@
     "MonsterType": "Arabian_EliteMagician2",
     "AIType": "EliteRangeAttackAI",
     "MonsterNameKey": "MONSTER_ARABIAN_ELITEMAGICIAN2_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Arabian/Arabian_EliteMagician2.asset",
+    "SkeletonDataPath": "Stage/Chapter03/MonsterAnimation/Monster02/Chapter03_Monster_01_1.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.5],
-    "HitBoxOffset": [0.0, 0.75],
+    "HitBoxSize": [
+      1.2,
+      1.5
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.75
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 1600,
@@ -279,7 +345,7 @@
     "SpecialAttack1DamageRate": 1.1,
     "SpecialAttack1AttackSpeed": 0.8,
     "SpecialAttack1EffectiveRange": 8.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Arabian/MagicianFireball.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Fireball.prefab",
     "SpawnMonsterType": "None",
     "Param1": 7,
     "Param2": 12,
@@ -289,10 +355,16 @@
     "MonsterType": "Arabian_EliteGuardCaptain",
     "AIType": "DashAttackAI",
     "MonsterNameKey": "MONSTER_ARABIAN_ELITEGUARDCAPTAIN_NAME",
-    "SkeletonDataPath": "Stages/Characters/Monsters/Arabian/Arabian_EliteGuardCaptain.asset",
+    "SkeletonDataPath": "Stage/Chapter03/MonsterAnimation/Monster03/Chapter03_Monster_01_2.controller",
     "ColliderRadius": 0.6,
-    "HitBoxSize": [1.2, 1.5],
-    "HitBoxOffset": [0.0, 0.75],
+    "HitBoxSize": [
+      1.2,
+      1.5
+    ],
+    "HitBoxOffset": [
+      0.0,
+      0.75
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 1.3,
     "MaxHP": 1500,
@@ -317,8 +389,14 @@
     "MonsterNameKey": "MONSTER_ARABIAN_BOSS_ALIBABA_NAME",
     "SkeletonDataPath": "Stages/Characters/Monsters/Arabian/Arabian_EliteVeteranWarrior.asset",
     "ColliderRadius": 1.2,
-    "HitBoxSize": [2.4, 3.0],
-    "HitBoxOffset": [0.0, 1.5],
+    "HitBoxSize": [
+      2.4,
+      3.0
+    ],
+    "HitBoxOffset": [
+      0.0,
+      1.5
+    ],
     "BodyPixelYOffset": 0,
     "ShadowSize": 2.5,
     "MaxHP": 24000,
@@ -331,7 +409,7 @@
     "SpecialAttack1DamageRate": 1.3,
     "SpecialAttack1AttackSpeed": 1.0,
     "SpecialAttack1EffectiveRange": 10.0,
-    "SpecialAttack1ResourcePath": "Stages/Projectiles/Monsters/Arabian/AlibabaScimitar.prefab",
+    "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Rock.prefab",
     "SpawnMonsterType": "None",
     "Param1": 0,
     "Param2": 0,
