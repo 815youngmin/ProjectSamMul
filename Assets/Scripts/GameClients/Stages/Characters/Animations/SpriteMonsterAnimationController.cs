@@ -181,6 +181,9 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
         public override void SetToInitialState()
         {
+            // 사망 클립이 회전·스케일을 바꾼 채 끝나므로 풀에서 재사용할 때 원래대로 되돌린다.
+            _animator.transform.localRotation = Quaternion.identity;
+            _animator.transform.localScale = new Vector3(BodyLocalScale, BodyLocalScale, 1.0f);
             _activeBodyEffects.Clear();
             this.ClearBodyEffectShader();
         }

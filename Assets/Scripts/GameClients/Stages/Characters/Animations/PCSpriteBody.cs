@@ -53,6 +53,9 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
         public void ResetState()
         {
+            // 사망 클립이 회전·스케일을 바꾼 채 끝나므로 부활·재사용 시 원래대로 되돌린다.
+            this.transform.localRotation = Quaternion.identity;
+            this.transform.localScale = Vector3.one;
             _isDead = false;
             _overrideState = null;
             _baseState = string.Empty;
