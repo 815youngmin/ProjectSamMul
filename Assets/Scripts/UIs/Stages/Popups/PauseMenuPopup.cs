@@ -23,7 +23,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private Image _soundIconImage = null!;
         [SerializeField] private TextMeshProUGUI _playerCharacterLevelShadowText;
         [SerializeField] private TextMeshProUGUI _playerCharacterLevelText;
-        [SerializeField] private BanSkillGroup _banSkillGroup;
 
         [Header("일반 스테이지")]
         [SerializeField] private GameObject _forNormalStage;
@@ -107,7 +106,6 @@ namespace SamMul.UIs.Stages.Popups
         private void InitializeAcquiredSkillSlots(PlayerCharacter playerCharacter)
         {
             _forNormalStage.SetActive(true);
-            _banSkillGroup.gameObject.SetActive(true);
 
             int nextActiveSkillIndex = 0;
             int nextPassiveSkillIndex = 0;
@@ -139,17 +137,6 @@ namespace SamMul.UIs.Stages.Popups
             for (int i = nextPassiveSkillIndex; i < _passiveSkillIcons.Length; ++i)
             {
                 _passiveSkillIcons[i].gameObject.SetActive(false);
-            }
-
-            var banSkillIds = playerCharacter.GetBanSkillArray();
-            if(banSkillIds == null || banSkillIds.Length == 0)
-            {
-                _banSkillGroup.gameObject.SetActive(false);
-            }
-            else
-            {
-                _banSkillGroup.gameObject.SetActive(true);
-                _banSkillGroup.Initialize(banSkillIds);
             }
         }
 

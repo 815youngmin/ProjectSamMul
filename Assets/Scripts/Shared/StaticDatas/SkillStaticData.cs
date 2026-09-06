@@ -50,25 +50,14 @@ namespace Shared.StaticDatas
         public string SkillHitSFXPath { get; set; } = "";
     }
 
-    /// <summary>Chapter a skill becomes available at. Table "SkillLocks". Skills without a row are always available.</summary>
-    public class SkillLockStaticData
-    {
-        public SkillId SkillId { get; set; } = SkillId.Invalid;
-        public int RequiredChapter { get; set; }
-
-        public bool IsUnlocked(int clearedHighestChapter) => clearedHighestChapter >= RequiredChapter;
-    }
-
     public class SkillStaticDataRepository
     {
         private readonly Dictionary<SkillKey, SkillStaticData> _skills = new Dictionary<SkillKey, SkillStaticData>();
         private readonly Dictionary<SkillId, IReadOnlyList<SkillStaticData>> _skillsById = new Dictionary<SkillId, IReadOnlyList<SkillStaticData>>();
-        private readonly Dictionary<SkillId, SkillLockStaticData> _skillLocks = new Dictionary<SkillId, SkillLockStaticData>();
 
         public IReadOnlyDictionary<SkillKey, SkillStaticData> Skills => _skills;
-        public IReadOnlyDictionary<SkillId, SkillLockStaticData> SkillLockStaticDatas => _skillLocks;
 
-        public SkillStaticDataRepository(IReadOnlyList<SkillStaticData> rows, IReadOnlyList<SkillLockStaticData> locks, HeroStaticDataRepository heroes)
+        public SkillStaticDataRepository(IReadOnlyList<SkillStaticData> rows, HeroStaticDataRepository heroes)
         {
             var byId = new Dictionary<SkillId, List<SkillStaticData>>();
             foreach (var row in rows)
@@ -127,11 +116,6 @@ namespace Shared.StaticDatas
                     skill.TranscendTargets = targets;
                 }
             }
-
-            foreach (var skillLock in locks)
-            {
-                _skillLocks[skillLock.SkillId] = skillLock;
-            }
         }
 
         public SkillStaticData Get(SkillKey key)
@@ -140,19 +124,5 @@ namespace Shared.StaticDatas
         /// <summary>Every level of a skill, ordered by level.</summary>
         public IReadOnlyList<SkillStaticData> GetSkills(SkillId id)
             => _skillsById.TryGetValue(id, out var skills) ? skills : throw new StaticDataValidationError($"Skill {id} is not defined.");
-
-        /// <summary>The season deck minus the skills still locked for the given progress.</summary>
-        public IReadOnlyList<SkillId> GetUserSkillDeck(IReadOnlyList<SkillId> seasonSkillDeck, int clearedHighestChapter)
-        {
-            var deck = new List<SkillId>(seasonSkillDeck.Count);
-            foreach (var skillId in seasonSkillDeck)
-            {
-                if (!_skillLocks.TryGetValue(skillId, out var skillLock) || skillLock.IsUnlocked(clearedHighestChapter))
-                {
-                    deck.Add(skillId);
-                }
-            }
-            return deck;
-        }
     }
 }

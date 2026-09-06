@@ -247,7 +247,7 @@ namespace SamMul.Scenes
                 this.PauseResumeOnPopup();
             }, skipAnimation);
         }
-        public void AddSkillSelectorPopup(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills, SkillId[] banSkillIds)
+        public void AddSkillSelectorPopup(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills)
         {
             if (_skillSelectorPopup != null)
             {
@@ -256,7 +256,7 @@ namespace SamMul.Scenes
             }
 
             _skillSelectorPopup = this.CreateAndAddPopup<SkillSelectorPopup>(SkillSelectorPopup.PREFAB_PATH, playSound: true);
-            _skillSelectorPopup.InitializeForSkills(stage, owner, skillCandidates, acquiredSkills, banSkillIds, closeRequester: CloseSkillSelectorPopup);
+            _skillSelectorPopup.InitializeForSkills(stage, owner, skillCandidates, acquiredSkills, closeRequester: CloseSkillSelectorPopup);
             this.PauseResumeOnPopup();
         }
         public void CloseSkillSelectorPopup(bool skipAnimation)

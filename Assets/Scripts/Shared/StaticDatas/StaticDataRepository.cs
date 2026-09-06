@@ -54,7 +54,6 @@ namespace Shared.StaticDatas
             CharacterImagePaths = new CharacterImagePathStaticDataRepository(StaticDataTable.Load<CharacterImagePathStaticData>(reader, "CharacterImagePaths"));
             Skills = new SkillStaticDataRepository(
                 StaticDataTable.Load<SkillStaticData>(reader, "Skills"),
-                StaticDataTable.Load<SkillLockStaticData>(reader, "SkillLocks"),
                 Heroes);
             Equipments = new EquipmentStaticDataRepository(
                 StaticDataTable.Load<EquipmentStaticData>(reader, "Equipments"),

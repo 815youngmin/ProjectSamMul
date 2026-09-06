@@ -137,7 +137,7 @@ namespace SamMul.Scenes
 
                 stageSceneInitialData = StageSceneInitialData.CreateForMainChapter(
                     chapter,
-                    StaticDataRepository.Instance.Skills.GetUserSkillDeck(GameConstants.SKILLDECK_DEFAULT_SEASON_SKILLDECK, testChapterNumber),
+                    GameConstants.SKILLDECK_DEFAULT_SEASON_SKILLDECK,
                     tempHero,
                     equippedEquipments);
             }

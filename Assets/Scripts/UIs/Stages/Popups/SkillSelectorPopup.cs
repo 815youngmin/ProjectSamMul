@@ -36,7 +36,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private TextMeshProUGUI _selectSkilllText;
         [SerializeField] private TextMeshProUGUI _refeshButtonText;
 
-        [SerializeField] private BanSkillGroup _banSkillGroup;
 
         private List<SkillKey[]> _skillCandidates;
         private int _currentRefreshCount;
@@ -54,7 +53,7 @@ namespace SamMul.UIs.Stages.Popups
             _levelupText.text = Localizer.Instance.GetText("UI_SKILL_SELECT_LEVELUP");
         }
 
-        public void InitializeForSkills(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills, SkillId[] banSkillIds, Action<bool> closeRequester)
+        public void InitializeForSkills(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills, Action<bool> closeRequester)
         {
             this.Initialize(owner.StaticData.HeroType, owner.Level, closeRequester);
 
@@ -71,16 +70,6 @@ namespace SamMul.UIs.Stages.Popups
             else
             {
                 _skillRefreshButton.gameObject.SetActive(false);
-            }
-
-            if(banSkillIds == null || banSkillIds.Length == 0)
-            {
-                _banSkillGroup.gameObject.SetActive(false);
-            }
-            else
-            {
-                _banSkillGroup.gameObject.SetActive(true);
-                _banSkillGroup.Initialize(banSkillIds);
             }
 
             _skillRefreshButton.onClick.RemoveAllListeners();

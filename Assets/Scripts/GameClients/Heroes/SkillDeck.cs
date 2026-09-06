@@ -14,18 +14,15 @@ namespace SamMul.GameClients.Heroes
     public class SkillDeck
     {
         public string AvailableSkillDeck => string.Join(", ", _availableSkillDeck);
-        public string BannedSkillDeck => string.Join(", ", _bannedSkillDeck);
 
         private readonly List<SkillId> _availableSkillDeck;
-        private readonly List<SkillId> _bannedSkillDeck;
 
         public SkillDeck()
         {
             _availableSkillDeck = new List<SkillId>();
-            _bannedSkillDeck = new List<SkillId>();
         }
 
-        public void Initialize(HeroType heroType, IReadOnlyList<SkillId> userSkillDeck, int activeSkillCount, int passiveSkillCount)
+        public void Initialize(HeroType heroType, IReadOnlyList<SkillId> userSkillDeck)
         {
             // 액티브 스킬 정리.
             var activeSkills = userSkillDeck.Where(x => IsActiveSkill(x)).ToList();
@@ -42,13 +39,6 @@ namespace SamMul.GameClients.Heroes
                 activeSkills.Remove(heroBasicActiveSkill);
             }
             activeSkills.Add(heroBasicActiveSkill);
-
-            // 액티브 스킬의 개수가 요구된 개수보다 적은 경우 경고.
-            if (activeSkills.Count < activeSkillCount)
-            {
-                Log.I.Error($"유저 스킬 덱의 액티브 스킬 개수는 {activeSkills.Count}개인데 스킬덱 초기화 인수로 전달된 액티브 스킬 개수는 {activeSkillCount}개입니다. {activeSkills.Count}개로 줄여 로직을 진행합니다.");
-                activeSkillCount = activeSkills.Count;
-            }
 
             // 패시브 스킬 정리.
             var passiveSkills = userSkillDeck.Where(x => IsPassiveSkill(x)).ToList();
@@ -68,87 +58,12 @@ namespace SamMul.GameClients.Heroes
                 }
             }
 
-            // 패시브 스킬의 개수가 요구된 개수보다 적은 경우 경고.
-            if (passiveSkills.Count < passiveSkillCount)
-            {
-                Log.I.Error($"유저 스킬 덱의 패시브 스킬 개수는 {passiveSkills.Count}개인데 스킬덱 초기화 인수로 전달된 패시브 스킬 개수는 {passiveSkillCount}개입니다. {passiveSkills.Count}개로 줄여 로직을 진행합니다.");
-                passiveSkillCount = passiveSkills.Count;
-            }
+            // 밴되는 스킬 없이 덱의 모든 스킬을 사용할 수 있다.
+            _availableSkillDeck.Clear();
+            _availableSkillDeck.AddRange(activeSkills);
+            _availableSkillDeck.AddRange(passiveSkills);
 
-            // 액티브 스킬, 패시브 스킬의 개수로 입력된 값이 모두 0보다 작으면 모든 스킬을 포함한다.
-            if (activeSkillCount < 0 && passiveSkillCount < 0)
-            {
-                _availableSkillDeck.Clear();
-                _availableSkillDeck.AddRange(activeSkills);
-                _availableSkillDeck.AddRange(passiveSkills);
-
-                _bannedSkillDeck.Clear();
-            }
-            else
-            {
-                // 선택된 액티브 스킬과 패시브 스킬.
-                var pickedActiveSkills = new List<SkillId>(activeSkillCount);
-                var pickedPassiveSkills = new List<SkillId>(passiveSkillCount);
-
-                // 캐릭터 기본 액티브 스킬을 먼저 추가한다.
-                pickedActiveSkills.Add(heroBasicActiveSkill);
-                activeSkills.Remove(heroBasicActiveSkill);
-
-                // 나머지 액티브 스킬 추가.
-                while (pickedActiveSkills.Count < activeSkillCount)
-                {
-                    // 만약 남은 액티브 스킬 개수가 0보다 적을 경우 중단. 개수를 조정했기 때문에 정상적인 흐름에서 이런 경우는 없다.
-                    if (activeSkills.Count <= 0)
-                    {
-                        Log.I.Error($"액티브 스킬을 {activeSkillCount}개 채워야 하는데 남은 개수가 없어서 {pickedActiveSkills.Count}개밖에 채우지 못했습니다.");
-                        break;
-                    }
-
-                    int index = Random.Range(0, activeSkills.Count);
-                    pickedActiveSkills.Add(activeSkills[index]);
-                    activeSkills.RemoveAt(index);
-                }
-
-                // 초월 조건 패시브 스킬을 먼저 추가한다.
-                foreach (var activeSkill in pickedActiveSkills)
-                {
-                    var transcendConditionSkill = GetTranscendConditionSkill(activeSkill);
-
-                    // 만약 이미 추가되어 있으면 다시 추가하지 않는다.
-                    if (pickedPassiveSkills.Contains(transcendConditionSkill))
-                    {
-                        continue;
-                    }
-
-                    pickedPassiveSkills.Add(transcendConditionSkill);
-                    passiveSkills.Remove(transcendConditionSkill);
-                }
-
-                // 나머지 패시브 스킬 추가.
-                while (pickedPassiveSkills.Count < passiveSkillCount)
-                {
-                    // 만약 남은 패시브 스킬 개수가 0보다 적을 경우 중단. 개수를 조정했기 때문에 정상적인 흐름에서 이런 경우는 없다.
-                    if (passiveSkills.Count <= 0)
-                    {
-                        Log.I.Error($"패시브 스킬을 {passiveSkillCount}개 채워야 하는데 남은 개수가 없어서 {pickedActiveSkills.Count}개밖에 채우지 못했습니다.");
-                        break;
-                    }
-
-                    int index = Random.Range(0, passiveSkills.Count);
-                    pickedPassiveSkills.Add(passiveSkills[index]);
-                    passiveSkills.RemoveAt(index);
-                }
-
-                _availableSkillDeck.Clear();
-                _availableSkillDeck.AddRange(pickedActiveSkills);
-                _availableSkillDeck.AddRange(pickedPassiveSkills);
-
-                _bannedSkillDeck.Clear();
-                _bannedSkillDeck.AddRange(activeSkills);
-                _bannedSkillDeck.AddRange(passiveSkills);
-            }
-
-            LogSkillDeck(heroType, _availableSkillDeck, _bannedSkillDeck);
+            LogSkillDeck(heroType, _availableSkillDeck);
         }
 
         private static SkillId GetHeroBasicSkill(HeroType heroType)
@@ -181,7 +96,7 @@ namespace SamMul.GameClients.Heroes
             return StaticDataRepository.Instance.Skills.GetSkills(skillId)[0].skillType == SkillType.Passive;
         }
 
-        private static void LogSkillDeck(HeroType heroType, IReadOnlyList<SkillId> availableSkillDeck, IReadOnlyList<SkillId> bannedSkillDeck)
+        private static void LogSkillDeck(HeroType heroType, IReadOnlyList<SkillId> availableSkillDeck)
         {
 #if UNITY_EDITOR
             Log.I.Debug(
@@ -190,13 +105,6 @@ namespace SamMul.GameClients.Heroes
                 string.Join(",", availableSkillDeck.Where(x => IsActiveSkill(x))) + "\n" +
                 "Passive\n" +
                 string.Join(",", availableSkillDeck.Where(x => IsPassiveSkill(x))) + "\n");
-
-            Log.I.Debug(
-                $"{heroType} Banned Skill List\n" +
-                "Active\n" +
-                string.Join(",", bannedSkillDeck.Where(x => IsActiveSkill(x))) + "\n" +
-                "Passive\n" +
-                string.Join(",", bannedSkillDeck.Where(x => IsPassiveSkill(x))) + "\n");
 #endif
         }
 
@@ -672,11 +580,6 @@ namespace SamMul.GameClients.Heroes
                 }
             }
             return selectedSkills.ToArray();
-        }
-
-        public SkillId[] GetBanSkillArray()
-        {
-            return _bannedSkillDeck.ToArray();
         }
     }
 }

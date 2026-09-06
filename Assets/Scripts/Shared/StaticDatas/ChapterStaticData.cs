@@ -17,8 +17,6 @@ namespace Shared.StaticDatas
         public int StageNumber { get; set; }
         [JsonIgnore] public StageStaticData StageStaticData { get; private set; } = null!;
 
-        public int ActiveSkillCount { get; set; }
-        public int PassiveSkillCount { get; set; }
 
         public long TotalDropGold { get; set; }
         public long TotalLevelUpBonusGold { get; set; }

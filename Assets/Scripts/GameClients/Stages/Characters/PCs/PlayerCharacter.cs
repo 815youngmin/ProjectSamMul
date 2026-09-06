@@ -179,19 +179,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs
                 mass: 20f,
                 drag: 25f);
 
-            int activeSkillCount;
-            int passiveSkillCount;
-
-            if (stage.StageType == StageType.Chapter)
-            {
-                activeSkillCount = stage.ChapterStaticData.ActiveSkillCount;
-                passiveSkillCount = stage.ChapterStaticData.PassiveSkillCount;
-                _skillDeck.Initialize(HeroData.HeroType, userSkillDeck, activeSkillCount, passiveSkillCount);
-            }
-            else
-            {
-                Log.I.Error($"스킬덱 초기화가 필요합니다. 스테이지 타입에 맞춰 스킬덱을 초기화 해주세요");
-            }
+            _skillDeck.Initialize(HeroData.HeroType, userSkillDeck);
 
             _conditionalEffects.Clear();
             if (_equipmentStatModifiers != null)
@@ -293,25 +281,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             _conditionalEffects.EnterredIntoStage(stage, this);
             _skillSet.Initialize(this, stage);
             _conditionalEffects.OnSkillSetInitialized(stage, this);
-
-            //사용 못하는 스킬 연출
-            {
-                //아래 방향 부채꼴 방향으로 날아가도록 처리(위로 날아가면 챕터 이름에 가려 안보인다..)
-                var banSkillArray = _skillDeck.GetBanSkillArray();
-                float sectorAngle = 200f;
-                float angleStep = sectorAngle / (banSkillArray.Length - 1);
-                for (int i = 0; i < banSkillArray.Length; i++)
-                {
-                    float startAngle = -sectorAngle / 2f;
-                    float angle = startAngle + angleStep * i;
-                    Vector2 dir = Quaternion.Euler(0f, 0f, angle) * Vector2.down;
-                    Vector2 startPos = this.CenterPos;
-                    Vector2 endPos = startPos + Random.Range(4f, 8f) * dir;
-
-                    var lostSkillObject = ResourcePool.Instance.InstantiateFromResource<LostSkillObject>(LostSkillObject.PREFAB_PATH);
-                    lostSkillObject.Initialize(this.CenterPos, endPos, banSkillArray[i]);
-                }
-            }
 
             // 등급효과로 MaxHP가 증가하는 경우가 있기 때문에, 여기에서 최종 MaxHP에 맞춰 만피를 채워준다.
             float gap = this.MaxHP - this.CurrentHP;
@@ -752,12 +721,12 @@ namespace SamMul.GameClients.Stages.Characters.PCs
                     var acquiredSkills = _skillSet.GetAcquiredSkillKeys();
                     var skills = new List<SkillKey[]> { _skillDeck.SelectSkillsForTutorialChapter(_skillSet, this.Level, this.StaticData) };
 
-                    stageSceneUI.AddSkillSelectorPopup(stage, this, skills, acquiredSkills, this.GetBanSkillArray());
+                    stageSceneUI.AddSkillSelectorPopup(stage, this, skills, acquiredSkills);
                     stageSceneUI.UpdateExpBar(_levelCalculator.Level, _levelCalculator.CurrentExp, _levelCalculator.ExpToNextLevel);
                 }
                 else
                 {
-                    stageSceneUI.AddSkillSelectorPopup(stage, this, this.GetSkillCandidates(), this.GetAcquiredSkillKeys(), this.GetBanSkillArray());
+                    stageSceneUI.AddSkillSelectorPopup(stage, this, this.GetSkillCandidates(), this.GetAcquiredSkillKeys());
                     stageSceneUI.UpdateExpBar(_levelCalculator.Level, _levelCalculator.CurrentExp, _levelCalculator.ExpToNextLevel);
                 }
             }
@@ -767,7 +736,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         {
             if (!_skillDeck.ContainsSkill(skillId))
             {
-                string message = $"StageType[{stage.StageType}], owner.HeroType[{owner.HeroData.HeroType}], this.HeroType[{this.HeroData.HeroType}], RequestedSkillId[{skillId}], AcquiredSkills[{_skillSet.AcquiredSkills}], GlobalUserSkillDeck[{string.Join(", ", GameClient.CS.UserSkillDeck)}], AvailableSkillDeck[{_skillDeck.AvailableSkillDeck}], BannedSkillDeck[{_skillDeck.BannedSkillDeck}]";
+                string message = $"StageType[{stage.StageType}], owner.HeroType[{owner.HeroData.HeroType}], this.HeroType[{this.HeroData.HeroType}], RequestedSkillId[{skillId}], AcquiredSkills[{_skillSet.AcquiredSkills}], GlobalUserSkillDeck[{string.Join(", ", GameClient.CS.UserSkillDeck)}], AvailableSkillDeck[{_skillDeck.AvailableSkillDeck}]";
                 Debug.LogError(message);
                 throw new LogicErrorException($"스킬덱에 없는 스킬을 획득하려 함. 무시합니다. Message[{message}]");
             }
@@ -778,10 +747,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         public SkillKey[] GetAcquiredSkillKeys()
         {
             return _skillSet.GetAcquiredSkillKeys();
-        }
-        public SkillId[] GetBanSkillArray()
-        {
-            return _skillDeck.GetBanSkillArray();
         }
 
         public SkillId[] GetAcquiredSkillIds()
