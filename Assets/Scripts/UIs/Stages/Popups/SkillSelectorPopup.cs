@@ -36,8 +36,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private TextMeshProUGUI _levelupText;
         [SerializeField] private TextMeshProUGUI _selectSkilllText;
         [SerializeField] private TextMeshProUGUI _refeshButtonText;
-        [SerializeField] private TextMeshProUGUI _autoPlayMessageText;
-        [SerializeField] private Slider _autoPlayLeftTimeSlider;
 
         [SerializeField] private BanSkillGroup _banSkillGroup;
 
@@ -55,45 +53,10 @@ namespace SamMul.UIs.Stages.Popups
         private List<SkillKey[]> _skillCandidates;
         private int _currentRefreshCount;
 
-        private bool _isAutoPlay;
-        private float _createdAt;
-
-        private static readonly float AUTO_SELECT_WAIT_DURATION_MAX = 15.0f;
-        private static readonly float AUTO_SELECT_WAIT_DURATION_MIN = 5f;
-
-        // 전역변수입니다. 계속 유지됩니다. 조심하세요.
-        // 지난번 선택이 자동선택이었는지 여부.
-        private static bool _didAutoSelectedPreviousTime = false;
-
-        // 이번 스킬팝업의 자동 선택대기시간
-        private static float _autoSelectWaitDuration = AUTO_SELECT_WAIT_DURATION_MAX;
-
-        private void Initialize(HeroType heroType, int level, bool isAutoPlay, Action<bool> closeRequester)
+        private void Initialize(HeroType heroType, int level, Action<bool> closeRequester)
         {
             Debug.Assert(_skillButtons.Count == 3);
             base.InitializeBase(closeRequester);
-
-            _isAutoPlay = isAutoPlay;
-            _createdAt = Time.unscaledTime;
-
-            _autoPlayMessageText.gameObject.SetActive(_isAutoPlay);
-            _autoPlayLeftTimeSlider.gameObject.SetActive(_isAutoPlay);
-
-            if (_isAutoPlay)
-            {
-                _autoPlayMessageText.text = string.Format(Localizer.Instance.GetText("UI_SKILL_AUTO_SELECT_MESSAGE"), (int)(_autoSelectWaitDuration + 0.99f));
-                _autoPlayLeftTimeSlider.value = 1f;
-            }
-
-            if (_didAutoSelectedPreviousTime)
-            {
-                _autoSelectWaitDuration = math.max(AUTO_SELECT_WAIT_DURATION_MIN, _autoSelectWaitDuration * 0.5f);
-            }
-            else
-            {
-                _autoSelectWaitDuration = AUTO_SELECT_WAIT_DURATION_MAX;
-            }
-            _didAutoSelectedPreviousTime = false;
 
             _stickerSprites = new List<Sprite>();
             var characterImageStaticData = StaticDataRepository.Instance.CharacterImagePaths.CharacterImagePathStaticDatas[heroType];
@@ -130,9 +93,9 @@ namespace SamMul.UIs.Stages.Popups
             _levelupText.text = Localizer.Instance.GetText("UI_SKILL_SELECT_LEVELUP");
         }
 
-        public void InitializeForSkills(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills, SkillId[] banSkillIds,  bool isAutoPlay, Action<bool> closeRequester)
+        public void InitializeForSkills(Stage stage, PlayerCharacter owner, List<SkillKey[]> skillCandidates, SkillKey[] acquiredSkills, SkillId[] banSkillIds, Action<bool> closeRequester)
         {
-            this.Initialize(owner.StaticData.HeroType, owner.Level, isAutoPlay, closeRequester);
+            this.Initialize(owner.StaticData.HeroType, owner.Level, closeRequester);
 
             _skillCandidates = skillCandidates;
             _currentRefreshCount = 0;
@@ -258,35 +221,6 @@ namespace SamMul.UIs.Stages.Popups
 
             this.MoveDownAndScaleChangeStickers();
             this.RemoveDropStickerPushPool();
-
-            if (_isAutoPlay)
-            {
-                float leftTime = _autoSelectWaitDuration - (now - _createdAt);
-
-                if (leftTime <= 0f)
-                {
-                    int activeSkillButtons = _skillButtons.Count(x => x.isActiveAndEnabled);
-                    if (activeSkillButtons <= 0)
-                    {
-                        return;
-                    }
-
-                    int randomIndex = Random.Range(minInclusive: 0, maxExclusive: activeSkillButtons);
-                    var selectedButton = _skillButtons[randomIndex];
-                    if (!selectedButton.isActiveAndEnabled)
-                    {
-                        selectedButton = _skillButtons.FirstOrDefault(x => x.isActiveAndEnabled);
-                    }
-
-                    selectedButton.InvokeSelectEvent();
-                    _didAutoSelectedPreviousTime = true;
-                }
-                else
-                {
-                    _autoPlayMessageText.text = string.Format(Localizer.Instance.GetText("UI_SKILL_AUTO_SELECT_MESSAGE"), (int)(leftTime + 0.99f));
-                    _autoPlayLeftTimeSlider.value = 1.0f - (leftTime / _autoSelectWaitDuration);
-                }
-            }
         }
 
         public override void Close(bool skipAnimation)

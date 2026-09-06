@@ -35,7 +35,6 @@ namespace SamMul.GameClients
         public static CameraController CameraController => Instance._cameraController;
         public static Stage? Stage => Instance._stage;
         public static PlayerCharacterController? PCController => Instance._pcController;
-        public bool IsAutoPlayActivated => _pcController?.IsAutoPlayActivated ?? false;
 
         public void Initialize(StaticDataRepository staticData)
         {
@@ -89,11 +88,10 @@ namespace SamMul.GameClients
             _stage.Initialize(userSkillDeck, userHeroData, userHeroEquippedEquipments);
         }
 
-        public void CreatePlayerController(VariableJoystick joystick, bool activateAutoPlay)
+        public void CreatePlayerController(VariableJoystick joystick)
         {
             Debug.Assert(_stage != null, "스테이지를 먼저 생성해야 합니다.");
             _pcController = new PlayerCharacterController(_stage!.PC, joystick);
-            _pcController.SwitchAutoPlay(activateAutoPlay);
         }
     }
 }

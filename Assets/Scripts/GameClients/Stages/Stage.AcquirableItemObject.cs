@@ -166,30 +166,6 @@ namespace SamMul.GameClients.Stages
             return v_EnumarableTakenItems;
         }
 
-        private readonly List<AcquirableItemObject> v_EnumarableFoundItems = new List<AcquirableItemObject>();
-        /// <summary>
-        /// 스테이지에서 관리하는 획득가능한 오브젝트를 찾아 참조를 순회합니다.
-        /// 참조를 순회하는 것으로, 오브젝트의 관리책임은 여전히 스테이지가 가집니다.
-        /// 
-        /// 오브젝트의 관리책임을 함께 가져오고 싶은 경우 <seealso cref="TakeAcquirableItemObjectsInDistance"/>를 사용할 것.
-        /// </summary>
-        public IEnumerable<AcquirableItemObject> ForAcquirableItemObjectsInDistance(Vector2 position, float distance)
-        {
-            float distanceSquared = distance * distance;
-
-            v_EnumarableFoundItems.Clear();
-            foreach (var itemObject in _acquirableItemObjects)
-            {
-                var distanceVector = (Vector2)itemObject.transform.position - position;
-                if (distanceVector.sqrMagnitude <= distanceSquared)
-                {
-                    v_EnumarableFoundItems.Add(itemObject);
-                }
-            }
-
-            return v_EnumarableFoundItems;
-        }
-
         private readonly List<ExpObject> v_ExpObjects = new List<ExpObject>();
         /// <remarks>리턴된 경험치 오브젝트들은 호출측에서 책임지고 오브젝트풀에 반환해주어야 한다.</remarks>
         public IEnumerable<ExpObject> TakeAllExpObjects()

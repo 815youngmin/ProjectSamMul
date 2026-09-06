@@ -356,11 +356,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
             return new PlayerCharacterStatCalculators();
         }
 
-        private float _dpsNextCheckingAt;               //다음 dps 계산하는 시간
-        private readonly float _dpsCheckDelay = 5.0f;   //dps 계산 딜레이
-        private float _accumulatedDamage = 0;           //누적 데미지, dps 계산후 초기화 된다
-        private float _maxDps = 0;                      //가장 높은 dps값
-
         public override void UpdateLogic(Stage stage)
         {
             if (!gameObject.activeSelf)
@@ -429,26 +424,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
 #endif
             {
                 this.UpdateLevelExp(stage);
-            }
-
-#if USE_SCOPED_PROFILER
-            using (new ScopedProfiler("PlayerCharacter.UpdateLogic.UpdateDPS"))
-#endif
-            {
-                if (_dpsNextCheckingAt <= now)
-                {
-                    _dpsNextCheckingAt = now + _dpsCheckDelay;
-
-                    float currentDps = _accumulatedDamage / _dpsCheckDelay;
-                    if (currentDps > _maxDps)
-                    {
-                        _maxDps = currentDps;
-                    }
-                    _accumulatedDamage = 0;
-
-                    var stageSceneUI = UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>();
-                    stageSceneUI.UpdateDPS(currentDps, _maxDps);
-                }
             }
 
 #if USE_SCOPED_PROFILER
@@ -564,7 +539,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         {
             base.AttackedEnemy(stage, enemy, damage);
 
-            _accumulatedDamage += damage;
             _conditionalEffects.AttackedEnemy(stage, owner: this, enemy, damage);
             _skillSet.AttackedEnemy(stage, owner: this, enemy, damage);
 

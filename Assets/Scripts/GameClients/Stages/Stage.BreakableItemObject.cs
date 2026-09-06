@@ -301,22 +301,5 @@ namespace SamMul.GameClients.Stages
             _fenceObjects.Clear();
             _fenceOuterWallColliders.Clear();
         }
-
-        /// <summary>
-        /// 현재 필드의 모든 울타리를 순회하며 <paramref name="doAction"/>을 실행한다.
-        /// 모든 울타리를 순회하지만, 어떤 순서로 처리할지 여부는 보장되지 않는다.
-        /// </summary>
-        /// <remarks>울타리 오브젝트 컨테이너를 순회하기 때문에, doAction내부에서 울타리를 추가하거나 삭제해서는 안 된다.</remarks>
-        /// <param name="doAction">이 false를 리턴하면 이터레이션을 종료한다. true를 리턴하면 남은 순회를 이어서 지속한다.</param>
-        public void ForAllFenceObjects(Func<FenceObject, bool> doAction)
-        {
-            foreach(var fenceObject in _fenceObjects)
-            {
-                if (!doAction(fenceObject))
-                {
-                    return;
-                }
-            }
-        }
     }
 }

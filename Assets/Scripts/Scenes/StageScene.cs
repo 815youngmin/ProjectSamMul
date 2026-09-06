@@ -169,15 +169,9 @@ namespace SamMul.Scenes
             var stage = GameClient.Stage!;
             var pc = stage.PC;
 
-            // 자동 전투 활성화 조건: 이미 클리어한 메인 챕터 플레이.
-            bool activateAutoPlay =
-                (GameClient.CS.UserGameData != null &&
-                stage.StageType == StageType.Chapter &&
-                stageSceneInitialData.Chapter!.ChapterNumber <= GameClient.CS.UserGameData!.ClearedHighestChapter);
-
-            GameClient.Instance.CreatePlayerController(this.UI.Joystick, activateAutoPlay);
+            GameClient.Instance.CreatePlayerController(this.UI.Joystick);
             // NOTE: 스테이지 입장처리 구현하고 나면 그쪽으로 옮겨야 한다.
-            this.UI.OnPlayerAppearingEnd(pc, activateAutoPlay);
+            this.UI.OnPlayerAppearingEnd(pc);
 
             var walkableArea = stageSceneInitialData.StageStaticData.GetWalkableArea();
             GameClient.CameraController.SetupMainCamera(this.gameObject.scene, walkableArea, pc.gameObject);

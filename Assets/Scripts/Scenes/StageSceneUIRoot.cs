@@ -56,10 +56,6 @@ namespace SamMul.Scenes
 
         [SerializeField] private AccelerationButton _accelerationButton;
 
-        [SerializeField] private AutoPlayButton _autoPlayButton;
-
-        [SerializeField] private AutoPlayHUDGroup _autoPlayHUDGroup;
-
         [SerializeField] private RectTransform _allyCharacterDisplayerGroup;
 
         public bool IsSkillSelectorPopupOpened => _skillSelectorPopup != null;
@@ -102,7 +98,6 @@ namespace SamMul.Scenes
             _skillBoxPopup = null;
 
             _walletBarGroup.UpdateGoldAmount(0);
-            _walletBarGroup.UpdateGemAmount(0);
             _stageTimer.Initialize();
             _stageTimer.UpdateTimer(0f, 1f);
             _killCount.UpdateKillCount(0);
@@ -161,7 +156,7 @@ namespace SamMul.Scenes
 
         }
 
-        public void OnPlayerAppearingEnd(PlayerCharacter pc, bool activateAutoPlay)
+        public void OnPlayerAppearingEnd(PlayerCharacter pc)
         {
             _joystick.gameObject.SetActive(true);
             _walletBarGroup.gameObject.SetActive(true);
@@ -172,19 +167,6 @@ namespace SamMul.Scenes
             _killCount.gameObject.SetActive(true);
 
             this.UpdateExpBar(pc.Level, pc.CurrentExp, pc.ExpToNextLevel);
-
-            _autoPlayButton.Initialize(activateAutoPlay);
-
-            if (GameClient.Stage != null)
-            {
-                //시작시 바로 플레이어한테 받아오고 싶은데 아직 플레이어가 기본스킬을 습득하지 못해 아무것도 없다고 나온다.
-                //초기화 단계에선 플레이어 기본 스킬을 직접 넣어주고 이후 업데이트부터는 플레이어한테 받아온다.
-                _autoPlayHUDGroup.Initialize(activateAutoPlay, new SkillKey[] { new SkillKey(GameClient.Stage.PC.StaticData.BasicSkill, 1) });
-            }
-            else
-            {
-                _autoPlayHUDGroup.Initialize(activateAutoPlay, new SkillKey[] { });
-            }
         }
 
         public void UpdatePCHP(int currentHp, int maxHp)
@@ -273,9 +255,8 @@ namespace SamMul.Scenes
                 return;
             }
 
-            bool isAutoPlay = GameClient.Instance.IsAutoPlayActivated;
             _skillSelectorPopup = this.CreateAndAddPopup<SkillSelectorPopup>(SkillSelectorPopup.PREFAB_PATH, playSound: true);
-            _skillSelectorPopup.InitializeForSkills(stage, owner, skillCandidates, acquiredSkills, banSkillIds, isAutoPlay, closeRequester: CloseSkillSelectorPopup);
+            _skillSelectorPopup.InitializeForSkills(stage, owner, skillCandidates, acquiredSkills, banSkillIds, closeRequester: CloseSkillSelectorPopup);
             this.PauseResumeOnPopup();
         }
         public void CloseSkillSelectorPopup(bool skipAnimation)
@@ -284,12 +265,6 @@ namespace SamMul.Scenes
             {
                 Debug.LogWarning("스킬팝업이 없는데 스킬팝업 닫으려했음. 로직 잘못됨 수정하세요.");
                 return;
-            }
-
-            var stage = GameClient.Stage;
-            if (stage != null)
-            {
-                _autoPlayHUDGroup.UpdateAcquiredSkillGroup(stage.PC.GetAcquiredSkillKeys());
             }
 
             this.CloseAndDestroyPopup(_skillSelectorPopup, () =>
@@ -321,12 +296,6 @@ namespace SamMul.Scenes
             {
                 Debug.LogWarning("스킬박스팝업이 없는데 스킬박스팝업 닫으려했음. 로직 잘못됨 수정하세요.");
                 return;
-            }
-
-            var stage = GameClient.Stage;
-            if (stage != null)
-            {
-                _autoPlayHUDGroup.UpdateAcquiredSkillGroup(stage.PC.GetAcquiredSkillKeys());
             }
 
             this.CloseAndDestroyPopup(_skillBoxPopup, () =>
@@ -445,10 +414,6 @@ namespace SamMul.Scenes
             _walletBarGroup.UpdateGoldAmount(currentGold);
         }
 
-        public void UpdateGem(long currentGem)
-        {
-            _walletBarGroup.UpdateGemAmount(currentGem);
-        }
 
         public void UpdateBossHPBar(float currentHP, float maxHP)
         {
@@ -462,20 +427,6 @@ namespace SamMul.Scenes
         public void UpdateKillCount(long currentKillCount)
         {
             _killCount.UpdateKillCount(currentKillCount);
-        }
-
-        public void UpdateDPS(float currentDPS, float maxDPS)
-        {
-            _autoPlayHUDGroup.UpdateDPSText(currentDPS);
-            _autoPlayHUDGroup.UpdateMaxDps(maxDPS);
-        }
-        public void HideAutoPlayUI()
-        {
-            _autoPlayHUDGroup.HideAutoPlayUI();
-        }
-        public void ShowAutoPlayUI()
-        {
-            _autoPlayHUDGroup.ShowAutoPlayUI();
         }
 
         public void OnBeginWarningEvent(WarningPopup.WarningType warningType)
