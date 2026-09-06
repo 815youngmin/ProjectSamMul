@@ -1,41 +1,41 @@
 [
   {
     "StageNumber": 1,
-    "StageFormType": "Rectangle",
+    "StageFormType": "Infinite",
     "SpawnLogicType": "FromEveryBoundary",
-    "Width": 40,
-    "Height": 40,
-    "TotalStageTimeSec": 180,
-    "ItemBoxSpawnPeriodSec": 30,
+    "Width": 2000.0,
+    "Height": 2000.0,
+    "TotalStageTimeSec": 480.0,
+    "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
-    "FloorTileResourcePath": "Stages/Floors/Western/floor_western.png",
-    "FenceResourcePath": "Stages/Fences/fence_western.png",
-    "BGMPath": "Sounds/BGM/BGM_Stage_Western.prefab"
+    "FloorTileResourcePath": "Stage/Floor/Floor_01.png",
+    "FenceResourcePath": "Stages/Fences/Chapter1Fence.png",
+    "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   },
   {
     "StageNumber": 2,
-    "StageFormType": "Rectangle",
+    "StageFormType": "Infinite",
     "SpawnLogicType": "FromEveryBoundary",
-    "Width": 40,
-    "Height": 40,
-    "TotalStageTimeSec": 180,
-    "ItemBoxSpawnPeriodSec": 30,
+    "Width": 2000.0,
+    "Height": 2000.0,
+    "TotalStageTimeSec": 480.0,
+    "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
-    "FloorTileResourcePath": "Stages/Floors/Steampunk/floor_steampunk.png",
-    "FenceResourcePath": "Stages/Fences/fence_steampunk.png",
-    "BGMPath": "Sounds/BGM/BGM_Stage_Steampunk.prefab"
+    "FloorTileResourcePath": "Stage/Floor/Floor_02.png",
+    "FenceResourcePath": "Stages/Fences/Chapter2Fence.png",
+    "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   },
   {
     "StageNumber": 3,
     "StageFormType": "Rectangle",
-    "SpawnLogicType": "FromEveryBoundary",
-    "Width": 40,
-    "Height": 40,
-    "TotalStageTimeSec": 180,
-    "ItemBoxSpawnPeriodSec": 30,
+    "SpawnLogicType": "FromThreeQuadrant",
+    "Width": 28.0,
+    "Height": 28.0,
+    "TotalStageTimeSec": 300.0,
+    "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
-    "FloorTileResourcePath": "Stages/Floors/Arabian/floor_arabian.png",
-    "FenceResourcePath": "Stages/Fences/fence_arabian.png",
-    "BGMPath": "Sounds/BGM/BGM_Stage_Arabian.prefab"
+    "FloorTileResourcePath": "Stage/Floor/Floor_03.png",
+    "FenceResourcePath": "Stages/Fences/Chapter4Fence.png",
+    "BGMPath": "Sounds/BGMs/BGM_Ingame_Common_SFX.prefab"
   }
 ]

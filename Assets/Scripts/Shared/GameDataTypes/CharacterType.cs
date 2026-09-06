@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 namespace Shared.GameDataTypes
 {
@@ -59,5 +59,47 @@ namespace Shared.GameDataTypes
         EraMix_Boss_Freya = 998,
         EarthGuardian_Boss_TrampHard2 = 1094,
         Undine = 1099,
+        // 데모 챕터 1~3 몬스터 (원본 번호를 알 수 없어 2000번대에 새로 부여)
+        Egypt_Archer = 2000,
+        Egypt_Bat = 2001,
+        Egypt_BlueHippo = 2002,
+        Egypt_BossAnubisMask = 2003,
+        Egypt_BossPharaoh = 2004,
+        Egypt_BossSnakeDruidProjectileType = 2005,
+        Egypt_EliteGriffin = 2006,
+        Egypt_EliteMummy = 2007,
+        Egypt_EliteStoneStatue = 2008,
+        Egypt_Farmer = 2009,
+        Egypt_Mummy = 2010,
+        Egypt_Warrior = 2011,
+        IceAge_BigCaveman = 2012,
+        IceAge_BossThreeLeapsBug = 2013,
+        IceAge_CavemanA = 2014,
+        IceAge_EliteBigToothTiger = 2015,
+        IceAge_ElitePolarBear = 2016,
+        IceAge_EliteTriceratops = 2017,
+        IceAge_EliteYeti = 2018,
+        IceAge_Headbutt = 2019,
+        IceAge_IceGolem = 2020,
+        IceAge_Mammoth = 2021,
+        IceAge_PoisonThreeLeapsBug = 2022,
+        IceAge_Raptor = 2023,
+        Primitive_BigCaveman = 2024,
+        Primitive_BossLava = 2025,
+        Primitive_BossMammothChief = 2026,
+        Primitive_BossTriceratops = 2027,
+        Primitive_CavemanA = 2028,
+        Primitive_EliteBigToothTiger = 2029,
+        Primitive_EliteBrachiosaurus = 2030,
+        Primitive_EliteHammerTailDino = 2031,
+        Primitive_EliteStegosaurus = 2032,
+        Primitive_EliteTriceratops = 2033,
+        Primitive_Headbutt = 2034,
+        Primitive_Hedgehog = 2035,
+        Primitive_Mammoth = 2036,
+        Primitive_PassByMosquito = 2037,
+        Primitive_Raptor = 2038,
+        Threekingdoms_Boar = 2039,
+        Viking_Cow = 2040,
     }
 }

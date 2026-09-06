@@ -1,5 +1,42 @@
 [
-  { "CharacterType": "Western_Boss_WyattEarp", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_wyattearp.png" },
-  { "CharacterType": "Steampunk_EliteClockworkGolem", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_battlegolem.png" },
-  { "CharacterType": "Arabian_EliteVeteranWarrior", "IllustImagePath": "Stages/UIs/BossIllusts/illust_boss_alibaba.png" }
+  {
+    "CharacterType": "Egypt_BossAnubisMask",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Egypt_BossPharaoh",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Egypt_BossRa",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Egypt_BossSnakeDruidProjectileType",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "IceAge_BossDireWolfChief",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "IceAge_BossIceGolem",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "IceAge_BossThreeLeapsBug",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Primitive_BossLava",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Primitive_BossMammothChief",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  },
+  {
+    "CharacterType": "Primitive_BossTriceratops",
+    "IllustImagePath": "Stage/UIs/BossHPBar/BossIcon.png"
+  }
 ]
