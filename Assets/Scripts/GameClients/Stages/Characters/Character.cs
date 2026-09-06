@@ -784,7 +784,7 @@ namespace SamMul.GameClients.Stages.Characters
         {
             if (_hpBar == null)
             {
-                _hpBar = ResourcePool.Instance.InstantiateFromResource<HPBar>("Stages/UIs/HUDs/PlayerHPBar/HPBar.prefab");
+                _hpBar = ResourcePool.Instance.InstantiateFromResource<HPBar>("Stage/UIs/PlayerHPBar/HPBar.prefab");
                 // NOTE: IsHeroType가 true면 PC라고 판단한다. 만약 PC외의 Character가 HeroType이면 수정해야합니다.
                 _hpBar.AllocateSharedResources(this.CharacterType.IsHeroType());
             }

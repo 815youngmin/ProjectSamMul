@@ -11,15 +11,15 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Monster
+  - CharacterHitBox
+  - Projectile
+  - BreakableItem
+  - AcquirableItem
+  - Trigger
+  - LowWall
+  - HighWall
   - 
   - 
   - 
@@ -40,4 +40,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 161092441
+    locked: 0
+  - name: LowShadow
+    uniqueID: 2649472243
+    locked: 0
+  - name: LowParticle
+    uniqueID: 3251790151
+    locked: 0
+  - name: Item
+    uniqueID: 1882214623
+    locked: 0
+  - name: Object
+    uniqueID: 4207963863
+    locked: 0
+  - name: HighShadow
+    uniqueID: 3460119307
+    locked: 0
+  - name: HighParticle
+    uniqueID: 2486143393
+    locked: 0
+  - name: UI
+    uniqueID: 1810531031
     locked: 0

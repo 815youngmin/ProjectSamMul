@@ -20,7 +20,7 @@ namespace SamMul.UIs.Stages.Popups
     {
         public enum RewardType { Gold, Meat }
 
-        public static readonly string PREFAB_PATH = "Stages/UIs/Popups/SkillSelectorPopup/SkillSelectorPopup.prefab";
+        public static readonly string PREFAB_PATH = "Stage/UIs/SkillSelectorPopup/SkillSelectorPopup.prefab";
 
         [SerializeField] private RectTransform _skillButtonGroup;
         [SerializeField] private List<SkillSelectorButton> _skillButtons;

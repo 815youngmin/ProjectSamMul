@@ -17,10 +17,10 @@ namespace SamMul.UIs.Stages.HUDs
 
         public void Initialize(HeroType heroType)
         {
-            var paths = StaticDataRepository.Instance.CharacterImagePaths.CharacterImagePathStaticDatas[heroType];
-            GameObject hudPrefab = ResourcePool.Instance.LoadResource<GameObject>(paths.stageExpHudPath);
+            //데모 용으로 모든 영웅이 같은 경험치바를 사용하도록 한다.
+            GameObject hudPrefab = ResourcePool.Instance.LoadResource<GameObject>("Stage/UIs/ExpBar/ExpBar.prefab");
             var sliderObject =  Instantiate(hudPrefab, this.transform);
-            _expSlider = sliderObject.GetComponent<Slider>();
+            _expSlider = sliderObject.GetComponentInChildren<Slider>();
 
             _levelTexts = sliderObject.GetComponentsInChildren<TMP_Text>();
             _isInitialize = true;
