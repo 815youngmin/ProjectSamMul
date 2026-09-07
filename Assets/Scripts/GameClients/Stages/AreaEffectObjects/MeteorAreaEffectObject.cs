@@ -1,48 +1,26 @@
-using DG.Tweening;
-using SamMul.Animations.Placeholder;
-using Animation = SamMul.Animations.Placeholder.Animation;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
-using Sequence = DG.Tweening.Sequence;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 메테오. 전용 리소스 없이 떨어지는 운석은 공용 공격 비주얼로, 낙하 후 불타는 바닥은 AttackAreaFlashManager 로 표시한다.
+    /// </summary>
     public class MeteorAreaEffectObject : AreaEffectObjectBase
     {
-        private const string NORMAL_BOOM_EFFECT_PATH = "Stages/SkillEffects/fx_meteoExplosion.prefab";
-        private const string NORMAL_SKELETON_ANIMATION_PATH = "Stages/AreaEffects/Meteor/prefab_MeteorAreaEffectObject.prefab";
-        private const string TRANSCENDENT_DROP_ANIMATION_PATH = "Stages/AreaEffects/Meteor/prefab_MeteorBall_S_AreaEffectObject.prefab";
-        private const string TRANSCENDENT_BOOM_ANIMATION_PATH = "Stages/AreaEffects/Meteor/prefab_MeteorBoom_S_AreaEffect.prefab";
-        private const string NORMAL_AREA_EFFECT_ANIMATION_PATH = "Stages/AreaEffects/Meteor/prefab_MeterorAreaEffectGroundObject.prefab";
-        private const string TRANSCENDENT_AREA_EFFECT_ANIMATION_PATH = "Stages/AreaEffects/Meteor/prefab_MeteorGround_S_AreaEffectObject.prefab";
-
         private static readonly Quaternion METEOR_DROP_ROTATION = Quaternion.Euler(0.0f, 0.0f, 45.0f);
         private static readonly Vector2 METEOR_DROP_DIRECTION = METEOR_DROP_ROTATION * Vector2.down;
         private static readonly float METEOR_DROP_SPEED = 30.0f;
         private static readonly float METEOR_DROP_TIME = 1.0f;
         private static readonly float AREA_EFFECT_DAMAGE_PER_TICK_COEFFICIENT = 0.25f;
         private static readonly float AREA_EFFECT_TICK_PERIOD = 0.25f;
-        private static readonly float FADE_IN_DURATION = 0.5f;
-        private static readonly float FADE_OUT_DURATION = 0.5f;
+        // 부모 스케일(공격 반지름) 기준 운석 지름
+        private const float METEOR_DIAMETER = 0.8f;
 
         public override bool IsAlive => _isAlive;
 
-        private SkeletonAnimation _normalSkeletonAnimation;
-        private SpriteAnimationHandler _normalAreaEffectAnimation;
-        private SpriteAnimationHandler _transcendentDropAnimation;
-        private SpriteAnimationHandler _transcendentBoomAnimation;
-        private SpriteAnimationHandler _transcendentAreaEffectAnimation;
-
-        private Animation _normalDropAnimation;
-        private Animation _normalBoomAnimation;
-        private Sequence _normalAreaEffectFadeIn;
-        private Sequence _normalAreaEffectFadeOut;
-        private Sequence _transcendentAreaEffectFadeOut;
-        private Color _transcendentAreaEffectColor;
-
+        private GameObject _visual;
 
         private Character _owner;
         private float _attackDamage;
@@ -63,63 +41,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.Meteor);
 
-            _normalSkeletonAnimation = ResourcePool.Instance.InstantiateFromResource<SkeletonAnimation>(NORMAL_SKELETON_ANIMATION_PATH);
-            _normalSkeletonAnimation.transform.SetParent(transform);
-            _normalSkeletonAnimation.transform.localPosition = Vector3.zero;
-            _normalSkeletonAnimation.transform.localScale = 0.8f * Vector3.one;
-            _normalSkeletonAnimation.skeleton.FindSlot("size").Attachment = null; // 배경 제거.
-
-            _normalAreaEffectAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(NORMAL_AREA_EFFECT_ANIMATION_PATH);
-            _normalAreaEffectAnimation.InitializeOnly();
-            _normalAreaEffectAnimation.transform.SetParent(transform);
-            _normalAreaEffectAnimation.transform.localPosition = Vector3.zero;
-            _normalAreaEffectAnimation.transform.localScale = 0.8f * Vector3.one;
-
-            _transcendentDropAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(TRANSCENDENT_DROP_ANIMATION_PATH);
-            _transcendentDropAnimation.InitializeOnly();
-            _transcendentDropAnimation.transform.SetParent(transform);
-            _transcendentDropAnimation.transform.localPosition = Vector3.zero;
-            _transcendentDropAnimation.transform.localScale = 0.8f * Vector3.one;
-
-            _transcendentBoomAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(TRANSCENDENT_BOOM_ANIMATION_PATH);
-            _transcendentBoomAnimation.InitializeOnly();
-            _transcendentBoomAnimation.transform.SetParent(transform);
-            _transcendentBoomAnimation.transform.localPosition = Vector3.zero;
-            _transcendentBoomAnimation.transform.localScale = 0.8f * Vector3.one;
-
-            _transcendentAreaEffectAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(TRANSCENDENT_AREA_EFFECT_ANIMATION_PATH);
-            _transcendentAreaEffectAnimation.InitializeOnly();
-            _transcendentAreaEffectAnimation.transform.SetParent(transform);
-            _transcendentAreaEffectAnimation.transform.localPosition = Vector3.zero;
-            _transcendentAreaEffectAnimation.transform.localScale = 0.8f * Vector3.one;
-
-            _normalDropAnimation = _normalSkeletonAnimation.skeleton.Data.FindAnimation("ing");
-            _normalBoomAnimation = _normalSkeletonAnimation.skeleton.Data.FindAnimation("hit");
-
-
-            float maxFadeValue = 1f;
-            _transcendentAreaEffectColor = Color.white;
-
-            _normalAreaEffectFadeIn = DOTween.Sequence()
-                .Append(_normalAreaEffectAnimation.SpriteRenderer.DOFade(maxFadeValue, FADE_IN_DURATION).From(0.0f))
-                .SetRecyclable(true)
-                .SetAutoKill(false)
-                .Pause();
-
-            _normalAreaEffectFadeOut = DOTween.Sequence()
-                .Append(_normalAreaEffectAnimation.SpriteRenderer.DOFade(0.0f, FADE_OUT_DURATION).From(maxFadeValue))
-                .SetRecyclable(true)
-                .SetAutoKill(false)
-                .OnComplete(() => _isAlive = false)
-                .Pause();
-
-            _transcendentAreaEffectFadeOut = DOTween.Sequence()
-                .Append(_transcendentAreaEffectAnimation.SpriteRenderer.DOFade(0.0f, FADE_OUT_DURATION).From(maxFadeValue))
-                .SetRecyclable(true)
-                .SetAutoKill(false)
-                .OnComplete(() => _isAlive = false)
-                .Pause();
-
+            _visual = PlayerAttackVisual.Attach(transform, METEOR_DIAMETER);
         }
 
         public void Initialize(
@@ -145,30 +67,13 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             _isAlive = true;
             _hasBoomed = false;
             _boomAt = Time.time + METEOR_DROP_TIME;
-            _disappearsAt = _boomAt + areaEffectLifetime - FADE_OUT_DURATION;
+            _disappearsAt = _boomAt + areaEffectLifetime;
             _tickAt = _boomAt + _tickPeriod;
 
             transform.SetPositionAndRotation(dropPosition - METEOR_DROP_SPEED * METEOR_DROP_DIRECTION, METEOR_DROP_ROTATION);
             transform.localScale = attackRadius * Vector3.one;
 
-            if (_isTranscendent)
-            {
-                _normalSkeletonAnimation.gameObject.SetActive(false);
-                _transcendentDropAnimation.gameObject.SetActive(true);
-                _transcendentBoomAnimation.gameObject.SetActive(false);
-                _normalAreaEffectAnimation.gameObject.SetActive(false);
-                _transcendentAreaEffectAnimation.gameObject.SetActive(false);
-                _transcendentDropAnimation.InitializeAndPlay();
-            }
-            else
-            {
-                _normalSkeletonAnimation.gameObject.SetActive(true);
-                _transcendentDropAnimation.gameObject.SetActive(false);
-                _transcendentBoomAnimation.gameObject.SetActive(false);
-                _normalAreaEffectAnimation.gameObject.SetActive(false);
-                _transcendentAreaEffectAnimation.gameObject.SetActive(false);
-                _normalSkeletonAnimation.AnimationState.SetAnimation(0, _normalDropAnimation, loop: true);
-            }
+            _visual.SetActive(true);
         }
 
         public override void UpdateLogic(Stage stage, float deltaTime)
@@ -187,10 +92,13 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 _hasBoomed = true;
             }
 
+            // 불타는 바닥 범위를 사라질 때까지 계속 표시한다.
+            stage.AttackAreaFlashes.Show(_targetArea);
+
             if (_disappearsAt < now)
             {
-                (_isTranscendent ? _transcendentAreaEffectFadeOut : _normalAreaEffectFadeOut).Restart();
-                _disappearsAt = float.MaxValue;
+                _isAlive = false;
+                return;
             }
 
             if (_tickAt < now)
@@ -203,28 +111,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private void Boom(Stage stage)
         {
             transform.rotation = Quaternion.identity;
-            if (_isTranscendent)
-            {
-                _transcendentDropAnimation.gameObject.SetActive(false);
-                _transcendentBoomAnimation.gameObject.SetActive(true);
-                _transcendentBoomAnimation.InitializeAndPlay(null, () =>
-                {
-                    _transcendentBoomAnimation.gameObject.SetActive(false);
-                    _transcendentAreaEffectAnimation.gameObject.SetActive(true);
-
-                    _transcendentAreaEffectAnimation.SpriteRenderer.color = _transcendentAreaEffectColor;
-
-                    _transcendentAreaEffectAnimation.Play();
-                });
-            }
-            else
-            {
-                _normalSkeletonAnimation.AnimationState.SetAnimation(0, _normalBoomAnimation, loop: false);
-                stage.Particles.CreateParticle(NORMAL_BOOM_EFFECT_PATH, transform.position, 0.8f * _attackRadius * Vector3.one);
-                _normalAreaEffectAnimation.gameObject.SetActive(true);
-                _normalAreaEffectAnimation.Play();
-                _normalAreaEffectFadeIn.Restart();
-            }
+            _visual.SetActive(false);
 
             CombatSystem.HitOnTargetArea(stage, _targetArea, _owner, _attackDamage, CombatSystem.KnockBackType.Pivot, _targetArea.Center, _knockbackPower, null, null, null);
         }
@@ -258,16 +145,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         public override void PuttingBackToPool()
         {
             base.PuttingBackToPool();
-
-            _normalSkeletonAnimation.gameObject.SetActive(false);
-            _transcendentDropAnimation.gameObject.SetActive(false);
-            _transcendentBoomAnimation.gameObject.SetActive(false);
-            _normalAreaEffectAnimation.gameObject.SetActive(false);
-            _transcendentAreaEffectAnimation.gameObject.SetActive(false);
-
-            _normalAreaEffectFadeIn.Pause();
-            _normalAreaEffectFadeOut.Pause();
-            _transcendentAreaEffectFadeOut.Pause();
+            _visual.SetActive(false);
         }
     }
 }

@@ -34,7 +34,8 @@ namespace SamMul.GameClients.Stages.ProjectileObjects
 
         public static ProjectileBodyBase AllocateProjectileBody(GameObject gameObject)
         {
-            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            // 공용 공격 비주얼처럼 스프라이트가 자식에 있는 프리팹도 받는다.
+            SpriteRenderer spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
             if (spriteRenderer)
             {
                 ProjectileSpriteBody spriteBody = new ProjectileSpriteBody();

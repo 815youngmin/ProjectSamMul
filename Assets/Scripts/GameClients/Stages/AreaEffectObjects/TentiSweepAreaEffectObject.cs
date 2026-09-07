@@ -1,30 +1,30 @@
-using SamMul.Animations.Placeholder;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
-using SamMul.GameClients.Stages.Characters.Animations;
 using SamMul.GameClients.Stages.Characters.PCs;
 using SamMul.GameClients.Stages.Characters.StatusEffects;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 텐티 스윕 기본 공격. 전용 스파인 리소스 없이 판정 시점에 사각 범위를 AttackAreaFlashManager 로 표시한다.
+    /// </summary>
     public class TentiSweepAreaEffectObject : AreaEffectObjectBase
     {
-        public override bool IsAlive => Time.time <= _createdAt + _animationDuration;
+        public override bool IsAlive => Time.time <= _createdAt + ANIMATION_DURATION;
+
+        // 원본 공격 애니메이션 길이와 히트 프레임 시점. 타이밍 값으로만 쓴다.
+        private const float ANIMATION_DURATION = 0.5f;
+        private const float HIT_TIME_ON_ANIMATION = 0.25f;
 
         private PlayerCharacter _owner;
-        private SkeletonAnimation _attackEffectBody;
 
         private Vector2 _attackDirection;
         private Vector2 _attackSize;
         private float _damage;
         private float _areaRatio;
         private float _knockBackPower;
-        private float _hitTimeOnAnimation;
-        private float _animationDuration;
         private float _createdAt;
 
         public readonly static float BaseAttackAreaWidth = 5.0f;
@@ -37,32 +37,11 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
         public void AllocateSharedResources(AreaEffectType areaEffectType)
         {
-            Debug.Assert(areaEffectType == AreaEffectType.TentiSweep_Default || 
+            Debug.Assert(areaEffectType == AreaEffectType.TentiSweep_Default ||
                          areaEffectType == AreaEffectType.TentiSweep_Hina ||
                          areaEffectType == AreaEffectType.TentiSweep_Bongjun
                          );
             base.AllocateSharedResourcesForBase(areaEffectType);
-
-            var attackEffectBodyPath = areaEffectType switch
-            {
-                AreaEffectType.TentiSweep_Default => "Stages/Characters/TentiAttackEffects/TentiBasicAttack.prefab",
-                AreaEffectType.TentiSweep_Hina => "Stages/Characters/TentiAttackEffects/HinaBasicAttack.prefab",
-                AreaEffectType.TentiSweep_Bongjun=> "Stages/Characters/TentiAttackEffects/BongjunBasicAttack.prefab",
-                _ => throw new NotSupportedException($"AreaEffectType {areaEffectType}이 텐티 스윕이 아닙니다."),
-            };
-            _attackEffectBody = ResourcePool.Instance.InstantiateFromResource<SkeletonAnimation>(attackEffectBodyPath);
-            _attackEffectBody.transform.SetParent(this.gameObject.transform);
-            _attackEffectBody.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-            _attackEffectBody.transform.localScale = Vector3.one;
-            _attackEffectBody.skeleton.SetToSetupPose();
-            _attackEffectBody.gameObject.SetActive(false);
-
-            var hitEventData = _attackEffectBody.Skeleton.Data.FindEvent("hit");
-            var animation = _attackEffectBody.Skeleton.Data.FindAnimation("animation");
-            var hitEvent = CharacterAnimationController.FindEventInAnimationTimeline(animation, hitEventData);
-            _hitTimeOnAnimation = hitEvent.Time;
-            _animationDuration = animation.Duration;
-
         }
 
         public void Initialize(
@@ -90,15 +69,10 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.gameObject.transform.SetParent(owner.gameObject.transform);
             this.gameObject.transform.localPosition = Vector3.zero;
 
-            _attackEffectBody.gameObject.SetActive(true);
-            _attackEffectBody.AnimationState.SetAnimation(0, "animation", loop: false);
-            _attackEffectBody.gameObject.transform.localScale = new Vector3(_areaRatio, _areaRatio, _areaRatio);
-
             _isHitFired = false;
 
             _hitSoundPrefabPath = hitSoundPrefabPath;
-
-            this.RotateBodyImageToMoveDirection();
+            _hittedCharacters.Clear();
         }
 
         public override void UpdateLogic(Stage stage, float deltaTime)
@@ -110,7 +84,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 return;
             }
 
-            if (now > _createdAt + _hitTimeOnAnimation)
+            if (now > _createdAt + HIT_TIME_ON_ANIMATION)
             {
                 this.AttackToTargetArea(stage);
                 _isHitFired = true;
@@ -135,14 +109,5 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 }
             }
         }
-
-        private void RotateBodyImageToMoveDirection()
-        {
-            Vector2 direction = _attackDirection;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _attackEffectBody.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            _hittedCharacters.Clear();
-        }
     }
 }
-

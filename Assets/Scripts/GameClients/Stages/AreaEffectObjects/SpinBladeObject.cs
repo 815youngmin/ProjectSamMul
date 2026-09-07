@@ -1,25 +1,19 @@
-using SamMul.Animations.Placeholder;
-using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.GameClients.Stages.ProjectileObjects;
-using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 스핀 블레이드. 전용 리소스 없이 공용 공격 비주얼을 판정 지름에 맞춰 사용한다.
+    /// </summary>
     public class SpinBladeObject : AreaEffectObjectBase
     {
         public override bool IsAlive => true;
 
-        private GameObject _bodyImage;
-        private GameObject _normalSkillImage;
-        private GameObject _transcendSkillImage;
-
-        private SkeletonAnimation _skeletonAnimation;
-        private Animation _idleAnimation;
+        private GameObject _visual;
 
         private Character _owner;
 
@@ -35,9 +29,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private HashSet<Character> _hittedCharactersInAttackPeriod;
         private float _lastClearedHittedCharactersAt;
 
-        private readonly static string SPIN_BLADE_SPINE_RESOURCE_PATH = "Stages/AreaEffects/SpinBlade/guadian_SkeletonData.asset"; 
-        private readonly static string SPIN_BLADE_TRANSCEND_PREFAB_RESOURCE_PATH = "Stages/AreaEffects/SpinBlade/SpinBlade_S_Object.prefab"; 
-
         private bool _isTranscend;
         private string _hitSoundPrefabPath;
 
@@ -46,7 +37,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         //_baseDamage: 공격대미지, 초기화에서 주입
         //_attackPeriod: 몬스터별 공격 주기
 
-        // duration동안 살아있고, 
+        // duration동안 살아있고,
         // attack period 마다 현재 위치에서 radius 범위에 있는 몬스터에게 damage만큼 타격을 입히고, (몬스터 개별, attack period 가 지난 뒤 충돌하면 다시 대미지)
         // owner 주변으로 원을 그리며 이동, 매 프레임 angleSpeed 만큼 이동
 
@@ -55,23 +46,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             base.AllocateSharedResourcesForBase(AreaEffectType.SpinBlade);
             _hittedCharactersInAttackPeriod = new HashSet<Character>();
 
-            string bodyImagePrefabPath = "Stages/AreaEffects/SpinBlade/GuardianSupportObject.prefab";
-            _bodyImage = ResourcePool.Instance.InstantiateFromResource(bodyImagePrefabPath);
-            _bodyImage.transform.SetParent(this.gameObject.transform);
-
-            _normalSkillImage = new GameObject("normalSkillImage");
-            _normalSkillImage.transform.SetParent(_bodyImage.transform);
-            _skeletonAnimation = SpineHelper.LoadSpine(_normalSkillImage, SPIN_BLADE_SPINE_RESOURCE_PATH);
-            _normalSkillImage.GetComponent<MeshRenderer>().sortingLayerID = SortingLayer.NameToID("HighParticle");
-            _idleAnimation = _skeletonAnimation.skeleton.Data.FindAnimation("skill");
-
-            _transcendSkillImage = ResourcePool.Instance.InstantiateFromResource(SPIN_BLADE_TRANSCEND_PREFAB_RESOURCE_PATH);
-            _transcendSkillImage.transform.SetParent(_bodyImage.transform);
-            _transcendSkillImage.GetComponent<MeshRenderer>().sortingLayerID = SortingLayer.NameToID("HighParticle");
-            _transcendSkillImage.SetActive(false);
-
+            _visual = PlayerAttackVisual.Attach(transform, 1f);
             _isTranscend = false;
-
         }
 
         public void Initialize(
@@ -101,9 +77,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
             _hitSoundPrefabPath = hitSoundPrefabPath;
 
+            PlayerAttackVisual.SetDiameter(_visual, _objectRadius * 2f);
             this.MoveToCurrentPosition();
-            Debug.Assert(null != _idleAnimation);
-            _skeletonAnimation.AnimationState.SetAnimation(0, _idleAnimation, true);
         }
 
         public override void PuttingBackToPool()
@@ -167,27 +142,18 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             _objectRadius = objectRadius;
             _movingRadius = movingRadius;
             _angleSpeedDegree = angleSpeedDegree;
+            PlayerAttackVisual.SetDiameter(_visual, _objectRadius * 2f);
         }
 
-        public void SetAngleMoveSpeed(float speed) 
+        public void SetAngleMoveSpeed(float speed)
         {
             _angleSpeedDegree = speed;
         }
 
         public void SetTranscendFlag(bool isTranscend)
         {
-            if(_isTranscend == isTranscend)
-            {
-                return;
-            }
-
-            _transcendSkillImage.SetActive(isTranscend);
-            _normalSkillImage.SetActive(!isTranscend);
-
-            GameObject toImageObject = (isTranscend ? _transcendSkillImage : _normalSkillImage);
-            _skeletonAnimation = toImageObject.GetComponent<SkeletonAnimation>();
-            _idleAnimation = _skeletonAnimation.skeleton.Data.FindAnimation("skill");
-            _skeletonAnimation.AnimationState.SetAnimation(0, _idleAnimation, true);
+            // 초월 전용 비주얼이 없어 표시는 같다. 상태만 기록한다.
+            _isTranscend = isTranscend;
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
 using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
@@ -43,7 +42,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
         private static readonly float OBJECT_RADIUS = 0.8f;
         // 전용 투사체 리소스 대신 쓰는 공용 공격 비주얼. 판정 반지름(OBJECT_RADIUS)에 맞춰 크기를 맞춘다.
-        private static readonly string VISUAL_PREFAB_PATH = "Stage/Common/PlayerAttackVisual.prefab";
         private GameObject _visual;
 
         private static readonly string NORMAL_HIT_SFX_PATH = "Sounds/SoundEffects/PCs/BouncingClawNormalHit_SFX.prefab";
@@ -56,14 +54,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.BouncingClaw);
 
-            _visual = ResourcePool.Instance.InstantiateFromResource(VISUAL_PREFAB_PATH);
-            _visual.transform.SetParent(transform, worldPositionStays: false);
-            _visual.transform.localPosition = Vector3.zero;
-
-            // 스프라이트 지름이 판정 지름(OBJECT_RADIUS * 2)과 같아지도록 맞춘다. 부모 스케일(_scale)은 그대로 곱해진다.
-            var renderer = _visual.GetComponentInChildren<SpriteRenderer>();
-            float spriteDiameter = renderer != null && renderer.sprite != null ? renderer.sprite.bounds.size.x : 1f;
-            _visual.transform.localScale = Vector3.one * (OBJECT_RADIUS * 2f / Mathf.Max(spriteDiameter, 0.01f));
+            // 부모 스케일(_scale)은 그대로 곱해진다.
+            _visual = PlayerAttackVisual.Attach(transform, OBJECT_RADIUS * 2f);
         }
 
         public void Initialize(

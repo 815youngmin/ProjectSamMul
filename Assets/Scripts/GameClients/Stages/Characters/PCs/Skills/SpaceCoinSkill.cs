@@ -17,12 +17,13 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
         #region Projectile Paths
         private static readonly string[] DEFAULT_PROJECTILE_PATH =
         {
-            "Stages/Projectiles/Dice_Projectile/Chip_1.prefab",
-            "Stages/Projectiles/Dice_Projectile/Chip_2.prefab",
-            "Stages/Projectiles/Dice_Projectile/Chip_3.prefab",
-            "Stages/Projectiles/Dice_Projectile/Chip_4.prefab",
-            "Stages/Projectiles/Dice_Projectile/Chip_5.prefab",
-            "Stages/Projectiles/Dice_Projectile/Chip_6.prefab",
+            // 주사위 눈별 칩 리소스 대신 공용 공격 비주얼을 쓴다. 인덱스(주사위 눈)는 그대로 유지한다.
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
+            AreaEffectObjects.PlayerAttackVisual.PREFAB_PATH,
         };
         #endregion
 

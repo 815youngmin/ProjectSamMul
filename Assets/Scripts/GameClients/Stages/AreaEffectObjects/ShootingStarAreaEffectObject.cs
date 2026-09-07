@@ -1,18 +1,21 @@
-using SamMul.Animations.Placeholder;
-using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.Characters.PCs;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
 using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 슈팅 스타. 전용 스파인 리소스 없이 몸체는 공용 공격 비주얼로 그린다.
+    /// </summary>
     public class ShootingStarAreaEffectObject : AreaEffectObjectBase
     {
         private static readonly string BOOM_SFX_PATH = "Sounds/SoundEffects/PCs/ShootingStarBoom_SFX.prefab";
+
+        // 원본 등장(Begin) 애니메이션 길이. 이 시간이 지나야 움직이기 시작한다.
+        private const float BEGIN_DURATION = 0.5f;
 
         public override bool IsAlive => !_isExplosion;
 
@@ -28,8 +31,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private bool _isHit;
         private bool _isExplosion;
 
-        private GameObject _normalBody;
-        private GameObject _transcendBody;
+        private GameObject _visual;
         private Vector2 _movingDirection;
         private float _moveSpeed;
         private float _acceleration;
@@ -47,44 +49,16 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private float _scaleUp;
         private bool _isTranscend;
 
-        private SkeletonAnimation _normalSkeletonAnimation;
-        private Animation _normalBeginAnimation;
-        private Animation _normalRepeatAnimation;
-        private TrailRenderer _normalTrailRenderer;
-
-        private SkeletonAnimation _transcendSkeletonAnimation;
-        private Animation _transcendBeginAnimation;
-        private Animation _transcendRepeatAnimation;
-
         public void AllocateSharedResources()
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.ShootingStar);
-            _normalBody = ResourcePool.Instance.InstantiateFromResource("Stages/AreaEffects/ShootingStar/ShootingStar_N.prefab");
-            _normalBody.transform.SetParent(this.transform);
-            _normalBody.transform.localPosition = Vector2.zero;
-            _normalBody.transform.localScale = Vector2.one;
-            _normalSkeletonAnimation = _normalBody.GetComponentInChildren<SkeletonAnimation>();
-            _normalBeginAnimation = _normalSkeletonAnimation.Skeleton.Data.FindAnimation("Begin");
-            _normalRepeatAnimation = _normalSkeletonAnimation.Skeleton.Data.FindAnimation("Repeat");
-            _normalTrailRenderer = _normalBody.GetComponentInChildren<TrailRenderer>();
-
-            _normalSkeletonAnimation.AnimationState.Data.DefaultMix = 0f;
-
-
-            _transcendBody = ResourcePool.Instance.InstantiateFromResource("Stages/AreaEffects/ShootingStar/ShootingStar_S.prefab");
-            _transcendBody.transform.SetParent(this.transform);
-            _transcendBody.transform.localPosition = Vector2.zero;
-            _transcendBody.transform.localScale = Vector3.one;
-            _transcendSkeletonAnimation = _transcendBody.GetComponentInChildren<SkeletonAnimation>();
-            _transcendBeginAnimation = _transcendSkeletonAnimation.Skeleton.Data.FindAnimation("Begin");
-            _transcendRepeatAnimation = _transcendSkeletonAnimation.Skeleton.Data.FindAnimation("Repeat");
-
-            _transcendSkeletonAnimation.AnimationState.Data.DefaultMix = 0f;
 
             _attackPeriod = 0.25f;
             _normalRadius = 0.8f;
             _transcendRadius = 3.5f;
 
+            // 부모 스케일(_scaleUp)은 그대로 곱해진다.
+            _visual = PlayerAttackVisual.Attach(transform, _normalRadius * 2f);
         }
 
         public void Initialize(
@@ -109,7 +83,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             _owner = owner;
             _movingDirection = movingDirection.normalized;
             _moveSpeed = moveSpeed;
-            _acceleration = acceleration;   
+            _acceleration = acceleration;
             _aliveDistance = aliveDistance;
             _collisionDamage = collisionDamage;
             _explosionDamage = explosionDamage;
@@ -129,27 +103,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.transform.localScale = Vector2.one * scaleUp;
             this.transform.position = _owner.CenterPos;
 
-            if(_isTranscend)
-            {
-                _transcendSkeletonAnimation.AnimationState.SetAnimation(0, _transcendBeginAnimation, false);
-                _transcendSkeletonAnimation.AnimationState.AddAnimation(0, _transcendRepeatAnimation, true, 0f);
-                _normalBody.gameObject.SetActive(false);
-                _transcendBody.gameObject.SetActive(true);
-
-                _activateAt = now + _transcendBeginAnimation.Duration;
-            }
-            else
-            {
-                _normalSkeletonAnimation.AnimationState.SetAnimation(0, _normalBeginAnimation, false);
-                _normalSkeletonAnimation.AnimationState.AddAnimation(0, _normalRepeatAnimation, false, 0f);
-
-                _normalTrailRenderer.Clear();
-
-                _normalBody.gameObject.SetActive(true);
-                _transcendBody.gameObject.SetActive(false);
-
-                _activateAt = now + _normalBeginAnimation.Duration;
-            }
+            _visual.SetActive(true);
+            _activateAt = now + BEGIN_DURATION;
 
             this.RotateBodyImageToMoveDirection();
         }
@@ -219,7 +174,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         {
             List<Character> aliveCharacters = new List<Character>();
             List<Character> hitCharacters= new List<Character>();
-            
+
             float radius = _normalRadius * _scaleUp;
             stage.FindAliveCharactersInArea(_owner.Alliance.ToEnemyAlliance(), this.transform.position, radius, radius + 4f, aliveCharacters);
 
@@ -236,9 +191,9 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 this.Explosion(stage);
             }
             else
-            { 
+            {
                 var item = stage.FindClosestBreakableItemObjectExceptFence(this.transform.position);
-                if (item != null && Vector2.SqrMagnitude(item.transform.position - this.transform.position) <= radius * radius) 
+                if (item != null && Vector2.SqrMagnitude(item.transform.position - this.transform.position) <= radius * radius)
                 {
                     this.Explosion(stage);
                 }
@@ -254,15 +209,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         {
             base.PuttingBackToPool();
             _hittedCharactersInAttackPeriod.Clear();
-
-            _transcendSkeletonAnimation.AnimationState.ClearTracks();
-            _transcendSkeletonAnimation.skeleton.SetToSetupPose();
-            _transcendSkeletonAnimation.Update(0);
-
-            _normalSkeletonAnimation.AnimationState.ClearTracks();
-            _normalSkeletonAnimation.skeleton.SetToSetupPose();
-            _normalSkeletonAnimation.Update(0);
-
         }
 
         private void MoveToCurrentPosition(float deltaTime)

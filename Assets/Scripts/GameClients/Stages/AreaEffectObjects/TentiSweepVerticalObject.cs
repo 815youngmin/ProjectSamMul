@@ -1,23 +1,25 @@
 #nullable enable
-using SamMul.Animations.Placeholder;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
-using SamMul.GameClients.Stages.Characters.Animations;
 using SamMul.GameClients.Stages.Characters.PCs;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 텐티 스윕 수직 공격. 전용 스파인 리소스 없이 판정 시점에 사각 범위를 AttackAreaFlashManager 로 표시한다.
+    /// </summary>
     public class TentiSweepVerticalObject : AreaEffectObjectBase
     {
         private readonly Vector2 DEFAULT_ATTACK_AREA = new Vector2(1.0f, 3.5f);
 
+        // 원본 공격 애니메이션 길이와 히트 프레임 시점. 타이밍 값으로만 쓴다.
+        private const float ANIMATION_DURATION = 0.5f;
+        private const float HIT_TIME_ON_ANIMATION = 0.25f;
+
         public override bool IsAlive => _isAlive;
 
-        private SkeletonAnimation _attackEffectBody = null!;
         private HashSet<Character> _hittedMonsters = null!;
 
         private PlayerCharacter _owner = null!;
@@ -27,8 +29,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private Vector2 _attackArea;
         private float _damage;
         private float _knockBackPower;
-        private float _hitTimeOnAnimation;
-        private float _animationDuration;
         private float _createdAt;
         private float _hitAt;
         private float _hpDrainPercent;
@@ -42,26 +42,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 areaEffectType == AreaEffectType.TentiSweepVertical_Hina ||
                 areaEffectType == AreaEffectType.TentiSweepVertical_Bongjun);
             base.AllocateSharedResourcesForBase(areaEffectType);
-
-            var attackEffectBodyPath = areaEffectType switch
-            {
-                AreaEffectType.TentiSweepVertical_Default => "Stages/Characters/TentiAttackEffects/TentiVerticalAttack.prefab",
-                AreaEffectType.TentiSweepVertical_Hina => "Stages/Characters/TentiAttackEffects/HinaVerticalAttack.prefab",
-                AreaEffectType.TentiSweepVertical_Bongjun => "Stages/Characters/TentiAttackEffects/BongjunVerticalAttack.prefab",
-                _ => throw new NotSupportedException($"AreaEffectType {areaEffectType}이 텐티 스윕이 아닙니다."),
-            };
-            _attackEffectBody = ResourcePool.Instance.InstantiateFromResource<SkeletonAnimation>(attackEffectBodyPath);
-            _attackEffectBody.Skeleton.SetToSetupPose();
-            _attackEffectBody.transform.SetParent(transform);
-            _attackEffectBody.transform.localPosition = new Vector3(0f, 0.5f, 0f);
-            _attackEffectBody.transform.localScale = Vector3.one;
-            _attackEffectBody.gameObject.SetActive(false);
-
-            var animation = _attackEffectBody.Skeleton.Data.FindAnimation("animation");
-            var hitEventData = _attackEffectBody.Skeleton.Data.FindEvent("hit");
-            var hitEvent = CharacterAnimationController.FindEventInAnimationTimeline(animation, hitEventData);
-            _hitTimeOnAnimation = hitEvent.Time;
-            _animationDuration = animation.Duration;
 
             _hittedMonsters = new HashSet<Character>();
         }
@@ -87,13 +67,9 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
             float now = Time.time;
             _createdAt = now;
-            _hitAt = now + _hitTimeOnAnimation;
+            _hitAt = now + HIT_TIME_ON_ANIMATION;
 
             transform.position = attackPosition;
-
-            _attackEffectBody.gameObject.SetActive(true);
-            _attackEffectBody.transform.localScale = areaRatio * Vector3.one;
-            _attackEffectBody.AnimationState.SetAnimation(0, "animation", loop: false);
 
             _isAlive = true;
         }
@@ -108,7 +84,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 _hitAt = float.MaxValue;
             }
 
-            if (now >= _createdAt + _animationDuration)
+            if (now >= _createdAt + ANIMATION_DURATION)
             {
                 _isAlive = false;
             }

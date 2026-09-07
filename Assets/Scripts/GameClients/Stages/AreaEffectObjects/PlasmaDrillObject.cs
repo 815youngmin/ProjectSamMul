@@ -2,23 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 플라즈마 드릴. 전용 리소스 없이 공용 공격 비주얼을 판정 지름에 맞춰 사용한다.
+    /// </summary>
     public class PlasmaDrillObject : AreaEffectObjectBase
     {
         public override bool IsAlive => Time.time <= _createdAt + _lifeTime;
 
-        private GameObject _normalSkill;
-        private GameObject _transcendSkill;
-        private SpriteAnimationHandler _normalSkillImage;
-        private SpriteAnimationHandler _transcendSkillImage;
-        private SpriteAnimationHandler _targetSkillImage;
-
-        private TrailRenderer _normalTrailRenderer;
-        private TrailRenderer _transcendTrailRenderer;
+        private GameObject _visual;
 
         private Character _owner;
         private float _objectRadius;
@@ -42,25 +36,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             base.AllocateSharedResourcesForBase(AreaEffectType.PlasmaDrill);
             _hittedCharactersInAttackPeriod = new HashSet<Character>();
 
-            string normalPrefabPath = "Stages/AreaEffects/PlasmaDrill/Plasma_Drill.prefab";
-            string transcendPrefabPath = "Stages/AreaEffects/PlasmaDrill/Plasma_Drill_S.prefab";
-
-            _normalSkill = ResourcePool.Instance.InstantiateFromResource(normalPrefabPath);
-            _normalSkillImage = _normalSkill.GetComponentInChildren<SpriteAnimationHandler>();
-            _normalSkillImage.InitializeOnly();
-            _normalTrailRenderer = _normalSkill.GetComponentInChildren<TrailRenderer>();
-            _normalSkill.transform.SetParent(transform);
-            _normalSkill.transform.localPosition = Vector3.zero;
-            _normalSkill.transform.localScale = Vector3.one;
-
-            _transcendSkill = ResourcePool.Instance.InstantiateFromResource(transcendPrefabPath); ;
-            _transcendSkillImage = _transcendSkill.GetComponentInChildren<SpriteAnimationHandler>();
-            _transcendSkillImage.InitializeOnly();
-            _transcendTrailRenderer = _transcendSkill.GetComponentInChildren<TrailRenderer>();
-            _transcendSkill.transform.SetParent(transform);
-            _transcendSkill.transform.localPosition = Vector3.zero;
-            _transcendSkill.transform.localScale = Vector3.one;
-
+            _visual = PlayerAttackVisual.Attach(transform, 1f);
         }
 
         public void Initialize(
@@ -89,22 +65,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.transform.position = _owner.CenterPos;
             _isTranscend = isTranscend;
 
-            if (isTranscend)
-            {
-                _transcendSkill.SetActive(true);
-                _normalSkill.SetActive(false);
-                _targetSkillImage = _transcendSkillImage;
-            }
-            else
-            {
-                _transcendSkill.SetActive(false);
-                _normalSkill.SetActive(true);
-                _targetSkillImage = _normalSkillImage;
-            }
-
-            _normalTrailRenderer.Clear();
-            _transcendTrailRenderer.Clear();
-            _targetSkillImage.InitializeAndPlay();
+            PlayerAttackVisual.SetDiameter(_visual, _objectRadius * 2f);
             _hitSoundPrefabPath = hitSoundPrefabPath;
         }
 

@@ -1,22 +1,22 @@
-using SamMul.Animations.Placeholder;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 글루튼(블레이드 드론). 전용 스파인 리소스 없이 공용 공격 비주얼을 판정 지름에 맞춰 사용한다.
+    /// </summary>
     public class GluttonObject : AreaEffectObjectBase
     {
         public override bool IsAlive => Time.time <= _createdAt + _lifeTime;
 
-        //몸체가 될 이미지
-        private GameObject _bodyImage;
-        private GameObject _normalSkillImage;
-        private GameObject _transcendSkillImage;
+        // 원본 회전(turn) 애니메이션 길이. 속도가 0이 되는 시점과 맞추기 위한 타이밍 값으로만 쓴다.
+        private const float TURN_DURATION = 0.5f;
 
+        private GameObject _visual;
         private SpriteRenderer _droneShadow;
 
         private Character _owner;
@@ -32,22 +32,16 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
 
         private HashSet<Character> _hittedCharacters;
-        private SkeletonAnimation _currentImageSkeletonAnimation;
-        private SkeletonAnimation _normalImageSkeletonAnimation;
-        private SkeletonAnimation _transcendImageSkeletonAnimation;
-        private ParticleSystem _transcendSkillTrailSystem;
 
-        private float _turnDuration;
         private bool _isPlayTurn;
         private bool _isPlayTurnAfterIdle;
         private float _turnAnimationPlayedAt;
-        public bool IsTurning => Time.time < _turnAnimationPlayedAt + _turnDuration;
+        public bool IsTurning => Time.time < _turnAnimationPlayedAt + TURN_DURATION;
 
         private bool _isTranscend;
 
         private string _hitSoundPrefabPath;
 
-        //_bodyImage: 몸체 이미지
         //_owner: 생성한 캐릭터
         //_objectRadius: 공격 범위
         //_movingDirection: 이동 방향
@@ -60,34 +54,14 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         public void AllocateSharedResources()
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.Glutton);
- 
+
             _hittedCharacters = new HashSet<Character>();
-            
-            string normalImageSpinePath = "Stages/AreaEffects/Glutton/Blade_Drone_SkeletonData.asset";
-            string transcendImageSpinePath = "Stages/AreaEffects/Glutton/Glutton_S.prefab";
-            _bodyImage = new GameObject("BaldeDroneBodyImage");
-            _bodyImage.transform.SetParent(this.gameObject.transform);
 
-            _normalSkillImage = new GameObject("normalSkillImage");
-            _normalSkillImage.transform.SetParent(_bodyImage.transform);
-            _normalSkillImage.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            _normalImageSkeletonAnimation = SpineHelper.LoadSpine(_normalSkillImage, normalImageSpinePath, sortingLayerName: "HighParticle");
-            _normalImageSkeletonAnimation.AnimationState.Data.SetMix("idle", "turn", 0);
-            _normalImageSkeletonAnimation.AnimationState.Data.SetMix("turn", "idle", 0);
-
-            _transcendSkillImage = ResourcePool.Instance.InstantiateFromResource(transcendImageSpinePath);
-            _transcendSkillImage.transform.SetParent(_bodyImage.transform);
-            _transcendSkillImage.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            _transcendImageSkeletonAnimation = _transcendSkillImage.GetComponent<SkeletonAnimation>();
-            _transcendImageSkeletonAnimation.AnimationState.Data.SetMix("idle", "turn", 0);
-            _transcendImageSkeletonAnimation.AnimationState.Data.SetMix("turn", "idle", 0);
-            _transcendSkillTrailSystem = _transcendSkillImage.GetComponentInChildren<ParticleSystem>();
-            Debug.Assert(null != _transcendSkillTrailSystem);
+            _visual = PlayerAttackVisual.Attach(transform, 1f);
 
             var shadowObject = new GameObject("Shadow");
             shadowObject.transform.SetParent(this.gameObject.transform, worldPositionStays: false);
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
-            // TODO 플레이어용 그림자 쓸 것
             shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/ItemShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 0.50f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
@@ -126,21 +100,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.transform.position = _owner.CenterPos;
             _isTranscend = isTranscend;
 
-            if(_isTranscend)
-            {
-                _transcendSkillImage.SetActive(true);
-                _normalSkillImage.SetActive(false);
-                _currentImageSkeletonAnimation = _transcendImageSkeletonAnimation;
-            }
-            else
-            {
-                _transcendSkillImage.SetActive(false);
-                _normalSkillImage.SetActive(true);
-                _currentImageSkeletonAnimation = _normalImageSkeletonAnimation;
-            }
+            PlayerAttackVisual.SetDiameter(_visual, _objectRadius * 2f);
 
-            _currentImageSkeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
-             _turnDuration = _currentImageSkeletonAnimation.AnimationState.Data.SkeletonData.FindAnimation("turn").Duration;
             _isPlayTurn = false;
             _isPlayTurnAfterIdle = false;
             _hitSoundPrefabPath = hitSoundPrefabPath;
@@ -158,7 +119,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         {
             Vector2 direction = _movingDirection * _movingSpeed;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _bodyImage.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            _visual.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
 
@@ -168,30 +129,20 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         }
 
 
-        //현재 드론의 상황에 맞는 애니메이션을 재생하고 공격 가능한 캐릭터 리스트를 초기화 한다.
+        //드론이 방향을 돌리는 시점을 판정하고, 돌아온 뒤 공격 가능한 캐릭터 리스트를 초기화 한다.
         private void CheckingDroneHittedChatersAndChangeAnimation()
-        {   
+        {
             //블레이드 드론의 회전 애니메이션의 0.4 지점이 속도가 0이 되는 지점과 맞아야 된다.
-            if (_movingSpeed - _oppositeDirectionAcceleration * (_turnDuration * 0.4f) <= 0 && !_isPlayTurn)
+            if (_movingSpeed - _oppositeDirectionAcceleration * (TURN_DURATION * 0.4f) <= 0 && !_isPlayTurn)
             {
                 _isPlayTurn = true;
                 _turnAnimationPlayedAt = Time.time;
-                _currentImageSkeletonAnimation.AnimationState.SetAnimation(0, "turn", false);
-                if (_isTranscend)
-                {
-                    _transcendSkillTrailSystem.gameObject.SetActive(false);
-                }
             }
-            //블레이드 드론의 회전 애니메이션이 끝나고 다시 idle 애니메이션을 재생해줘야 한다.
-            else if (_isPlayTurn && Time.time > _turnAnimationPlayedAt + _turnDuration && !_isPlayTurnAfterIdle)
+            //블레이드 드론의 회전이 끝나면 되돌아오는 길에 다시 공격할 수 있게 한다.
+            else if (_isPlayTurn && Time.time > _turnAnimationPlayedAt + TURN_DURATION && !_isPlayTurnAfterIdle)
             {
                 _isPlayTurnAfterIdle = true;
-                _currentImageSkeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
                 _hittedCharacters.Clear();
-                if (_isTranscend)
-                {
-                    _transcendSkillTrailSystem.gameObject.SetActive(true);
-                }
             }
         }
 
@@ -213,7 +164,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.CheckingDroneHittedChatersAndChangeAnimation();
 
             var targetArea = new CircularTargetArea(this.transform.position, _objectRadius);
-            CombatSystem.HitOnTargetArea(stage, targetArea, _owner, _damage, CombatSystem.KnockBackType.Pivot, targetArea.Center, _knockBackPower, _hittedCharacters, _hittedCharacters, _hitSoundPrefabPath); 
+            CombatSystem.HitOnTargetArea(stage, targetArea, _owner, _damage, CombatSystem.KnockBackType.Pivot, targetArea.Center, _knockBackPower, _hittedCharacters, _hittedCharacters, _hitSoundPrefabPath);
         }
     }
 }
