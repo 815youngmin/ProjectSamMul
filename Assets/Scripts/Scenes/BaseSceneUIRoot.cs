@@ -277,12 +277,9 @@ namespace SamMul.Scenes
             long accountId,
             Action okButtonAction)
         {
-            var popup = this.CreateAndAddPopup<ErrorMessagePopup>(ErrorMessagePopup.PREFAB_PATH, playSound: true);
-            popup.InitializeErrorMessagePopup(accountId, appVersion, protocolName, 
-                title, message, okButtonText, okButtonAction, closeRequester: (bool skipAnimation) =>
-            {
-                this.CloseAndDestroyPopup(popup, onCompleted: () => { }, skipAnimation);
-            });
+            // 전용 오류 팝업 대신 공용 팝업을 쓰고, 문의용 정보(요청 이름/버전/계정)는 메시지 아래에 덧붙인다.
+            string detail = $"{protocolName} / v{appVersion} / #{accountId}";
+            this.AddCommonMessagePopup(title, message + "\n\n" + detail, okButtonText, okButtonAction);
         }
 
         public void AddOKCancelPopup(string title, string message, string okButtonText, Action? okButtonAction, string cancelText, Action? cancelAction)
