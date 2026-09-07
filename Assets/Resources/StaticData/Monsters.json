@@ -97,7 +97,7 @@
   },
   {
     "MonsterType": "Egypt_BossAnubisMask",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSANUBISMASK_NAME",
     "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_06/Boss_06.controller",
     "ColliderRadius": 2.2,
@@ -129,7 +129,7 @@
   },
   {
     "MonsterType": "Egypt_BossPharaoh",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSPHARAOH_NAME",
     "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_05/Boss_05.controller",
     "ColliderRadius": 1.8,
@@ -146,7 +146,7 @@
     "MaxHP": 12000.0,
     "CollisionAttackPower": 15.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 0.0,
+    "MoveSpeed": 3.0,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -161,7 +161,7 @@
   },
   {
     "MonsterType": "Egypt_BossRa",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSRA_NAME",
     "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_06/Boss_06.controller",
     "ColliderRadius": 1.5,
@@ -193,7 +193,7 @@
   },
   {
     "MonsterType": "Egypt_BossSnakeDruidProjectileType",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_EGYPT_BOSSSNAKEDRUIDPROJECTILETYPE_NAME",
     "SkeletonDataPath": "Stage/Chapter03/BossAnimation/Boss_05/Boss_05.controller",
     "ColliderRadius": 1.2,
@@ -481,7 +481,7 @@
   },
   {
     "MonsterType": "IceAge_BossDireWolfChief",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSDIREWOLFCHIEF_NAME",
     "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_04/Boss_04.controller",
     "ColliderRadius": 2.0,
@@ -513,7 +513,7 @@
   },
   {
     "MonsterType": "IceAge_BossIceGolem",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSICEGOLEM_NAME",
     "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_03/Boss_03.controller",
     "ColliderRadius": 2.0,
@@ -530,7 +530,7 @@
     "MaxHP": 27000.0,
     "CollisionAttackPower": 10.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 0.0,
+    "MoveSpeed": 3.0,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -545,7 +545,7 @@
   },
   {
     "MonsterType": "IceAge_BossThreeLeapsBug",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_ICEAGE_BOSSTHREELEAPSBUG_NAME",
     "SkeletonDataPath": "Stage/Chapter02/BossAnimation/Boss_04/Boss_04.controller",
     "ColliderRadius": 2.0,
@@ -929,7 +929,7 @@
   },
   {
     "MonsterType": "Primitive_BossLava",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSLAVA_NAME",
     "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_02/Boss_02.controller",
     "ColliderRadius": 1.1,
@@ -946,7 +946,7 @@
     "MaxHP": 5800.0,
     "CollisionAttackPower": 4.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 0.0,
+    "MoveSpeed": 3.0,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -961,7 +961,7 @@
   },
   {
     "MonsterType": "Primitive_BossMammothChief",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSMAMMOTHCHIEF_NAME",
     "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_01/Boss_01.controller",
     "ColliderRadius": 1.2,
@@ -993,7 +993,7 @@
   },
   {
     "MonsterType": "Primitive_BossTriceratops",
-    "AIType": "MeleeAttackAI",
+    "AIType": "MoveAndStopAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSTRICERATOPS_NAME",
     "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_02/Boss_02.controller",
     "ColliderRadius": 1.1,
