@@ -1,28 +1,15 @@
 using Shared.StaticDatas;
-using SamMul.Animations.Placeholder;
-using Animation = SamMul.Animations.Placeholder.Animation;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.Characters.Stats;
 using SamMul.GameClients.Stages.CombatSystems;
 using SamMul.GameClients.Stages.ItemObjects;
 using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
     public class DeathTouchSkill : SkillBase
     {
-        public enum DroneAnimationTrack : int
-        {
-            droneBody = 0,
-            attack_a = 1,
-            attack_b = 2,
-            attack_c = 3,
-            attack_d = 4,
-            attack_e = 5, 
-        }
-
         private float _attackPowerRate;
         private float _missileFireDuration; //미사일 발사 지속시간
         private float _missileFireCoolTime; //미사일 발사 끝나고 쿨타임
@@ -33,7 +20,10 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
         private float _knockBackPower;
         private float _searchingDistance; // 발사할 때 타겟을 탐색하는 거리
 
+        // 드론 몸체. 전용 스파인 대신 스프라이트 프리팹을 쓴다. 기본 방향은 오른쪽을 본다.
+        private const string DRONE_BODY_PREFAB_PATH = "Skill/DeathTouch/DeathTouchBody.prefab";
         private GameObject _droneBodyImage;
+        private SpriteRenderer _droneBodyRenderer;
 
         private SpriteRenderer _droneShadow;
         private Character _target;
@@ -55,10 +45,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
         private float _fireDeactivatedAt;
 
         private float _playerAttackRangeDistanceRatio;
-
-        private List<Bone> _firePositions;
-        private List<Animation> _fireAnimations;
-        private SkeletonAnimation _droneBodySkeletonAnimation;
 
         private List<float> _missileFiringAts = new List<float>();
 
@@ -85,12 +71,13 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 
         private void LoadOriginalResourceAndInitialize(PlayerCharacter owner)
         {
-            string bodyImageSpinePath = IsTranscendent ? "Stages/SkillEffects/DeathTouch_S_SkeletonData.asset" :  "Stages/SkillEffects/DeathTouch_SkeletonData.asset";
             _rightOffset = new Vector2(1.5f, 1.5f);
             _leftOffset = new Vector2(-1.5f, 1.5f);
 
-            _droneBodyImage = new GameObject("MissileDroneBodyImage");
-            _droneBodyImage.transform.localScale = new Vector3(1f, 1f, 1f);
+            _droneBodyImage = ResourcePool.Instance.InstantiateFromResource(DRONE_BODY_PREFAB_PATH);
+            _droneBodyImage.name = "MissileDroneBodyImage";
+            _droneBodyRenderer = _droneBodyImage.GetComponent<SpriteRenderer>();
+            _droneBodyImage.SetActive(true);
     
             if (owner.AnimationController.Body.skeleton.ScaleX < 0)
             {
@@ -101,56 +88,11 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
                 _droneBodyImage.transform.position = (Vector2)owner.transform.position + _rightOffset;
             }
 
-            _droneBodySkeletonAnimation = SpineHelper.LoadSpine(_droneBodyImage, bodyImageSpinePath, sortingLayerName: "HighParticle");
-            _droneBodySkeletonAnimation.AnimationState.SetAnimation((int)DroneAnimationTrack.droneBody, "idle", true);
-
-            _firePositions = new List<Bone>
-            {
-                _droneBodySkeletonAnimation.skeleton.FindBone("attack_a"),
-                _droneBodySkeletonAnimation.skeleton.FindBone("attack_b"),
-                _droneBodySkeletonAnimation.skeleton.FindBone("attack_c"),
-                _droneBodySkeletonAnimation.skeleton.FindBone("attack_d"),
-                _droneBodySkeletonAnimation.skeleton.FindBone("attack_e")
-            };
-            _fireAnimations = new List<Animation>
-            {
-               _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_a"),
-               _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_b"),
-               _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_c"),
-               _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_d"),
-               _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_e")
-            };
-            for(int i = 0; i < _fireAnimations.Count; i++)
-            {
-                var left = _fireAnimations[i];
-                for(int j = 0; j < _fireAnimations.Count; j++)
-                {
-                    var right = _fireAnimations[j];
-                    SpineHelper.SetMixHelper(_droneBodySkeletonAnimation, left, right, 0.0f);
-                }
-            }
-
-            SpineHelper.SetMixHelper(_droneBodySkeletonAnimation, _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("idle"), _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("idle"), 0.0f);
-            SpineHelper.SetMixHelper(_droneBodySkeletonAnimation, _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("idle"), _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_ready"), 0f);
-            SpineHelper.SetMixHelper(_droneBodySkeletonAnimation, _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("attack_ready"), _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("idle"), 0.5f);
-
-            for (int i = 0; i < _fireAnimations.Count; i++)
-            {
-                SpineHelper.SetMixHelper(_droneBodySkeletonAnimation, _droneBodySkeletonAnimation.skeleton.Data.FindAnimation("idle"), _fireAnimations[i], 0.0f);
-            }
-
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_a);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_b);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_c);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_d);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_e);
-            _droneBodySkeletonAnimation.skeleton.SetToSetupPose();
-
             var shadowObject = new GameObject("Shadow");
             shadowObject.transform.SetParent(_droneBodyImage.transform, worldPositionStays: false);
 
             var shadow = shadowObject.AddComponent<SpriteRenderer>();
-            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stages/Characters/characterShadow.png");
+            shadow.sprite = ResourcePool.Instance.LoadResource<Sprite>("Stage/Common/CharacterShadow.png");
             shadow.color = new Color(shadow.color.r, shadow.color.g, shadow.color.b, 0.9f);
             shadow.sortingLayerID = SortingLayer.NameToID("LowShadow");
             shadow.drawMode = SpriteDrawMode.Simple;
@@ -226,8 +168,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 
             _isFireActivated = true;
 
-            _droneBodySkeletonAnimation.AnimationState.SetAnimation((int)DroneAnimationTrack.droneBody, "attack_ready", loop: false);
-
             // NOTE: 드론의 데이터 테이블상 지속시간은 99999이다 발사 시작시 들어오는 함수에 비율 계산을 진행한다.
             _playerAttackRangeDistanceRatio = ((PlayerCharacter)owner).Stats.AttackRangeDistanceRatio.Value;
             //발사체 발사 간격
@@ -260,13 +200,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             }
             _target = null;
             _targetItem = null;
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_a);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_b);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_c);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_d);
-            _droneBodySkeletonAnimation.AnimationState.ClearTrack((int)DroneAnimationTrack.attack_e);
-
-            _droneBodySkeletonAnimation.AnimationState.SetAnimation((int)DroneAnimationTrack.droneBody, "idle", true);
         }
 
         private void UpdateMissileFire(PlayerCharacter owner, Stage stage, float now)
@@ -332,7 +265,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
                 isDroneDirectionToLeft = dir.x <= 0;
             }
 
-            _droneBodySkeletonAnimation.skeleton.ScaleX = isDroneDirectionToLeft ? 1.0f : -1.0f;
+            _droneBodyRenderer.flipX = isDroneDirectionToLeft;
         }
 
         private void CreateDeathTouchEffectObjectAndInitialize(PlayerCharacter owner, Stage stage)
@@ -363,9 +296,7 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             float baseMovingTime = 0.3f - (0.3f *  (_characterStats.ProjectileMoveSpeedIncreaseRateValue - 1)); // 미사일드론 오브젝트 이동처리는 시간으로 계산한다
             float areaEffectRadius = 1f * _playerAttackRangeDistanceRatio;
             Vector3 missileDroneObjectScale = Vector3.one * _playerAttackRangeDistanceRatio;
-            Vector2 createPosition = _firePositions[_currentfireAmount % _firePositions.Count].GetWorldPosition(_droneBodyImage.transform);
-            _droneBodySkeletonAnimation.AnimationState.SetAnimation(1 + (_currentfireAmount % _fireAnimations.Count), _fireAnimations[_currentfireAmount % _fireAnimations.Count] , false);
-            _droneBodySkeletonAnimation.AnimationState.AddEmptyAnimation(1 + (_currentfireAmount % _fireAnimations.Count),0f,0f);
+            Vector2 createPosition = _droneBodyImage.transform.position;
             
             var missileDroneObject = stage.CreateDeathTouchEffectObject(
                 owner.Alliance,
