@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "EquipmentId": "PredatorArmor",
+    "EquipmentGrade": "D",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "PredatorArmor",
+    "EquipmentGrade": "C",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "PredatorArmor",
+    "EquipmentGrade": "B",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "PredatorArmor",
+    "EquipmentGrade": "A",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "PredatorArmor",
+    "EquipmentGrade": "S",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "InvaderArmor",
+    "EquipmentGrade": "D",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "InvaderArmor",
+    "EquipmentGrade": "C",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "InvaderArmor",
+    "EquipmentGrade": "B",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "InvaderArmor",
+    "EquipmentGrade": "A",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "InvaderArmor",
+    "EquipmentGrade": "S",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "GuardianArmor",
+    "EquipmentGrade": "D",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "GuardianArmor",
+    "EquipmentGrade": "C",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "GuardianArmor",
+    "EquipmentGrade": "B",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "GuardianArmor",
+    "EquipmentGrade": "A",
+    "GradeEffectType": "MultiplyMoveSpeed",
+    "Parameter1": 5,
+    "Parameter2": 0
+  },
+  {
+    "EquipmentId": "GuardianArmor",
+    "EquipmentGrade": "S",
+    "GradeEffectType": "MultiplyAttackPower",
+    "Parameter1": 10,
+    "Parameter2": 0
+  }
+]

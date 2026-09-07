@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Shared.GameDataTypes;
+using Shared.StaticDatas;
 
 namespace Shared.UserDatas
 {
@@ -34,12 +35,13 @@ namespace Shared.UserDatas
         public HeroData CreateSelectedHeroData()
             => new HeroData(HeroInstanceId.CreateNew(), SelectedHeroType, Grade.D, promotionPoint: 0, level: 1, DateTime.UtcNow);
 
-        /// <summary>스테이지에 들고 갈 장비. 고른 장비 하나를 기본 등급 1레벨로 만든다.</summary>
+        /// <summary>스테이지에 들고 갈 장비. 고른 장비 하나를 장비 테이블에 정의된 등급, 1레벨로 만든다.</summary>
         public IEnumerable<EquipmentData> CreateSelectedEquipments()
         {
             if (SelectedEquipmentId != EquipmentId.Invalid)
             {
-                yield return new EquipmentData(EquipmentInstanceId.CreateNew(), SelectedEquipmentId, Grade.D, level: 1, DateTime.UtcNow);
+                var grade = StaticDataRepository.Instance.Equipments.Get(SelectedEquipmentId).Grade;
+                yield return new EquipmentData(EquipmentInstanceId.CreateNew(), SelectedEquipmentId, grade, level: 1, DateTime.UtcNow);
             }
         }
     }

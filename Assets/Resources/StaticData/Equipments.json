@@ -4,6 +4,7 @@
     "SetType": "Predator",
     "Slot": "Armor",
     "Rarity": "Common",
+    "Grade": "D",
     "NameKey": "EQUIP_PREDATOR_ARMOR_NAME",
     "DescriptionKey": "EQUIP_PREDATOR_ARMOR_DESC",
     "IconPath": "Lobbys/UIs/Item/Item01.png"
@@ -13,6 +14,7 @@
     "SetType": "Invader",
     "Slot": "Armor",
     "Rarity": "Common",
+    "Grade": "B",
     "NameKey": "EQUIP_INVADER_ARMOR_NAME",
     "DescriptionKey": "EQUIP_INVADER_ARMOR_DESC",
     "IconPath": "Lobbys/UIs/Item/Item02.png"
@@ -22,6 +24,7 @@
     "SetType": "Guardian",
     "Slot": "Armor",
     "Rarity": "Special",
+    "Grade": "S",
     "NameKey": "EQUIP_GUARDIAN_ARMOR_NAME",
     "DescriptionKey": "EQUIP_GUARDIAN_ARMOR_DESC",
     "IconPath": "Lobbys/UIs/Item/Item03.png"

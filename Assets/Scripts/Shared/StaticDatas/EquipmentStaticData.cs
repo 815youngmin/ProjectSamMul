@@ -13,6 +13,8 @@ namespace Shared.StaticDatas
         public EquipmentSetType SetType { get; set; }
         public EquipmentSlot Slot { get; set; }
         public Rarity Rarity { get; set; }
+        /// <summary>데모에서 이 장비를 들고 갈 때의 등급. 등급이 HP(EquipmentStats)와 등급 효과(EquipmentGradeEffects)를 결정한다.</summary>
+        public Grade Grade { get; set; } = Grade.D;
         public string NameKey { get; set; } = "";
         public string DescriptionKey { get; set; } = "";
         [JsonIgnore] public string Name => Localizer.Instance.GetText(NameKey);
