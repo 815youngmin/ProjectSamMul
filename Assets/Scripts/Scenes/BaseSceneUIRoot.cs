@@ -17,6 +17,9 @@ using SamMul.UnityHelpers;
 
 namespace SamMul.Scenes
 {
+    /// <summary>
+    /// 씬 UI 루트의 공통 기반. 캔버스 설정, 팝업 스택(CreateAndAddPopup / CloseAndDestroyPopup), UI 블로커, 팝업 중 일시정지(PauseResumeOnPopup)를 제공한다.
+    /// </summary>
     public abstract class BaseSceneUIRoot : MonoBehaviour
     {
         public RectTransform RectTransform { get; private set; } = null!;

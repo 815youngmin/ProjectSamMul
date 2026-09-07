@@ -67,6 +67,10 @@ namespace SamMul.GameClients.Stages.Characters.PCs
         }
     }
 
+    /// <summary>
+    /// 플레이어 캐릭터. 스킬 덱/세트, 레벨·경험치, 장비·등급 효과(ConditionalEffectManager)를 가진다.
+    /// 입력은 PlayerCharacterController 가 넣어 주고, 사망·부활은 Stage 와 팝업이 처리한다.
+    /// </summary>
     public class PlayerCharacter : Character
     {
         public HeroStaticData StaticData { get; private set; }

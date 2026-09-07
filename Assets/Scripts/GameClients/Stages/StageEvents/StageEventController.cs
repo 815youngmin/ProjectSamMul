@@ -14,6 +14,10 @@ namespace SamMul.GameClients.Stages.StageEvents
         public void ResumeStageTimer(StageEventBase pauser);
     }
 
+    /// <summary>
+    /// 스테이지 시간표. StageEvents 테이블의 이벤트를 Begin/Update(틱)/End 실행 정보로 펼쳐 시각순으로 실행한다.
+    /// 보스전 동안은 타이머를 일시정지하며, 마지막 실행 정보 시각을 넘기면 스테이지 클리어다.
+    /// </summary>
     public class StageEventController : IStageTimerControllable
     {
         private readonly IReadOnlyList<StageEventExecutionInfo> _stageEventExecutionInfos;

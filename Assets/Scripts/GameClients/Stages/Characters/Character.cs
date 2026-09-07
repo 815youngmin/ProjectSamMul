@@ -20,6 +20,10 @@ using SamMul.UnityHelpers;
 namespace SamMul.GameClients.Stages.Characters
 {
     //모든 캐릭터에 사용되는 부모 클래스
+    /// <summary>
+    /// 플레이어와 몬스터의 공통 기반. 스탯(StatCalculators), 상태이상(StatusEffectSet), 현재 액션(ActionBase), 애니메이션 컨트롤러를 가지며
+    /// 피격(Hitted)·사망·이동을 처리한다. Stage 가 UpdateLogic 을 호출해 갱신하고, 풀에서 재사용된다.
+    /// </summary>
     public abstract class Character : MonoBehaviour, IPoolible<CharacterType>
     {
         public CharacterType CharacterType { get; private set; }

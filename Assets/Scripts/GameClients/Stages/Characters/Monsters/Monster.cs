@@ -21,6 +21,10 @@ using Sequence = DG.Tweening.Sequence;
 
 namespace SamMul.GameClients.Stages.Characters.Monsters
 {
+    /// <summary>
+    /// 몬스터. Monsters 테이블의 정적 데이터와 스폰 가중치로 스탯을 만들고, MonsterAIController 의 전략이 Do* 행동을 호출한다.
+    /// 죽으면 경험치·아이템을 떨어뜨리고 풀로 돌아간다.
+    /// </summary>
     public partial class Monster : Character
     {
         public MonsterStaticData StaticData { get; private set; }

@@ -24,6 +24,10 @@ using SamMul.Loggers;
 namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
 {
 
+    /// <summary>
+    /// 몬스터 AI 전략 패턴의 컨트롤러. Monsters 테이블의 AIType 으로 첫 전략을 만들고, 전략의 Update 가 다른 전략을 돌려주면 End → Begin 으로 교체한다.
+    /// 피격·사망 같은 이벤트도 현재 전략에 전달한다.
+    /// </summary>
     public class MonsterAIController : IMonsterAIEvent
     {
         protected Monster Owner { get; private set; }

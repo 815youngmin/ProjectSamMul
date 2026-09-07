@@ -3,6 +3,10 @@ using SamMul.GameClients.Stages.Characters.Animations;
 namespace SamMul.GameClients.Stages.Characters.Actions
 {
 
+    /// <summary>
+    /// 캐릭터가 한 번에 하나씩 수행하는 행동 단위. Begin / Update / End 로 진행되며 End 가 다음 액션을 돌려주면 자동으로 이어진다.
+    /// 애니메이션 재생도 액션이 담당한다.
+    /// </summary>
     public abstract class ActionBase
     {
         private static readonly float INFINITE = float.MaxValue - 1f;

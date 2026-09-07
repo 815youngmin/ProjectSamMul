@@ -8,6 +8,10 @@ using SamMul.GameClients.Stages.ItemObjects;
 
 namespace SamMul.GameClients.Stages.CombatSystems
 {
+    /// <summary>
+    /// 전투 판정 유틸리티. 이 파일은 판정 영역(원·사각·부채꼴) 안의 적을 찾아 타격하는 HitOnTargetArea 와 콜라이더 기반 충돌을 담당하며,
+    /// 판정 영역을 AttackAreaFlashManager 로 표시한다. 데미지·넉백 계산은 CombatSystem.Skill/Hero 파일에 있다.
+    /// </summary>
     public static partial class CombatSystem
     {
         private static bool TryHitObject(Character attacker, float damage, Collider2D collider, Stage stage)

@@ -37,6 +37,10 @@ namespace SamMul.GameClients.Stages
 {
     // partial 클래스의 멤버는 생성자가 정의된 기본 코드파일에 정의해주세요. 
     // 이 클래스의 경우, Stage.cs가 멤버를 정의할 기본 코드 파일입니다.
+    /// <summary>
+    /// 스테이지 한 판의 상태와 프레임 루프. 캐릭터·투사체·장판·아이템·인디케이터를 소유하고 매 프레임 정해진 순서로 갱신한다.
+    /// 몬스터 스폰은 StageEventController 가, 판정은 CombatSystem 이 담당한다. 기능별로 partial 파일(Stage.*.cs)에 나뉘어 있다.
+    /// </summary>
     public partial class Stage
     {
         public readonly StageType StageType;

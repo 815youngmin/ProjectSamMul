@@ -10,6 +10,10 @@ using SamMul.Loggers;
 
 namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 {
+    /// <summary>
+    /// 플레이어가 실제로 배운 스킬 집합. 액티브 5 / 패시브 5 슬롯이며 AcquireOrUpgradeSkill 로 획득·레벨업·초월을 처리하고 매 프레임 스킬 Update 를 돌린다.
+    /// 배울 수 있는 후보 선택은 SkillDeck 이 담당한다.
+    /// </summary>
     public sealed class SkillSet
     {
         public string AcquiredSkills => string.Join(", ", _skills.Values.Select(x => $"({x.Id} {x.Level})"));
