@@ -10,7 +10,7 @@
     "EquipmentId": "PredatorArmor",
     "EquipmentGrade": "C",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
@@ -24,7 +24,7 @@
     "EquipmentId": "PredatorArmor",
     "EquipmentGrade": "A",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
@@ -45,7 +45,7 @@
     "EquipmentId": "InvaderArmor",
     "EquipmentGrade": "C",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
@@ -59,7 +59,7 @@
     "EquipmentId": "InvaderArmor",
     "EquipmentGrade": "A",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
@@ -80,7 +80,7 @@
     "EquipmentId": "GuardianArmor",
     "EquipmentGrade": "C",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
@@ -94,7 +94,7 @@
     "EquipmentId": "GuardianArmor",
     "EquipmentGrade": "A",
     "GradeEffectType": "MultiplyMoveSpeed",
-    "Parameter1": 5,
+    "Parameter1": 15,
     "Parameter2": 0
   },
   {
