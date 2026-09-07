@@ -96,8 +96,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                 _fadeOutSequence.SetAutoKill(false);
                 _fadeOutSequence.Pause();
             }
-            //스프라이트 애니메이션 프리팹 파일
-            else if (_body.GetComponentInChildren<SpriteAnimationHandler>() != null)
+            //스프라이트 애니메이션 프리팹 또는 단일 스프라이트 프리팹(데모 공용 몬스터 투사체)
+            else if (_body.GetComponentInChildren<SpriteRenderer>() != null)
             {
                 _spriteRenderer = _body.GetComponentInChildren<SpriteRenderer>();
                 _spriteRenderer.sortingOrder = (int)(this.transform.position.y * -100.0f);
@@ -123,13 +123,13 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             if(_createdAt <= now)
             {
                 _body.gameObject.SetActive(true);
-                _fadeInSequence.Restart();
+                _fadeInSequence?.Restart();
                 _createdAt = float.MaxValue;
             }
 
             if (_fadeOutAt < now)
             {
-                _fadeOutSequence.Restart();
+                _fadeOutSequence?.Restart();
                 _fadeOutAt = float.MaxValue;
             }
 

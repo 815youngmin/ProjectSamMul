@@ -377,7 +377,10 @@ namespace SamMul.Scenes
 
                         // 닫힌맵은 1번 타일리소스만 접근해도 연관된 것 다 다운받아진다.
                         string newFilePath = tileResourcePath + '/' + folderName + "_1.png";
-                        tileResourcePath = newFilePath;
+                        if (ResourcePool.Instance.HasResource<Sprite>(newFilePath))
+                        {
+                            tileResourcePath = newFilePath;
+                        }
                     }
 
                     await ResourcePool.Instance.ReserveResourceAsync<Sprite>(tileResourcePath);
@@ -937,7 +940,9 @@ namespace SamMul.Scenes
             for (int i = 0; i < count; ++i)
             {
                 string newFilePath = floorTileResourcePath + '/' + folderName + $"_{i + 1}.png";
-                _rectangleFloorRender[i].sprite = ResourcePool.Instance.LoadResource<Sprite>(newFilePath);
+                // 4분할 타일이 없으면(데모) 바닥 이미지 한 장을 네 칸에 그대로 쓴다.
+                string tilePath = ResourcePool.Instance.HasResource<Sprite>(newFilePath) ? newFilePath : floorTileResourcePath;
+                _rectangleFloorRender[i].sprite = ResourcePool.Instance.LoadResource<Sprite>(tilePath);
             }
 
             Vector2 spriteSize;

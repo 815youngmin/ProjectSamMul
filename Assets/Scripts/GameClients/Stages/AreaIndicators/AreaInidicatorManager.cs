@@ -64,9 +64,11 @@ namespace SamMul.GameClients.Stages.AreaIndicators
 
         private long _nextInstanceID;
         private Dictionary<AreaIndicatorInstanceID, AreaIndicator> _aliveIndicators;
+        private readonly AttackAreaFlashManager _attackAreaFlashes;
 
-        public AreaIndicatorManager()
+        public AreaIndicatorManager(AttackAreaFlashManager attackAreaFlashes)
         {
+            _attackAreaFlashes = attackAreaFlashes;
             this._nextInstanceID = 1;
             this._aliveIndicators = new Dictionary<AreaIndicatorInstanceID, AreaIndicator>();
         }
@@ -96,7 +98,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
         }
 
 
-        private static string _squareInidicatorPath = "Stages/ETCEffects/SquareIndicator.prefab";
+        private static string _squareInidicatorPath = "Stage/Indicator/SquareIndicator.prefab";
         /// <summary>
         /// 공격 범위 사각형 형태의 인디케이터를 불러옵니다.
         /// 지속 시간 이후에 인디케이터는 사라집니다.
@@ -201,7 +203,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
             return this.CreateSquareAttackRangeIndicator(squareArea.Center, squareArea.Size.x, squareArea.Size.y, squareArea.Angle, duration);
         }
 
-        private static string _arrowIndicatorPath = "Stages/ETCEffects/ArrowIndicator.prefab";
+        private static string _arrowIndicatorPath = "Stage/Indicator/ArrowIndicator.prefab";
         public AreaIndicatorInstanceID CreateDirectionalIndicator(Vector3 startPosition, Vector3 direction, float distance, float scale, float duration)
         {
             return this.CreateDirectionalIndicator(startPosition, direction, distance, speed: distance * 2f, scale, duration);
@@ -282,67 +284,26 @@ namespace SamMul.GameClients.Stages.AreaIndicators
         }
 
 
-        private static string _blinkCircularInidicatorPath = "Stages/ETCEffects/BlinkCircleIndicator.prefab";
+        /// <summary>
+        /// 공격 범위를 알리는 원형 깜빡임 인디케이터. 전용 프리팹 없이 AttackAreaFlashManager 로 붉은 원을 duration 동안 깜빡이며 그린다.
+        /// </summary>
         public AreaIndicatorInstanceID CreateBlinkCircularAttackRangeIndicator(Vector2 position, float radius, float duration)
         {
+            const float BLINK_PERIOD = 0.5f;
+
             var indicator = this.CreateIndicator();
-
-            GameObject IndicatorObject = ResourcePool.Instance.InstantiateFromResource(_blinkCircularInidicatorPath);
-            SpriteRenderer[] renderers = IndicatorObject.GetComponentsInChildren<SpriteRenderer>();
-            Assert.AreEqual(2, renderers.Length); // 렌더러는 2개라고 과정된 코드 입니다. 필요하면 수정해주세요.
-            IndicatorObject.transform.SetParent(indicator.AreaIndicatorGroup.transform);
-            IndicatorObject.transform.localPosition = position;
-
-            int renderCount = renderers.Length;
-            Color[] originColors = new Color[renderCount];
-            for (int i = 0; i < renderCount; ++i)
+            var area = new CircularTargetArea(position, radius);
+            var sequence = indicator.TweeningSequence;
+            sequence.AppendInterval(duration);
+            sequence.OnUpdate(() =>
             {
-                renderers[i].sortingLayerID = SortingLayer.NameToID("HighParticle");
-                renderers[i].sortingOrder = 9999;
-                originColors[i] = renderers[i].color;
-            }
-
-            Vector3 resultScale = Vector3.one * radius*2;
-
-            renderers[0].color = new Color(originColors[0].r, originColors[0].g, originColors[0].b, 1f);
-            renderers[1].color = new Color(originColors[0].r, originColors[0].g, originColors[0].b, 0f);
-
-            Sequence outLineSequence = DOTween.Sequence();
-            outLineSequence.Append(renderers[0].transform.DOScale(resultScale, 0.15f).From(0));
-            outLineSequence.Join(renderers[0].DOFade(1f,0.15f).From(0.3f));
-            outLineSequence.Append(renderers[0].DOFade(0f, 0.35f));
-            outLineSequence.SetLoops(-1);
-
-            Sequence innerSequence = DOTween.Sequence();
-            innerSequence.Append(renderers[1].DOFade(1f, 0.35f).From(0.2f));
-            innerSequence.Join(renderers[1].transform.DOScale(resultScale * 0.8f, 0.5f).From(0)); 
-            innerSequence.Insert(0.35f,renderers[1].DOFade(0f, 0.15f)); 
-            innerSequence.SetLoops(-1);
-
-
-            //종료 시퀀스
-            Sequence fadeOutSequence = DOTween.Sequence();
-            fadeOutSequence.AppendInterval(duration - 0.1f);
-            fadeOutSequence.AppendCallback(() =>
-            {
-                outLineSequence.Kill();
-                innerSequence.Kill();
+                float blink = 0.4f + 0.6f * Mathf.Abs(Mathf.Sin(sequence.Elapsed() / BLINK_PERIOD * Mathf.PI));
+                var color = AttackAreaFlashManager.ENEMY_COLOR;
+                color.a = blink;
+                _attackAreaFlashes.Show(area, color);
             });
-            for(int i = 0; i < renderers.Length; i++)
-            {
-                fadeOutSequence.Join(renderers[i].DOFade(0f, 0.1f));
-            }
-            fadeOutSequence.OnComplete(() =>
-            {
-                for (int i = 0; i < renderCount; ++i)
-                {
-                    renderers[i].color = originColors[i];
-                }
+            sequence.OnComplete(() => this.ForceRemoveIndicator(indicator.InstanceID));
 
-                ResourcePool.Instance.PutBackInstance(_blinkCircularInidicatorPath, IndicatorObject);
-                this.ForceRemoveIndicator(indicator.InstanceID);
-            });
- 
             return indicator.InstanceID;
         }
 

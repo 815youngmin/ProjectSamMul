@@ -119,6 +119,12 @@ namespace SamMul.ResourcePools
         }
 
         /// <summary>
+        /// 플레이스홀더를 만들지 않고, 해당 경로의 리소스가 실제로 존재하는지만 확인합니다.
+        /// </summary>
+        public bool HasResource<TObject>(string fullPath) where TObject : UnityEngine.Object
+            => Resources.Load<TObject>(ToResourcesPath(fullPath)) != null;
+
+        /// <summary>
         /// 리소스를 미리 캐시에 올려둡니다.
         /// </summary>
         public Task ReserveResourceAsync<TObject>(string fullPath) where TObject : UnityEngine.Object

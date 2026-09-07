@@ -184,8 +184,8 @@ namespace SamMul.GameClients.Stages
             }
 
             _staticDatas = staticDatas;
-            _areaIndicators = new AreaIndicatorManager();
             _attackAreaFlashes = new AttackAreaFlashManager();
+            _areaIndicators = new AreaIndicatorManager(_attackAreaFlashes);
             _particles = new ParticleManager();
             _damagePopups = new DamagePopupManager();
             _deadEffects = new DeadEffectManager();
@@ -403,23 +403,6 @@ namespace SamMul.GameClients.Stages
                 // 폭탄 대미지 효과와 스턴을 준다.
                 UnityGlobal.Sounds.PlayBySoundPrefab("Sounds/SoundEffects/CommonSkills/12-Bomb_SFX.prefab", owner.Pos);
 
-                {
-                    string EFFECT_PATH = "Stages/GradeEffects/StunEnemies.prefab";
-                    var floorEffect = ResourcePool.Instance.InstantiateFromResource<SkeletonAnimation>(EFFECT_PATH);
-                    floorEffect.transform.SetParent(owner.transform);
-                    floorEffect.transform.localPosition = Vector3.zero;
-                    floorEffect.transform.localScale = 2.0f * Vector3.one;
-                    floorEffect.gameObject.SetActive(false);
-
-                    floorEffect.gameObject.SetActive(true);
-                    floorEffect.AnimationState.SetAnimation(0, "animation", false);
-
-                    DOTween.Sequence().AppendInterval(2f)
-                        .AppendCallback(() =>
-                       {
-                           ResourcePool.Instance.PutBackInstance(EFFECT_PATH, floorEffect.gameObject);
-                       });
-                }
 
                 float damage = CombatSystem.CalculateSkillAttackDamage(owner.Stats, 6f); // 폭탄 데미지 비율
                 float effectiveRange = 20f * GameClient.CameraController.OrthographicSize / 18f;
