@@ -321,7 +321,7 @@ namespace SamMul.Scenes
                 return;
             }
 
-            _stageResultPopup = this.CreateAndAddPopup<StageResultPopup>("Stages/UIs/Popups/StageResultPopup/StageResultPopup.prefab", playSound: false);
+            _stageResultPopup = this.CreateAndAddPopup<StageResultPopup>("Stage/UIs/StageResultPopup/StageResultPopup.prefab", playSound: false);
             _stageResultPopup.InitializeForMainChapterResult(
                 chapter,
                 stagePlayResult,
