@@ -18,11 +18,7 @@ namespace SamMul.UIs.Stages.Popups
     /// </summary>
     public class ResurrectionPopup : BasePopup
     {
-        [SerializeField] private ZButton _payButton;
-        [SerializeField] private Image _payButtonGemIcon;
-        [SerializeField] private Image _payButtonResurrectionCoinIcon;
-        [SerializeField] private TextMeshProUGUI _payButtonPriceText;
-        [SerializeField] private TextMeshProUGUI _payButtonOKText;
+        [SerializeField] private ZButton _okButton;
 
         [SerializeField] private ZButton _exitButton;
         [SerializeField] private Image _countdownOutline;
@@ -43,7 +39,7 @@ namespace SamMul.UIs.Stages.Popups
             base.InitializeBase(closeRequester);
             _stageNumber = stageNumber;
 
-            InitializePayButton();
+            InitializeOKButton(addResultPopup);
 
             _exitButton.gameObject.SetActive(true);
             _exitButton.onClick.RemoveAllListeners();
@@ -104,67 +100,39 @@ namespace SamMul.UIs.Stages.Popups
 
         }
 
-        private void InitializePayButton()
+        private void InitializeOKButton(Action addResultPopup)
         {
-            _payButton.gameObject.SetActive(true);
-            _payButtonOKText.text = Localizer.Instance.GetText("UI_RESURRECTIONPOPUP_OK");
-            long userGems = GameClient.CS.UserGameData.GetTotalGemAmount();
-            long userResurrectionCoin = GameClient.CS.UserGameData.ResurrectionCoin;
-
-            _payButton.onClick.RemoveAllListeners();
-            _payButton.onClick.AddListener(() =>
+            _okButton.gameObject.SetActive(true);
+            _okButton.onClick.RemoveAllListeners();
+            _okButton.onClick.AddListener(() =>
             {
-                if (!_payButton.gameObject.activeSelf)
+                if (!_okButton.gameObject.activeSelf)
                 {
                     return;
                 }
-                _payButton?.gameObject.SetActive(false);
+                // 중복 클릭과 카운트다운 종료가 겹치지 않도록 두 버튼을 모두 막는다.
+                _okButton.gameObject.SetActive(false);
+                _exitButton.gameObject.SetActive(false);
 
-                GameClient.CS.Resurrect(
-                    new ResurrectRequest(_stageNumber),
-                    onCompleted: (response) =>
+                // 세션에 부활 횟수를 기록해 이 게임에서 다시 제안되지 않게 한다.
+                GameClient.CS.Resurrect(new ResurrectRequest(_stageNumber),
+                    onCompleted: (ResurrectResponse response) =>
                     {
-                        if (response.ResultCode == ResurrectResultCode.Success)
+                        if (response.ResultCode != ResurrectResultCode.Success)
                         {
-                            var stage = GameClient.Stage;
-                            stage.OnResurrected(stage.PC, stage.PC.MaxHP);
-                            this?.Close(skipAnimation: false);
+                            Debug.LogError($"부활 요청 실패 [{response.ResultCode}]. 결과창으로 이동합니다.");
+                            this.Close(skipAnimation: false);
+                            addResultPopup.Invoke();
+                            return;
                         }
+
+                        var stage = GameClient.Stage!;
+                        stage.OnResurrected(stage.PC, stage.PC.MaxHP);
+                        this.Close(skipAnimation: false);
                     }, UnityGlobal.HandleInternalServerError_LogAndRestart, UnityGlobal.HandleNetworkErrorAndContinueRetry);
             });
 
-            if (userResurrectionCoin > 0)
-            {
-                // 부활코인 있으면 부활코인 먼저
-                _payButtonPriceText.color = Color.white;
-                _payButtonPriceText.text = $"{userResurrectionCoin}/1";
-                _payButtonResurrectionCoinIcon.gameObject.SetActive(true);
-                _payButtonGemIcon.gameObject.SetActive(false);
-
-                _payButton.SetInteractable(true);
-            }
-            else if (userGems >= GameConstants.RESURRECTION_GEM_COST)
-            {
-                // 보석이라도 있으면 보석을 쓰고
-                _payButtonPriceText.color = Color.white;
-                _payButtonPriceText.text = GameConstants.RESURRECTION_GEM_COST.ToString();
-                _payButtonResurrectionCoinIcon.gameObject.SetActive(false);
-                _payButtonGemIcon.gameObject.SetActive(true);
-
-                _payButton.SetInteractable(true);
-            }
-            else
-            {
-                // 없으면 보석비용 보여주고 비활성화
-                _payButtonPriceText.color = Color.red;
-                _payButtonPriceText.text = GameConstants.RESURRECTION_GEM_COST.ToString();
-                _payButtonResurrectionCoinIcon.gameObject.SetActive(false);
-                _payButtonGemIcon.gameObject.SetActive(true);
-
-                _payButton.onClick.RemoveAllListeners();
-                _payButton.SetInteractable(false);
-            }
-
         }
+    
     }
 }

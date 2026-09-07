@@ -332,21 +332,11 @@ namespace SamMul.GameClients.Stages
                     {
                         if (stagePlayResult == StagePlayResult.Failed)
                         {
-                            bool hasResurrectCoin = GameClient.CS.UserGameData!.ResurrectionCoin > 0;
-
+                            // 부활은 한 게임에 딱 한 번만 제안한다. (코인·보석 조건 없음)
                             bool isAbleToResurrect = StaticData.IsResurrectable && // 부활 불가능한 스테이지면 부활 못한다.
-                                (GameClient.CS.UserGameData!.StageResurrectCount < 1) && // 이 챕터에서 이미 부활 한번 했으면 부활 더 못한다.
-                                !(GameClient.CS.UserGameData.ClearedHighestChapter <= 0 && !hasResurrectCoin) && // 1챕터에서는 부활코인 없으면 부활 불가능   
+                                (GameClient.CS.UserGameData!.StageResurrectCount < 1) && // 이 게임에서 이미 부활했으면 더 못한다.
                                 !_isPlayerResurrectionSkip &&
                                 PC.Action.IsDead;
-
-                            if (isAbleToResurrect &&
-                                GameClient.CS.UserGameData.ClearedHighestChapter <= 0 &&
-                                GameClient.CS.UserGameData.HighestStageTimeInSeconds <= 0) // (첫번째시도 == 최고기록이 없는경우)
-                            {
-                                // 그럼에도 불구하고, 1챕터의 첫번째 시도에서는 부활 불가능
-                                isAbleToResurrect = false;
-                            }
 
                             if (isAbleToResurrect)
                             {

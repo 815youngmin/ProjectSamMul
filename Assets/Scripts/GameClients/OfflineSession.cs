@@ -168,21 +168,7 @@ namespace SamMul.GameClients
 
         public void Resurrect(ResurrectRequest request, Action<ResurrectResponse> onCompleted, ServerErrorHandler onError, Func<Task> onNetworkError)
         {
-            long gemCost = GameConstants.RESURRECTION_GEM_COST;
-            if (UserGameData.ResurrectionCoin > 0)
-            {
-                UserGameData.ResurrectionCoin -= 1;
-            }
-            else if (UserGameData.GetTotalGemAmount() >= gemCost)
-            {
-                UserGameData.Gem -= gemCost;
-            }
-            else
-            {
-                onCompleted(ResurrectResponse.FromError(ResurrectResultCode.InsufficientGemOrCoin, request.StageNumber));
-                return;
-            }
-
+            // 데모에서는 비용 없이 한 게임에 한 번만 부활한다. 횟수만 기록한다.
             UserGameData.StageResurrectCount += 1;
             Save();
 

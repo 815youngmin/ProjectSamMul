@@ -356,7 +356,7 @@ namespace SamMul.Scenes
                 return;
             }
 
-            _resurrectionPopup = this.CreateAndAddPopup<ResurrectionPopup>("Stages/UIs/Popups/ResurrectionPopup/ResurrectionPopup.prefab", playSound: true);
+            _resurrectionPopup = this.CreateAndAddPopup<ResurrectionPopup>("Stage/UIs/ResurrectionPopup/ResurrectionPopup.prefab", playSound: true);
             _resurrectionPopup.Initialize(stageNumber, addResultPopup, closeRequester: CloseResurrectionPopup);
             this.PauseResumeOnPopup();
         }

@@ -34,7 +34,6 @@ namespace Shared.DataTables
         public static readonly IReadOnlyList<Grade> GRADES_WITH_EFFECT = new List<Grade> { Grade.D, Grade.C, Grade.B, Grade.A, Grade.S, Grade.SS };
         public static readonly Grade IMPLEMENTED_MAX_GRADE = Grade.SS;
 
-        public static readonly long RESURRECTION_GEM_COST = 75;
         /// <summary>Gem amounts at or above this are displayed in shortened form.</summary>
         public static readonly long GEM_THRESHOLD_TO_SHORTEN = 100000;
 
