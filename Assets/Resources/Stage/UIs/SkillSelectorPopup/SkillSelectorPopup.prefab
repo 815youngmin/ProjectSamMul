@@ -255,8 +255,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 33
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
+  m_sharedMaterial: {fileID: -5123839652636971319, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -492,8 +492,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SELECT SKILL
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
+  m_sharedMaterial: {fileID: -5123839652636971319, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -762,8 +762,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 33
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
+  m_sharedMaterial: {fileID: -5123839652636971319, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -957,12 +957,11 @@ MonoBehaviour:
   _acquiredSkillGroup: {fileID: 4871823260163138865}
   _skillRefreshButton: {fileID: 6361360293737062156}
   _backgroundStickerTransform: {fileID: 0}
-  _levelText: {fileID: 0}
-  _levelShadowText: {fileID: 0}
-  _levelupText: {fileID: 0}
-  _selectSkilllText: {fileID: 0}
-  _refeshButtonText: {fileID: 0}
-  _banSkillGroup: {fileID: 0}
+  _levelText: {fileID: 4252123321101203885}
+  _levelShadowText: {fileID: 7638970478637595599}
+  _levelupText: {fileID: 7204772877802279817}
+  _selectSkilllText: {fileID: 4013897661939271320}
+  _refeshButtonText: {fileID: 7208182236738093594}
 --- !u!1 &5702785852151105925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -102.19751}
+  m_AnchoredPosition: {x: 0, y: -101.6}
   m_SizeDelta: {x: 265, y: 71.6049}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4763089666238654793
@@ -1265,8 +1264,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LEVEL UP!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
+  m_sharedMaterial: {fileID: -5123839652636971319, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

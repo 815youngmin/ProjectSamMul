@@ -112,8 +112,8 @@ TextureImporter:
         y: 451
         width: 444
         height: 521
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.48608804, y: 0.21783248}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -129,12 +129,12 @@ TextureImporter:
       name: Common_Monster_01_1
       rect:
         serializedVersion: 2
-        x: 570
-        y: 522
+        x: 572
+        y: 523
         width: 394
         height: 424
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.41534254, y: 0.14745288}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: Common_Monster_01_2
       rect:
         serializedVersion: 2
-        x: 51
+        x: 52
         y: 51
         width: 461
         height: 351
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.48928097, y: 0.25011006}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,8 +175,8 @@ TextureImporter:
         y: 104
         width: 448
         height: 319
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49172756, y: 0.17082573}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

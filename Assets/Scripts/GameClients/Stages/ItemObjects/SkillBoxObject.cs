@@ -15,7 +15,7 @@ namespace SamMul.GameClients.Stages.ItemObjects
         private const string effectPath = "Stages/ETCEffects/fx_skillrouletteBox.prefab";
         protected GameObject _effect;
 
-        private const string NAVIGATION_ARROW_PREFAB_PATH = "Stages/UIs/HUDs/SkillBoxNavigationArrow/SkillBoxNavigationArrow.prefab";
+        private const string NAVIGATION_ARROW_PREFAB_PATH = "Stage/UIs/SkillBoxPopup/SkillBoxNavigationArrow.prefab";
         protected NavigationArrow _navigationArrow;
 
         public static SkillBoxObject Create()

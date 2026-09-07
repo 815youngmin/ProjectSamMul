@@ -8,7 +8,7 @@ namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class BurnStatusEffect : StatusEffect
     {
-        private const string EFFECT_ANIMATION_RESOURCE_PATH = "Stages/StatusEffects/StatusEffect_Fire.prefab";
+        private const string EFFECT_ANIMATION_RESOURCE_PATH = "Stage/Common/StatusEffect_Fire.prefab";
         private readonly float _period;
         private readonly float _dotDamage;
 

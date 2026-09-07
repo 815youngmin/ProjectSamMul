@@ -1,5 +1,6 @@
-#nullable enable
 using UnityEngine;
+using System.Linq;
+using JetBrains.Annotations;
 
 namespace SamMul.UnityHelpers
 {
@@ -7,50 +8,43 @@ namespace SamMul.UnityHelpers
     /// 스프라이트 프레임 목록을 지정한 fps 로 넘겨 보여주는 플립북 애니메이션입니다.
     /// 마지막 프레임을 지나면 <see cref="AnimationEnd"/>, 히트 프레임에 도달하면 <see cref="HitFrame"/>이 호출됩니다.
     /// </summary>
-    [RequireComponent(typeof(SpriteRenderer))]
     public class SpriteAnimationHandler : MonoBehaviour
     {
+       
         public delegate void EventHandler();
-
-        [SerializeField] private Sprite[] _frames = System.Array.Empty<Sprite>();
-        [SerializeField] private float _framesPerSecond = 12f;
-        // 히트 이벤트를 발생시킬 프레임 인덱스. 음수면 히트 프레임 없음.
-        [SerializeField] private int _hitFrameIndex = -1;
-        // 마지막 프레임 이후 처음부터 반복할지 여부. 반복하더라도 한 바퀴마다 AnimationEnd 는 호출된다.
-        [SerializeField] private bool _loop = false;
-
-        private SpriteRenderer? _spriteRenderer;
-        private Animator? _spriteAnimator;
-
-        private EventHandler? _hitEventHandler;
-        private EventHandler? _endEventHandler;
-
-        private bool _isSharedResourcesAllocated;
-        private bool _isPlaying;
-        private bool _isAnimationEnded;
-        private bool _hasHitFired;
-        private float _elapsed;
-        private int _currentFrame = -1;
-
         public bool IsAlive => !_isAnimationEnded;
+        public float AnimationDuration => _clipDuration;
 
-        /// <summary>애니메이션 길이, 초 단위.</summary>
-        public float AnimationDuration => _frames.Length / this.SafeFps;
+        public float HitTimeOnAnimation => _hitTimeOnAnimation;
 
-        /// <summary>히트 프레임 시간, 초 단위. 히트 프레임이 없으면 0.</summary>
-        public float HitTimeOnAnimation => _hitFrameIndex >= 0 ? _hitFrameIndex / this.SafeFps : 0f;
+        private SpriteRenderer _spriteRenderer;
+        private Animator _spriteAnimator;
+        private AnimationClip _animationClip;
 
-        public SpriteRenderer SpriteRenderer => _spriteRenderer != null ? _spriteRenderer : (_spriteRenderer = this.GetComponent<SpriteRenderer>());
+        public SpriteRenderer SpriteRenderer => _spriteRenderer;
+        [CanBeNull] public Animator SpriteAnimator => _spriteAnimator;
 
-        /// <summary>같은 오브젝트에 Animator 가 있으면 그 참조. 플립북 재생과는 무관합니다.</summary>
-        public Animator? SpriteAnimator => _spriteAnimator;
+        private EventHandler _hitEventHandler;
+        private EventHandler _endEventHandler;
 
-        // SpriteAnimationManager 를 통해 풀링될 때 사용하는 리소스 경로. 직접 사용하는 경우 null.
-        public string? PoolingKey { get; private set; }
+        // 애니메이션 클립의 시간길이, 초단위
+        private float _clipDuration;
 
-        private float SafeFps => Mathf.Max(_framesPerSecond, 0.0001f);
+        //애니메이션 클립의 히트프레임 시간, 초단위 (히트 프레임 없으면 0)
+        private float _hitTimeOnAnimation;
 
-        public void AllocateSharedResources(string? resourcePath)
+        // 애니메이션이 종료되었는지 여부. 애니메이션 클립의 마지막 프레임이 실행되었거나, 사용자 요청에 의해 강제로 종료되었으면 true
+        private bool _isAnimationEnded;
+
+        private bool _isSharedResourcesAllocated = false;
+
+
+        // 애니메이션 프리팹 파일의 리소스 경로를 PoolingKey로 사용하고 있다.
+        // SpriteAnimationManager를 통해 풀링하는 경우에만 값이 유효하고,
+        // SpriteAnimationManager를 통하지 않고 사용하는 경우 null 임.
+        [CanBeNull] public string PoolingKey { get; private set; }
+
+        public void AllocateSharedResources([CanBeNull] string resourcePath)
         {
             if (_isSharedResourcesAllocated)
             {
@@ -59,31 +53,84 @@ namespace SamMul.UnityHelpers
             _isSharedResourcesAllocated = true;
 
             PoolingKey = resourcePath;
-            _spriteRenderer = this.GetComponent<SpriteRenderer>();
-            _spriteAnimator = this.GetComponent<Animator>();
+            _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+            _spriteAnimator = this.gameObject.GetComponent<Animator>();
+
+            var animationController = _spriteAnimator.runtimeAnimatorController;
+            if (animationController.animationClips.Length != 1)
+            {
+                Debug.LogWarning($"{nameof(SpriteAnimationHandler)}은 현재 애니메이션 클립 한개만 지원합니다. {this.name}에 {animationController.animationClips.Length}개의 클립이 있어 오동작 예상됩니다.");
+                _clipDuration = 0f;
+            }
+            else
+            {
+                _animationClip = animationController.animationClips.First();
+                _clipDuration = _animationClip.length;
+
+                bool isExistEventData = false;
+                bool isHitEventData = false;
+
+                foreach (var eventData in _animationClip.events)
+                {
+                    if (eventData.functionName == nameof(AnimationEnd))
+                    {
+                        isExistEventData = true;
+                    }
+                    else if(eventData.functionName == nameof(HitFrame))
+                    {
+                        _hitTimeOnAnimation = eventData.time;
+                        isHitEventData = true;
+                    }
+                }
+
+                if (!isExistEventData)
+                {
+                    var endEvent = new AnimationEvent();
+                    endEvent.time = _clipDuration;
+                    endEvent.functionName = nameof(AnimationEnd);
+                    endEvent.stringParameter = _animationClip.name;
+
+                    _animationClip.AddEvent(endEvent);
+                }
+
+                if (!isHitEventData) //히트프레임 없음
+                {
+                    _hitTimeOnAnimation = 0;
+                }
+
+            }
+
             _isAnimationEnded = false;
         }
 
         /// <summary>
-        /// 재생하지 않고 초기화만 합니다.
+        /// <see cref="Play"/>는 하지 않고 초기화만 해둔다.
         /// </summary>
         public void InitializeOnly()
         {
-            this.AllocateSharedResources(null);
+            if (!_isSharedResourcesAllocated)
+            {
+                this.AllocateSharedResources(null);
+            }
+
             _hitEventHandler = null;
             _endEventHandler = null;
-            _isPlaying = false;
         }
 
-        public void InitializeAndPlay(EventHandler? hitEventHandler, EventHandler? endEventHandler)
+        public void InitializeAndPlay([CanBeNull] EventHandler hitEventHandler, [CanBeNull] EventHandler endEventHandler)
         {
-            this.AllocateSharedResources(null);
+            if (!_isSharedResourcesAllocated)
+            {
+                this.AllocateSharedResources(null);
+            }
+
             _hitEventHandler = hitEventHandler;
             _endEventHandler = endEventHandler;
+
             this.Play();
         }
-
-        public void InitializeAndPlay(EventHandler? hitEventHandler)
+        
+        public void InitializeAndPlay([CanBeNull] EventHandler hitEventHandler)
         {
             this.InitializeAndPlay(hitEventHandler, null);
         }
@@ -96,84 +143,31 @@ namespace SamMul.UnityHelpers
         public void Play()
         {
             _isAnimationEnded = false;
-            _hasHitFired = false;
-            _elapsed = 0f;
-            _currentFrame = -1;
 
-            if (_frames.Length == 0)
-            {
-                Debug.LogWarning($"{this.name}에 프레임이 없습니다. 바로 종료 처리합니다.");
-                _isPlaying = false;
-                this.AnimationEnd();
-                return;
-            }
+            _spriteAnimator.Play(_animationClip.name);
 
-            _isPlaying = true;
-            this.ShowFrame(0);
+            _isAnimationEnded = false;
         }
 
         public void StopAndReserveToDestroy()
         {
-            _isPlaying = false;
             _isAnimationEnded = true;
         }
 
-        // 히트 프레임 도달 시 호출됩니다.
+        // 리소스(애니메이션 컨트롤러)에서 지정할 히트프레임 핸들러
+        // 리소스의 히트프레임에 "HitFrame"이 호출되도록 연결해주어야 합니다.
         public void HitFrame()
         {
             _hitEventHandler?.Invoke();
         }
 
-        // 마지막 프레임을 지난 시점에 호출됩니다.
+        // 애니메이션 클립이 종료되는 시점에 호출되는 핸들러
+        // <see cref="SpriteAnimationHandler"/> 스크립트에서, 애니메이션 클립의 마지막 프레임에 자동으로 연결해줍니다.
         public void AnimationEnd()
         {
             _isAnimationEnded = true;
+
             _endEventHandler?.Invoke();
-        }
-
-        private void Update()
-        {
-            if (!_isPlaying || _frames.Length == 0)
-            {
-                return;
-            }
-
-            _elapsed += Time.deltaTime;
-            int frame = Mathf.FloorToInt(_elapsed * this.SafeFps);
-            bool cycleEnded = frame >= _frames.Length;
-            this.ShowFrame(cycleEnded ? _frames.Length - 1 : frame);
-
-            if (!cycleEnded)
-            {
-                return;
-            }
-
-            if (_loop)
-            {
-                _elapsed = 0f;
-                _hasHitFired = false;
-            }
-            else
-            {
-                _isPlaying = false;
-            }
-
-            this.AnimationEnd();
-        }
-
-        private void ShowFrame(int frame)
-        {
-            if (frame != _currentFrame)
-            {
-                _currentFrame = frame;
-                this.SpriteRenderer.sprite = _frames[frame];
-            }
-
-            if (!_hasHitFired && _hitFrameIndex >= 0 && frame >= _hitFrameIndex)
-            {
-                _hasHitFired = true;
-                this.HitFrame();
-            }
         }
     }
 }

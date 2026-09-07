@@ -11,7 +11,7 @@ namespace SamMul.UIs.Stages.HUDs
     /// </summary>
     public class EmphasisCircle : MonoBehaviour
     {
-        public static readonly string PREFAB_PATH = "Stages/UIs/HUDs/EmphasisCircle/EmphasisCircle.prefab";
+        public static readonly string PREFAB_PATH = "Stage/UIs/EmphasisCircle/EmphasisCircle.prefab";
 
         public enum Color { Red, Blue }
 
@@ -21,8 +21,8 @@ namespace SamMul.UIs.Stages.HUDs
         {
             string spritePath = color switch
             {
-                Color.Red => "Stages/UIs/HUDs/EmphasisCircle/EmphasisCircleRed.png",
-                Color.Blue => "Stages/UIs/HUDs/EmphasisCircle/EmphasisCircleBlue.png",
+                Color.Red => "Stage/UIs/EmphasisCircle/EmphasisCircleRed.png",
+                Color.Blue => "Stage/UIs/EmphasisCircle/EmphasisCircleBlue.png",
                 _ => throw new NotImplementedException($"{color} 색상의 스프라이트 경로가 정의되지 않았습니다."),
             };
 

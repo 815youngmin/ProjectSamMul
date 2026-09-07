@@ -112,8 +112,8 @@ TextureImporter:
         y: 529
         width: 467
         height: 434
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.52645326, y: 0.16696209}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -133,8 +133,8 @@ TextureImporter:
         y: 525
         width: 467
         height: 438
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.51851755, y: 0.1417986}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,8 +154,8 @@ TextureImporter:
         y: 66
         width: 468
         height: 435
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5184778, y: 0.13080831}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +171,12 @@ TextureImporter:
       name: Chapter01_Monster_02_3
       rect:
         serializedVersion: 2
-        x: 515
+        x: 516
         y: 71
         width: 468
         height: 430
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.55279374, y: 0.09491292}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

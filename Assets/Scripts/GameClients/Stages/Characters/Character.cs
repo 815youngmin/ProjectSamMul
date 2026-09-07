@@ -673,9 +673,6 @@ namespace SamMul.GameClients.Stages.Characters
                 float healPopupValue = Mathf.Clamp(_hp - previousHp, 1.0f, this.MaxHP);
                 stage.DamagePopups.CreateDamagePopup(null, this.CenterPos, healPopupValue, new Vector2(0.0f, 0.1f), false);
             }
-
-            var particle = stage.Particles.CreateParticle("Stages/AreaEffects/fx_heal.prefab", this.transform);
-            particle.transform.SetParent(this.transform, worldPositionStays: true);
         }
 
         public virtual void DrainHP(Stage stage, float increment)

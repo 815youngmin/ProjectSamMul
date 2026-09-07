@@ -12,12 +12,11 @@ namespace SamMul.UIs.Stages.Popups
 {
     public class BossVSSequencePopup : BasePopup
     {
-        public static readonly string PREFAB_PATH = "Stages/UIs/Popups/BossVSSequencePopup/BossVSSequencePopup.prefab";
+        public static readonly string PREFAB_PATH = "Stage/UIs/BossVsSequencePopup/BossVSSequencePopup.prefab";
 
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Image _bossImage;
         [SerializeField] private Image _playerImage;
-        [SerializeField] private SkeletonGraphic _vsAnimation;
         [SerializeField] private Image _backgroundPattern1;
         [SerializeField] private Image _backgroundPattern2;
         [SerializeField] private TextMeshProUGUI _bossDescription;
@@ -26,12 +25,14 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private TextMeshProUGUI _playerName;
 
         private Color _transparentColor;
+        private Color _transparentBlackColor;
 
 
         public void Initialize(CharacterType bossCharacterType, HeroType playerCharacterType, Action<bool> closeRequester)
         {
             base.InitializeBase(closeRequester);
             _transparentColor = new Color(1.0f, 1.0f, 1.0f, 0f);
+            _transparentBlackColor = new Color(0f, 0f, 0f, 0f);
 
             this.SetInitialState(bossCharacterType, playerCharacterType);
 
@@ -81,14 +82,12 @@ namespace SamMul.UIs.Stages.Popups
             //기타
             _backgroundImage.color = new Color(0, 0, 0, 0);
             _backgroundPattern1.gameObject.SetActive(true);
-            _backgroundPattern1.color = _transparentColor;
+            _backgroundPattern1.color = _transparentBlackColor;
             _backgroundPattern2.gameObject.SetActive(true);
-            _backgroundPattern2.color = _transparentColor;
+            _backgroundPattern2.color = _transparentBlackColor;
 
             _bossDescription.gameObject.SetActive(false);
 
-            _vsAnimation.gameObject.SetActive(false);
-            _vsAnimation.UnscaledTime = true;
         }
 
         private void PlayVSSequence()
@@ -118,11 +117,6 @@ namespace SamMul.UIs.Stages.Popups
             sequenceAnimation.Insert(0.5f, _bossImage.DOColor(Color.white, 0.2f));
             sequenceAnimation.Join(_playerImage.DOColor(Color.white, 0.2f));
 
-            sequenceAnimation.InsertCallback(0.3f, () =>
-            {
-                _vsAnimation.gameObject.SetActive(true);
-                _vsAnimation.AnimationState.SetAnimation(0, "animation", false);
-            });
             sequenceAnimation.Insert(0.3f, _backgroundPattern1.DOFade(1.0f, 0.3f));
             sequenceAnimation.Join(_backgroundPattern2.DOFade(1.0f, 0.3f));
 

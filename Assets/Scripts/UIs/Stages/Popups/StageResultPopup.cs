@@ -19,7 +19,7 @@ namespace SamMul.UIs.Stages.Popups
     {
         //최상단 Victory 타이틀 애니메이션
         [Header("SuccessTitle")]
-        [SerializeField] private SkeletonGraphic _successTitle;
+        [SerializeField] private TextMeshProUGUI _successTitle;
 
         [Header("FailTitle")]
         [SerializeField] private TextMeshProUGUI _failTitle;
@@ -269,12 +269,9 @@ namespace SamMul.UIs.Stages.Popups
             Sequence successTitleSequence = DOTween.Sequence();
             successTitleSequence.AppendCallback(() =>
             {
-                _successTitle.UnscaledTime = true;
                 _successTitle.gameObject.SetActive(true);
-                _successTitle.AnimationState.SetAnimation(0, "Begin", false);
-                _successTitle.AnimationState.AddAnimation(0, "Repeat", true, 0f);
             });
-            successTitleSequence.AppendInterval(_successTitle.Skeleton.Data.FindAnimation("Begin").Duration - 0.2f);
+            successTitleSequence.AppendInterval(0.2f);
 
             //챕터 이름 활성화 시퀀스
             Sequence chapterNameSequence = DOTween.Sequence();
@@ -284,7 +281,7 @@ namespace SamMul.UIs.Stages.Popups
                 _chapterNameLabel.color = new Color(1f, 1f, 1f, 0f);
 
                 _chapterNameText.gameObject.SetActive(true);
-                _chapterNameText.color = new Color(1f, 1f, 1f, 0f);
+                _chapterNameText.color = new Color(0f, 0f, 0f, 0f);
                 _chapterNameText.text = _chapterName;
             });
             chapterNameSequence.Append(_chapterNameLabel.DOFade(1f, 0.2f));
@@ -299,7 +296,7 @@ namespace SamMul.UIs.Stages.Popups
                 _killIconImage.gameObject.SetActive(true);
                 _killIconImage.color = new Color(1f, 1f, 1f, 0f);
                 _killCountText.gameObject.SetActive(true);
-                _killCountText.color = new Color(1f, 1f, 1f, 0f);
+                _killCountText.color = new Color(0f, 0f, 0f, 0f);
                 _killCountText.text = "0";
             });
             killCountSequence.Append(_killIconLabel.DOFade(1f, 0.2f));
@@ -337,7 +334,7 @@ namespace SamMul.UIs.Stages.Popups
                 _chapterNameLabel.color = new Color(1f, 1f, 1f, 0f);
 
                 _chapterNameText.gameObject.SetActive(true);
-                _chapterNameText.color = new Color(1f, 1f, 1f, 0f);
+                _chapterNameText.color = new Color(0f, 0f, 0f, 0f);
                 _chapterNameText.text = _chapterName;
             });
             chapterNameSequence.Append(_chapterNameLabel.DOFade(1f, 0.2f));
@@ -382,7 +379,7 @@ namespace SamMul.UIs.Stages.Popups
                 _killIconImage.gameObject.SetActive(true);
                 _killIconLabel.color = new Color(1f, 1f, 1f, 0f);
                 _killCountText.gameObject.SetActive(true);
-                _killCountText.color = new Color(1f, 1f, 1f, 0f);
+                _killCountText.color = new Color(0f, 0f, 0f, 0f);
                 _killCountText.text = "0";
             });
             killCountSequence.Append(_killIconLabel.DOFade(1f, 0.2f));

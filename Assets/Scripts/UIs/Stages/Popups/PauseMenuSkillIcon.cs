@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using SamMul.ResourcePools;
+using TMPro;
 
 namespace SamMul.UIs.Stages.Popups
 {
@@ -12,11 +13,11 @@ namespace SamMul.UIs.Stages.Popups
     {
         [SerializeField] private Image _skillIcon;
         [SerializeField] private Image _background;
-        [SerializeField] private SkillLevelDisplayer _skillLevelDisplayer;
+        [SerializeField] private TextMeshProUGUI _skillLevelText;
 
-        private static readonly string ACTIVE_SKILL_BACKGROUND = "Stages/UIs/Popups/PauseMenuPopup/ActiveSkillBackground.png";
-        private static readonly string PASSIVE_SKILL_BACKGROUND = "Stages/UIs/Popups/PauseMenuPopup/PasiveSkillBackground.png";
-        private static readonly string TRANSCENDENT_SKILL_BACKGROUND = "Stages/UIs/Popups/PauseMenuPopup/TranscendentSkillBackground.png";
+        private static readonly string ACTIVE_SKILL_BACKGROUND = "Stage/UIs/PauseMenuPopup/ActiveSkillBackground.png";
+        private static readonly string PASSIVE_SKILL_BACKGROUND = "Stage/UIs/PauseMenuPopup/PassiveSkillBackground.png";
+        private static readonly string TRANSCENDENT_SKILL_BACKGROUND = "Stage/UIs/PauseMenuPopup/TranscendentSkillBackground.png";
 
 
         public void Initialize(SkillStaticData skillStaticData)
@@ -29,7 +30,7 @@ namespace SamMul.UIs.Stages.Popups
 
             gameObject.SetActive(true);
             _skillIcon.sprite = ResourcePool.Instance.LoadResource<Sprite>(skillStaticData.IconResourcePath);
-            _skillLevelDisplayer.Initialize(skillStaticData.Level, displayEmptyStars: true);
+            _skillLevelText.text = skillStaticData.Level.ToString();
             switch (skillStaticData.skillType)
             {
                 case SkillType.Active:

@@ -27,19 +27,20 @@ namespace SamMul.GameClients.Stages.Characters.StatusEffects
             // 히트박스 크기에 맞춰 그려준다.
             // 1배 미만은 안 줄이고, 2배 이상은 안 키운다.
             // 8배 이상은 제거한다. 
-            float hitBoxWidth = owner.GetHitBoxSize().x;
-            if (hitBoxWidth <= 8.0f)
-            {
-                _effectAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(EFFECT_ANIMATION_RESOURCE_PATH);
-                _effectAnimation.transform.SetParent(owner.transform, worldPositionStays: false);
-                _effectAnimation.transform.localScale = Mathf.Clamp(hitBoxWidth, 1.0f, 2.0f) * Vector3.one;
-                _effectAnimation.gameObject.transform.localPosition = owner.UIPositionOffset;
-                _effectAnimation.InitializeAndPlay();
-            }
-            else
-            {
-                _effectAnimation = null;
-            }
+            //float hitBoxWidth = owner.GetHitBoxSize().x;
+            // if (hitBoxWidth <= 8.0f)
+            // {
+            //     _effectAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(EFFECT_ANIMATION_RESOURCE_PATH);
+            //     _effectAnimation.transform.SetParent(owner.transform, worldPositionStays: false);
+            //     _effectAnimation.transform.localScale = Mathf.Clamp(hitBoxWidth, 1.0f, 2.0f) * Vector3.one;
+            //     _effectAnimation.gameObject.transform.localPosition = owner.UIPositionOffset;
+            //     _effectAnimation.InitializeAndPlay();
+            // }
+            // else
+            // {
+            //     _effectAnimation = null;
+            // }
+            _effectAnimation = null;
         }
 
         public override void Update(Stage stage, Character owner, float now)

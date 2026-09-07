@@ -28,7 +28,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private AcquiredSkillGroup _acquiredSkillGroup;
         [SerializeField] private ZButton _skillRefreshButton;
         //스티커 이미지 생성위치
-        [SerializeField] private RectTransform _backgroundStickerTransform;
 
         [SerializeField] private TextMeshProUGUI _levelText;
         [SerializeField] private TextMeshProUGUI _levelShadowText;

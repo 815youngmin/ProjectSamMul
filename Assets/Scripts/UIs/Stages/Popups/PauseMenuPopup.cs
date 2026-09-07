@@ -20,7 +20,7 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private ZButton _homeButton = null!;
         [SerializeField] private ZButton _continueButton = null!;
         [SerializeField] private ZButton _soundButton = null!;
-        [SerializeField] private Image _soundIconImage = null!;
+        [SerializeField] private TextMeshProUGUI _soundText = null!;
         [SerializeField] private TextMeshProUGUI _playerCharacterLevelShadowText;
         [SerializeField] private TextMeshProUGUI _playerCharacterLevelText;
 
@@ -29,9 +29,6 @@ namespace SamMul.UIs.Stages.Popups
         [SerializeField] private PauseMenuSkillIcon[] _activeSkillIcons = null!;
         [SerializeField] private PauseMenuSkillIcon[] _passiveSkillIcons = null!;
 
-
-        private static readonly string SOUND_ON_ICON_PATH = "Stages/UIs/Popups/PauseMenuPopup/SoundOnIcon.png";
-        private static readonly string SOUND_OFF_ICON_PATH = "Stages/UIs/Popups/PauseMenuPopup/SoundOffIcon.png";
 
         public void Initialize(Action<bool> closeRequester, bool isChapterZero)
         {
@@ -75,11 +72,11 @@ namespace SamMul.UIs.Stages.Popups
             float bgmVolume = UnityGlobal.Sounds.GetBGMVolume();
             if (bgmVolume <= 0f)
             {
-                _soundIconImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(SOUND_OFF_ICON_PATH);
+                _soundText.text = Localizer.Instance.GetText("UI_SOUND_OFF");
             }
             else
             {
-                _soundIconImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(SOUND_ON_ICON_PATH);
+                _soundText.text = Localizer.Instance.GetText("UI_SOUND_ON");
             }
 
             _soundButton.onClick.RemoveAllListeners();
@@ -90,13 +87,13 @@ namespace SamMul.UIs.Stages.Popups
                 {
                     UnityGlobal.Sounds.SetBGMVolume(1f);
                     UnityGlobal.Sounds.SetEffectVolume(1f);
-                    _soundIconImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(SOUND_ON_ICON_PATH);
+                    _soundText.text = Localizer.Instance.GetText("UI_SOUND_ON");
                 }
                 else
                 {
                     UnityGlobal.Sounds.SetBGMVolume(0f);
                     UnityGlobal.Sounds.SetEffectVolume(0f);
-                    _soundIconImage.sprite = ResourcePool.Instance.LoadResource<Sprite>(SOUND_OFF_ICON_PATH);
+                    _soundText.text = Localizer.Instance.GetText("UI_SOUND_OFF");
                 }
             });
 

@@ -55,9 +55,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
 
         private IReadOnlyCharacterStatCalculators _characterStats;
 
-        private SkeletonAnimation _diceSkeletonAnimation;
-        private MeshRenderer _diceMeshRenderer;
-
         // 이 스킬에서 지금까지 던진 횟수, 1레벨의 처음 3개는 1개씩만 던지기는 구현을 위해 사용
         private long _throwActionCount;
 
@@ -139,22 +136,12 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             _diceObject.transform.SetParent(owner.transform);
             _diceObject.transform.localPosition = Vector2.up * 1.7f;
             _diceObject.transform.localScale = Vector3.one * 0.3f;
-            _diceSkeletonAnimation = _diceObject.GetComponent<SkeletonAnimation>();
-            _diceMeshRenderer = _diceObject.GetComponent<MeshRenderer>();
 
             _fireAmount = 0;
             _targets.Clear();
             _targetItem = null;
 
-            if (this.Level <= 1)
-            {
-                _diceSkeletonAnimation.AnimationState.SetAnimation(0, "appear", false);
-                _diceThrowAt = now + _diceSkeletonAnimation.skeleton.Data.FindAnimation("appear").Duration;
-            }
-            else
-            {
-                _diceThrowAt = now + 0.2f;
-            }
+            _diceThrowAt = now + 0.2f;
 
             _gradeEffectDice777ActiveAt = now;
             _addChipAmount = 0;
@@ -179,7 +166,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             base.OnPlayerCharacterDead(owner, stage, now);
 
             _isPlayerDead = true;
-            _diceSkeletonAnimation.AnimationState.SetAnimation(0, "die", false);
         }
 
         public override void OnPlayerCharacterResurrected(PlayerCharacter owner, Stage stage, float now)
@@ -187,13 +173,10 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             base.OnPlayerCharacterResurrected(owner, stage, now);
 
             _isPlayerDead = false;
-            _diceSkeletonAnimation.AnimationState.SetAnimation(0, "appear", false);
         }
 
         public override void Update(PlayerCharacter owner, Stage stage, float now)
         {
-            _diceMeshRenderer.sortingOrder = (int)(owner.Pos.y * -100 - 5);
-
             if (_isPlayerDead)
             {
                 return;
@@ -290,44 +273,6 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
             }
             _throwActionCount++;
 
-            switch (_randomIndex)
-            {
-                case 1:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "1_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "1_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 2:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "2_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "2_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 3:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "3_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "3_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 4:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "4_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "4_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 5:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "5_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "5_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 6:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "6_start", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "6_loop", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-                case 7:
-                    _diceSkeletonAnimation.AnimationState.SetAnimation(0, "jackpot", false);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "jackpot", false, 0f);
-                    _diceSkeletonAnimation.AnimationState.AddAnimation(0, "appear", false, 1.35f);
-                    break;
-            }
         }
 
         /// <summary>

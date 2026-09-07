@@ -11,7 +11,7 @@ namespace SamMul.UIs.Stages.HUDs
     /// </summary>
     public class MonsterNameDisplayer : MonoBehaviour
     {
-        public static readonly string PREFAB_PATH = "Stages/UIs/HUDs/MonsterNameDisplayer/MonsterNameDisplayer.prefab";
+        public static readonly string PREFAB_PATH = "Stage/UIs/MonsterNameDisplayer/MonsterNameDisplayer.prefab";
 
         public enum Color { Red, Blue }
 
