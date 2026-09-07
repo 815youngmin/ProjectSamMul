@@ -11,8 +11,11 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.
         private float _moveAt;
         private float _stopAt;
         private bool _isMoving;
+        private float _moveTime;
+        private float _stopTime;
 
         private static readonly float TARGET_CHECK_PERIOD = 1.0f;
+        // 몬스터 테이블 Param1(이동 시간), Param2(정지 시간)이 0보다 크면 그 값을 쓰고, 아니면 기본값을 쓴다.
         private static readonly float MOVE_TIME = 1.75f;
         private static readonly float STOP_TIME = 2f;
 
@@ -24,8 +27,10 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.
         public override void Begin(Stage stage, Monster owner)
         {
             _findTargetAt = 0.0f;
+            _moveTime = owner.StaticData.Param1 > 0f ? owner.StaticData.Param1 : MOVE_TIME;
+            _stopTime = owner.StaticData.Param2 > 0f ? owner.StaticData.Param2 : STOP_TIME;
             _moveAt = Time.time;
-            _stopAt = _moveAt + MOVE_TIME;
+            _stopAt = _moveAt + _moveTime;
         }
 
         public override MonsterAIStrategyBase Update(Stage stage, Monster owner)
@@ -52,13 +57,13 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.AIStrategies.
             {
                 owner.StopMovement();
                 _isMoving = false;
-                _moveAt = now + STOP_TIME;
+                _moveAt = now + _stopTime;
             }
             // 멈춰 있는데 움직일 시간이 된 경우
             else if (!_isMoving && _moveAt < now)
             {
                 _isMoving = true;
-                _stopAt = now + MOVE_TIME;
+                _stopAt = now + _moveTime;
             }
 
             if (_isMoving)

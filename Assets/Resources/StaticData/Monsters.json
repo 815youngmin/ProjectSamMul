@@ -114,7 +114,7 @@
     "MaxHP": 16000.0,
     "CollisionAttackPower": 6.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.48,
+    "MoveSpeed": 7.0,
     "Mass": 100.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -123,8 +123,8 @@
     "SpecialAttack1EffectiveRange": 9.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -146,7 +146,7 @@
     "MaxHP": 12000.0,
     "CollisionAttackPower": 15.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.0,
+    "MoveSpeed": 6.75,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -155,8 +155,8 @@
     "SpecialAttack1EffectiveRange": 20.0,
     "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Fireball.prefab",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -178,7 +178,7 @@
     "MaxHP": 20000.0,
     "CollisionAttackPower": 17.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 5.0,
+    "MoveSpeed": 7.25,
     "Mass": 199.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -187,8 +187,8 @@
     "SpecialAttack1EffectiveRange": 20.0,
     "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Orb.prefab",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -210,7 +210,7 @@
     "MaxHP": 5800.0,
     "CollisionAttackPower": 6.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.48,
+    "MoveSpeed": 6.5,
     "Mass": 9999.0,
     "Drag": 9999.0,
     "KnockBackResistance": 1.0,
@@ -219,8 +219,8 @@
     "SpecialAttack1EffectiveRange": 9.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -498,7 +498,7 @@
     "MaxHP": 15000.0,
     "CollisionAttackPower": 10.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.48,
+    "MoveSpeed": 6.0,
     "Mass": 100.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -507,8 +507,8 @@
     "SpecialAttack1EffectiveRange": 9.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -530,7 +530,7 @@
     "MaxHP": 27000.0,
     "CollisionAttackPower": 10.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.0,
+    "MoveSpeed": 6.25,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -539,8 +539,8 @@
     "SpecialAttack1EffectiveRange": 20.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -562,7 +562,7 @@
     "MaxHP": 6000.0,
     "CollisionAttackPower": 10.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.48,
+    "MoveSpeed": 5.75,
     "Mass": 100.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -571,8 +571,8 @@
     "SpecialAttack1EffectiveRange": 9.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -946,7 +946,7 @@
     "MaxHP": 5800.0,
     "CollisionAttackPower": 4.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.0,
+    "MoveSpeed": 5.0,
     "Mass": 1000.0,
     "Drag": 1000.0,
     "KnockBackResistance": 1.0,
@@ -955,8 +955,8 @@
     "SpecialAttack1EffectiveRange": 20.0,
     "SpecialAttack1ResourcePath": "Stage/Common/Projectiles/MonsterProjectile_Fireball.prefab",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -978,7 +978,7 @@
     "MaxHP": 28000.0,
     "CollisionAttackPower": 9.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.48,
+    "MoveSpeed": 5.5,
     "Mass": 100.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -987,8 +987,8 @@
     "SpecialAttack1EffectiveRange": 9.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
@@ -1010,7 +1010,7 @@
     "MaxHP": 12500.0,
     "CollisionAttackPower": 10.0,
     "CollisionAttackSpeed": 5.0,
-    "MoveSpeed": 3.12,
+    "MoveSpeed": 5.25,
     "Mass": 10.0,
     "Drag": 100.0,
     "KnockBackResistance": 1.0,
@@ -1019,8 +1019,8 @@
     "SpecialAttack1EffectiveRange": 20.0,
     "SpecialAttack1ResourcePath": "",
     "SpawnMonsterType": "None",
-    "Param1": 0.0,
-    "Param2": 0.0,
+    "Param1": 3.0,
+    "Param2": 1.0,
     "Param3": 0.0
   },
   {
