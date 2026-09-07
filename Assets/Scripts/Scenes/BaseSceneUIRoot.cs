@@ -261,7 +261,7 @@ namespace SamMul.Scenes
 
         public void AddCommonMessagePopup(string title, string message, string okButtonText, Action okButtonAction)
         {
-            var popup = this.CreateAndAddPopup<CommonPopup>("Commons/Popups/CommonPopup.prefab", playSound: true);
+            var popup = this.CreateAndAddPopup<CommonPopup>("Stage/UIs/CommonPopup.prefab", playSound: true);
             popup.InitializeCommonPopup(title, message, okButtonText, okButtonAction, closeRequester: (bool skipAnimation) =>
             {
                 this.CloseAndDestroyPopup(popup, onCompleted: () => { }, skipAnimation);
@@ -287,7 +287,7 @@ namespace SamMul.Scenes
 
         public void AddOKCancelPopup(string title, string message, string okButtonText, Action? okButtonAction, string cancelText, Action? cancelAction)
         {
-            var popup = this.CreateAndAddPopup<CommonPopup>("Commons/Popups/CommonPopup.prefab", playSound: true);
+            var popup = this.CreateAndAddPopup<CommonPopup>("Stage/UIs/CommonPopup.prefab", playSound: true);
             popup.Initialize(title, message, okButtonText, okButtonAction, cancelText, cancelAction, closeRequester: (bool skipAnimation) =>
             {
                 this.CloseAndDestroyPopup(popup, onCompleted: () => { }, skipAnimation);
