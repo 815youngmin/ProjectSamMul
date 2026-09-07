@@ -135,7 +135,9 @@
     "MONSTER_EGYPT_BOSSPHARAOH_NAME": "파라오",
     "MONSTER_EGYPT_BOSSANUBISMASK_NAME": "아누비스",
     "MONSTER_EGYPT_BOSSRA_NAME": "라",
-    "HERO_DICE_NAME": "다이스"
+    "HERO_DICE_NAME": "다이스",
+    "UI_SOUND_ON": "사운드 켜짐",
+    "UI_SOUND_OFF": "사운드 꺼짐"
   },
   "English": {
     "UI_CANCEL": "Cancel",
@@ -273,6 +275,8 @@
     "MONSTER_EGYPT_BOSSPHARAOH_NAME": "Pharaoh",
     "MONSTER_EGYPT_BOSSANUBISMASK_NAME": "Anubis",
     "MONSTER_EGYPT_BOSSRA_NAME": "Ra",
-    "HERO_DICE_NAME": "Dice"
+    "HERO_DICE_NAME": "Dice",
+    "UI_SOUND_ON": "Sound On",
+    "UI_SOUND_OFF": "Sound Off"
   }
 }

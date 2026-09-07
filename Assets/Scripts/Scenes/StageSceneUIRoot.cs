@@ -384,7 +384,7 @@ namespace SamMul.Scenes
                 return;
             }
 
-            _pauseMenuPopup = this.CreateAndAddPopup<PauseMenuPopup>("Stages/UIs/Popups/PauseMenuPopup/PauseMenuPopup.prefab", playSound: true);
+            _pauseMenuPopup = this.CreateAndAddPopup<PauseMenuPopup>("Stage/UIs/PauseMenuPopup/PauseMenuPopup.prefab", playSound: true);
             _pauseMenuPopup.Initialize(closeRequester: ClosePauseMenuPopup, isChapterZero: GameClient.Stage?.ChapterStaticData?.ChapterNumber == 0);
             this.PauseResumeOnPopup();
         }
