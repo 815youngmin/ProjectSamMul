@@ -39,57 +39,31 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
         private float _slowEffectSpeedChangeRate;
 
 
-        private GameObject _normalSkillObject;
-        private SpriteAnimationHandler _normalSkillObjectSpriteAnimationHandler;
-        private SpriteRenderer _normalSpriteRenderer;
-
-        private GameObject _transcendSkillObject;
-        private SpriteAnimationHandler _transcendSkillObjectSpriteAnimationHandler;
-        private SpriteRenderer _transcendSpriteRenderer;
-        private TrailRenderer _transcendSkillObjectTrailRenderer;
-
         private bool _isTranscend;
 
         private static readonly float OBJECT_RADIUS = 0.8f;
-        private static readonly string NORMAL_HIT_PARTICLE_PATH = "Stages/SkillEffects/BouncingClaw/FX_BouncingClaw_Bomb_N/FX_BouncingClaw_N-Begin.prefab";
-        private static readonly string TRANSCENDENT_HIT_PARTICLE_PATH = "Stages/SkillEffects/BouncingClaw/FX_BouncingClaw_Bomb_S/FX_BouncingClaw_S-Begin.prefab";
+        // 전용 투사체 리소스 대신 쓰는 공용 공격 비주얼. 판정 반지름(OBJECT_RADIUS)에 맞춰 크기를 맞춘다.
+        private static readonly string VISUAL_PREFAB_PATH = "Stage/Common/PlayerAttackVisual.prefab";
+        private GameObject _visual;
 
         private static readonly string NORMAL_HIT_SFX_PATH = "Sounds/SoundEffects/PCs/BouncingClawNormalHit_SFX.prefab";
         private static readonly string TRANSCENDENT_HIT_SFX_PATH = "Sounds/SoundEffects/PCs/BouncingClawTranscendentHit_SFX.prefab";
 
         private HashSet<Character> _debuffedCharacters = new HashSet<Character>();
 
-        private string _normalHitParticlePath;
-        private string _transcendHitParticlePath;
-
 
         public void AllocateSharedResources()
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.BouncingClaw);
 
-            //해당 오브젝트의 하이어라키가 다른 오브젝트와 달라 SpriteRenderer를 SpriteAnimationHandler에서 불러올 수 없다.
-            //SpriteRenderer는 따로 저장해둔다음 사용한다.
+            _visual = ResourcePool.Instance.InstantiateFromResource(VISUAL_PREFAB_PATH);
+            _visual.transform.SetParent(transform, worldPositionStays: false);
+            _visual.transform.localPosition = Vector3.zero;
 
-            string normalPrefabPath = "Stages/AreaEffects/BouncingClaw_N_AreaEffectObject.prefab";
-            _normalSkillObject = ResourcePool.Instance.InstantiateFromResource(normalPrefabPath);
-            _normalSkillObjectSpriteAnimationHandler = _normalSkillObject.GetComponentInChildren<SpriteAnimationHandler>();
-            _normalSpriteRenderer = _normalSkillObject.GetComponentInChildren<SpriteRenderer>();
-            _normalSkillObject.transform.SetParent(transform);
-            _normalSkillObject.transform.localPosition = Vector3.zero;
-            _normalSkillObject.transform.localScale = Vector3.one;
-
-            string transcendPrefabPath = "Stages/AreaEffects/BouncingClaw_S_AreaEffectObject.prefab";
-            _transcendSkillObject = ResourcePool.Instance.InstantiateFromResource(transcendPrefabPath);
-            _transcendSkillObjectSpriteAnimationHandler = _transcendSkillObject.GetComponentInChildren<SpriteAnimationHandler>();
-            _transcendSpriteRenderer = _transcendSkillObject.GetComponentInChildren<SpriteRenderer>();
-            _transcendSkillObjectTrailRenderer = _transcendSkillObject.GetComponentInChildren<TrailRenderer>();
-            _transcendSkillObject.transform.SetParent(transform);
-            _transcendSkillObject.transform.localPosition = Vector3.zero;
-            _transcendSkillObject.transform.localScale = Vector3.one;
-
-            _normalHitParticlePath = NORMAL_HIT_PARTICLE_PATH;
-            _transcendHitParticlePath = TRANSCENDENT_HIT_PARTICLE_PATH;
-
+            // 스프라이트 지름이 판정 지름(OBJECT_RADIUS * 2)과 같아지도록 맞춘다. 부모 스케일(_scale)은 그대로 곱해진다.
+            var renderer = _visual.GetComponentInChildren<SpriteRenderer>();
+            float spriteDiameter = renderer != null && renderer.sprite != null ? renderer.sprite.bounds.size.x : 1f;
+            _visual.transform.localScale = Vector3.one * (OBJECT_RADIUS * 2f / Mathf.Max(spriteDiameter, 0.01f));
         }
 
         public void Initialize(
@@ -128,20 +102,7 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             this.transform.position = _owner.CenterPos;
 
             _isTranscend = isTranscend;
-            if(isTranscend)
-            {
-                _normalSkillObject.gameObject.SetActive(false);
-                _transcendSkillObject.gameObject.SetActive(true);
-                _transcendSkillObjectTrailRenderer.Clear();
-                _transcendSkillObjectSpriteAnimationHandler.InitializeAndPlay();
-            }
-            else
-            {
-                _normalSkillObject.gameObject.SetActive(true);
-                _transcendSkillObject.gameObject.SetActive(false);
-                _normalSkillObjectSpriteAnimationHandler.InitializeAndPlay();
-            }
-
+            _visual.SetActive(true);
         }
 
         public override void UpdateLogic(Stage stage, float deltaTime)
@@ -191,14 +152,8 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
                             }
                         }
 
-                        if(_isTranscend)
-                        {
-                            UnityGlobal.SpriteAnimations.CreateAndPlaySpriteAnimation(_transcendHitParticlePath, _target.CenterPos, Vector2.one *2 * _scale, null);
-                        }
-                        else
-                        {
-                            UnityGlobal.SpriteAnimations.CreateAndPlaySpriteAnimation(_normalHitParticlePath, _target.CenterPos, Vector2.one * 2 * _scale, null);
-                        }
+                        // 전용 타격 이펙트 대신 타격 지점의 판정 범위를 표시한다.
+                        stage.AttackAreaFlashes.Show(new CircularTargetArea(_target.CenterPos, OBJECT_RADIUS * _scale));
 
                         _chainCount++;
                         if(_chainCount >= _chainAmount)
@@ -310,7 +265,6 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             base.PuttingBackToPool();
             _owner = null;
             _target = null;
-            _transcendSkillObjectTrailRenderer.Clear();
             _debuffedCharacters.Clear();
         }
 
