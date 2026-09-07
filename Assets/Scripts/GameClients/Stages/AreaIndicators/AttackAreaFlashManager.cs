@@ -7,7 +7,7 @@ using SamMul.GameClients.Stages.CombatSystems;
 namespace SamMul.GameClients.Stages.AreaIndicators
 {
     /// <summary>
-    /// 플레이어 공격이 실제로 판정한 범위를 잠깐 보여 주고 사라지는 공용 이펙트.
+    /// 공격이 실제로 판정한 범위를 잠깐 보여 주고 사라지는 공용 이펙트. 플레이어는 파란색, 적은 빨간색으로 그린다.
     /// 전용 공격 이펙트 리소스가 없는 데모에서 공격 범위를 확인하기 위한 용도로, 판정 도형(원·사각·부채꼴)을 메시로 그린다.
     /// CombatSystem.HitOnTargetArea 에서 플레이어 진영의 공격일 때 호출된다.
     /// </summary>
@@ -17,7 +17,8 @@ namespace SamMul.GameClients.Stages.AreaIndicators
         private const float START_ALPHA = 0.6f;
         private const int FULL_CIRCLE_SEGMENTS = 40;
         private const string SORTING_LAYER_NAME = "LowParticle";
-        private static readonly Color FLASH_COLOR = new Color(0.15f, 0.4f, 1f);
+        public static readonly Color PLAYER_COLOR = new Color(0.15f, 0.4f, 1f);
+        public static readonly Color ENEMY_COLOR = new Color(1f, 0.2f, 0.15f);
         private static readonly int ColorId = Shader.PropertyToID("_Color");
 
         private class Flash
@@ -26,6 +27,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
             public readonly MeshRenderer Renderer;
             public readonly Mesh Mesh;
             public float ElapsedTime;
+            public Color Color;
 
             public Flash(Transform root, Material material)
             {
@@ -68,11 +70,16 @@ namespace SamMul.GameClients.Stages.AreaIndicators
         private readonly MaterialPropertyBlock _propertyBlock = new MaterialPropertyBlock();
         private GameObject? _root;
 
-        public void Show(CircularTargetArea area) => this.ShowFan(area.Center, Vector2.right, area.Radius, 360f);
+        public void Show(CircularTargetArea area) => this.Show(area, PLAYER_COLOR);
+        public void Show(CircularSectorTargetArea area) => this.Show(area, PLAYER_COLOR);
+        public void Show(SquareTargetArea area) => this.Show(area, PLAYER_COLOR);
 
-        public void Show(CircularSectorTargetArea area) => this.ShowFan(area.Center, area.Direction, area.Radius, area.Angle);
+        /// <param name="color">표시 색. 알파는 기본 알파에 곱해진다(0~1).</param>
+        public void Show(CircularTargetArea area, Color color) => this.ShowFan(area.Center, Vector2.right, area.Radius, 360f, color);
 
-        public void Show(SquareTargetArea area)
+        public void Show(CircularSectorTargetArea area, Color color) => this.ShowFan(area.Center, area.Direction, area.Radius, area.Angle, color);
+
+        public void Show(SquareTargetArea area, Color color)
         {
             var flash = this.Take();
             var half = area.Size * 0.5f;
@@ -84,11 +91,11 @@ namespace SamMul.GameClients.Stages.AreaIndicators
             _vertices.Add(new Vector3(half.x, -half.y));
             _triangles.Add(0); _triangles.Add(1); _triangles.Add(2);
             _triangles.Add(0); _triangles.Add(2); _triangles.Add(3);
-            this.Apply(flash, area.Center, Quaternion.AngleAxis(area.Angle, Vector3.forward));
+            this.Apply(flash, area.Center, Quaternion.AngleAxis(area.Angle, Vector3.forward), color);
         }
 
         /// <param name="angle">direction 기준으로 벌어진 전체 각도(degree). 360이면 원.</param>
-        private void ShowFan(Vector2 center, Vector2 direction, float radius, float angle)
+        private void ShowFan(Vector2 center, Vector2 direction, float radius, float angle, Color color)
         {
             var flash = this.Take();
             int segments = Mathf.Max(3, Mathf.CeilToInt(FULL_CIRCLE_SEGMENTS * angle / 360f));
@@ -106,11 +113,12 @@ namespace SamMul.GameClients.Stages.AreaIndicators
             {
                 _triangles.Add(0); _triangles.Add(i); _triangles.Add(i + 1);
             }
-            this.Apply(flash, center, Quaternion.identity);
+            this.Apply(flash, center, Quaternion.identity, color);
         }
 
-        private void Apply(Flash flash, Vector2 center, Quaternion rotation)
+        private void Apply(Flash flash, Vector2 center, Quaternion rotation, Color color)
         {
+            flash.Color = color;
             flash.Mesh.Clear();
             flash.Mesh.SetVertices(_vertices);
             flash.Mesh.SetTriangles(_triangles, 0);
@@ -118,7 +126,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
 
             flash.Object.transform.SetPositionAndRotation(new Vector3(center.x, center.y, 0f), rotation);
             flash.ElapsedTime = 0f;
-            this.SetAlpha(flash, START_ALPHA);
+            this.SetAlpha(flash, START_ALPHA * color.a);
             flash.Object.SetActive(true);
             _aliveFlashes.Add(flash);
         }
@@ -136,7 +144,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
                     _freeFlashes.Push(flash);
                     continue;
                 }
-                this.SetAlpha(flash, START_ALPHA * (1f - flash.ElapsedTime / DURATION));
+                this.SetAlpha(flash, START_ALPHA * flash.Color.a * (1f - flash.ElapsedTime / DURATION));
             }
         }
 
@@ -163,7 +171,7 @@ namespace SamMul.GameClients.Stages.AreaIndicators
 
         private void SetAlpha(Flash flash, float alpha)
         {
-            var color = FLASH_COLOR;
+            var color = flash.Color;
             color.a = alpha;
             _propertyBlock.SetColor(ColorId, color);
             flash.Renderer.SetPropertyBlock(_propertyBlock);

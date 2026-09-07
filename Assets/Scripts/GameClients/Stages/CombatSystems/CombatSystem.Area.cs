@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using SamMul.GameClients.Stages.AreaEffectObjects;
+using SamMul.GameClients.Stages.AreaIndicators;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.ItemObjects;
 
@@ -84,11 +85,8 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters">공격처 하면 안되는 리스트</param>
         public static void HitOnTargetArea(Stage stage, CircularTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
-            if (attacker.Alliance == AllianceType.Players)
-            {
-                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
-                stage.AttackAreaFlashes.Show(targetArea);
-            }
+            // 전용 이펙트가 없는 데모용: 공격의 실제 판정 범위를 잠깐 표시한다. 플레이어는 파란색, 적은 빨간색.
+            stage.AttackAreaFlashes.Show(targetArea, attacker.Alliance == AllianceType.Players ? AttackAreaFlashManager.PLAYER_COLOR : AttackAreaFlashManager.ENEMY_COLOR);
 
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);
@@ -121,11 +119,8 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters"></param>
         public static void HitOnTargetArea(Stage stage, SquareTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
-            if (attacker.Alliance == AllianceType.Players)
-            {
-                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
-                stage.AttackAreaFlashes.Show(targetArea);
-            }
+            // 전용 이펙트가 없는 데모용: 공격의 실제 판정 범위를 잠깐 표시한다. 플레이어는 파란색, 적은 빨간색.
+            stage.AttackAreaFlashes.Show(targetArea, attacker.Alliance == AllianceType.Players ? AttackAreaFlashManager.PLAYER_COLOR : AttackAreaFlashManager.ENEMY_COLOR);
 
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);
@@ -158,11 +153,8 @@ namespace SamMul.GameClients.Stages.CombatSystems
         /// <param name="exceptedCharacters"></param>
         public static void HitOnTargetArea(Stage stage, CircularSectorTargetArea targetArea, Character attacker, float damage, KnockBackType knockBackType, Vector2 knockBackPivot, float knockBackPower, HashSet<Character> hittedCharacterCollector, HashSet<Character> exceptedCharacters, string hitSoundPrefabPath)
         {
-            if (attacker.Alliance == AllianceType.Players)
-            {
-                // 전용 이펙트가 없는 데모용: 플레이어 공격의 실제 판정 범위를 잠깐 표시한다.
-                stage.AttackAreaFlashes.Show(targetArea);
-            }
+            // 전용 이펙트가 없는 데모용: 공격의 실제 판정 범위를 잠깐 표시한다. 플레이어는 파란색, 적은 빨간색.
+            stage.AttackAreaFlashes.Show(targetArea, attacker.Alliance == AllianceType.Players ? AttackAreaFlashManager.PLAYER_COLOR : AttackAreaFlashManager.ENEMY_COLOR);
 
             List<Character> findedCharacters = new List<Character>();
             stage.FindAliveCharactersInArea(attacker.Alliance.ToEnemyAlliance(), targetArea, findedCharacters);

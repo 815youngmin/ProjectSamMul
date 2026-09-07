@@ -1,56 +1,44 @@
-using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using SamMul.GameClients.Stages.AreaIndicators;
 using SamMul.GameClients.Stages.Characters;
 using SamMul.GameClients.Stages.CombatSystems;
-using SamMul.ResourcePools;
-using SamMul.UnityHelpers;
 
 namespace SamMul.GameClients.Stages.AreaEffectObjects
 {
+    /// <summary>
+    /// 독장판. 전용 이펙트 리소스 없이 판정 범위를 AttackAreaFlashManager 로 붉게 계속 표시한다.
+    /// 등장 중에는 서서히 진해지고, 사라질 때는 서서히 연해진다.
+    /// </summary>
     public class PoisonousAreaEffectObject : AreaEffectObjectBase
     {
-        private const string APPEARING_RESOURCE_PATH = "Stages/AreaEffects/PoisonEffects/PoisonAreaEffectAppearing.prefab";
-        private const string REPEATING_RESOURCE_PATH = "Stages/AreaEffects/PoisonEffects/PoisonAreaEffectRepeating.prefab";
-
+        // 원본 등장 애니메이션 길이. 이 시간 동안은 타격하지 않고 표시만 진해진다.
+        private static readonly float APPEAR_DURATION = 0.5f;
         private static readonly float FADE_OUT_DURATION = 0.25f;
 
         public override bool IsAlive => _isAlive;
         public Vector2 Center => _attackArea.Center;
         public float Radius => _attackArea.Radius;
 
-        private SpriteAnimationHandler _appearingAnimation;
-        private SpriteAnimationHandler _repeatingAnimation;
         private HashSet<Character> _hittedCharacters;
 
         private Character _owner;
         private float _damage;
         private float _damagePeriod;
         private float _nextTickAt;
+        private float _appearedAt;
         private float _disappearsAt;
+        private float _disappearStartedAt;
 
         private bool _isAlive;
-        private bool _isApeearing;
         private bool _isDisappearing;
+        private bool IsAppearing => Time.time < _appearedAt;
 
         private CircularTargetArea _attackArea;
-        private Sequence _fadeOutSequence;
 
         public void AllocateSharedResources()
         {
             base.AllocateSharedResourcesForBase(AreaEffectType.PoisonousArea);
-
-            _appearingAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(APPEARING_RESOURCE_PATH);
-            _appearingAnimation.InitializeOnly();
-            _appearingAnimation.gameObject.SetActive(true);
-            _appearingAnimation.gameObject.transform.SetParent(this.transform);
-            _appearingAnimation.transform.localPosition = Vector3.zero;
-
-            _repeatingAnimation = ResourcePool.Instance.InstantiateFromResource<SpriteAnimationHandler>(REPEATING_RESOURCE_PATH);
-            _repeatingAnimation.InitializeOnly();
-            _repeatingAnimation.gameObject.SetActive(false);
-            _repeatingAnimation.gameObject.transform.SetParent(this.transform);
-            _repeatingAnimation.transform.localPosition = Vector3.zero;
 
             _hittedCharacters = new HashSet<Character>();
         }
@@ -63,32 +51,14 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             _damage = damage;
             _damagePeriod = period;
             _nextTickAt = 0.0f;
+            _appearedAt = Time.time + APPEAR_DURATION;
             _disappearsAt = Time.time + lifeTime - FADE_OUT_DURATION;
 
             _isAlive = true;
-            _isApeearing = true;
             _isDisappearing = false;
-
-            _appearingAnimation.gameObject.SetActive(true);
-            _appearingAnimation.InitializeAndPlay(hitEventHandler: null, endEventHandler: () =>
-            {
-                _isApeearing = false;
-                _appearingAnimation.gameObject.SetActive(false);
-                _repeatingAnimation.gameObject.SetActive(true);
-                _repeatingAnimation.Play();
-            });
-
-            _repeatingAnimation.SpriteRenderer.color = Color.white;
-
-            // 유닛 사이즈 기준으로, 스프라이트가 (radius * 2.0f)유닛 크기보다 살짝 크게(+0.3f) 그려지도록 맞춘다.
-            Vector2 bounds = _appearingAnimation.SpriteRenderer.sprite.bounds.size;
-            float resultScale = (radius * 2.0f + 0.3f) * (1.0f / bounds.x);
-            _repeatingAnimation.transform.localScale = _appearingAnimation.transform.localScale = Vector3.one * resultScale;
 
             this.transform.position = position;
             _attackArea = new CircularTargetArea(position, radius);
-
-            this.UpdateSortingOrder();
         }
 
         /// <summary>
@@ -106,37 +76,19 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
 
         private void Disappear()
         {
-            if (_isApeearing || !_isAlive || _isDisappearing)
+            if (IsAppearing || !_isAlive || _isDisappearing)
             {
                 return;
             }
 
-            _fadeOutSequence = DOTween.Sequence()
-                .Append(_repeatingAnimation.SpriteRenderer.DOFade(0f, FADE_OUT_DURATION).SetEase(Ease.InSine))
-                .OnComplete(() => _isAlive = false);
             _isDisappearing = true;
+            _disappearStartedAt = Time.time;
         }
 
         public override void PuttingBackToPool()
         {
-            _appearingAnimation.gameObject.SetActive(false);
-            _repeatingAnimation.gameObject.SetActive(false);
-
-            _appearingAnimation.transform.localPosition = _repeatingAnimation.transform.localPosition = Vector3.zero;
-            _appearingAnimation.transform.localScale = _repeatingAnimation.transform.localScale = Vector3.one;
-
-            _fadeOutSequence.Kill();
-            _fadeOutSequence = null;
-
+            _hittedCharacters.Clear();
             _owner = null;
-        }
-
-
-        private void UpdateSortingOrder()
-        {
-            _appearingAnimation.SpriteRenderer.sortingOrder
-                = _repeatingAnimation.SpriteRenderer.sortingOrder
-                = (int)(transform.position.y * -100.0f) - ((int)transform.position.x % 80);
         }
 
         public override void UpdateLogic(Stage stage, float deltaTime)
@@ -146,6 +98,30 @@ namespace SamMul.GameClients.Stages.AreaEffectObjects
             if (_disappearsAt < now)
             {
                 this.Disappear();
+            }
+
+            // 표시: 등장 중엔 진해지고, 사라질 땐 연해진다.
+            float alpha = 1f;
+            if (IsAppearing)
+            {
+                alpha = 1f - (_appearedAt - now) / APPEAR_DURATION;
+            }
+            else if (_isDisappearing)
+            {
+                alpha = 1f - (now - _disappearStartedAt) / FADE_OUT_DURATION;
+                if (alpha <= 0f)
+                {
+                    _isAlive = false;
+                    return;
+                }
+            }
+            var color = AttackAreaFlashManager.ENEMY_COLOR;
+            color.a = Mathf.Clamp01(alpha);
+            stage.AttackAreaFlashes.Show(_attackArea, color);
+
+            if (IsAppearing)
+            {
+                return;
             }
 
             if (_nextTickAt < now)
