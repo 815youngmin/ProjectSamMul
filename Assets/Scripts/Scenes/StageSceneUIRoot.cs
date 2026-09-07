@@ -284,6 +284,13 @@ namespace SamMul.Scenes
 
             var learnedSkills = owner.SelectSkillsToLearnBySkillBox(learnSkillCount);
 
+            // 팝업은 보여 주기만 하므로 여기서 바로 습득시킨다. (원본은 팝업의 계속 버튼에서 처리했다)
+            var stage = GameClient.Stage!;
+            foreach (var learnedSkill in learnedSkills)
+            {
+                owner.AcquireOrUpgradeSkill(learnedSkill.Id, owner, stage);
+            }
+
             _skillBoxPopup = this.CreateAndAddPopup<SkillBoxPopup>(SkillBoxPopup.PREFAB_PATH, playSound: true);
             _skillBoxPopup.Initialize(learnedSkills, closeRequester: CloseSkillBoxPopup);
             this.PauseResumeOnPopup();
