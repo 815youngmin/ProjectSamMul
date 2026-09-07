@@ -529,6 +529,29 @@ namespace SamMul.GameClients.Stages
 
         public int GetTotalBossAmount() => _stageEventController.GetTotalBossAmount();
 
+        /// <summary>테스트용. bossIndex(0부터) 번째 보스의 경고 직전으로 스테이지 시각을 옮긴다.</summary>
+        public void TEST_JumpToBossBattle(int bossIndex)
+        {
+            const float WARNING_LEAD_TIME = 5f;
+
+            var bossSpawnTimes = new List<float>();
+            this.GetBossSpawnTimes(in bossSpawnTimes);
+            if (bossIndex < 0 || bossIndex >= bossSpawnTimes.Count)
+            {
+                Debug.LogWarning($"[TEST] 이 스테이지의 보스는 {bossSpawnTimes.Count}명입니다. {bossIndex + 1}번째 보스전은 없습니다.");
+                return;
+            }
+
+            float targetRunningTime = Mathf.Max(0f, bossSpawnTimes[bossIndex] - WARNING_LEAD_TIME);
+            if (!_stageEventController.TryJumpToRunningTime(targetRunningTime))
+            {
+                Debug.LogWarning("[TEST] 보스전이 진행 중이라 다른 보스전으로 이동할 수 없습니다.");
+                return;
+            }
+
+            Debug.Log($"[TEST] {bossIndex + 1}번째 보스전으로 이동합니다. 스테이지 시각 {targetRunningTime:F1}초");
+        }
+
         public bool IsAbleToGiveLevelUpBonusGold()
         {
             if (StageType != StageType.Chapter)

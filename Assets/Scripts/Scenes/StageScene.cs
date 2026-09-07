@@ -594,6 +594,17 @@ namespace SamMul.Scenes
                 return;
             }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            // 테스트 키: 숫자 1~4 를 누르면 n번째 보스전 직전으로 이동한다.
+            for (int i = 0; i < 4; ++i)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+                {
+                    GameClient.Stage.TEST_JumpToBossBattle(i);
+                }
+            }
+#endif
+
             float stageRunningTime = GameClient.Stage.StageRunningTime;
             float maxStageTime = GameClient.Stage.MaxStageTime;
             UI.StageTimer.UpdateTimer(stageRunningTime, maxStageTime);

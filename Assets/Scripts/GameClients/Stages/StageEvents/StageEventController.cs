@@ -270,6 +270,22 @@ namespace SamMul.GameClients.Stages.StageEvents
             return isStageEnterInitEventSkipped;
         }
 
+        /// <summary>
+        /// 테스트용. 스테이지 시각을 <paramref name="runningTime"/> 으로 옮기고 그 시점부터 이벤트를 다시 실행한다.
+        /// 타이머가 멈춰 있으면(보스전 진행 중 등) 이동하지 않고 false 를 돌려준다.
+        /// </summary>
+        public bool TryJumpToRunningTime(float runningTime)
+        {
+            if (!_isStageTimerEnabled)
+            {
+                return false;
+            }
+
+            _stageRunningTime = runningTime;
+            this.ForceMoveExecutionIndex(runningTime);
+            return true;
+        }
+
         public void GetBossSpawnTimes(in List<float> bossSpawnStartTimes)
         {
             foreach (var bossSpawnEventExecution in _bossSpawnEventReferencesForGameLogic)
