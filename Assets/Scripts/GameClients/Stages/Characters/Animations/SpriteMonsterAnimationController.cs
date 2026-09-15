@@ -16,8 +16,12 @@ namespace SamMul.GameClients.Stages.Characters.Animations
         private readonly AnimationClip _appear;
         private readonly AnimationClip _disappear;
         private readonly AnimationClip _heal;
+        // 보스가 제자리에서 패턴 공격을 할 때 쓰는 클립. 컨트롤러에 special_attack 상태가 있을 때만 유효하다.
+        private readonly AnimationClip _specialAttack;
+        private const string SPECIAL_ATTACK_ANIMATION_NAME = "special_attack";
 
         public override float AttackAnimationDuration => _attack?.length ?? 0.0f;
+        public float SpecialAttackAnimationDuration => _specialAttack?.length ?? 0.0f;
         public override float AppearAnimationDuration => _appear?.length ?? 0.0f;
         public override float DeadAnimationDuration => _dead?.length ?? 0.0f;
         public override float DisappearAnimationDuration => _disappear?.length ?? 0.0f;
@@ -66,6 +70,7 @@ namespace SamMul.GameClients.Stages.Characters.Animations
             _appear = this.FindAnimation(appearAnimationName);
             _disappear = this.FindAnimation(disappearAnimationName) ?? _dead;
             _heal = this.FindAnimation(healAnimationName);
+            _specialAttack = this.FindAnimation(SPECIAL_ATTACK_ANIMATION_NAME);
 
             _idle = this.FindAnimation(idleAnimationName);
             Debug.Assert(_idle != null, $"[{_animator.transform.parent.name}] idle 애니메이션이 존재하지 않습니다.");
@@ -239,6 +244,37 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
             float timeScale = _attack.length / attackDuration;
             this.SetAnimation(_attack, timeScale);
+        }
+
+        /// <summary>제자리 패턴 공격 클립을 attackDuration 에 맞춰 한 번 재생한다. 클립이 없으면 일반 공격 클립으로 대신한다.</summary>
+        public void PlaySpecialAttack(float attackDuration)
+        {
+            var clip = _specialAttack ?? _attack;
+            if (clip == null)
+            {
+                this.SetAnimation(null, 1f);
+                return;
+            }
+
+            float timeScale = clip.length / attackDuration;
+            this.SetAnimation(clip, timeScale);
+        }
+
+        /// <summary>패턴 공격 클립의 HitFrame 시각(초). 클립이나 이벤트가 없으면 0.</summary>
+        public float FindHitTimeOnSpecialAttackAnimation()
+        {
+            if (_specialAttack == null)
+            {
+                return 0.0f;
+            }
+
+            AnimationEvent[] events = _specialAttack.events;
+            if (events.Length > 0 && events[0].functionName == "HitFrame")
+            {
+                return events[0].time;
+            }
+
+            return 0;
         }
 
         public override void StopAttack()
