@@ -7,7 +7,7 @@ namespace SamMul.GameClients.Stages.Characters.StatusEffects
 {
     public class SlowMove : StatusEffect
     {
-        private const string SLOW_EFFECT_PATH = "Stages/StatusEffects/StatusEffect_Slow.prefab";
+        private const string SLOW_EFFECT_PATH = "Stage/Common/StatusEffect_Slow.prefab";
         private readonly StatModifier _moveSpeedMultiplyDecreaser;
         private readonly SpriteAnimationHandler _slowEffect;
 

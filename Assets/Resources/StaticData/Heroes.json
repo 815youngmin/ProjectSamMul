@@ -8,12 +8,12 @@
     "SkeletonDataPath": "PlaerCharacter/Tenti/Tenti.controller",
     "ColliderRadius": 0.5,
     "HitBoxSize": [
-      1.0,
-      1.4
+      0.6,
+      1
     ],
     "HitBoxOffset": [
       0.0,
-      0.7
+      0.5
     ],
     "MaxHP": 80,
     "AttackPower": 15,
@@ -28,12 +28,12 @@
     "SkeletonDataPath": "PlaerCharacter/Ignatia/Ignatia.controller",
     "ColliderRadius": 0.5,
     "HitBoxSize": [
-      1.0,
-      1.4
+      0.6,
+      1
     ],
     "HitBoxOffset": [
       0.0,
-      0.7
+      0.5
     ],
     "MaxHP": 80,
     "AttackPower": 15,
@@ -48,12 +48,12 @@
     "SkeletonDataPath": "PlaerCharacter/Dice/Dice.controller",
     "ColliderRadius": 0.5,
     "HitBoxSize": [
-      1.0,
-      1.4
+      0.6,
+      1
     ],
     "HitBoxOffset": [
       0.0,
-      0.7
+      0.5
     ],
     "MaxHP": 80,
     "AttackPower": 15,
