@@ -8,7 +8,7 @@ namespace SamMul.GameClients.Stages.IndicatorObjects
     {
         public override bool IsAlive => Time.time <= _createdAt + _duration;
 
-        private static string CircularAttackRangeInidicatorPath = "Stages/ETCEffects/Indicator/CircularAttackRangeIndicator.prefab";
+        private static string CircularAttackRangeInidicatorPath = "Stage/Indicator/CircularAttackRangeIndicator.prefab";
 
         private float _createdAt;
         private float _duration;

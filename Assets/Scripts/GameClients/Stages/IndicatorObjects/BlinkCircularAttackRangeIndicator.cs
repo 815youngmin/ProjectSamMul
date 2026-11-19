@@ -9,7 +9,7 @@ namespace SamMul.GameClients.Stages.IndicatorObjects
     {
         public override bool IsAlive => Time.time <= _createdAt + _duration;
 
-        private static string BlinkCircularAttackRangeInidicatorPath = "Stages/ETCEffects/Indicator/BlinkCircleIndicator.prefab";
+        private static string BlinkCircularAttackRangeInidicatorPath = "Stage/Indicator/BlinkCircleIndicator.prefab";
 
         private float _createdAt;
         private float _duration;
