@@ -18,7 +18,7 @@
     "SpawnLogicType": "FromEveryBoundary",
     "Width": 1000.0,
     "Height": 1000.0,
-    "TotalStageTimeSec": 480.0,
+    "TotalStageTimeSec": 300.0,
     "ItemBoxSpawnPeriodSec": 15.5,
     "IsResurrectable": true,
     "FloorTileResourcePath": "Stage/Floor/Floor_02.png",

@@ -8,11 +8,11 @@
     "IllustImagePath": "Stage/Chapter03/Boss_05.png"
   },
   {
-    "CharacterType": "Egypt_BossRa",
+    "CharacterType": "DemoSixthBoss",
     "IllustImagePath": "Stage/Chapter03/Boss_06.png"
   },
   {
-    "CharacterType": "Egypt_BossSnakeDruidProjectileType",
+    "CharacterType": "DemoFifthBoss",
     "IllustImagePath": "Stage/Chapter03/Boss_05.png"
   },
   {
@@ -20,11 +20,11 @@
     "IllustImagePath": "Stage/Chapter02/Boss_04.png"
   },
   {
-    "CharacterType": "IceAge_BossIceGolem",
+    "CharacterType": "DemoFourthBoss",
     "IllustImagePath": "Stage/Chapter02/Boss_03.png"
   },
   {
-    "CharacterType": "IceAge_BossThreeLeapsBug",
+    "CharacterType": "DemoThirdBoss",
     "IllustImagePath": "Stage/Chapter02/Boss_04.png"
   },
   {
@@ -32,7 +32,7 @@
     "IllustImagePath": "Stage/Chapter01/Boss_02.png"
   },
   {
-    "CharacterType": "Primitive_BossMammothChief",
+    "CharacterType": "DemoSecondBoss",
     "IllustImagePath": "Stage/Chapter01/Boss_01.png"
   },
   {

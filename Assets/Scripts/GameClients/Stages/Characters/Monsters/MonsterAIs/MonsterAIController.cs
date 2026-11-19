@@ -544,6 +544,31 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
                         this.aiStrategy = new DemoFirstBossIdleAIStrategy();
                         break;
                     }
+                case MonsterAIType.DemoSecondBossAI:
+                    {
+                        this.aiStrategy = new DemoSecondBossIdleAIStrategy();
+                        break;
+                    }
+                case MonsterAIType.DemoThirdBossAI:
+                    {
+                        this.aiStrategy = new DemoThirdBossIdleAIStrategy();
+                        break;
+                    }
+                case MonsterAIType.DemoFourthBossAI:
+                    {
+                        this.aiStrategy = new DemoFourthBossIdleAIStrategy();
+                        break;
+                    }
+                case MonsterAIType.DemoFifthBossAI:
+                    {
+                        this.aiStrategy = new DemoFifthBossIdleAIStrategy();
+                        break;
+                    }
+                case MonsterAIType.DemoSixthBossAI:
+                    {
+                        this.aiStrategy = new DemoSixthBossIdleAIStrategy();
+                        break;
+                    }
                 default:
                     {
                         Debug.LogError($"{aiType} 작업 안 됨. 구현해주세요.");

@@ -66,7 +66,7 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrateg
                 return IdleAIStategy;
             }
 
-            if (now < _actionCoolTimeEndsAt)
+            if (now < _actionCoolTimeEndsAt || Actions.Count == 0)
             {
                 this.Move(owner, target, now);
                 return null;

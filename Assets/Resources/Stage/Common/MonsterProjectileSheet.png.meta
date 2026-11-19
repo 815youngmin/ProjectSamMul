@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -129,10 +141,10 @@ TextureImporter:
       name: MonsterProjectileSheet_1
       rect:
         serializedVersion: 2
-        x: 559
-        y: 548
-        width: 343
-        height: 374
+        x: 527
+        y: 545
+        width: 426
+        height: 348
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +162,10 @@ TextureImporter:
       name: MonsterProjectileSheet_2
       rect:
         serializedVersion: 2
-        x: 109
-        y: 104
-        width: 383
-        height: 373
+        x: 56
+        y: 106
+        width: 478
+        height: 343
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +183,10 @@ TextureImporter:
       name: MonsterProjectileSheet_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 148
-        width: 330
-        height: 290
+        x: 575
+        y: 143
+        width: 372
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

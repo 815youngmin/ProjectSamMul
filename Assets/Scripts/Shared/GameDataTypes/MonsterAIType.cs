@@ -86,5 +86,10 @@ namespace Shared.GameDataTypes
         DashAttackAndSummonerAI = 293,
 
         DemoFirstBossAI = 294,
+        DemoSecondBossAI = 295,
+        DemoThirdBossAI = 296,
+        DemoFourthBossAI = 297,
+        DemoFifthBossAI = 298,
+        DemoSixthBossAI = 299,
     }
 }
