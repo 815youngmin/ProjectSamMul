@@ -928,8 +928,8 @@
     "Param3": 0.0
   },
   {
-    "MonsterType": "Primitive_BossLava",
-    "AIType": "MoveAndStopAI",
+    "MonsterType": "DemoFirstBoss",
+    "AIType": "DemoFirstBossAI",
     "MonsterNameKey": "MONSTER_PRIMITIVE_BOSSLAVA_NAME",
     "SkeletonDataPath": "Stage/Chapter01/BossAnimation/Boss_02/Boss_02.controller",
     "ColliderRadius": 1.1,

@@ -425,11 +425,19 @@ namespace SamMul.GameClients.Stages.Characters.Monsters
             owner._action.ChangeTo(stage, action);
         }
 
+        public static void DoSpriteMonster<T>(Stage stage, Monster owner, Character target) where T : SmartAction<SpriteMonsterAnimationController>, new()
+        {
+            var action = new T();
+            action.Initialize(owner, target, (SpriteMonsterAnimationController)owner._animationController);
+            owner._action.ChangeTo(stage, action);
+        }
+
         public void Do<T>(Stage stage, Character target) where T : SmartAction<SpriteMonsterAnimationController>, new()
         {
             var action = new T();
             action.Initialize(this, target, (SpriteMonsterAnimationController)_animationController);
             _action.ChangeTo(stage, action);
         }
+        
     }
 }

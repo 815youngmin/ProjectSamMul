@@ -258,6 +258,8 @@ namespace SamMul.GameClients.Stages.Characters.Animations
 
             float timeScale = clip.length / attackDuration;
             this.SetAnimation(clip, timeScale);
+            // 같은 클립을 연속으로 재생해도 처음부터 다시 시작하도록 한다.
+            _animator.Play(clip.name, 0, 0f);
         }
 
         /// <summary>패턴 공격 클립의 HitFrame 시각(초). 클립이나 이벤트가 없으면 0.</summary>

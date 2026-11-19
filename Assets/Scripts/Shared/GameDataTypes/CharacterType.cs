@@ -101,5 +101,11 @@ namespace Shared.GameDataTypes
         Primitive_Raptor = 2038,
         Threekingdoms_Boar = 2039,
         Viking_Cow = 2040,
+        DemoFirstBoss = 2041,
+        DemoSecondBoss = 2042,
+        DemoThirdBoss = 2043,
+        DemoFourthBoss = 2044,
+        DemoFifthBoss = 2045,
+        DemoSixthBoss = 2046,
     }
 }

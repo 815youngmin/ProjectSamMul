@@ -28,7 +28,7 @@
     "IllustImagePath": "Stage/Chapter02/Boss_04.png"
   },
   {
-    "CharacterType": "Primitive_BossLava",
+    "CharacterType": "DemoFirstBoss",
     "IllustImagePath": "Stage/Chapter01/Boss_02.png"
   },
   {

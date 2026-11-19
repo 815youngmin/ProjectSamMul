@@ -84,5 +84,7 @@ namespace Shared.GameDataTypes
         MultipleHorizontalEliteRangeAttackAndSummonerAI = 291,
         MultipleVerticalEliteRangeAttackAndSummonerAI = 292,
         DashAttackAndSummonerAI = 293,
+
+        DemoFirstBossAI = 294,
     }
 }

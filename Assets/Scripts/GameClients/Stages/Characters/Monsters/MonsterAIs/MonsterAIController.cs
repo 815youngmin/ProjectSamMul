@@ -20,6 +20,7 @@ using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Steampunk;
 using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Western;
 using SamMul.Loggers;
+using SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs.BossAIStrategies.Demo;
 
 namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
 {
@@ -536,6 +537,11 @@ namespace SamMul.GameClients.Stages.Characters.Monsters.MonsterAIs
                 case MonsterAIType.DashAttackAndSummonerAI:
                     {
                         this.aiStrategy = new DashAndSummonerIdleAIStrategy();
+                        break;
+                    }
+                case MonsterAIType.DemoFirstBossAI:
+                    {
+                        this.aiStrategy = new DemoFirstBossIdleAIStrategy();
                         break;
                     }
                 default:

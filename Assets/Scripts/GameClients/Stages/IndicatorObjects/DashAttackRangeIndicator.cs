@@ -9,8 +9,8 @@ namespace SamMul.GameClients.Stages.IndicatorObjects
     {
         public override bool IsAlive => Time.time <= _createdAt + _duration;
 
-        private static string SquareAttackRangeInidicatorPath = "Stages/ETCEffects/Indicator/SquareAttackRangeIndicator.prefab";
-        private static string DirectionalIndicatorPath = "Stages/ETCEffects/Indicator/DirectionalIndicator.prefab";
+        private static string SquareAttackRangeInidicatorPath = "Stage/Indicator/SquareAttackRangeIndicator.prefab";
+        private static string DirectionalIndicatorPath = "Stage/Indicator/DirectionalIndicator.prefab";
 
         private float _thickness;
         private float _createdAt;
@@ -42,7 +42,7 @@ namespace SamMul.GameClients.Stages.IndicatorObjects
             GameObject square = ResourcePool.Instance.InstantiateFromResource(SquareAttackRangeInidicatorPath);
             square.transform.SetParent(_squareObject.transform);
             square.transform.localPosition = Vector2.zero;
-            square.transform.localScale = Vector2.one * 0.1f;
+            square.transform.localScale = Vector2.one;
 
             _squareRenderers = square.GetComponentsInChildren<SpriteRenderer>();
             _squareOriginColors = new Color[_squareRenderers.Length];
