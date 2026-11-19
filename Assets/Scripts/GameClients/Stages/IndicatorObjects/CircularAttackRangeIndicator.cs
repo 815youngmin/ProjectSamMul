@@ -34,7 +34,7 @@ namespace SamMul.GameClients.Stages.IndicatorObjects
             _body = ResourcePool.Instance.InstantiateFromResource(CircularAttackRangeInidicatorPath);
             _body.transform.SetParent(this.transform);
             _body.transform.localPosition = Vector2.zero;
-            _body.transform.localScale = Vector2.one * 0.2f;
+            _body.transform.localScale = Vector2.one;
 
             _renderers = _body.GetComponentsInChildren<SpriteRenderer>();
             _originColors = new Color[_renderers.Length];
