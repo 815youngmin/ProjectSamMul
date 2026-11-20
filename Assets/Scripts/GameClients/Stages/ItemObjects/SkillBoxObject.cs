@@ -12,7 +12,7 @@ namespace SamMul.GameClients.Stages.ItemObjects
 {
     public class SkillBoxObject : AcquirableItemObject
     {
-        private const string effectPath = "Stages/ETCEffects/fx_skillrouletteBox.prefab";
+        private const string effectPath = "Stage/Item/Skill_Box.prefab";
         protected GameObject _effect;
 
         private const string NAVIGATION_ARROW_PREFAB_PATH = "Stage/UIs/SkillBoxPopup/SkillBoxNavigationArrow.prefab";

@@ -92,7 +92,7 @@
     "Rarity": "Common",
     "Grade": "D",
     "StatType": "AttackPower",
-    "DefaultValue": 9,
+    "DefaultValue": 10,
     "IncrementalValue": 3
   },
   {
@@ -108,7 +108,7 @@
     "Rarity": "Common",
     "Grade": "B",
     "StatType": "AttackPower",
-    "DefaultValue": 35,
+    "DefaultValue": 15,
     "IncrementalValue": 5
   },
   {
@@ -580,7 +580,7 @@
     "Rarity": "Special",
     "Grade": "S",
     "StatType": "AttackPower",
-    "DefaultValue": 249,
+    "DefaultValue": 20,
     "IncrementalValue": 15
   },
   {

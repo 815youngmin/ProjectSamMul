@@ -11,7 +11,7 @@ namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Demo
         private static readonly float DAMAGE_COEFFICIENT = 1.0f;
 
         private static readonly float DashReadyDuration = 1f;
-        private static readonly float DashSpeed = 20.0f;
+        private static readonly float DashSpeed = 18.0f;
         private static readonly float DashDuration = 1.5f;
         private static readonly float DashEnd = 0.2f;
 

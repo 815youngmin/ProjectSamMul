@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_text: "\uC5EC\uAE30\uD14D\uC2A4\uD2B8\uB294 \uC624\uBC84\uD50C\uB85C \uC77C\uC5B4\uB0A0\n\uC218
     \uC788\uAE30  \uB54C\uBB38\uC5D0 \n\uB85C\uCEEC\uB77C\uC774\uC81C\uC774\uC158
     \uD14C\uC774\uBE14\uC5D0\uC11C \n\uAC00\uB3C5\uC131 \uB9DE\uCDB0\uC11C \n\uC904\uBC14\uAFC8
-    \uCC98\uB9AC  \uC798 \uD574\uC918\uC57C \uD569\uB2C8\uB2E4."
+    \uCC98\uB9AC  \uC798 \uD574\uC918\uC57C \uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
   m_sharedMaterial: {fileID: -5123839652636971319, guid: 99e5210bb74ee8d43a9ebee23d40721a, type: 2}
@@ -1603,8 +1603,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284240194
-  m_fontColor: {r: 0.25882354, g: 0.31764707, b: 0.36078432, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1621,12 +1621,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.15
+  m_fontSize: 28.2
   m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 12
-  m_fontSizeMax: 34
+  m_fontSizeMin: 25
+  m_fontSizeMax: 35
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -1637,7 +1637,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

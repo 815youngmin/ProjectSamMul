@@ -10,10 +10,10 @@ namespace SamMul.GameClients.Stages.Characters.Actions.Boss.Demo
         private static readonly float DAMAGE_COEFFICIENT = 1.0f;
 
         private static readonly int FireCount = 3;
-        private static readonly float SectorAngle = 60f;
+        private static readonly float SectorAngle = 90f;
         private static readonly int ProjectileAmount = 3;
         private static readonly string ProjectileBodyPath = "Stage/Common/Projectiles/MonsterProjectile_Fireball.prefab";
-        private static readonly float ProjectileSpeed = 16f;
+        private static readonly float ProjectileSpeed = 12f;
         private static readonly float ProjectileAcceleration = 1f;
         private static readonly float ProjectileRadius = 0.4f;
         private static readonly float ProjectileAliveDistance = 50;

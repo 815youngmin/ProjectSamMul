@@ -28,5 +28,35 @@
     "NameKey": "EQUIP_GUARDIAN_ARMOR_NAME",
     "DescriptionKey": "EQUIP_GUARDIAN_ARMOR_DESC",
     "IconPath": "Lobbys/UIs/Item/Item03.png"
+  },
+  {
+    "Id": "PredatorGloves",
+    "SetType": "Predator",
+    "Slot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "D",
+    "NameKey": "EQUIP_PREDATOR_GLOVES_NAME",
+    "DescriptionKey": "EQUIP_PREDATOR_GLOVES_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item01.png"
+  },
+  {
+    "Id": "InvaderGloves",
+    "SetType": "Invader",
+    "Slot": "Gloves",
+    "Rarity": "Common",
+    "Grade": "B",
+    "NameKey": "EQUIP_INVADER_GLOVES_NAME",
+    "DescriptionKey": "EQUIP_INVADER_GLOVES_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item02.png"
+  },
+  {
+    "Id": "GuardianGloves",
+    "SetType": "Guardian",
+    "Slot": "Gloves",
+    "Rarity": "Special",
+    "Grade": "S",
+    "NameKey": "EQUIP_GUARDIAN_GLOVES_NAME",
+    "DescriptionKey": "EQUIP_GUARDIAN_GLOVES_DESC",
+    "IconPath": "Lobbys/UIs/Item/Item03.png"
   }
 ]

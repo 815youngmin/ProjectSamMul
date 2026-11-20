@@ -58,17 +58,17 @@ namespace SamMul.UIs.Stages.Popups
         private static readonly string _passiveSymbolPath = "Stages/UIs/Popups/SkillSelectorPopup/PassiveSymbol.png";
         private static readonly string _transcendSymbolPath = "Stages/UIs/Popups/SkillSelectorPopup/TranscendSymbol.png";
 
-        private static readonly string _activeTranscendConditionGroupBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/ActiveTranscendList.png";
-        private static readonly string _passiveTranscendConditionGroupBackgroundPath = "Stages/UIs/Popups/SkillSelectorPopup/PassiveTranscendList.png";
+        private static readonly string _activeTranscendConditionGroupBackgroundPath = "Stage/UIs/SkillSelectorPopup/ActiveTranscendList.png";
+        private static readonly string _passiveTranscendConditionGroupBackgroundPath = "Stage/UIs/SkillSelectorPopup/PassiveTranscendList.png";
 
         private static readonly Color32 _transcendSkillNameColor = new Color32(255, 220, 243, 255);
         private static readonly Color32 _passiveSkillNameColor = new Color32(255, 201, 153, 255);
         private static readonly Color32 _activeSkillNameColor = new Color32(143, 221, 253, 255);
-        private static readonly Color32 _rewardNameColor = new Color32(238, 237, 226, 255);
+        private static readonly Color32 _rewardNameColor = new Color32(66, 81, 92, 255);
 
         private static readonly Color32 _basicDescriptionTextColor = new Color32(66, 81, 92, 255);
-        private static readonly Color32 _transcendDescriptionTextColor = new Color32(238, 237, 226, 255);
-        private static readonly Color32 _rewardDescriptionTextColor = new Color32(238, 237, 226, 255);
+        private static readonly Color32 _transcendDescriptionTextColor = new Color32(66, 81, 92, 255);
+        private static readonly Color32 _rewardDescriptionTextColor = new Color32(66, 81, 92, 255);
 
         private static readonly string _goldIconPath = "Commons/SkillIcon/MaxLevel_Gold.png";
         private static readonly string _recoveryIconPath = "Commons/SkillIcon/MaxLevel_Heart.png";

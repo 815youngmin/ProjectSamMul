@@ -22,7 +22,7 @@ namespace SamMul.UIs.Stages.Popups
         public static readonly string PREFAB_PATH = "Stage/UIs/SkillBoxPopup/SkillBoxPopup.prefab";
         private static readonly string SLOT_PREFAB_PATH = "Stage/UIs/AcquiredSkillSlot.prefab";
 
-        private const float SLOT_SPACING = 190f;
+        private const float SLOT_SPACING = 200f;
         private const float REVEAL_INTERVAL = 0.12f;
         private const float HOLD_DURATION = 1.5f;
 
@@ -53,8 +53,8 @@ namespace SamMul.UIs.Stages.Popups
             {
                 var slot = this.CreateSlot(acquiredSkills[i], x: (i - (acquiredSkills.Length - 1) * 0.5f) * SLOT_SPACING);
                 float at = 0.25f + i * REVEAL_INTERVAL;
-                _sequence.Insert(at, slot.transform.DOScale(1.15f, 0.18f).From(0f).SetEase(Ease.OutBack));
-                _sequence.Insert(at + 0.18f, slot.transform.DOScale(1f, 0.08f));
+                _sequence.Insert(at, slot.transform.DOScale(1.8f, 0.25f).From(0f).SetEase(Ease.OutBack));
+                _sequence.Insert(at + 0.18f, slot.transform.DOScale(1.5f, 0.1f));
             }
 
             _sequence.AppendCallback(() => _isRevealed = true)

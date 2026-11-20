@@ -956,7 +956,6 @@ MonoBehaviour:
   - {fileID: 8009770316870189690}
   _acquiredSkillGroup: {fileID: 4871823260163138865}
   _skillRefreshButton: {fileID: 6361360293737062156}
-  _backgroundStickerTransform: {fileID: 0}
   _levelText: {fileID: 4252123321101203885}
   _levelShadowText: {fileID: 7638970478637595599}
   _levelupText: {fileID: 7204772877802279817}

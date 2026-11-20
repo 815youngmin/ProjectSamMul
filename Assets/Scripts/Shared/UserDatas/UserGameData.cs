@@ -35,13 +35,19 @@ namespace Shared.UserDatas
         public HeroData CreateSelectedHeroData()
             => new HeroData(HeroInstanceId.CreateNew(), SelectedHeroType, Grade.D, promotionPoint: 0, level: 1, DateTime.UtcNow);
 
-        /// <summary>스테이지에 들고 갈 장비. 고른 장비 하나를 장비 테이블에 정의된 등급, 1레벨로 만든다.</summary>
+        /// <summary>스테이지에 들고 갈 장비. 고른 장비와 같은 세트의 장비(갑옷 + 장갑)를 장비 테이블에 정의된 등급, 1레벨로 만든다.</summary>
         public IEnumerable<EquipmentData> CreateSelectedEquipments()
         {
             if (SelectedEquipmentId != EquipmentId.Invalid)
             {
-                var grade = StaticDataRepository.Instance.Equipments.Get(SelectedEquipmentId).Grade;
-                yield return new EquipmentData(EquipmentInstanceId.CreateNew(), SelectedEquipmentId, grade, level: 1, DateTime.UtcNow);
+                var setType = StaticDataRepository.Instance.Equipments.Get(SelectedEquipmentId).SetType;
+                foreach (var equipment in StaticDataRepository.Instance.Equipments.All)
+                {
+                    if (equipment.SetType == setType)
+                    {
+                        yield return new EquipmentData(EquipmentInstanceId.CreateNew(), equipment.Id, equipment.Grade, level: 1, DateTime.UtcNow);
+                    }
+                }
             }
         }
     }

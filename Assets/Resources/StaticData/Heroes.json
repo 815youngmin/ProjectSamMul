@@ -17,7 +17,7 @@
     ],
     "MaxHP": 80,
     "AttackPower": 15,
-    "MoveSpeed": 6.5
+    "MoveSpeed": 7.0
   },
   {
     "HeroType": "Ignatia",
@@ -37,7 +37,7 @@
     ],
     "MaxHP": 80,
     "AttackPower": 15,
-    "MoveSpeed": 6.5
+    "MoveSpeed": 7.0
   },
   {
     "HeroType": "Dice",
@@ -57,6 +57,6 @@
     ],
     "MaxHP": 80,
     "AttackPower": 15,
-    "MoveSpeed": 5.75
+    "MoveSpeed": 6.25
   }
 ]

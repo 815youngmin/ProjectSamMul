@@ -1,4 +1,6 @@
 #nullable enable
+using System.Linq;
+using Shared.GameDataTypes;
 using Shared.DataTables;
 using Shared.StaticDatas;
 using UnityEngine;
@@ -28,7 +30,8 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
 
             var chapters = StaticDataRepository.Instance.Chapters.All;
             var heroes = StaticDataRepository.Instance.Heroes.All;
-            var equipments = StaticDataRepository.Instance.Equipments.All;
+            // 세트의 대표인 갑옷만 버튼으로 보여 준다. 같은 세트의 장갑은 스테이지 입장 때 함께 착용된다.
+            var equipments = StaticDataRepository.Instance.Equipments.All.Where(equipment => equipment.Slot == EquipmentSlot.Armor).ToList();
             var userGameData = GameClient.CS.UserGameData;
 
             _chapterGroup.Initialize(chapters.Count, index => _selectedChapter = chapters[index]);

@@ -69,7 +69,7 @@ namespace SamMul.GameClients.Stages.ItemObjects
                 case DropItemType.ExpMagnet: return "Stage/Item/Item_Magnet.prefab";
                 case DropItemType.Tutorial3SkillBox:
                 case DropItemType.Tutorial5SkillBox:
-                case DropItemType.SkillBox: return "Stage/Item/Item_Potion.prefab";
+                case DropItemType.SkillBox: return "Stage/Item/Skill_Box.prefab";
                 case DropItemType.ItemBox: return "Stage/Item/Item_Box.prefab";
                 case DropItemType.HpResorative: return "Stage/Item/Item_HP.prefab"; // HP회복제 (고기)
                 case DropItemType.Bomb: return "Stage/Item/Item_Bomb.prefab";

@@ -25,9 +25,6 @@ namespace SamMul.UIs.Stages.HUDs
         [SerializeField] private Image _stageNameBackground;
         [SerializeField] private TextMeshProUGUI _stageNumberAndNameText;
 
-        [Header("PlayerStat Description")]
-        [SerializeField] private Image _playerStatDescriptionLabel;
-        [SerializeField] private TextMeshProUGUI _playerStatDescriptionText;
 
         [Header("Boss Name Group")]
         [SerializeField] private TMP_Text _bossNameText;
@@ -56,9 +53,6 @@ namespace SamMul.UIs.Stages.HUDs
             _stageNumberAndNameText.color = _transparentWhiteColor;
             _stageNameBackground.color = _transparentHalfAlphaBlackColor;
 
-
-            _playerStatDescriptionLabel.color = _transparentHalfAlphaBlackColor;
-            _playerStatDescriptionText.color = _transparentWhiteColor;
 
             _bossNameText.gameObject.SetActive(false);
         }
@@ -98,16 +92,9 @@ namespace SamMul.UIs.Stages.HUDs
 
             if (!hideElementBonus)
             {
-                _playerStatDescriptionText.text = string.Format(
-                    Localizer.Instance.GetText("UI_CHAPTER_CHALLENGE_RECOMMENDED_ELEMENT_DESCRIPTION"),
-                    GetDisplayText(GameClient.Stage.PC.StaticData.ElementType),
-                    bonusStatText);
-
                 disappearingAnimation
                     .Join(_elementBackground.DOFade(0f, 0.5f))
-                    .Join(_elementIcon.DOFade(0f, 0.5f))
-                    .Join(_playerStatDescriptionLabel.DOFade(0.0f, 0.5f))
-                    .Join(_playerStatDescriptionText.DOFade(0f, 0.5f));
+                    .Join(_elementIcon.DOFade(0f, 0.5f));
             }
 
             disappearingAnimation.OnComplete(() => { this.gameObject.SetActive(false); });
@@ -123,10 +110,6 @@ namespace SamMul.UIs.Stages.HUDs
                 appearingAnimation.AppendInterval(0.2f);
                 appearingAnimation.Append(_elementBackground.DOFade(1f, 0.3f));
                 appearingAnimation.Join(_elementIcon.DOFade(1f, 0.3f));
-
-                appearingAnimation.AppendInterval(0.2f);
-                appearingAnimation.Append(_playerStatDescriptionLabel.DOFade(0.5f, 0.3f));
-                appearingAnimation.Join(_playerStatDescriptionText.DOFade(1f, 0.3f));
             }
 
             appearingAnimation.OnComplete(() => { disappearingAnimation.Restart(); });

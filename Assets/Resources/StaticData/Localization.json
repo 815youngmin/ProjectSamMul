@@ -137,7 +137,13 @@
     "MONSTER_EGYPT_BOSSRA_NAME": "라",
     "HERO_DICE_NAME": "다이스",
     "UI_SOUND_ON": "사운드 켜짐",
-    "UI_SOUND_OFF": "사운드 꺼짐"
+    "UI_SOUND_OFF": "사운드 꺼짐",
+    "EQUIP_PREDATOR_GLOVES_NAME": "포식자의 장갑",
+    "EQUIP_PREDATOR_GLOVES_DESC": "공격력이 증가합니다.",
+    "EQUIP_INVADER_GLOVES_NAME": "침략자의 장갑",
+    "EQUIP_INVADER_GLOVES_DESC": "공격력이 증가합니다.",
+    "EQUIP_GUARDIAN_GLOVES_NAME": "수호자의 장갑",
+    "EQUIP_GUARDIAN_GLOVES_DESC": "공격력이 증가합니다."
   },
   "English": {
     "UI_CANCEL": "Cancel",
@@ -277,6 +283,12 @@
     "MONSTER_EGYPT_BOSSRA_NAME": "Ra",
     "HERO_DICE_NAME": "Dice",
     "UI_SOUND_ON": "Sound On",
-    "UI_SOUND_OFF": "Sound Off"
+    "UI_SOUND_OFF": "Sound Off",
+    "EQUIP_PREDATOR_GLOVES_NAME": "Predator Gloves",
+    "EQUIP_PREDATOR_GLOVES_DESC": "Increases attack power.",
+    "EQUIP_INVADER_GLOVES_NAME": "Invader Gloves",
+    "EQUIP_INVADER_GLOVES_DESC": "Increases attack power.",
+    "EQUIP_GUARDIAN_GLOVES_NAME": "Guardian Gloves",
+    "EQUIP_GUARDIAN_GLOVES_DESC": "Increases attack power."
   }
 }
