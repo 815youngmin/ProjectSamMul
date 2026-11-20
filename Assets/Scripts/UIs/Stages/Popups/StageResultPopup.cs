@@ -287,6 +287,36 @@ namespace SamMul.UIs.Stages.Popups
             chapterNameSequence.Append(_chapterNameLabel.DOFade(1f, 0.2f));
             chapterNameSequence.Append(_chapterNameText.DOFade(1f, 0.2f));
 
+            //생존기록 표시 시퀀스
+            Sequence surviveRecordSequence = DOTween.Sequence();
+            surviveRecordSequence.AppendCallback(() =>
+            {
+                if (_previousBestRecordStagePlayTime < _stageRunningtime)
+                {
+                    _newRecordLabelText.gameObject.SetActive(true);
+                    _newRecordLabelText.color = new Color(1f, 0.7333333f, 0.09803922f, 0f);
+                }
+                else
+                {
+                    _survivalLabelText.gameObject.SetActive(true);
+                    _survivalLabelText.color = new Color(1f, 1f, 1f, 0f);
+                }
+                _survivalTimeText.gameObject.SetActive(true);
+                _survivalTimeText.color = new Color(1f, 1f, 1f, 0f);
+                int minute = (int)_stageRunningtime / 60;
+                int second = (int)_stageRunningtime % 60;
+                _survivalTimeText.text = string.Format("{0:D1}:{1:D2}", minute, second);
+            });
+            if (_previousBestRecordStagePlayTime < _stageRunningtime)
+            {
+                surviveRecordSequence.Join(_newRecordLabelText.DOFade(1f, 0.2f));
+            }
+            else
+            {
+                surviveRecordSequence.Join(_survivalLabelText.DOFade(1f, 0.2f));
+            }
+            surviveRecordSequence.Append(_survivalTimeText.DOFade(1f, 0.2f));
+
             //킬 카운트 활성화 시퀀스
             Sequence killCountSequence = DOTween.Sequence();
             killCountSequence.AppendCallback(() =>
@@ -306,6 +336,7 @@ namespace SamMul.UIs.Stages.Popups
 
             sequenceAnimation.Append(successTitleSequence); //성공 그래픽 스파인 시퀀스
             sequenceAnimation.Append(chapterNameSequence);  //챕터 이름 활성화 시퀀스
+            sequenceAnimation.Append(surviveRecordSequence);//챕터 생존시간 시퀀스
             sequenceAnimation.Append(killCountSequence);    //킬카운트 활성화 시퀀스
             sequenceAnimation.Append(this.CreateButtonSequence());
 

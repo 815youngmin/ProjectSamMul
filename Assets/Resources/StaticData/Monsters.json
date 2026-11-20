@@ -1328,7 +1328,7 @@
     "BodyPixelYOffset": 0.0,
     "ShadowSize": 1.0,
     "MaxHP": 21.0,
-    "CollisionAttackPower": 4.0,
+    "CollisionAttackPower": 2.0,
     "CollisionAttackSpeed": 5.0,
     "MoveSpeed": 10.0,
     "Mass": 1.0,

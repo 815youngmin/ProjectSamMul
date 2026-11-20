@@ -3,7 +3,7 @@
     "EquipmentId": "PredatorArmor",
     "EquipmentGrade": "D",
     "GradeEffectType": "MultiplyAttackPower",
-    "Parameter1": 10,
+    "Parameter1": 30,
     "Parameter2": 0
   },
   {
@@ -38,7 +38,7 @@
     "EquipmentId": "InvaderArmor",
     "EquipmentGrade": "D",
     "GradeEffectType": "MultiplyAttackPower",
-    "Parameter1": 10,
+    "Parameter1": 20,
     "Parameter2": 0
   },
   {
@@ -52,7 +52,7 @@
     "EquipmentId": "InvaderArmor",
     "EquipmentGrade": "B",
     "GradeEffectType": "MultiplyAttackPower",
-    "Parameter1": 10,
+    "Parameter1": 20,
     "Parameter2": 0
   },
   {
@@ -73,7 +73,7 @@
     "EquipmentId": "GuardianArmor",
     "EquipmentGrade": "D",
     "GradeEffectType": "MultiplyAttackPower",
-    "Parameter1": 10,
+    "Parameter1": 20,
     "Parameter2": 0
   },
   {
@@ -87,7 +87,7 @@
     "EquipmentId": "GuardianArmor",
     "EquipmentGrade": "B",
     "GradeEffectType": "MultiplyAttackPower",
-    "Parameter1": 10,
+    "Parameter1": 20,
     "Parameter2": 0
   },
   {

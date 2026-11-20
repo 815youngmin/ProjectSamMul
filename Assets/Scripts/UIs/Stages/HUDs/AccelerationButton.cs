@@ -34,22 +34,12 @@ public class AccelerationButton : MonoBehaviour
             // 가속 버튼 활성화.
             Log.I.Error("GameClient.CS.UserGameData가 비어있습니다. 확인이 필요합니다.");
             this.EnableButton();
-            this.ChangeStageAccleration();
+            UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>().StageTimer.DisableAccelerationText();
             return;
         }
 
-        bool activateAcceleration = chapterNumber != null && userGameData.ClearedHighestChapter >= chapterNumber;
-
-        if (activateAcceleration)
-        {
             this.EnableButton();
-            this.ChangeStageAccleration();
-        }
-        else
-        {
-            this.DisableButton();
             UnityGlobal.Scenes.GetCurrentSceneUI<StageSceneUIRoot>().StageTimer.DisableAccelerationText();
-        }
     }
 
     private void ChangeStageAccleration()

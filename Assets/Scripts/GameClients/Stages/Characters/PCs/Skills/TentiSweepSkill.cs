@@ -126,11 +126,11 @@ namespace SamMul.GameClients.Stages.Characters.PCs.Skills
                 {
                     return;
                 }
-                attackDirection = (Vector2)item.transform.position - owner.Pos;
+                attackDirection = (Vector2)item.transform.position - owner.CenterPos;
             }
             else
             {
-                attackDirection = target.Pos - owner.Pos;
+                attackDirection = target.Pos - owner.CenterPos;
             }
 
             var startAngle = Vector2.SignedAngle(Vector2.right, attackDirection) - ((_tentiSweepCount - 1) % 3) * (BASIC_ATTACI_DIRECTION_GAP * 0.5f);

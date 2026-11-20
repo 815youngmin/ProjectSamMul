@@ -4,7 +4,7 @@
     "Rarity": "Common",
     "Grade": "D",
     "StatType": "MaxHP",
-    "DefaultValue": 54,
+    "DefaultValue": 564,
     "IncrementalValue": 6
   },
   {
@@ -20,7 +20,7 @@
     "Rarity": "Common",
     "Grade": "B",
     "StatType": "MaxHP",
-    "DefaultValue": 108,
+    "DefaultValue": 750,
     "IncrementalValue": 12
   },
   {
@@ -92,7 +92,7 @@
     "Rarity": "Common",
     "Grade": "D",
     "StatType": "AttackPower",
-    "DefaultValue": 10,
+    "DefaultValue": 20,
     "IncrementalValue": 3
   },
   {
@@ -108,7 +108,7 @@
     "Rarity": "Common",
     "Grade": "B",
     "StatType": "AttackPower",
-    "DefaultValue": 15,
+    "DefaultValue": 30,
     "IncrementalValue": 5
   },
   {
@@ -492,7 +492,7 @@
     "Rarity": "Special",
     "Grade": "S",
     "StatType": "MaxHP",
-    "DefaultValue": 564,
+    "DefaultValue": 1000,
     "IncrementalValue": 36
   },
   {
@@ -580,7 +580,7 @@
     "Rarity": "Special",
     "Grade": "S",
     "StatType": "AttackPower",
-    "DefaultValue": 20,
+    "DefaultValue": 40,
     "IncrementalValue": 15
   },
   {
