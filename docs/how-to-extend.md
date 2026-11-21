@@ -18,10 +18,18 @@
 
 ## 보스 패턴 추가
 
-- 지금 보스 10종은 모두 `MoveAndStopAI`이며 이동·정지 시간은 `Param1`, `Param2`, 속도는 `MoveSpeed`입니다.
-- 전용 패턴은 위 "AI 전략 추가"와 같습니다. 보스 전용 이전 코드(`BossAIStrategies/`, `Actions/Boss/`)는 테마가 달라 참고용으로만 남아 있습니다.
+보스 6종은 각자 전용 전략(`BossAIStrategies/Demo/Demo<N>BossAIStrategy.cs`)과 액션(`Actions/Boss/Demo/`)을 가집니다. 구조는 [gameplay-systems.md](gameplay-systems.md)의 "보스 AI와 액션"을 보세요.
+
+1. `Actions/Boss/Demo/`에 `SmartAction<SpriteMonsterAnimationController>`를 상속한 액션 클래스를 만듭니다. `Initialize`에서 `InitializeBase(ActionType.Skill, 전체 길이, animationController)`를 호출하고, `Begin`에서 서브 액션으로 예고·공격 시점을 등록합니다. 기존 액션(예: `DemoFirstBossDashAction`)을 복사해 시작하면 빠릅니다.
+2. 해당 보스의 Combat 전략에 있는 `ACTIONS` 목록에 `Monster.DoSpriteMonster<새 액션>`을 추가합니다.
+3. 오브젝트 몸체는 경로를 받는 오버로드(`CreateSpinMoveObject`, `CreateReflectionAreaEffectObject`, `CreateSplitAreaEffectObject`)에 `Stage/Common/Projectiles/MonsterProjectile_*.prefab`을 넘겨 재사용합니다.
+4. 수치(길이, 속도, 개수, 반경, 피해 계수)는 클래스 상단의 상수로 조절합니다.
+
+- 새 보스를 추가하려면 `CharacterType`과 `MonsterAIType`에 값을 추가하고, `MonsterAIController`의 `switch`에 Idle 전략 생성을 넣은 뒤 `Monsters.json` 행과 `StageEvents.json`의 `BossWarning` / `BossSpawn` 행을 추가합니다.
+- 이전 테마의 보스 코드(`BossAIStrategies/Arabian`, `Steampunk`, `Western`, `Actions/Boss/Alibaba` 등)는 데모에서 실행되지 않지만 패턴 참고용으로 남아 있습니다.
+- 보스 HP·공격력은 `StageEvents.json` `BossSpawn` 행의 가중치로 맞춥니다(실제 값 = `Monsters.json` 기본값 × 가중치).
 - 보스 스폰 위치·울타리 크기는 `BossSpawnStageEvent`의 `switch`에서 보스 타입별로 조정합니다. 맵 형태가 `Rectangle`이면 중앙 스폰, 울타리 없음입니다.
-- 테스트는 스테이지에서 숫자 키 1~4로 해당 보스전 직전으로 이동해 확인합니다.
+- 테스트는 스테이지에서 숫자 키 1~2로 해당 보스전 직전으로 이동해 확인합니다.
 
 ## 스킬 추가
 
@@ -34,8 +42,9 @@
 ## 팝업 추가
 
 1. `BasePopup`을 상속한 클래스를 만들고 `[SerializeField]`로 필요한 UI 참조를 둡니다.
-2. `Assets/Resources/Stage/UIs/<이름>/` 아래에 프리팹을 만들고 컴포넌트를 붙인 뒤 필드를 연결합니다. 프리팹 루트는 `RectTransform`이어야 하며 `CreateAndAddPopup`이 부모 크기에 맞춥니다.
-3. `StageSceneUIRoot`(또는 `BaseSceneUIRoot`)에 `AddXxxPopup / CloseXxxPopup`을 추가합니다. 열 때 `PauseResumeOnPopup`을 호출하면 게임이 멈춥니다.
+2. `Assets/Resources/Stage/UIs/<이름>/`(로비 팝업은 `Lobbys/UIs/<이름>/`) 아래에 프리팹을 만들고 컴포넌트를 붙인 뒤 필드를 연결합니다. 프리팹 루트는 `RectTransform`이어야 하며 `CreateAndAddPopup`이 부모 크기에 맞춥니다.
+3. `StageSceneUIRoot`(또는 `BaseSceneUIRoot`)에 `AddXxxPopup / CloseXxxPopup`을 추가합니다. 열 때 `PauseResumeOnPopup`을 호출하면 게임이 멈춥니다. 로비 팝업은 `LobbySceneUIRoot.AddOptionPopup`이 예시입니다.
+4. 화면에 고정된 글자는 `LocalizedText` 컴포넌트에 텍스트 키를 넣고 `Localization.json`의 `Korean` / `English`에 같은 키를 추가합니다. 코드로 넣는 글자는 언어가 바뀔 때 다시 채워 줘야 합니다.
 
 ## 리소스 교체
 
@@ -47,6 +56,6 @@
 - **Editor.log 확인**: 마지막 `Reloading assemblies for play mode` 이후 줄에서 `exception`, `[Placeholder]`를 찾으면 어떤 리소스가 대체됐고 어디서 예외가 났는지 바로 보입니다.
 - **플레이스홀더 함정**: 렌더러 개수를 가정하는 코드(`renderers[1]`), `GetComponent<Animator>()` 뒤 바로 접근, `SpriteAnimationHandler` 이벤트로 수명을 끝내는 코드는 플레이스홀더에서 깨집니다. 상수 시간(0.5초)으로 바꾸거나 공용 비주얼로 교체하세요.
 - **SpriteRenderer에 MaterialPropertyBlock 쓰지 않기**: 스프라이트 텍스처 바인딩이 사라져 하얗게 남습니다. 플레이어 몸체는 `SpriteRenderer.color` 곱으로 피격을 표현합니다.
-- **사운드**: 없는 사운드 경로는 예외를 던집니다. 새 사운드 경로를 코드에 넣었다면 **Demo → Build Sound Prefabs**를 다시 실행하세요.
+- **사운드**: 없는 사운드 경로는 예외를 던집니다. 새 사운드 경로를 코드에 넣었다면 **Demo → Build Sound Prefabs**를 다시 실행한 뒤, 만들어진 프리팹의 `SoundObject` → `Audio Clips`에 클립을 넣으세요. `AudioSource`의 Clip과 Volume은 재생 시 덮어쓰이므로 쓰이지 않습니다. 소리가 안 나면 `Audio Clips`가 비어 있는지부터 확인합니다(비어 있으면 경고 없이 넘어갑니다).
 - **빠른 컴파일 확인**: 스크립트 변경 후 Unity 재컴파일 전에 오류만 보고 싶으면 `python _migration/fastbuild/gen.py`를 쓸 수 있습니다(개인 작업 도구, 저장소 미포함).
-- **테스트 키**: 숫자 1~4 보스전 이동. 부활 규칙(한 게임 1회)은 `Stage.Update`의 `isAbleToResurrect` 조건에 있습니다.
+- **테스트 키**: 숫자 1~2 보스전 이동. 부활 규칙(한 게임 1회)은 `Stage.Update`의 `isAbleToResurrect` 조건에 있습니다.

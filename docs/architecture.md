@@ -24,10 +24,11 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 | 씬 | 클래스 | 역할 |
 |---|---|---|
 | Loading | `LoadingScene`, `LoadingSceneUIRoot` | 첫 진입 씬. 로딩 바를 보여 주고 Lobby로 넘어감 |
-| Lobby | `LobbyScene`, `LobbySceneUIRoot`, `MainLobbyPage` | 챕터·캐릭터·장비 라디오 선택, 시작 버튼 |
+| Lobby | `LobbyScene`, `LobbySceneUIRoot`, `MainLobbyPage` | 챕터·캐릭터·장비 라디오 선택, 시작 버튼, 옵션 팝업(`OptionPopup`) |
 | Stage | `StageScene`, `StageSceneUIRoot` | 스테이지 생성·루프, HUD, 팝업 |
 
 - 씬 전환은 `UnityGlobal.Scenes.ChangeTo(SceneType, ISceneInitialData, reason)` 한 곳으로만 합니다. `SceneChanger`가 새 씬의 `BaseScene.Initialize(initialData)`를 호출하고, 떠나는 씬에는 `ClearBeforeChangingScene`으로 풀링된 오브젝트를 정리하게 합니다.
+- 새 씬은 Additive로 로드되므로 전환 도중 한두 프레임은 두 씬이 함께 살아 있습니다. 새 씬이 현재 씬으로 등록된 순간부터 이전 씬은 `BaseScene.IsUpdatable`이 false가 되어 로직을 돌리지 않습니다(이전 씬의 코드가 새 씬의 UI 루트를 받아 오는 일을 막기 위함).
 - 전역 서비스는 `UnityGlobal`(씬 전환, 사운드, 스프라이트 애니메이션)과 `GameClient`(세션, 스테이지, 카메라, 플레이어 컨트롤러)에 모여 있습니다. 둘 다 정적 접근자를 제공하지만, 스테이지 안의 코드는 가능한 한 인자로 받은 `Stage`를 씁니다.
 - 정적 데이터(`StaticDataRepository.Instance`)와 `ResourcePool.Instance`는 첫 씬에서 한 번 만들어지고 앱이 끝날 때까지 유지됩니다.
 
@@ -50,7 +51,7 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 
 ## 폴더 맵
 
-`Assets/Scripts` 아래 653개 파일이 있습니다. 데모에서 실제로 실행되는 부분을 굵게 표시했습니다.
+`Assets/Scripts` 아래 675개 파일이 있습니다. 데모에서 실제로 실행되는 부분을 굵게 표시했습니다.
 
 | 폴더 | 내용 |
 |---|---|
@@ -59,8 +60,8 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 | `GameClients/Stages/` | **`Stage` partial 클래스들**(캐릭터·장판·투사체·아이템·인디케이터 생성/관리) |
 | `GameClients/Stages/StageEvents/` | **스테이지 이벤트**(몬스터 스폰, 엘리트, 대량 스폰, 자동 리스폰, 보스 경고/스폰, 러시 경고) |
 | `GameClients/Stages/Characters/` | **`Character` 기반 클래스, `PCs/PlayerCharacter`, `Monsters/Monster`** |
-| `.../Characters/Actions/` | 캐릭터 행동 단위(대기, 이동, 근접 공격, 원거리 공격, 돌진, 소환, 사망 등). `Boss/` 하위는 이전 테마 보스용으로 데모에서 미사용 |
-| `.../Characters/Monsters/MonsterAIs/` | **`MonsterAIController`와 `AIStrategies/`** (전략 패턴). `BossAIStrategies/`는 미사용 |
+| `.../Characters/Actions/` | 캐릭터 행동 단위(대기, 이동, 근접 공격, 원거리 공격, 돌진, 소환, 사망 등). **`Boss/Demo/`가 데모 보스 6종의 액션**이고, `Boss/`의 나머지 하위 폴더는 이전 테마 보스용으로 데모에서 미사용 |
+| `.../Characters/Monsters/MonsterAIs/` | **`MonsterAIController`와 `AIStrategies/`** (전략 패턴). **`BossAIStrategies/Demo/`가 데모 보스 전략**이고, 나머지 테마 폴더는 미사용 |
 | `.../Characters/PCs/Skills/` | **`SkillBase`, `SkillSet`, 스킬 구현** (덱에 없는 스킬 파일도 남아 있음) |
 | `.../Characters/Stats/`, `StatusEffects/`, `ConditionalEffects/` | **스탯 계산기, 상태이상, 등급 효과(조건부 효과)** |
 | `GameClients/Stages/AreaEffectObjects/` | **장판·이동 오브젝트 127종**. 데모 스킬과 몬스터가 쓰는 것은 일부 |
@@ -71,7 +72,7 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 | `Shared/` | **정적 데이터 타입·로더, 유저 데이터, 프로토콜 요청/응답 타입, 로컬라이저, 게임 상수** |
 | `Animations/Placeholder/` | **Spine 런타임 대체.** `SkeletonAnimation`, `AnimationState`, 트랙/이벤트 API를 같은 이름으로 제공 |
 | `ResourcePools/` | **`ResourcePool`, `PlaceholderFactory`** |
-| `UIs/` | **로비 UI, 스테이지 HUD, 팝업, 공용 버튼(`ZButton`), 조이스틱** |
+| `UIs/` | **로비 UI(옵션 팝업 포함), 스테이지 HUD, 팝업, 공용 버튼(`ZButton`), 조이스틱** |
 
 ## 핵심 객체와 소유 관계
 
@@ -89,6 +90,7 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 | 스테이지 한 판의 시작과 끝 | `Scenes/StageScene.cs`, `GameClients/Stages/Stage.cs` |
 | 몬스터가 언제 나오는가 | `StageEvents/StageEventController.cs`, `Resources/StaticData/StageEvents.json` |
 | 몬스터가 어떻게 움직이는가 | `Monsters/MonsterAIs/MonsterAIController.cs`, `AIStrategies/*` |
+| 보스가 어떤 패턴을 쓰는가 | `BossAIStrategies/Demo/Demo*BossAIStrategy.cs`, `Actions/Boss/Demo/*` |
 | 스킬이 어떻게 발동하는가 | `PCs/Skills/SkillBase.cs`, `SkillSet.cs`, 각 `*Skill.cs` |
 | 데미지가 어떻게 들어가는가 | `CombatSystems/CombatSystem.Area.cs`, `Character.Hitted()` |
 | 리소스가 없을 때 무슨 일이 생기는가 | `ResourcePools/ResourcePool.cs`, `PlaceholderFactory.cs` |

@@ -4,7 +4,7 @@
 
 - 테이블 하나가 JSON 파일 하나이며, 배열의 각 원소가 행입니다. `StaticDataRepository`가 시작 시 전부 읽어 `StaticDataRepository.Instance.<테이블>`로 노출합니다.
 - 열거형 값은 이름 문자열로 적습니다(`"AIType": "MeleeAttackAI"`). 없는 테이블은 빈 테이블로 취급하지만, **없는 행을 조회하면 예외**를 던집니다(잘못된 참조를 조용히 넘기지 않기 위해).
-- 원본 값이 필요한 테이블은 이전 프로젝트의 구글 시트 익스포트에서 가져왔고, 리소스 경로만 데모 경로로 바꿨습니다.
+- 원본 값이 필요한 테이블은 이전 프로젝트의 구글 시트 익스포트에서 가져온 뒤 리소스 경로를 데모 경로로 바꿨습니다. 스테이지 길이(5분)와 몬스터·보스·장비 수치는 데모에 맞게 다시 조정했습니다.
 
 | 파일 | 클래스 | 내용 |
 |---|---|---|
@@ -18,8 +18,8 @@
 | `HeroGradeEffects.json` | `HeroGradeEffectStaticData` | 캐릭터 등급 효과 (데모에서는 비어 있음) |
 | `CharacterImagePaths.json` | `CharacterImagePathStaticData` | 캐릭터 아이콘 경로 |
 | `Skills.json` | `SkillStaticData` | 스킬·레벨별 파라미터, 초월 조건, 아이콘·사운드 경로 |
-| `Equipments.json` | `EquipmentStaticData` | 장비 정의와 데모용 `Grade`. **행 순서가 로비 버튼 순서** |
-| `EquipmentStats.json` | `EquipmentStatStaticData` | 슬롯·희귀도·등급별 장비 기본 스탯 |
+| `Equipments.json` | `EquipmentStaticData` | 장비 정의(세트 `SetType`, 슬롯 `Armor` / `Gloves`)와 데모용 `Grade`. **갑옷 행의 순서가 로비 버튼 순서** |
+| `EquipmentStats.json` | `EquipmentStatStaticData` | 슬롯·희귀도·등급별 장비 기본 스탯 (갑옷은 최대 HP, 장갑은 공격력) |
 | `EquipmentGradeEffects.json` | `EquipmentGradeEffectStaticData` | 장비 등급 효과 (등급 이하 누적) |
 | `Exps.json` | `ExpTableRow` | 레벨별 필요 경험치 (70레벨, 이후 상한) |
 | `Localization.json` | `Localizer` | 언어별 텍스트 사전 (`Korean`, `English`). 없는 키는 키 이름을 그대로 표시 |
@@ -34,15 +34,17 @@
 | 경로 | 내용 |
 |---|---|
 | `Stage/ChapterNN/` | 챕터별 몬스터 스프라이트 시트와 애니메이션(`MonsterAnimation/MonsterMM/`), 보스(`BossAnimation/Boss_0N/`) |
-| `Stage/Common/` | 공용 몬스터 애니메이션, 몬스터 투사체 4종, 울타리, 그림자, 원소 아이콘, `PlayerAttackVisual.prefab` |
+| `Stage/Common/` | 공용 몬스터 애니메이션, 몬스터 투사체 6종(`Projectiles/`), 울타리, 그림자, 원소 아이콘, `PlayerAttackVisual.prefab` |
+| `Stage/Indicator/` | 공격 범위 예고 인디케이터 프리팹(원형, 사각, 돌진 방향) |
 | `Stage/Floor/` | 챕터 바닥 이미지 |
 | `Stage/Exp/`, `Stage/Item/` | 경험치·아이템 몸체 프리팹 |
 | `Stage/UIs/` | HUD 그룹과 팝업 프리팹 |
 | `Skill/` | 스킬 전용 리소스 (예: 데스터치 드론) |
 | `PlaerCharacter/<Hero>/` | 캐릭터 스프라이트와 idle/run/attack/die 클립, Animator 컨트롤러 |
 | `Commons/SkillIcons/` | 스킬 아이콘 |
-| `Sounds/` | BGM·효과음 프리팹 (데모는 무음 프리팹) |
-| `Lobbys/UIs/` | 로비 아이콘과 라디오 그룹 프리팹 |
+| `Sounds/BGMs/`, `Sounds/SoundEffects/` | BGM·효과음 프리팹. `SoundObject`의 `Audio Clips`에 클립을, `Volume Scale`에 개별 음량 배율을 지정 |
+| `Sounds/BGMs/*.wav`, `Sounds/Effects/*.wav` | 오디오 클립 원본 |
+| `Lobbys/UIs/` | 로비 아이콘, 라디오 그룹 프리팹, 옵션 팝업(`OptionPopup/OptionPopup.prefab`) |
 
 - 스프라이트 애니메이션 몬스터·캐릭터는 `idle / move(run) / attack / hitted / die / appear / disappear / heal` 상태 이름을 Animator에서 찾습니다. 없는 상태는 건너뜁니다. 공격 클립의 `HitFrame` 애니메이션 이벤트 시각이 타격 시점입니다.
 - 몸체 경로 확장자가 `.asset`이면 스켈레톤(플레이스홀더 Spine), `.controller`면 스프라이트 Animator입니다.
@@ -65,6 +67,8 @@
 
 - `OfflineSession`이 `Application.persistentDataPath/offline-save.json`에 `UserGameData`(골드, 보석, 선택한 캐릭터·장비, 최고 챕터·시간, 부활 코인, 스테이지 부활 횟수)를 저장합니다.
 - 서버 프로토콜이었던 챕터 입장/종료/포기/부활은 같은 요청·응답 타입(`Shared/CSProtocols`)으로 즉시 처리됩니다. `ResetSave()`로 초기화할 수 있습니다.
+- 옵션 값은 `PlayerPrefs`에 따로 저장합니다: 언어(`KLanguage`), 배경음·효과음 볼륨, 음소거. 언어 기본값은 기기 언어가 한국어면 한국어, 아니면 영어입니다.
+- WebGL에서는 저장 파일과 `PlayerPrefs`가 브라우저의 IndexedDB에 보관됩니다.
 
 ## 에디터 메뉴 (`Assets/Editor/Demo`)
 
@@ -73,4 +77,5 @@
 | Demo → Validate Static Data | 정적 데이터 로드와 참조 검증 |
 | Demo → Build Scenes / Rebuild Scenes | Loading / Lobby / Stage 씬 생성 (이미 커밋된 씬을 다시 만들 때만) |
 | Demo → Build Korean Font | TextMeshPro 한글 폴백 폰트 에셋 생성 |
-| Demo → Build Sound Prefabs | 코드가 참조하는 사운드 경로에 무음 프리팹 생성 |
+| Demo → Build Sound Prefabs | 코드가 참조하는 사운드 경로 중 프리팹이 없는 곳에 빈 사운드 프리팹 생성 (클립은 직접 연결) |
+| Demo → Build Option Popup Prefab | 옵션 팝업 프리팹 생성과 `OptionPopup` 필드 연결. 모양은 `CommonPopup`의 스프라이트·폰트를 따름 |

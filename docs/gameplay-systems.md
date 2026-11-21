@@ -38,9 +38,27 @@
 
 - `MonsterAIController`가 `Monsters.json`의 `AIType`을 보고 **첫 전략**을 만듭니다(`case MonsterAIType.X:`). 대부분의 AI는 `XxxIdleAIStrategy`(대기·탐색)와 `XxxCombatAIStrategy`(추적·공격) 두 클래스로 구성됩니다.
 - 전략은 `MonsterAIStrategyBase`를 상속하고 `Begin / Update / End / OnHitted / OnDead`를 구현합니다. `Update`가 다른 전략 인스턴스를 반환하면 컨트롤러가 `End → Begin`으로 교체합니다.
-- 데모에서 쓰는 AI: `MeleeAttackAI`, `RangeAttackAI`, `DashAttackAI`, `PassByAI`, `PoisonousAreaAI`, `EliteSummonAI`, `EliteReflectionRangeAttackAI`, `AreaEffectOnDieAI`, `MoveAndStopAI`(보스 공통).
-- `MoveAndStopAI`는 `Monsters.json`의 `Param1`(이동 시간), `Param2`(정지 시간), `MoveSpeed`를 사용합니다. 값이 0이면 코드 기본값(1.75초 / 2초)을 씁니다.
+- 데모에서 쓰는 AI: `MeleeAttackAI`, `RangeAttackAI`, `DashAttackAI`, `PassByAI`, `PoisonousAreaAI`, `EliteSummonAI`, `EliteReflectionRangeAttackAI`, `AreaEffectOnDieAI`, 그리고 보스 전용 `DemoFirstBossAI` ~ `DemoSixthBossAI`.
 - 탐색 범위 상수: `GameConstants.AI_TARGET_SEARCH_MAX_DISTANCE`(48). 탐색은 `Stage.FindClosestCharacter` 계열을 사용합니다.
+
+### 보스 AI와 액션
+
+- 보스는 `BossAIStrategies/Demo/Demo<N>BossAIStrategy.cs`에 `BossIdleAIStrategy`와 `BossCombatAIStrategy`를 상속한 클래스 한 쌍을 가집니다. Idle은 등장 후 `WaitingTime`만큼 기다렸다가 Combat으로 넘어갑니다.
+- Combat 전략은 `Actions` 목록(`Monster.DoSpriteMonster<액션>`)에서 하나를 무작위로 골라 실행하고, 액션이 끝난 뒤 `ActionCoolTime` 동안은 `MovementType`에 따라 이동만 합니다. 목록이 비어 있으면 타겟을 따라 이동만 합니다.
+- 액션은 `Actions/Boss/Demo/`에 있으며 `SmartAction<SpriteMonsterAnimationController>`를 상속합니다. `Begin`에서 `AddOneOffSubAction(시각, ...)`과 `AddDurationalSubAction(시각, 길이, ...)`으로 예고 → 공격 → 후딜의 시간표를 등록하고, 길이는 상단의 상수로 조절합니다. 진행 시간이 정해지지 않는 패턴(`DemoSixthBossDashReflectionObjetAction`)은 `Update`에서 상태 머신으로 처리합니다.
+- 애니메이션 규칙: 예고 중에는 `PlayIdleAttackActionInfinitely()`, 공격 순간에는 `PlaySpecialAttack(길이)`, 방향은 `UpdateBodyDirectionByMoveDirection`으로 맞춥니다.
+- 범위 예고는 `stage.CreateDashAttackRangeIndicator`, `CreateCircularAttackRangeIndicator`, `CreateDirectionalSquareRangeIndicator`를 씁니다(프리팹은 `Stage/Indicator/`).
+
+| 보스 | 등장 | 액션 |
+|---|---|---|
+| 1 티라노 | 1챕터 150초 | 돌진, 부채꼴 투사체 |
+| 2 매머드 족장 | 1챕터 300초 | 유도 오브젝트, 돌진 |
+| 3 벌레 여왕 | 2챕터 150초 | 나선 이동 장판, 반사 오브젝트 |
+| 4 거대 얼음 골렘 | 2챕터 300초 | 돌진 중 원형 탄막, 엘리트 소환 |
+| 5 뱀 주술사 | 3챕터 90초 | 분열 오브젝트, 몬스터 소환, 돌진 |
+| 6 라 | 3챕터 300초 | 맵 밖 돌진 + 반사 오브젝트, 반사 오브젝트, 다중 장판, 몬스터 소환 |
+
+- 보스의 HP와 공격력은 `Monsters.json`의 기본값에 `StageEvents.json` `BossSpawn` 행의 가중치를 곱한 값입니다. 스킬·투사체 피해는 여기에 액션의 `DAMAGE_COEFFICIENT`를 곱합니다.
 
 ## 4. 스킬
 
@@ -67,12 +85,21 @@
 ## 7. 등급 효과와 장비
 
 - 캐릭터 등급 효과(`HeroGradeEffects`)와 장비 등급 효과(`EquipmentGradeEffects`)는 `GradeEffectType` + 파라미터 두 개로 정의되고, `ConditionalEffectManager.AddConditionalEffectByGradeEffect`가 해당 `ConditionalEffect` 클래스를 만듭니다. 장비는 **아이템 등급 이하의 모든 행이 누적** 적용됩니다.
-- 장비의 기본 스탯(HP 또는 공격력)은 `EquipmentStats`(슬롯·희귀도·등급)에서 오고, `PlayerCharacter.InitializeEquipmentEffects`가 적용합니다.
-- 데모 로비의 장비 3종은 `Equipments.json`의 `Grade` 컬럼(D / B / S)으로 들고 가는 등급이 정해집니다.
+- 장비의 기본 스탯은 `EquipmentStats`(슬롯·희귀도·등급)에서 오고, `PlayerCharacter.InitializeEquipmentEffects`가 적용합니다. 갑옷은 최대 HP, 장갑은 공격력을 줍니다.
+- 데모 로비의 장비 3종은 세트(`SetType`)입니다. 로비에는 세트의 대표인 갑옷만 버튼으로 보이고, `UserGameData.CreateSelectedEquipments`가 고른 갑옷과 같은 세트의 장비(갑옷 + 장갑)를 모두 스테이지로 들고 갑니다. 등급은 `Equipments.json`의 `Grade` 컬럼(D / B / S)으로 정해집니다.
 
 ## 8. UI
 
 - `BaseSceneUIRoot`가 캔버스, 팝업 스택, UI 블로커를 관리합니다. 팝업은 `CreateAndAddPopup<T>(prefabPath, ...)`로 만들고 `CloseAndDestroyPopup`으로 닫으며, 팝업이 하나라도 있으면 `PauseResumeOnPopup`이 `Time.timeScale`을 0으로 둡니다.
 - 스테이지 HUD(`StageSceneUIRoot`): 조이스틱, 경험치 바, 체력·공격력 표시, 타이머와 보스 이름, 보스 HP 바, 킬 카운트, 경고 팝업, 일시정지·가속 버튼. 게임 로직은 `stageSceneUI.UpdateXxx(...)` 형태로 값을 밀어 넣습니다.
 - 팝업: 스킬 선택, 스킬 상자, 결과, 부활, 일시정지, 보스 VS 연출, 공용 확인창. 프리팹은 `Assets/Resources/Stage/UIs/` 아래에 있고 경로는 각 팝업 클래스 또는 `StageSceneUIRoot`의 상수에 적혀 있습니다.
+- 가속 버튼(`AccelerationButton`)은 x1.0으로 시작해 누를 때마다 x1.5 → x2.0 → x1.0으로 바뀝니다. 이미 클리어한 챕터에서만 보입니다.
 - 로비: `MainLobbyPage`가 `LobbyRadioGroup` 세 개(챕터·캐릭터·장비)를 정적 데이터 순서대로 초기화하고, 선택값을 `UserGameData`에 저장한 뒤 `MainChapterStartButton`이 스테이지로 진입합니다.
+- 옵션 팝업(`OptionPopup`, 로비): 언어·음소거·볼륨을 바꾸며 값은 즉시 적용·저장됩니다. 언어는 `Localizer.SetLanguage` 후 화면의 `LocalizedText`를 모두 다시 채우고, 코드로 넣은 텍스트는 `onLanguageChanged` 콜백(`MainLobbyPage.UpdateTexts`)으로 갱신합니다.
+
+## 9. 사운드
+
+- `SoundManager`가 사운드 프리팹(`SoundObject` + `AudioSource`)을 풀링해 재생합니다. `SoundObject`의 `Audio Clips` 목록에서 하나를 골라 재생하며, 목록이 비어 있으면 소리 없이 넘어갑니다.
+- 음량은 `전역 볼륨(배경음 또는 효과음) × SoundObject의 Volume Scale`입니다. 특정 효과음만 줄이려면 그 프리팹의 `Volume Scale`을 낮춥니다.
+- 음소거(`SoundManager.SetMuted`)는 볼륨 설정을 건드리지 않고 `AudioListener.volume`만 0으로 둡니다. 옵션 팝업과 스테이지 일시정지 팝업의 사운드 버튼이 같은 값을 씁니다.
+- 같은 효과음이 18프레임 안에 다시 요청되면 무시합니다(동시에 여러 번 겹쳐 커지는 것을 막기 위함).
