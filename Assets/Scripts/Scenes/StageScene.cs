@@ -587,7 +587,7 @@ namespace SamMul.Scenes
         {
             base.Update();
 
-            if (!this.IsSceneInitialized || this.IsSceneCleared)
+            if (!this.IsUpdatable)
             {
                 return;
             }

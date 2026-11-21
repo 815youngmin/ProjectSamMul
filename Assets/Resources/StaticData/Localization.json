@@ -148,7 +148,10 @@
     "UI_OPTION_LANGUAGE": "언어",
     "UI_OPTION_SOUND": "사운드",
     "UI_OPTION_BGM_VOLUME": "배경음",
-    "UI_OPTION_SFX_VOLUME": "효과음"
+    "UI_OPTION_SFX_VOLUME": "효과음",
+    "UI_MAINLOBBY_SELECT_STAGE": "스테이지 선택",
+    "UI_MAINLOBBY_SELECT_CHARACTER": "캐릭터 선택",
+    "UI_MAINLOBBY_SELECT_ITEM": "아이템 선택"
   },
   "English": {
     "UI_CANCEL": "Cancel",
@@ -299,6 +302,9 @@
     "UI_OPTION_LANGUAGE": "Language",
     "UI_OPTION_SOUND": "Sound",
     "UI_OPTION_BGM_VOLUME": "Music",
-    "UI_OPTION_SFX_VOLUME": "Sound Effects"
+    "UI_OPTION_SFX_VOLUME": "Sound Effects",
+    "UI_MAINLOBBY_SELECT_STAGE": "Select Stage",
+    "UI_MAINLOBBY_SELECT_CHARACTER": "Select Character",
+    "UI_MAINLOBBY_SELECT_ITEM": "Select Item"
   }
 }

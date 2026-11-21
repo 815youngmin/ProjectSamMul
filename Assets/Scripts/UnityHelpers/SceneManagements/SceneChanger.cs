@@ -24,7 +24,7 @@ namespace SamMul.UnityHelpers.SceneManagements
         private BaseScene? _loadingScene;
 
         public bool CanChangeScene => _loadingRoutine == null;
-
+ 
         public TScene GetCurrentScene<TScene>() where TScene : BaseScene => (_currentScene as TScene)!;
 
         public TSceneUI GetCurrentSceneUI<TSceneUI>() where TSceneUI : BaseSceneUIRoot => (_currentSceneUIRoot as TSceneUI)!;

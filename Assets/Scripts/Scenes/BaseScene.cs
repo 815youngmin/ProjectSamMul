@@ -53,6 +53,12 @@ namespace SamMul.Scenes
         public bool IsSceneInitialized => _isSceneInitialized;
         private bool _isSceneInitialized = false;
 
+        /// <summary>
+        /// 매 프레임 로직을 돌려도 되는지 여부. 씬 전환 중에는 새 씬이 현재 씬으로 등록된 뒤에도 이전 씬이 정리되기 전까지 Update 가 호출되므로,
+        /// 현재 씬이 아니게 된 순간부터 로직을 멈춘다. (현재 씬의 UI 루트 등을 참조하는 코드가 다른 씬의 것을 받지 않도록)
+        /// </summary>
+        protected bool IsUpdatable => _isSceneInitialized && !_isSceneCleared && UnityGlobal.Scenes.GetCurrentScene<BaseScene>() == this;
+
         private Object _initializationLock = new ();
 
 
@@ -174,7 +180,7 @@ namespace SamMul.Scenes
 
         protected virtual void Update()
         {
-            if (!_isSceneInitialized || _isSceneCleared)
+            if (!this.IsUpdatable)
             {
                 return;
             }
