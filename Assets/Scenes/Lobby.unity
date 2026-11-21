@@ -734,6 +734,7 @@ MonoBehaviour:
   _canvas: {fileID: 1661031234}
   _canvasScaler: {fileID: 1661031233}
   _mainLobbyPage: {fileID: 293661309}
+  _optionButton: {fileID: 864671199}
 --- !u!114 &1661031232
 MonoBehaviour:
   m_ObjectHideFlags: 0
