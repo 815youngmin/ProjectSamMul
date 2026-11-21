@@ -26,11 +26,16 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
 
             _getSelectedChapter = getSelectedChapter;
 
-            _startButtonText.text = Localizer.Instance.GetText("UI_MAINLOBBY_BATTLE_START_BUTTON");
+            this.UpdateText();
 
             _button.enabled = true;
             _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(this.OnBattleStartButtonClickEvent);
+        }
+
+        public void UpdateText()
+        {
+            _startButtonText.text = Localizer.Instance.GetText("UI_MAINLOBBY_BATTLE_START_BUTTON");
         }
 
         private void OnBattleStartButtonClickEvent()

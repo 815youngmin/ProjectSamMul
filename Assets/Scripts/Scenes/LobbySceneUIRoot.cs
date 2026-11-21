@@ -2,12 +2,14 @@
 using Shared.Localizers;
 using UnityEngine;
 using SamMul.UIs.Lobbies.MainLobbyPages;
+using SamMul.UIs.Lobbies.Popups;
 
 namespace SamMul.Scenes
 {
     public class LobbySceneUIRoot : BaseSceneUIRoot
     {
         [SerializeField] private MainLobbyPage _mainLobbyPage = null!;
+        [SerializeField] private ZButton? _optionButton;
 
         public MainLobbyPage MainLobbyPage => _mainLobbyPage;
 
@@ -19,6 +21,21 @@ namespace SamMul.Scenes
 
             _mainLobbyPage.Initialize();
             _mainLobbyPage.gameObject.SetActive(true);
+
+            // 씬에 옵션 버튼을 연결하기 전에도 로비가 동작하도록 null 을 허용한다.
+            if (_optionButton != null)
+            {
+                _optionButton.onClick.RemoveAllListeners();
+                _optionButton.onClick.AddListener(this.AddOptionPopup);
+            }
+        }
+
+        public void AddOptionPopup()
+        {
+            var popup = this.CreateAndAddPopup<OptionPopup>("Lobbys/UIs/OptionPopup/OptionPopup.prefab", playSound: true);
+            popup.Initialize(
+                closeRequester: skipAnimation => this.CloseAndDestroyPopup(popup, onCompleted: () => { }, skipAnimation),
+                onLanguageChanged: _mainLobbyPage.UpdateTexts);
         }
 
         public void Clear()

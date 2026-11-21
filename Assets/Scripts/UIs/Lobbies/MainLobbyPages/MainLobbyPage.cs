@@ -53,5 +53,12 @@ namespace SamMul.UIs.Lobbies.MainLobbyPages
 
             _mainChapterStartButton.Initialize(() => _selectedChapter);
         }
+
+        /// <summary>언어가 바뀐 뒤 코드로 넣은 텍스트를 다시 채운다.</summary>
+        public void UpdateTexts()
+        {
+            _mainChapterStartButton.UpdateText();
+        }
+
     }
 }

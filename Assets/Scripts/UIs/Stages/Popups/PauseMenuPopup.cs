@@ -69,32 +69,13 @@ namespace SamMul.UIs.Stages.Popups
                 this.OnGameContinue();
             });
 
-            float bgmVolume = UnityGlobal.Sounds.GetBGMVolume();
-            if (bgmVolume <= 0f)
-            {
-                _soundText.text = Localizer.Instance.GetText("UI_SOUND_OFF");
-            }
-            else
-            {
-                _soundText.text = Localizer.Instance.GetText("UI_SOUND_ON");
-            }
+            _soundText.text = Localizer.Instance.GetText(UnityGlobal.Sounds.IsMuted ? "UI_SOUND_OFF" : "UI_SOUND_ON");
 
             _soundButton.onClick.RemoveAllListeners();
             _soundButton.onClick.AddListener(() =>
             {
-                float bgmVolume = UnityGlobal.Sounds.GetBGMVolume();
-                if (bgmVolume <= 0f)
-                {
-                    UnityGlobal.Sounds.SetBGMVolume(1f);
-                    UnityGlobal.Sounds.SetEffectVolume(1f);
-                    _soundText.text = Localizer.Instance.GetText("UI_SOUND_ON");
-                }
-                else
-                {
-                    UnityGlobal.Sounds.SetBGMVolume(0f);
-                    UnityGlobal.Sounds.SetEffectVolume(0f);
-                    _soundText.text = Localizer.Instance.GetText("UI_SOUND_OFF");
-                }
+                UnityGlobal.Sounds.SetMuted(!UnityGlobal.Sounds.IsMuted);
+                _soundText.text = Localizer.Instance.GetText(UnityGlobal.Sounds.IsMuted ? "UI_SOUND_OFF" : "UI_SOUND_ON");
             });
 
             _playerCharacterLevelShadowText.text = _playerCharacterLevelText.text = GameClient.Stage?.PC.Level.ToString();

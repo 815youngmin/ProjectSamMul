@@ -25,6 +25,7 @@ namespace SamMul.UnityHelpers.Sounds
         private static readonly string STORAGE_KEY_SFX_VOLUME = "KEY_SFX_VOLUME";
         private static readonly string STORAGE_KEY_BGM_VOLUME = "KEY_BGM_VOLUME";
         private static readonly string STORAGE_KEY_VIBRATION = "KEY_VIBRATION";
+        private static readonly string STORAGE_KEY_MUTE = "KEY_SOUND_MUTE";
 
         // 같은 사운드가 이 프레임 수 안에 다시 요청되면 무시한다.
         private const int DUPLICATE_SUPPRESS_FRAMES = 18;
@@ -41,6 +42,7 @@ namespace SamMul.UnityHelpers.Sounds
         public SoundManager()
         {
             _prefabInstancePool = new ObjectPool<string, SoundObject>(this.AllocateFromPrefab);
+            AudioListener.volume = this.IsMuted ? 0f : 1f;
         }
 
         public void Initialize()
@@ -52,6 +54,15 @@ namespace SamMul.UnityHelpers.Sounds
         public IEnumerator AudioMixerVolumeInitializationErrorWorkaround()
         {
             yield break;
+        }
+
+        public bool IsMuted => PlayerPrefs.GetInt(STORAGE_KEY_MUTE, 0) == 1;
+
+        /// <summary>음소거. 배경음·효과음 볼륨 설정은 건드리지 않고 전체 출력만 끈다.</summary>
+        public void SetMuted(bool muted)
+        {
+            PlayerPrefs.SetInt(STORAGE_KEY_MUTE, muted ? 1 : 0);
+            AudioListener.volume = muted ? 0f : 1f;
         }
 
         /// <param name="volume">0 ~ 1.0f</param>

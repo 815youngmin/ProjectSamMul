@@ -143,7 +143,12 @@
     "EQUIP_INVADER_GLOVES_NAME": "침략자의 장갑",
     "EQUIP_INVADER_GLOVES_DESC": "공격력이 증가합니다.",
     "EQUIP_GUARDIAN_GLOVES_NAME": "수호자의 장갑",
-    "EQUIP_GUARDIAN_GLOVES_DESC": "공격력이 증가합니다."
+    "EQUIP_GUARDIAN_GLOVES_DESC": "공격력이 증가합니다.",
+    "UI_OPTION_TITLE": "옵션",
+    "UI_OPTION_LANGUAGE": "언어",
+    "UI_OPTION_SOUND": "사운드",
+    "UI_OPTION_BGM_VOLUME": "배경음",
+    "UI_OPTION_SFX_VOLUME": "효과음"
   },
   "English": {
     "UI_CANCEL": "Cancel",
@@ -289,6 +294,11 @@
     "EQUIP_INVADER_GLOVES_NAME": "Invader Gloves",
     "EQUIP_INVADER_GLOVES_DESC": "Increases attack power.",
     "EQUIP_GUARDIAN_GLOVES_NAME": "Guardian Gloves",
-    "EQUIP_GUARDIAN_GLOVES_DESC": "Increases attack power."
+    "EQUIP_GUARDIAN_GLOVES_DESC": "Increases attack power.",
+    "UI_OPTION_TITLE": "Options",
+    "UI_OPTION_LANGUAGE": "Language",
+    "UI_OPTION_SOUND": "Sound",
+    "UI_OPTION_BGM_VOLUME": "Music",
+    "UI_OPTION_SFX_VOLUME": "Sound Effects"
   }
 }
