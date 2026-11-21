@@ -13,6 +13,8 @@ namespace SamMul.UnityHelpers.Sounds
     {
         // 프리팹 직렬화 호환을 위해 필드 이름을 유지한다.
         [SerializeField] private List<AudioClip> audioClips = new List<AudioClip>();
+        // 이 사운드만의 볼륨 배율. 전역 볼륨에 곱해진다.
+        [SerializeField, Range(0f, 1f)] private float _volumeScale = 1f;
 
         private AudioSource _audioSource = null!;
         private string _poolKey = string.Empty;
@@ -36,7 +38,7 @@ namespace SamMul.UnityHelpers.Sounds
         /// <param name="volume">0.0 ~ 1.0</param>
         public void SetVolume(float volume)
         {
-            _audioSource.volume = volume;
+            _audioSource.volume = volume * _volumeScale;
         }
 
         public void Allocated(string key)

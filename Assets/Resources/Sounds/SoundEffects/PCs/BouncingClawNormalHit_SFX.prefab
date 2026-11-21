@@ -141,4 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64661e5d7395274da7a81107ef6b2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: 2e52e7948bc9ef34c8319b0a626d2323, type: 3}
