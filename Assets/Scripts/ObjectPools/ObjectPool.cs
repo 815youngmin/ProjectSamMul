@@ -42,7 +42,16 @@ namespace SamMul.ObjectPools
         public TConcreteType TakeOne<TConcreteType>(TPoolKey key, IPoolObjectInitialDataBase? initialData) where TConcreteType : class, TValue
         {
             var pool = this.GetPool(key);
-            var element = pool.Count > 0 ? pool.Pop() : _objectFactory(key, initialData);
+            TValue? element = null;
+            while (element == null && pool.Count > 0)
+            {
+                var popped = pool.Pop();
+                if (!IsDestroyed(popped))
+                {
+                    element = popped;
+                }
+            }
+            element ??= _objectFactory(key, initialData);
 
             var concrete = element as TConcreteType;
             Debug.Assert(concrete != null, $"풀 오브젝트 타입 불일치. Key[{key}] Expected[{typeof(TConcreteType).Name}]");
@@ -93,6 +102,11 @@ namespace SamMul.ObjectPools
                 while (pair.Value.Count > 0)
                 {
                     var element = pair.Value.Pop();
+                    if (IsDestroyed(element))
+                    {
+                        continue;
+                    }
+
                     if (element.RelatedScene == relatedScene)
                     {
                         destroyFunction(element);
@@ -109,6 +123,12 @@ namespace SamMul.ObjectPools
                 }
             }
             _pools = survivors;
+        }
+
+        // 풀에 들어 있는 동안 씬 언로드로 먼저 파괴된 유니티 오브젝트. 씬 전환 중(이전 씬 정리 후 ~ 언로드 전)에 반환되면 생긴다.
+        private static bool IsDestroyed(TValue element)
+        {
+            return element is UnityEngine.Object unityObject && unityObject == null;
         }
 
         private Stack<TValue> GetPool(TPoolKey key)
