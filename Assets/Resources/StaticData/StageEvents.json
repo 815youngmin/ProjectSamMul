@@ -942,7 +942,7 @@
     "EventType": "StageEnterInit",
     "BeginAt": 0.0,
     "EndAt": 0.0,
-    "MonsterType": "IceAge_CavemanA",
+    "MonsterType": "IceAge_Raptor",
     "Amount": 20,
     "TickPeriod": 0.0,
     "RespawnPhasePeriod": 0.0,

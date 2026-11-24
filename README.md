@@ -46,12 +46,24 @@
 
 ### 테스트
 
-`Window > General > Test Runner`의 **EditMode** 탭에서 실행합니다 (`Assets/Tests/EditMode`).
+`Window > General > Test Runner`에서 실행합니다.
+
+**EditMode** (`Assets/Tests/EditMode`) — 데이터와 텍스트 검증
 
 | 테스트 | 내용 |
 |---|---|
 | `StaticDataTests` | 챕터·스테이지·이벤트 구성, 스폰 이벤트의 몬스터 참조와 스탯 가중치, 스테이지별 보스 2종과 경고, 한·영 키 집합 일치 |
 | `LocalizationTests` | 코드·씬·프리팹·정적 데이터가 쓰는 텍스트 키가 한·영 양쪽에 있는지, 자리표시자 일치, 없는 키 요청 시 동작 |
+
+**PlayMode** (`Assets/Tests/PlayMode`) — 실제 씬을 띄워 4배속으로 진행. 도중에 예외나 에러 로그가 나오면 실패합니다.
+
+| 테스트 | 내용 |
+|---|---|
+| `PlayFlowTests` | 로비 초기화, 챕터별 로비 → 스테이지 → 로비 전환 |
+| `BossPatternTests` | 보스 6종의 전용 액션을 하나씩 실행해 시작과 종료(대기 상태 복귀) 확인 |
+| `MonsterSpawnTests` | 챕터별로 몬스터 종류마다 첫 등장 시각으로 스테이지 타이머를 옮겨 실제로 스폰되는지 확인 |
+
+게임 코드에는 테스트용 분기를 넣지 않고, 스테이지 조작(배속, 플레이어 체력, 타이머 이동, 보스 처치)은 `StageTestDriver` 한 곳에 모았습니다.
 
 ### 웹 빌드
 
@@ -89,6 +101,7 @@
 | `Assets/Resources/Stage`, `Skill`, `PlaerCharacter` | 스테이지·스킬·캐릭터 스프라이트, 애니메이션, 프리팹 |
 | `Assets/Editor/Demo` | 씬 생성기, 폰트·사운드·옵션 팝업 생성기, 정적 데이터 검증 메뉴 |
 | `Assets/Tests/EditMode` | 정적 데이터·현지화 검증 테스트 |
+| `Assets/Tests/PlayMode` | 씬 전환·보스 패턴·몬스터 스폰 플레이 테스트 |
 
 ## 설계 메모
 
