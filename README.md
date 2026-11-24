@@ -38,10 +38,20 @@
 
 1. Unity **2021.3.45f2** 로 프로젝트를 엽니다.
 2. Asset Store에서 **DOTween Pro**를 임포트하고 (`Assets/Plugins/Demigiant`), DOTween Utility Panel의 Setup에서 TextMeshPro 모듈을 켭니다. TextMeshPro 텍스트 트윈(`DOCounter`)을 쓰기 때문에 무료 버전만으로는 컴파일되지 않습니다. 저장소에는 포함되어 있지 않습니다.
+   게임 코드가 어셈블리 정의(`Assets/Scripts/SamMul.asmdef`)로 묶여 있으므로, 같은 패널에서 **Create ASMDEF**도 눌러 DOTween 쪽 어셈블리 정의(`DOTween.Modules`, `DOTweenPro.Scripts`)를 만들어야 합니다.
 3. 메뉴 **Demo → Validate Static Data** 로 데이터 로드를 확인합니다.
 4. `Assets/Scenes/Lobby.unity` 를 열고 Play.
 
 씬·한글 폰트·사운드 프리팹·옵션 팝업 프리팹은 저장소에 포함되어 있습니다. 다시 만들어야 할 때만 **Demo → Build Scenes / Build Korean Font / Build Sound Prefabs / Build Option Popup Prefab** 메뉴를 사용합니다.
+
+### 테스트
+
+`Window > General > Test Runner`의 **EditMode** 탭에서 실행합니다 (`Assets/Tests/EditMode`).
+
+| 테스트 | 내용 |
+|---|---|
+| `StaticDataTests` | 챕터·스테이지·이벤트 구성, 스폰 이벤트의 몬스터 참조와 스탯 가중치, 스테이지별 보스 2종과 경고, 한·영 키 집합 일치 |
+| `LocalizationTests` | 코드·씬·프리팹·정적 데이터가 쓰는 텍스트 키가 한·영 양쪽에 있는지, 자리표시자 일치, 없는 키 요청 시 동작 |
 
 ### 웹 빌드
 
@@ -78,6 +88,7 @@
 | `Assets/Resources/StaticData` | 데모용 정적 데이터 (JSON) |
 | `Assets/Resources/Stage`, `Skill`, `PlaerCharacter` | 스테이지·스킬·캐릭터 스프라이트, 애니메이션, 프리팹 |
 | `Assets/Editor/Demo` | 씬 생성기, 폰트·사운드·옵션 팝업 생성기, 정적 데이터 검증 메뉴 |
+| `Assets/Tests/EditMode` | 정적 데이터·현지화 검증 테스트 |
 
 ## 설계 메모
 
