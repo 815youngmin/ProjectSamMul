@@ -26,6 +26,8 @@
 
 메뉴 **Demo → Validate Static Data**로 전체 로드와 참조 검증을 할 수 있습니다.
 
+데이터를 고친 뒤에는 Test Runner 의 EditMode 테스트(`Assets/Tests/EditMode`)도 돌립니다. `StaticDataTests`가 테이블 사이의 참조, 스테이지별 보스 구성, 몬스터 리소스 경로(`SkeletonDataPath`, `SpecialAttack1ResourcePath`, `IllustImagePath`)의 파일 존재를 검사하고, `LocalizationTests`가 텍스트 키의 한·영 누락을 검사합니다. 목록은 [README의 테스트 항목](../README.md#테스트)에 있습니다.
+
 ## 리소스 경로 규칙
 
 - 코드와 데이터의 경로는 `Assets/Resources/` 기준 상대 경로에 **확장자를 포함**해 적습니다(`Stage/Common/fence.png`). `ResourcePool`이 확장자를 떼고 `Resources.Load`합니다.

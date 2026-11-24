@@ -74,6 +74,8 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 | `ResourcePools/` | **`ResourcePool`, `PlaceholderFactory`** |
 | `UIs/` | **로비 UI(옵션 팝업 포함), 스테이지 HUD, 팝업, 공용 버튼(`ZButton`), 조이스틱** |
 
+게임 코드는 어셈블리 `SamMul`(`Assets/Scripts/SamMul.asmdef`)로 묶여 있고, 테스트는 `Assets/Tests/EditMode`, `Assets/Tests/PlayMode`에 별도 어셈블리로 있습니다. 구성과 목록은 [README의 테스트 항목](../README.md#테스트)을 보세요.
+
 ## 핵심 객체와 소유 관계
 
 - `GameClient` → `OfflineSession`(유저 데이터·저장), `Stage`(현재 스테이지, 없으면 null), `CameraController`, `PlayerCharacterController`.
@@ -81,7 +83,7 @@ Loading 씬 ──> Lobby 씬 ──(챕터·캐릭터·장비 선택)──> St
 - `Character`(추상) → `CharacterStatCalculators`(스탯), `StatusEffectSet`(상태이상), `ActionBase`(현재 행동), `CharacterAnimationController`(애니메이션).
   - `PlayerCharacter` → `SkillDeck`(이번 판에 배울 수 있는 스킬), `SkillSet`(배운 스킬), `ConditionalEffectManager`(등급·장비 효과), `LevelCalculator`.
   - `Monster` → `MonsterAIController`(전략), `MonsterStaticData`.
-- 스테이지의 모든 동적 오브젝트는 `IPoolible<TKey>`를 구현하고 `ObjectPools/`의 풀로 재사용됩니다. 재사용 시 초기화는 `Initialize...()`, 반환 시 정리는 `PuttingBackToPool()`에 적습니다.
+- 스테이지의 모든 동적 오브젝트는 `IPoolible<TKey>`를 구현하고 `ObjectPools/`의 풀로 재사용됩니다. 재사용 시 초기화는 `Initialize...()`, 반환 시 정리는 `PuttingBackToPool()`에 적습니다. 풀에 들어 있는 동안 씬 언로드로 먼저 파괴된 오브젝트는 꺼내거나 정리할 때 건너뜁니다.
 
 ## 자주 쓰는 진입점
 

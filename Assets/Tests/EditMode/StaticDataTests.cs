@@ -1,11 +1,13 @@
 ﻿#nullable enable
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Shared;
 using Shared.GameDataTypes;
 using Shared.Localizers;
 using Shared.StaticDatas;
+using UnityEngine;
 
 namespace SamMul.Tests.EditMode
 {
@@ -120,6 +122,44 @@ namespace SamMul.Tests.EditMode
                     Assert.IsTrue(Localizer.Instance.CurrentLanguage.Texts.ContainsKey(nameKey), $"{monsterType} 의 이름 키 {nameKey} 가 Localization 에 없습니다.");
                 }
             }
+        }
+
+        /// <summary>
+        /// 몬스터 데이터에 적힌 리소스 경로(Assets/Resources 기준)에 실제 파일이 있는지만 확인한다.
+        /// 파일이 없으면 게임은 플레이스홀더로 대체하고 경고 로그만 남기므로 플레이 테스트로는 잡히지 않는다.
+        /// </summary>
+        [Test]
+        public void MonsterResourcePaths_PointToExistingFiles()
+        {
+            var problems = new List<string>();
+
+            void Check(CharacterType monsterType, string column, string resourcePath, bool isRequired)
+            {
+                if (string.IsNullOrEmpty(resourcePath))
+                {
+                    if (isRequired)
+                    {
+                        problems.Add($"{monsterType}.{column}: 경로가 비어 있습니다.");
+                    }
+                }
+                else if (!File.Exists(Path.Combine(Application.dataPath, "Resources", resourcePath)))
+                {
+                    problems.Add($"{monsterType}.{column}: {resourcePath}");
+                }
+            }
+
+            foreach (var monster in Repository.Monsters.Monsters.Values)
+            {
+                Check(monster.MonsterType, nameof(monster.SkeletonDataPath), monster.SkeletonDataPath, isRequired: true);
+                // 특수 공격이 없는 몬스터는 비워 둔다.
+                Check(monster.MonsterType, nameof(monster.SpecialAttack1ResourcePath), monster.SpecialAttack1ResourcePath, isRequired: false);
+            }
+            foreach (var imagePath in Repository.MonsterImagePaths.MonsterImagePathStaticDatas.Values)
+            {
+                Check(imagePath.CharacterType, nameof(imagePath.IllustImagePath), imagePath.IllustImagePath, isRequired: true);
+            }
+
+            CollectionAssert.IsEmpty(problems, "파일이 없는 몬스터 리소스 경로");
         }
 
         [Test]

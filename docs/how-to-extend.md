@@ -29,7 +29,7 @@
 - 이전 테마의 보스 코드(`BossAIStrategies/Arabian`, `Steampunk`, `Western`, `Actions/Boss/Alibaba` 등)는 데모에서 실행되지 않지만 패턴 참고용으로 남아 있습니다.
 - 보스 HP·공격력은 `StageEvents.json` `BossSpawn` 행의 가중치로 맞춥니다(실제 값 = `Monsters.json` 기본값 × 가중치).
 - 보스 스폰 위치·울타리 크기는 `BossSpawnStageEvent`의 `switch`에서 보스 타입별로 조정합니다. 맵 형태가 `Rectangle`이면 중앙 스폰, 울타리 없음입니다.
-- 테스트는 스테이지에서 숫자 키 1~2로 해당 보스전 직전으로 이동해 확인합니다.
+- 테스트는 스테이지에서 숫자 키 1~2로 해당 보스전 직전으로 이동해 확인합니다. PlayMode 테스트 `BossPatternTests`는 보스의 모든 전용 액션을 하나씩 실행해 주므로, 액션을 추가한 뒤 돌리면 무작위 선택을 기다리지 않고 확인할 수 있습니다.
 
 ## 스킬 추가
 
@@ -58,4 +58,5 @@
 - **SpriteRenderer에 MaterialPropertyBlock 쓰지 않기**: 스프라이트 텍스처 바인딩이 사라져 하얗게 남습니다. 플레이어 몸체는 `SpriteRenderer.color` 곱으로 피격을 표현합니다.
 - **사운드**: 없는 사운드 경로는 예외를 던집니다. 새 사운드 경로를 코드에 넣었다면 **Demo → Build Sound Prefabs**를 다시 실행한 뒤, 만들어진 프리팹의 `SoundObject` → `Audio Clips`에 클립을 넣으세요. `AudioSource`의 Clip과 Volume은 재생 시 덮어쓰이므로 쓰이지 않습니다. 소리가 안 나면 `Audio Clips`가 비어 있는지부터 확인합니다(비어 있으면 경고 없이 넘어갑니다).
 - **빠른 컴파일 확인**: 스크립트 변경 후 Unity 재컴파일 전에 오류만 보고 싶으면 `python _migration/fastbuild/gen.py`를 쓸 수 있습니다(개인 작업 도구, 저장소 미포함).
+- **자동 테스트**: `Window > General > Test Runner`. 데이터·텍스트를 고쳤으면 EditMode, 몬스터·보스·씬 전환을 건드렸으면 PlayMode 를 돌립니다. PlayMode 테스트가 게임을 조작하는 코드는 `Assets/Tests/PlayMode/StageTestDriver.cs` 한 곳에 있고, 비공개 멤버 이름을 상수로 들고 있으므로 `Stage._stageEventController`, `MonsterAIController.aiStrategy`, `BossCombatAIStrategy.Actions`, `SkillSelectorButton._button`의 이름을 바꾸면 그 상수도 고쳐야 합니다.
 - **테스트 키**: 숫자 1~2 보스전 이동. 부활 규칙(한 게임 1회)은 `Stage.Update`의 `isAbleToResurrect` 조건에 있습니다.
